@@ -48,6 +48,7 @@ export function Footer({
             </h4>
             <ul className="space-y-3">
               <FooterLink to="/"          label="Forside" />
+              <FooterLink to="/vaerelser" label="Værelser" />
               <FooterLink to="/om-os"     label="Om Os" />
               <FooterLink to="/tjenester" label="Tjenester" />
               <FooterLink to="/priser"    label="Priser" />

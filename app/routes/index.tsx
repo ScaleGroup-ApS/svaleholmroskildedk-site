@@ -38,82 +38,127 @@ export default function Index() {
 
 function HeroSection() {
   return (
-    <section className="relative h-screen min-h-[680px] flex items-center justify-center overflow-hidden">
-      {/* Dark background */}
-      <div className="absolute inset-0" style={{ background: "linear-gradient(160deg, #0F1823 0%, #1E293B 55%, #162030 100%)" }} />
-
-      {/* Animated mesh blobs */}
-      <motion.div
-        className="absolute rounded-full pointer-events-none"
-        style={{ width: 700, height: 700, top: "-10%", left: "-5%", background: "radial-gradient(circle, rgba(212,193,169,0.14) 0%, transparent 65%)", filter: "blur(60px)" }}
-        animate={{ x: [0, 40, 0], y: [0, -25, 0] }}
-        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+    <section className="relative min-h-[760px] lg:min-h-[860px] flex items-end overflow-hidden">
+      <img
+        src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=2200&q=80&auto=format&fit=crop"
+        alt="Lyst og elegant hotelværelse"
+        className="absolute inset-0 w-full h-full object-cover"
       />
-      <motion.div
-        className="absolute rounded-full pointer-events-none"
-        style={{ width: 500, height: 500, bottom: "5%", right: "-5%", background: "radial-gradient(circle, rgba(184,159,128,0.12) 0%, transparent 60%)", filter: "blur(50px)" }}
-        animate={{ x: [0, -30, 0], y: [0, 30, 0] }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(115deg, rgba(248,247,244,0.92) 0%, rgba(248,247,244,0.84) 40%, rgba(248,247,244,0.36) 72%, rgba(248,247,244,0.08) 100%)",
+        }}
       />
 
-      {/* Subtle texture overlay */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-      }} />
+      <motion.div
+        className="absolute -top-24 -left-24 rounded-full pointer-events-none"
+        style={{
+          width: 420,
+          height: 420,
+          background:
+            "radial-gradient(circle, rgba(212,193,169,0.38) 0%, transparent 70%)",
+          filter: "blur(24px)",
+        }}
+        animate={{ x: [0, 24, 0], y: [0, -16, 0] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute bottom-0 right-0 rounded-full pointer-events-none"
+        style={{
+          width: 520,
+          height: 520,
+          background:
+            "radial-gradient(circle, rgba(184,159,128,0.24) 0%, transparent 70%)",
+          filter: "blur(30px)",
+        }}
+        animate={{ x: [0, -20, 0], y: [0, 18, 0] }}
+        transition={{ duration: 13, repeat: Infinity, ease: "easeInOut", delay: 1.6 }}
+      />
 
-      {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
-        <motion.p
-          className="eyebrow mb-6"
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-        >
-          Roskilde · Danmark · Est. 1847
-        </motion.p>
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pb-18 md:pb-24 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-end">
+          <div className="lg:col-span-3">
+            <motion.p
+              className="eyebrow mb-5"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              Roskilde · Danmark · Boutique Ophold
+            </motion.p>
 
-        <motion.h1
-          className="heading-hero text-white mb-7"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.12 }}
-        >
-          Svaleholm Roskilde.
-        </motion.h1>
+            <motion.h1
+              className="heading-hero mb-6"
+              style={{ color: "#1E293B", maxWidth: "12ch" }}
+              initial={{ opacity: 0, y: 34 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.08 }}
+            >
+              Lys luksus med ro i centrum.
+            </motion.h1>
 
-        <motion.p
-          style={{ fontFamily: "var(--font-body)", fontSize: "1.125rem", color: "rgba(248,247,244,0.7)", maxWidth: "580px", margin: "0 auto 3rem", lineHeight: 1.75 }}
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.28 }}
-        >
-          Hvor historien møder nuet, og tiden står stille.
-        </motion.p>
+            <motion.p
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "1.06rem",
+                color: "#4B5563",
+                maxWidth: "620px",
+                marginBottom: "2.4rem",
+                lineHeight: 1.8,
+              }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
+            >
+              Oplev et hotelunivers hvor historisk karakter, bløde materialer og
+              moderne komfort mødes i en elegant helhed.
+            </motion.p>
 
-        <motion.div
-          className="flex flex-col sm:flex-row gap-4 justify-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut", delay: 0.44 }}
-        >
-          <Link to="/tjenester" className="btn-primary">
-            Oplev Vores Værelser
-          </Link>
-          <Link to="/tjenester" className="btn-ghost">
-            Planlæg Din Fejring
-          </Link>
-        </motion.div>
-      </div>
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4"
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, ease: "easeOut", delay: 0.32 }}
+            >
+              <Link to="/vaerelser" className="btn-primary">
+                Se Alle Værelser
+              </Link>
+              <Link to="/kontakt" className="btn-dark">
+                Planlæg Dit Ophold
+              </Link>
+            </motion.div>
+          </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 animate-pulse-slow">
-        <svg width="24" height="36" viewBox="0 0 24 36" fill="none" style={{ color: "rgba(255,255,255,0.45)" }}>
-          <rect x="1" y="1" width="22" height="34" rx="11" stroke="currentColor" strokeWidth="1.2"/>
-          <motion.circle cx="12" cy="10" r="3" fill="currentColor"
-            animate={{ cy: [10, 18, 10] }}
-            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </svg>
+          <motion.div
+            className="lg:col-span-2"
+            initial={{ opacity: 0, y: 26 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, delay: 0.22 }}
+          >
+            <div className="glass rounded-2xl p-6 md:p-7 card-shadow">
+              <p className="eyebrow mb-3">Udvalgte oplevelser</p>
+              <h2 className="heading-sub mb-4" style={{ color: "#1E293B" }}>
+                Hotelstemning med personlig service
+              </h2>
+              <ul className="space-y-2.5" style={{ color: "#4B5563", fontSize: "0.95rem" }}>
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full" style={{ background: "#B89F80" }} />
+                  8 unikke værelser og suiter
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full" style={{ background: "#B89F80" }} />
+                  Bryllupper, retreats og private events
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full" style={{ background: "#B89F80" }} />
+                  Rolige omgivelser tæt på Roskilde
+                </li>
+              </ul>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -196,7 +241,7 @@ function IntroSection() {
 
 function ServicesSection() {
   return (
-    <section className="section-padding relative overflow-hidden" style={{ background: "#1E293B" }}>
+    <section className="section-padding relative overflow-hidden" style={{ background: "#F1F0EC" }}>
       {/* Decorative background image */}
       <div className="absolute inset-0">
         <img
@@ -204,10 +249,10 @@ function ServicesSection() {
           alt=""
           aria-hidden
           className="w-full h-full object-cover"
-          style={{ opacity: 0.12, filter: "blur(2px)" }}
+          style={{ opacity: 0.18, filter: "blur(1px)" }}
         />
       </div>
-      <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(30,41,59,0.96) 0%, rgba(30,41,59,0.80) 100%)" }} />
+      <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(248,247,244,0.95) 0%, rgba(248,247,244,0.82) 100%)" }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <motion.div
@@ -218,7 +263,7 @@ function ServicesSection() {
           viewport={{ once: true, margin: "-80px" }}
         >
           <p className="eyebrow mb-5">Hvad Vi Tilbyder</p>
-          <h2 className="heading-section text-white">
+          <h2 className="heading-section gradient-text">
             Ophold & Fejring
           </h2>
         </motion.div>
@@ -228,7 +273,7 @@ function ServicesSection() {
             tag="Opholdet"
             title="Otte Unikke Værelser"
             description="Hvert værelse er en fortælling i sig selv. Fra det intime og hyggelige til det storslåede og overdådige – alle indrettet med håndplukkede møbler og lokale kunstneres arbejde."
-            href="/tjenester"
+            href="/vaerelser"
             cta="Udforsk Ophold"
             imgSrc="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=900&q=80&auto=format&fit=crop"
             delay={0}
@@ -370,11 +415,21 @@ function TestimonialsSection() {
 
 function CtaBanner() {
   return (
-    <section className="relative overflow-hidden" style={{ background: "#1E293B", padding: "6rem 1.5rem" }}>
-      {/* Glow */}
-      <div className="absolute inset-0 pointer-events-none" style={{
-        background: "radial-gradient(ellipse at 50% 50%, rgba(184,159,128,0.1) 0%, transparent 65%)"
-      }} />
+    <section className="relative overflow-hidden" style={{ background: "#F8F7F4", padding: "6rem 1.5rem" }}>
+      <img
+        src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=2000&q=80&auto=format&fit=crop"
+        alt=""
+        aria-hidden
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ opacity: 0.16 }}
+      />
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(135deg, rgba(248,247,244,0.95) 0%, rgba(248,247,244,0.88) 100%)",
+        }}
+      />
       <motion.div
         className="relative z-10 max-w-3xl mx-auto text-center"
         initial={{ opacity: 0, y: 24 }}
@@ -383,15 +438,15 @@ function CtaBanner() {
         viewport={{ once: true, margin: "-80px" }}
       >
         <p className="eyebrow mb-5">Klar til at Opleve Svaleholm?</p>
-        <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(2rem, 5vw, 3.25rem)", fontWeight: 400, color: "#F8F7F4", lineHeight: 1.2, marginBottom: "1.5rem" }}>
+        <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(2rem, 5vw, 3.25rem)", fontWeight: 400, color: "#1E293B", lineHeight: 1.2, marginBottom: "1.5rem" }}>
           Reserver Dit Ophold I Dag
         </h2>
-        <p style={{ fontFamily: "var(--font-body)", color: "rgba(248,247,244,0.65)", lineHeight: 1.75, maxWidth: "480px", margin: "0 auto 2.5rem", fontSize: "1rem" }}>
+        <p style={{ fontFamily: "var(--font-body)", color: "#4B5563", lineHeight: 1.75, maxWidth: "480px", margin: "0 auto 2.5rem", fontSize: "1rem" }}>
           Tag det første skridt mod en uforglemmelig oplevelse. Vi ser frem til at byde dig velkommen.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link to="/kontakt" className="btn-primary">Book Dit Ophold</Link>
-          <Link to="/priser" className="btn-ghost">Se Priser</Link>
+          <Link to="/priser" className="btn-dark">Se Priser</Link>
         </div>
       </motion.div>
     </section>
