@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Header } from "~/components/Header";
 import { Footer } from "~/components/Footer";
+import { ROOMS } from "~/lib/rooms";
 
 export function meta() {
   return [
@@ -10,74 +11,6 @@ export function meta() {
     { name: "description", content: "Udforsk Svaleholms otte unikke værelser og vores muligheder for selskaber og events. Bryllup, firma-retreat eller privat fejring – vi har rammen." },
   ];
 }
-
-const ROOMS = [
-  {
-    name: "Svalereden",
-    desc: "Vores mest intime værelse med udsigt over gårdspladsens historiske ege. Et fristed for to.",
-    size: "28 m²",
-    bed: "King",
-    img: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=700&q=80&auto=format&fit=crop",
-    features: ["Brændeovn", "Clawfoot badekar", "Fri minibar"],
-  },
-  {
-    name: "Haven",
-    desc: "Direkte adgang til den private rosenhave. Vågn op til duften af blomster og fuglekvidder.",
-    size: "32 m²",
-    bed: "King",
-    img: "https://images.unsplash.com/photo-1600607687939-ce8a6d5de31d?w=700&q=80&auto=format&fit=crop",
-    features: ["Privat terrasse", "Regnbruser", "Haveadgang"],
-  },
-  {
-    name: "Tårnet",
-    desc: "Placeret i det renoverede tårn med panoramaudsigt over søen og det omkringliggende gods.",
-    size: "45 m²",
-    bed: "Super King",
-    img: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=700&q=80&auto=format&fit=crop",
-    features: ["360° udsigt", "Privat jacuzzi", "Champagneservice"],
-  },
-  {
-    name: "Biblioteket",
-    desc: "Indrettet i det oprindelige bibliotek med hyldevægge af bøger og et sanseligt læsehjørne.",
-    size: "38 m²",
-    bed: "King",
-    img: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=700&q=80&auto=format&fit=crop",
-    features: ["Arbejdsbord", "Sofahjørne", "Gourmet-tekasse"],
-  },
-  {
-    name: "Marken",
-    desc: "Rustik elegance med eksponerede bjælker og udsigt over de gyldne marker.",
-    size: "30 m²",
-    bed: "Queen",
-    img: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=700&q=80&auto=format&fit=crop",
-    features: ["Eksponerede bjælker", "Kamin", "Morgenmad inkl."],
-  },
-  {
-    name: "Søen",
-    desc: "Med terrasse der vender mod den stille sø er dette stedet for dem, der søger ro i sin reneste form.",
-    size: "35 m²",
-    bed: "King",
-    img: "https://images.unsplash.com/photo-1566195992011-5f6b21e539aa?w=700&q=80&auto=format&fit=crop",
-    features: ["Søudsigt", "Privat båd", "Fiskestang"],
-  },
-  {
-    name: "Vinterstuen",
-    desc: "Opkald med den smukkeste vinterudsigt. Varme farver, blødt lys og en kæmpe seng.",
-    size: "33 m²",
-    bed: "Super King",
-    img: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=700&q=80&auto=format&fit=crop",
-    features: ["Gulvvarme", "Badekaret ved vinduet", "Pejs"],
-  },
-  {
-    name: "Mestersuiten",
-    desc: "Vores største og mest eksklusive suite. En hel verden for sig selv, med alt hvad hjertet begærer.",
-    size: "75 m²",
-    bed: "Super King",
-    img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=700&q=80&auto=format&fit=crop",
-    features: ["Separat stue", "Walk-in closet", "Privat butler"],
-    featured: true,
-  },
-];
 
 const EVENTS = [
   {
@@ -160,16 +93,16 @@ export default function Tjenester() {
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
                 {ROOMS.map((room, i) => (
                   <motion.div
-                    key={room.name}
-                    className={`glass rounded-xl overflow-hidden card-shadow card-shadow-hover group ${room.featured ? "md:col-span-2 xl:col-span-1" : ""}`}
+                    key={room.slug}
+                    className={`glass rounded-xl overflow-hidden card-shadow card-shadow-hover group ${room.slug === "mestersuiten" ? "md:col-span-2 xl:col-span-1" : ""}`}
                     initial={{ opacity: 0, y: 24 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: (i % 3) * 0.08 }}
                     viewport={{ once: true, margin: "-60px" }}
                   >
                     <div className="relative overflow-hidden" style={{ height: "220px" }}>
-                      <img src={room.img} alt={room.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                      {room.featured && (
+                      <img src={room.heroImage} alt={room.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                      {room.slug === "mestersuiten" && (
                         <div className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-medium" style={{ background: "linear-gradient(135deg, #D4C1A9, #B89F80)", color: "#1E293B", fontFamily: "var(--font-body)" }}>
                           Premium Suite
                         </div>
@@ -180,19 +113,19 @@ export default function Tjenester() {
                         <h3 className="heading-card" style={{ color: "#1E293B" }}>{room.name}</h3>
                         <span className="text-xs px-2 py-1 rounded" style={{ background: "#F1F0EC", color: "#B89F80", fontFamily: "var(--font-body)", fontWeight: 500 }}>{room.size}</span>
                       </div>
-                      <p style={{ color: "#6B7280", fontSize: "0.9375rem", lineHeight: 1.7, marginBottom: "1.25rem" }}>{room.desc}</p>
+                      <p style={{ color: "#6B7280", fontSize: "0.9375rem", lineHeight: 1.7, marginBottom: "1.25rem" }}>{room.shortDescription}</p>
                       <div className="flex flex-wrap gap-2 mb-5">
                         <span className="text-xs px-2 py-1 rounded" style={{ background: "#F1F0EC", color: "#6B7280", fontFamily: "var(--font-body)" }}>
                           🛏 {room.bed}
                         </span>
-                        {room.features.map(f => (
+                        {room.amenities.slice(0, 3).map((f) => (
                           <span key={f} className="text-xs px-2 py-1 rounded" style={{ background: "#F1F0EC", color: "#6B7280", fontFamily: "var(--font-body)" }}>
                             {f}
                           </span>
                         ))}
                       </div>
-                      <Link to="/priser" className="btn-dark" style={{ fontSize: "0.875rem", padding: "0.65rem 1.25rem" }}>
-                        Læs Mere & Book
+                      <Link to={`/vaerelser/${room.slug}`} className="btn-dark" style={{ fontSize: "0.875rem", padding: "0.65rem 1.25rem" }}>
+                        Se Værelse
                       </Link>
                     </div>
                   </motion.div>

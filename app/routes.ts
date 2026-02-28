@@ -3,6 +3,8 @@ import { type RouteConfig, index, route } from "@react-router/dev/routes";
 export default [
   index("routes/index.tsx"),
   route("om-os", "routes/om-os.tsx"),
+  route("vaerelser", "routes/vaerelser.tsx"),
+  route("vaerelser/:slug", "routes/vaerelser.$slug.tsx"),
   route("tjenester", "routes/tjenester.tsx"),
   route("priser", "routes/priser.tsx"),
   route("kontakt", "routes/kontakt.tsx"),
