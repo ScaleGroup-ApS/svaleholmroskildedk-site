@@ -77,6 +77,7 @@ export function Header({ siteName = "Svaleholm", menuItems = [] }: HeaderProps) 
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const closeMobileMenu = () => setMobileOpen(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -108,7 +109,11 @@ export function Header({ siteName = "Svaleholm", menuItems = [] }: HeaderProps) 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${headerBg}`}>
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between gap-4">
-        <Link to="/" className="text-[#1E293B] transition-colors duration-300">
+        <Link
+          to="/"
+          onClick={closeMobileMenu}
+          className="text-[#1E293B] transition-colors duration-300"
+        >
           <span
             style={{
               fontFamily: "var(--font-heading)",
@@ -172,6 +177,7 @@ export function Header({ siteName = "Svaleholm", menuItems = [] }: HeaderProps) 
                 <Link
                   key={item.href}
                   to={item.href}
+                  onClick={closeMobileMenu}
                   className={`flex items-center gap-3 px-4 py-3.5 rounded-lg transition-colors font-medium ${
                     active ? "bg-white text-[#1E293B]" : "text-[#334155] hover:bg-[#F1F0EC]"
                   }`}
@@ -188,7 +194,12 @@ export function Header({ siteName = "Svaleholm", menuItems = [] }: HeaderProps) 
               );
             })}
             <div className="pt-3 border-t border-[#E2E8F0]">
-              <Link to="/kontakt" className="btn-primary w-full text-center" style={{ padding: "0.875rem 1.5rem" }}>
+              <Link
+                to="/kontakt"
+                onClick={closeMobileMenu}
+                className="btn-primary w-full text-center"
+                style={{ padding: "0.875rem 1.5rem" }}
+              >
                 Book Ophold
               </Link>
             </div>
