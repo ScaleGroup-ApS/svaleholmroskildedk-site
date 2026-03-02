@@ -28,7 +28,7 @@ const EVENTS = [
     includes: ["Mødelokale med AV-udstyr", "Catering hele dagen", "Teambuilding aktiviteter", "Overnatning for alle deltagere", "Afsluttende middag"],
   },
   {
-    title: "Private Fejringer",
+    title: "Private fejringer",
     desc: "Runde fødselsdage, jubilæer, dimissioner eller familieweekends – alle livets store øjeblikke fortjener omgivelser, der matcher dem.",
     capacity: "Op til 60 gæster",
     img: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=900&q=80&auto=format&fit=crop",
@@ -52,8 +52,8 @@ export default function Tjenester() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="eyebrow mb-4">Hvad Vi Tilbyder</p>
-            <h1 className="heading-section gradient-text mb-6">Ophold & Fejring</h1>
+            <p className="eyebrow mb-4">Hvad vi tilbyder</p>
+            <h1 className="heading-section gradient-text mb-6">Ophold & fejring</h1>
             <p style={{ fontFamily: "var(--font-body)", color: "#6B7280", fontSize: "1.0625rem", lineHeight: 1.75, maxWidth: "520px", margin: "0 auto" }}>
               Uanset om du søger ro for dig selv eller vil samle dine kære til en uforglemmelig fest – Svaleholm har rummet, stedet og holdet til at gøre det muligt.
             </p>
@@ -64,8 +64,8 @@ export default function Tjenester() {
         <div className="sticky top-20 z-30 py-4" style={{ background: "rgba(248,247,244,0.95)", backdropFilter: "blur(12px)", borderBottom: "1px solid #E2E8F0" }}>
           <div className="max-w-xl mx-auto px-6 flex">
             {([
-              { key: "vaerelser", label: "Værelser & Ophold" },
-              { key: "selskaber", label: "Selskaber & Events" },
+              { key: "vaerelser", label: "Værelser & ophold" },
+              { key: "selskaber", label: "Selskaber & events" },
             ] as const).map(tab => (
               <button
                 key={tab.key}
@@ -165,7 +165,7 @@ export default function Tjenester() {
                         </li>
                       ))}
                     </ul>
-                    <Link to="/kontakt" className="btn-primary">Få et Uforpligtende Tilbud</Link>
+                    <Link to="/kontakt" className="btn-primary">Få et uforpligtende tilbud</Link>
                   </div>
                 </motion.div>
               ))}

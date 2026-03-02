@@ -12,8 +12,8 @@ export function meta() {
 }
 
 const ROOM_PRICES = [
-  { category: "Klassiske Værelser", rooms: "Svalereden, Haven, Marken, Vinterstuen", price: "2.495", per: "pr. nat", includes: ["Kontinental morgenmad", "Fri Wi-Fi", "Adgang til haven", "Velkomstdrink"], note: "" },
-  { category: "Deluxe Værelser", rooms: "Søen, Biblioteket", price: "3.295", per: "pr. nat", includes: ["Gourmet morgenmad", "Fri Wi-Fi", "Adgang til haven", "Velkomstchampagne", "Fri minibar (ikke-alkohol)"], note: "" },
+  { category: "Klassiske værelser", rooms: "Svalereden, Haven, Marken, Vinterstuen", price: "2.495", per: "pr. nat", includes: ["Kontinental morgenmad", "Fri Wi-Fi", "Adgang til haven", "Velkomstdrink"], note: "" },
+  { category: "Deluxe værelser", rooms: "Søen, Biblioteket", price: "3.295", per: "pr. nat", includes: ["Gourmet morgenmad", "Fri Wi-Fi", "Adgang til haven", "Velkomstchampagne", "Fri minibar (ikke-alkohol)"], note: "" },
   { category: "Tårnet", rooms: "Eksklusivt tårn-suite", price: "4.795", per: "pr. nat", includes: ["Gourmet morgenmad på værelset", "Privat jacuzzi", "Champagneservice", "Sen checkout (kl. 14)", "Fri minibar"], note: "", featured: true },
   { category: "Mestersuiten", rooms: "Vores største suite", price: "6.995", per: "pr. nat", includes: ["Alt inklusiv morgenmad", "Privat butler-service", "Transferservice", "Spa-adgang", "Komplimenterende champagne"], note: "Fra pris. Kontakt os for tilbud.", featured: true },
 ];
@@ -33,7 +33,7 @@ const EVENT_PACKAGES = [
       "Morgenmad for alle overnattende gæster",
       "Dedikeret eventkoordinator",
     ],
-    cta: "Book Bryllup",
+    cta: "Book bryllup",
   },
   {
     name: "Firma-Retreat 'Inspiration'",
@@ -48,10 +48,10 @@ const EVENT_PACKAGES = [
       "3-retters middag begge aftener",
       "Tilpasset program",
     ],
-    cta: "Book Retreat",
+    cta: "Book retreat",
   },
   {
-    name: "Private Fejringer",
+    name: "Private fejringer",
     price: "895",
     priceNote: "pr. kuvert",
     minGuests: "Min. 20 gæster",
@@ -62,7 +62,7 @@ const EVENT_PACKAGES = [
       "Dekorationer inkl.",
       "Dedikeret vært",
     ],
-    cta: "Book Fejring",
+    cta: "Book fejring",
   },
 ];
 
@@ -92,8 +92,8 @@ export default function Priser() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <p className="eyebrow mb-4">Transparent Prissætning</p>
-            <h1 className="heading-section gradient-text mb-6">Priser & Pakker</h1>
+            <p className="eyebrow mb-4">Transparent prissætning</p>
+            <h1 className="heading-section gradient-text mb-6">Priser & pakker</h1>
             <p style={{ fontFamily: "var(--font-body)", color: "#6B7280", fontSize: "1.0625rem", lineHeight: 1.75, maxWidth: "520px", margin: "0 auto" }}>
               Vi tror på gennemsigtighed. Herunder finder du vores priser. Kontakt os altid for et skræddersyet tilbud.
             </p>
@@ -170,7 +170,7 @@ export default function Priser() {
               transition={{ duration: 0.7 }}
               viewport={{ once: true, margin: "-80px" }}
             >
-              <p className="eyebrow mb-4">Selskaber & Events</p>
+              <p className="eyebrow mb-4">Selskaber & events</p>
               <h2 className="heading-section text-white">Eventpakker</h2>
             </motion.div>
 
@@ -225,7 +225,7 @@ export default function Priser() {
                 Alle vores pakker kan tilpasses fuldstændigt til dine behov. Ring eller skriv til os for et skræddersyet tilbud.
               </p>
               <Link to="/kontakt" className="btn-primary" style={{ fontSize: "0.9rem" }}>
-                Kontakt Os For Tilbud
+                Kontakt os for tilbud
               </Link>
             </motion.div>
           </div>
@@ -241,8 +241,8 @@ export default function Priser() {
               transition={{ duration: 0.7 }}
               viewport={{ once: true, margin: "-80px" }}
             >
-              <p className="eyebrow mb-4">Praktisk Information</p>
-              <h2 className="heading-section gradient-text">Ofte Stillede Spørgsmål</h2>
+              <p className="eyebrow mb-4">Praktisk information</p>
+              <h2 className="heading-section gradient-text">Ofte stillede spørgsmål</h2>
             </motion.div>
 
             <div className="space-y-3">

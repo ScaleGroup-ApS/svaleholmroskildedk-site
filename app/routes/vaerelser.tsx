@@ -50,7 +50,7 @@ export default function Vaerelser() {
             transition={{ duration: 0.7 }}
           >
             <p className="eyebrow mb-4">Svaleholm Roskilde</p>
-            <h1 className="heading-section gradient-text mb-6">Vores Værelser</h1>
+            <h1 className="heading-section gradient-text mb-6">Vores værelser</h1>
             <p
               style={{
                 color: "#6B7280",

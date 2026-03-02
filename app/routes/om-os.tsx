@@ -20,7 +20,7 @@ export function meta({ data }: Route.MetaArgs) {
   if (!data) return [{ title: "Om Os | Svaleholm Roskilde" }];
   const { siteInfo, page, siteUrl } = data;
   const siteName = siteInfo?.name ?? "Svaleholm Roskilde";
-  const title = `Vores Historie | ${siteName}`;
+  const title = `Vores historie | ${siteName}`;
   const description = page?.excerpt?.rendered
     ? stripHtml(page.excerpt.rendered)
     : "Lær historien bag Svaleholm Roskilde at kende. En passioneret vision om at bevare det bedste fra fortiden og forene det med nutidens luksus.";
@@ -80,8 +80,8 @@ export default function OmOs({ loaderData }: Route.ComponentProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="eyebrow mb-5">Vores Fortælling</p>
-            <h1 className="heading-section text-white mb-6">Vores Historie</h1>
+            <p className="eyebrow mb-5">Vores fortælling</p>
+            <h1 className="heading-section text-white mb-6">Vores historie</h1>
             <p style={{ fontFamily: "var(--font-body)", color: "rgba(248,247,244,0.65)", fontSize: "1.0625rem", lineHeight: 1.75, maxWidth: "560px", margin: "0 auto" }}>
               Fra et forfaldent herregårdsanlæg til et af Danmarks mest eftertragtede oplevelsesdestinationer – historien om Svaleholm er en fortælling om kærlighed til sted, håndværk og mennesker.
             </p>
@@ -92,9 +92,9 @@ export default function OmOs({ loaderData }: Route.ComponentProps) {
         <section className="section-padding" style={{ background: "#F8F7F4" }}>
           <div className="max-w-3xl mx-auto px-6 text-center">
             <motion.div {...fadeUp}>
-              <p className="eyebrow mb-6">Vores Vision</p>
+              <p className="eyebrow mb-6">Vores vision</p>
               <h2 className="heading-section gradient-text mb-10">
-                Et Manifest for Nærvær.
+                Et manifest for nærvær.
               </h2>
               <div style={{ borderTop: "1px solid #E2E8F0", paddingTop: "2.5rem" }}>
                 <p style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(1.2rem, 2.5vw, 1.5rem)", color: "#1E293B", lineHeight: 1.8, fontStyle: "italic", marginBottom: "1.75rem" }}>
@@ -139,7 +139,7 @@ export default function OmOs({ loaderData }: Route.ComponentProps) {
                 transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
                 viewport={{ once: true, margin: "-80px" }}
               >
-                <p className="eyebrow mb-5">Mød Jeres Værter</p>
+                <p className="eyebrow mb-5">Mød jeres værter</p>
                 <h2 className="heading-section gradient-text mb-7">
                   Katrine & Anders Holst
                 </h2>
@@ -152,7 +152,7 @@ export default function OmOs({ loaderData }: Route.ComponentProps) {
                 <p style={{ color: "#6B7280", lineHeight: 1.85, marginBottom: "2.5rem" }}>
                   "Vi ønsker, at alle, der kommer her, føler sig set og velkomne. At de tager hjem med en fornemmelse af, at de har oplevet noget særligt – noget, der ikke kan genfindes nogen anden steder."
                 </p>
-                <Link to="/kontakt" className="btn-primary">Skriv til Os</Link>
+                <Link to="/kontakt" className="btn-primary">Skriv til os</Link>
               </motion.div>
             </div>
           </div>
@@ -162,7 +162,7 @@ export default function OmOs({ loaderData }: Route.ComponentProps) {
         <section className="section-padding" style={{ background: "#F8F7F4" }}>
           <div className="max-w-7xl mx-auto px-6">
             <motion.div className="text-center mb-14" {...fadeUp}>
-              <p className="eyebrow mb-4">Stedet i Billeder</p>
+              <p className="eyebrow mb-4">Stedet i billeder</p>
               <h2 className="heading-section gradient-text">Galleri</h2>
             </motion.div>
             <motion.div
@@ -198,8 +198,8 @@ export default function OmOs({ loaderData }: Route.ComponentProps) {
         <section className="section-padding" style={{ background: "#1E293B" }}>
           <div className="max-w-7xl mx-auto px-6">
             <motion.div className="text-center mb-14" {...{ ...fadeUp, whileInView: { opacity: 1, y: 0 } as typeof fadeUp["whileInView"] }}>
-              <p className="eyebrow mb-4">Hvad Vi Tror På</p>
-              <h2 className="heading-section text-white">Vores Værdier</h2>
+              <p className="eyebrow mb-4">Hvad vi tror på</p>
+              <h2 className="heading-section text-white">Vores værdier</h2>
             </motion.div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[

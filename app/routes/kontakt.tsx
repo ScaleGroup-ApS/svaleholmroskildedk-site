@@ -11,6 +11,8 @@ export function meta() {
   ];
 }
 
+const SHOW_FORM = false; // Set to true to show the contact form again
+
 const TOPICS = [
   { value: "ophold", label: "Forespørgsel på ophold" },
   { value: "selskab", label: "Forespørgsel på selskab/event" },
@@ -28,7 +30,7 @@ const CONTACT_ITEMS = [
       </svg>
     ),
     label: "Adresse",
-    value: "Svaleholm Allé 1\n4000 Roskilde, Danmark",
+    value: "Frederiksborgvej 388\n4000 Roskilde, Danmark",
   },
   {
     icon: (
@@ -37,7 +39,7 @@ const CONTACT_ITEMS = [
       </svg>
     ),
     label: "Telefon",
-    value: "+45 46 XX XX XX",
+    value: "71 53 13 79",
   },
   {
     icon: (
@@ -46,7 +48,7 @@ const CONTACT_ITEMS = [
       </svg>
     ),
     label: "E-mail",
-    value: "hej@svaleholm.dk",
+    value: "kontakt@svaleholmroskilde.dk",
   },
   {
     icon: (
@@ -81,8 +83,8 @@ export default function Kontakt() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <p className="eyebrow mb-4">Vi er Her for Dig</p>
-            <h1 className="heading-section gradient-text mb-6">Lad Os Tale Sammen</h1>
+            <p className="eyebrow mb-4">Vi er her for dig</p>
+            <h1 className="heading-section gradient-text mb-6">Lad os tale sammen</h1>
             <p style={{ fontFamily: "var(--font-body)", color: "#6B7280", fontSize: "1.0625rem", lineHeight: 1.75 }}>
               Uanset om du vil booke et ophold, planlægge en fejring eller blot stille et spørgsmål – vi svarer hurtigt og personligt.
             </p>
@@ -94,15 +96,15 @@ export default function Kontakt() {
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
 
-              {/* Left: Contact info (45%) */}
+              {/* Left: Contact info (45% when form visible, full width when form hidden) */}
               <motion.div
-                className="lg:col-span-2"
+                className={SHOW_FORM ? "lg:col-span-2" : "lg:col-span-5 max-w-2xl"}
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 viewport={{ once: true, margin: "-80px" }}
               >
-                <h2 className="heading-section gradient-text mb-3">Find Os</h2>
+                <h2 className="heading-section gradient-text mb-3">Find os</h2>
                 <p style={{ fontFamily: "var(--font-body)", color: "#6B7280", lineHeight: 1.75, marginBottom: "2.5rem" }}>
                   Vi glæder os til at høre fra dig og hjælpe med at skabe en oplevelse, der passer præcis til dine ønsker og behov.
                 </p>
@@ -141,7 +143,8 @@ export default function Kontakt() {
                 </div>
               </motion.div>
 
-              {/* Right: Form (55%) */}
+              {/* Right: Form (55%) – hidden for now */}
+              {SHOW_FORM && (
               <motion.div
                 className="lg:col-span-3"
                 initial={{ opacity: 0, x: 30 }}
@@ -172,7 +175,7 @@ export default function Kontakt() {
                     </motion.div>
                   ) : (
                     <form onSubmit={handleSubmit} noValidate>
-                      <h3 className="heading-card mb-7" style={{ color: "#1E293B" }}>Send Os En Besked</h3>
+                      <h3 className="heading-card mb-7" style={{ color: "#1E293B" }}>Send os en besked</h3>
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
                         <div>
@@ -267,6 +270,7 @@ export default function Kontakt() {
                   )}
                 </div>
               </motion.div>
+              )}
             </div>
           </div>
         </section>

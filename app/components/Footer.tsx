@@ -31,13 +31,13 @@ export function Footer({
               <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
               </svg>
-              Svaleholm Allé 1, 4000 Roskilde
+              Frederiksborgvej 388, 4000 Roskilde
             </div>
             <div className="mt-2 flex items-center gap-2" style={{ color: "#B89F80", fontSize: "0.8125rem", letterSpacing: "0.05em" }}>
               <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
               </svg>
-              hej@svaleholm.dk
+              kontakt@svaleholmroskilde.dk
             </div>
           </div>
 
@@ -49,7 +49,7 @@ export function Footer({
             <ul className="space-y-3">
               <FooterLink to="/"          label="Forside" />
               <FooterLink to="/vaerelser" label="Værelser" />
-              <FooterLink to="/om-os"     label="Om Os" />
+              <FooterLink to="/om-os"     label="Om os" />
               <FooterLink to="/tjenester" label="Tjenester" />
               <FooterLink to="/priser"    label="Priser" />
               <FooterLink to="/kontakt"   label="Kontakt" />
@@ -63,7 +63,7 @@ export function Footer({
             </h4>
             <ul className="space-y-3">
               <FooterLink to="/privatlivspolitik"  label="Privatlivspolitik" />
-              <FooterLink to="/handelsbetingelser" label="Vilkår & Betingelser" />
+              <FooterLink to="/handelsbetingelser" label="Vilkår & betingelser" />
             </ul>
           </div>
         </div>

@@ -14,7 +14,7 @@ const NAV_ITEMS: NavItem[] = [
   { href: "/vaerelser", label: "Værelser", icon: "rooms" },
   { href: "/tjenester", label: "Events", icon: "events" },
   { href: "/priser", label: "Priser", icon: "prices" },
-  { href: "/om-os", label: "Om Os", icon: "about" },
+  { href: "/om-os", label: "Om os", icon: "about" },
   { href: "/kontakt", label: "Kontakt", icon: "contact" },
 ];
 

@@ -123,10 +123,10 @@ function HeroSection() {
               transition={{ duration: 0.65, ease: "easeOut", delay: 0.32 }}
             >
               <Link to="/vaerelser" className="btn-primary">
-                Se Alle Værelser
+                Se alle værelser
               </Link>
               <Link to="/kontakt" className="btn-dark">
-                Planlæg Dit Ophold
+                Planlæg dit ophold
               </Link>
             </motion.div>
           </div>
@@ -209,9 +209,9 @@ function IntroSection() {
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
             viewport={{ once: true, margin: "-80px" }}
           >
-            <p className="eyebrow mb-5">Vores Sjæl</p>
+            <p className="eyebrow mb-5">Vores sjæl</p>
             <h2 className="heading-section gradient-text mb-8">
-              En Oase af Ro.
+              En oase af ro.
             </h2>
             <div style={{ borderLeft: "2px solid #B89F80", paddingLeft: "1.5rem", marginBottom: "2rem" }}>
               <p style={{ fontFamily: "var(--font-heading)", fontSize: "1.35rem", color: "#1E293B", lineHeight: 1.6, fontStyle: "italic" }}>
@@ -225,7 +225,7 @@ function IntroSection() {
               Hvert af vores otte unikke værelser er indrettet med henblik på at skabe en sanselig og autentisk oplevelse, der ærer stedets sjæl uden at gå på kompromis med moderne luksus.
             </p>
             <Link to="/om-os" className="btn-dark">
-              Læs Vores Historie
+              Læs vores historie
               <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
@@ -262,28 +262,28 @@ function ServicesSection() {
           transition={{ duration: 0.7, ease: "easeOut" }}
           viewport={{ once: true, margin: "-80px" }}
         >
-          <p className="eyebrow mb-5">Hvad Vi Tilbyder</p>
+          <p className="eyebrow mb-5">Hvad vi tilbyder</p>
           <h2 className="heading-section gradient-text">
-            Ophold & Fejring
+            Ophold & fejring
           </h2>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           <ServiceCard
             tag="Opholdet"
-            title="Otte Unikke Værelser"
+            title="Otte unikke værelser"
             description="Hvert værelse er en fortælling i sig selv. Fra det intime og hyggelige til det storslåede og overdådige – alle indrettet med håndplukkede møbler og lokale kunstneres arbejde."
             href="/vaerelser"
-            cta="Udforsk Ophold"
+            cta="Udforsk ophold"
             imgSrc="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=900&q=80&auto=format&fit=crop"
             delay={0}
           />
           <ServiceCard
             tag="Fejringen"
-            title="Livets Store Begivenheder"
+            title="Livets store begivenheder"
             description="Fra intime bryllupper til eksklusive firmaevents – Svaleholm danner den perfekte ramme for de øjeblikke, der fortjener at huskes for evigt."
             href="/tjenester"
-            cta="Se Muligheder"
+            cta="Se muligheder"
             imgSrc="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=900&q=80&auto=format&fit=crop"
             delay={0.12}
           />
@@ -361,8 +361,8 @@ function TestimonialsSection() {
           transition={{ duration: 0.7 }}
           viewport={{ once: true, margin: "-80px" }}
         >
-          <p className="eyebrow mb-4">Vores Gæster Fortæller</p>
-          <h2 className="heading-section gradient-text">Ord fra Hjertet</h2>
+          <p className="eyebrow mb-4">Vores gæster fortæller</p>
+          <h2 className="heading-section gradient-text">Ord fra hjertet</h2>
         </motion.div>
 
         <motion.div
@@ -437,16 +437,16 @@ function CtaBanner() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         viewport={{ once: true, margin: "-80px" }}
       >
-        <p className="eyebrow mb-5">Klar til at Opleve Svaleholm?</p>
+        <p className="eyebrow mb-5">Klar til at opleve Svaleholm?</p>
         <h2 style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(2rem, 5vw, 3.25rem)", fontWeight: 400, color: "#1E293B", lineHeight: 1.2, marginBottom: "1.5rem" }}>
-          Reserver Dit Ophold I Dag
+          Reserver dit ophold i dag
         </h2>
         <p style={{ fontFamily: "var(--font-body)", color: "#4B5563", lineHeight: 1.75, maxWidth: "480px", margin: "0 auto 2.5rem", fontSize: "1rem" }}>
           Tag det første skridt mod en uforglemmelig oplevelse. Vi ser frem til at byde dig velkommen.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link to="/kontakt" className="btn-primary">Book Dit Ophold</Link>
-          <Link to="/priser" className="btn-dark">Se Priser</Link>
+          <Link to="/kontakt" className="btn-primary">Book dit ophold</Link>
+          <Link to="/priser" className="btn-dark">Se priser</Link>
         </div>
       </motion.div>
     </section>
