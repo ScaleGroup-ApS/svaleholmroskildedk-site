@@ -60,7 +60,44 @@ export function Layout({ children }: { children: ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-center px-6 text-center">
+      <h1
+        style={{
+          fontFamily: "var(--font-heading)",
+          fontSize: "clamp(2rem, 5vw, 3.5rem)",
+          fontWeight: 500,
+          color: "#1E293B",
+          lineHeight: 1.2,
+          marginBottom: "1rem",
+        }}
+      >
+        Svaleholm Roskilde
+      </h1>
+      <p
+        style={{
+          fontFamily: "var(--font-body)",
+          fontSize: "1.1rem",
+          color: "#6B7280",
+          marginBottom: "2.5rem",
+        }}
+      >
+        Siden er midlertidigt lukket for vedligeholdelse.
+      </p>
+      <a
+        href="tel:+4571531379"
+        style={{
+          fontFamily: "var(--font-heading)",
+          fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
+          color: "#B89F80",
+          textDecoration: "none",
+          letterSpacing: "0.04em",
+        }}
+      >
+        +45 71 53 13 79
+      </a>
+    </main>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
