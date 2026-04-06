@@ -82,7 +82,7 @@ export default function App() {
           marginBottom: "2.5rem",
         }}
       >
-        Siden er midlertidigt lukket for vedligeholdelse.
+        Ny hjemmeside på vej
       </p>
       <a
         href="tel:+4571531379"
