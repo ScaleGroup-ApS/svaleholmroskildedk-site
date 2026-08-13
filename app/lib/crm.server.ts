@@ -10,11 +10,16 @@
 // Port of app/Notifications/Channels/CRMChannel.php from the Laravel starter
 // kit — same endpoint, same Bearer auth, same `customerId` + payload body.
 //
-// Env vars (populated by infra on every deployed site):
+// Env vars come from App Settings in the CRM (customer 24 → app `api`), which
+// the deploy applies to the pod as the `api-env` ConfigMap. Add or change them
+// there, not in a manifest in this repo:
 //   CRM_API_URL      – base URL; defaults to the in-cluster service address
 //   CRM_API_TOKEN    – required; crm-backend's AGENT_API_TOKEN
-//   CRM_SLUG         – the site's k8s namespace; preferred identifier
-//   CRM_CUSTOMER_ID  – numeric customer id; used when CRM_SLUG is unset
+//   CRM_CUSTOMER_ID  – numeric customer id; required unless CRM_SLUG is set
+//   CRM_SLUG         – the site's k8s namespace; wins over CRM_CUSTOMER_ID
+//
+// crm-backend needs one of CRM_CUSTOMER_ID / CRM_SLUG (its schema refines on
+// `slug != null || customerId != null`), so neither being set is a 400.
 //
 // Unlike the PHP channel — which no-ops silently when url/token are missing —
 // a missing token here returns { ok:false } so the contact form can show its
