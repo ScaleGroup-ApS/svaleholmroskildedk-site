@@ -69,7 +69,7 @@ export default function CatchAll({ loaderData }: Route.ComponentProps) {
   const siteName = siteInfo?.name ?? "Site";
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen" style={{ background: "#0F1714" }}>
       <Header siteName={siteName} />
 
       {/* JSON-LD Structured Data */}
@@ -77,9 +77,11 @@ export default function CatchAll({ loaderData }: Route.ComponentProps) {
 
       <main className="flex-1">
         <article className="animate-fade-in-up">
-          <div className="max-w-5xl mx-auto px-6 pt-16 pb-8">
+          <div className="max-w-5xl mx-auto px-6 pt-40 pb-8">
+            <p className="eyebrow mb-5">Svaleholm Gaard</p>
             <h1
-              className="text-4xl md:text-5xl font-bold text-secondary leading-tight tracking-tight"
+              className="heading-hero"
+              style={{ color: "#F2EFE7" }}
               dangerouslySetInnerHTML={{ __html: page.title.rendered }}
             />
           </div>

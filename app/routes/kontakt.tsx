@@ -1,8 +1,11 @@
-import { Link } from "react-router";
+import type { Route } from "./+types/kontakt";
+import { Form, Link, useActionData, useNavigation, useSearchParams } from "react-router";
 import { motion } from "framer-motion";
-import { useState, type FormEvent } from "react";
 import { Header } from "~/components/Header";
 import { Footer } from "~/components/Footer";
+import { SvaleFlock } from "~/components/Svale";
+import { useT, useLang } from "~/lib/i18n";
+import { sendContactEmail } from "~/lib/mailer.server";
 
 export function meta() {
   return [
@@ -11,92 +14,147 @@ export function meta() {
   ];
 }
 
-const SHOW_FORM = false; // Set to true to show the contact form again
+const SHOW_FORM = true; // Set to false to hide the contact form
 
-const TOPICS = [
-  { value: "ophold", label: "Forespørgsel på ophold" },
-  { value: "selskab", label: "Forespørgsel på selskab/event" },
-  { value: "bryllup", label: "Bryllupsforespørgsel" },
-  { value: "firma", label: "Firmaforespørgsel" },
-  { value: "andet", label: "Andet" },
+// Felter der kan komme med fra prisberegneren (via query-string).
+const ENQUIRY_FIELDS: { key: string; da: string; en: string }[] = [
+  { key: "ophold",    da: "Ophold",                        en: "Stay" },
+  { key: "vaerelser", da: "Værelser",                      en: "Rooms" },
+  { key: "naetter",   da: "Nætter",                        en: "Nights" },
+  { key: "ankomst",   da: "Ankomst",                       en: "Arrival" },
+  { key: "fest",      da: "Fest / event",                  en: "Celebration / event" },
+  { key: "type",      da: "Type",                          en: "Type" },
+  { key: "pakke",     da: "Pakke",                         en: "Package" },
+  { key: "antal",     da: "Antal",                         en: "Quantity" },
+  { key: "gaester",   da: "Gæster",                        en: "Guests" },
+  { key: "dato",      da: "Dato",                          en: "Date" },
+  { key: "tilvalg",   da: "Tilvalg",                       en: "Add-ons" },
+  { key: "total",     da: "Vejledende total (inkl. moms)", en: "Guideline total (incl. VAT)" },
 ];
 
-const CONTACT_ITEMS = [
-  {
-    icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
-      </svg>
-    ),
-    label: "Adresse",
-    value: "Frederiksborgvej 388\n4000 Roskilde, Danmark",
-  },
-  {
-    icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/>
-      </svg>
-    ),
-    label: "Telefon",
-    value: "71 53 13 79",
-  },
-  {
-    icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
-      </svg>
-    ),
-    label: "E-mail",
-    value: "kontakt@svaleholmroskilde.dk",
-  },
-  {
-    icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
-      </svg>
-    ),
-    label: "Reception",
-    value: "Man–Søn: 08:00 – 20:00",
-  },
-];
+function fmtVal(key: string, raw: string): string {
+  if (raw === "ja") return "Ja";
+  if (key === "total") return `${new Intl.NumberFormat("da-DK").format(Number(raw) || 0)} kr`;
+  if (key === "tilvalg") return raw.split(",").join(", ");
+  return raw;
+}
 
-export default function Kontakt() {
-  const [formState, setFormState] = useState({ name: "", email: "", phone: "", topic: "ophold", message: "" });
-  const [submitted, setSubmitted] = useState(false);
+// ── Server action: sender henvendelsen som e-mail ─────────────────────────────
+export async function action({ request }: Route.ActionArgs) {
+  const form = await request.formData();
+  const name = String(form.get("name") ?? "").trim();
+  const phone = String(form.get("phone") ?? "").trim();
+  const email = String(form.get("email") ?? "").trim();
+  const message = String(form.get("message") ?? "").trim();
 
-  function handleSubmit(e: FormEvent) {
-    e.preventDefault();
-    setSubmitted(true);
+  if (!name || !phone) {
+    return { ok: false as const, error: "validation" };
   }
 
+  const enquiry = ENQUIRY_FIELDS
+    .map((f) => {
+      const v = form.get(f.key);
+      return v ? { label: f.da, value: fmtVal(f.key, String(v)) } : null;
+    })
+    .filter((x): x is { label: string; value: string } => x !== null);
+
+  const result = await sendContactEmail({
+    name,
+    phone,
+    email: email || undefined,
+    message: message || undefined,
+    enquiry,
+  });
+
+  return result.ok ? { ok: true as const } : { ok: false as const, error: result.error };
+}
+
+export default function Kontakt() {
+  const t = useT();
+  const { lang } = useLang();
+  const actionData = useActionData<typeof action>();
+  const navigation = useNavigation();
+  const sending = navigation.state === "submitting";
+  const [searchParams] = useSearchParams();
+
+  const success = actionData?.ok === true;
+  const validationError = actionData && !actionData.ok && actionData.error === "validation";
+  const sendError = actionData && !actionData.ok && actionData.error !== "validation";
+
+  // Beregner-felter fra URL'en (fx /kontakt?ophold=ja&vaerelser=2&total=1300)
+  const enquiryRows = ENQUIRY_FIELDS
+    .map((f) => {
+      const raw = searchParams.get(f.key);
+      return raw ? { key: f.key, raw, label: lang === "en" ? f.en : f.da, value: fmtVal(f.key, raw) } : null;
+    })
+    .filter((x): x is { key: string; raw: string; label: string; value: string } => x !== null);
+
+  const CONTACT_ITEMS = [
+    {
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
+        </svg>
+      ),
+      label: t("Adresse", "Address"),
+      value: t("Frederiksborgvej 388\n4000 Roskilde, Danmark", "Frederiksborgvej 388\n4000 Roskilde, Denmark"),
+    },
+    {
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/>
+        </svg>
+      ),
+      label: t("Telefon", "Phone"),
+      value: "71 53 13 79",
+    },
+    {
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
+        </svg>
+      ),
+      label: t("E-mail", "E-mail"),
+      value: "kontakt@svaleholmroskilde.dk",
+    },
+  ];
+
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen" style={{ background: "#0F1714" }}>
       <Header siteName="Svaleholm" />
-      <main className="flex-1 pt-20">
+      <main className="flex-1">
 
         {/* Page Hero */}
-        <section className="section-padding-sm" style={{ background: "#F8F7F4", borderBottom: "1px solid #E2E8F0" }}>
+        <section className="relative flex items-end overflow-hidden" style={{ height: "48vh", minHeight: "360px" }}>
+          <div className="absolute inset-0" style={{ inset: "-8% 0" }}>
+            <img src="/images/have-sti.jpg" alt="Havesti ved Svaleholm" className="w-full h-full object-cover ken-burns" />
+          </div>
+          <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(15,23,20,0.6) 0%, rgba(15,23,20,0.4) 40%, #0F1714 100%)" }} />
+          <SvaleFlock count={2} />
           <motion.div
-            className="max-w-3xl mx-auto px-6 text-center"
-            initial={{ opacity: 0, y: 24 }}
+            className="relative z-10 max-w-7xl mx-auto px-6 w-full"
+            style={{ paddingBottom: "clamp(2.5rem, 6vh, 4rem)" }}
+            initial={{ opacity: 0, y: 26 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="eyebrow mb-4">Vi er her for dig</p>
-            <h1 className="heading-section gradient-text mb-6">Lad os tale sammen</h1>
-            <p style={{ fontFamily: "var(--font-body)", color: "#6B7280", fontSize: "1.0625rem", lineHeight: 1.75 }}>
-              Uanset om du vil booke et ophold, planlægge en fejring eller blot stille et spørgsmål – vi svarer hurtigt og personligt.
+            <p className="eyebrow mb-4">{t("Vi er her for dig", "We're here for you")}</p>
+            <h1 className="heading-hero" style={{ color: "#F2EFE7", fontSize: "clamp(2.8rem, 7vw, 6rem)" }}>
+              {t("Lad os", "Let's")} <span className="accent-italic">{t("tale sammen", "talk")}</span>
+            </h1>
+            <p style={{ fontFamily: "var(--font-body)", color: "rgba(242,239,231,0.75)", fontSize: "1.05rem", lineHeight: 1.8, maxWidth: "54ch", marginTop: "1.5rem" }}>
+              {t("Uanset om du vil booke et ophold, planlægge en fejring eller blot stille et spørgsmål – vi svarer hurtigt og personligt.", "Whether you want to book a stay, plan a celebration or simply ask a question – we reply quickly and personally.")}
             </p>
           </motion.div>
         </section>
 
         {/* Two-col layout */}
-        <section className="section-padding" style={{ background: "#F8F7F4" }}>
+        <section className="section-padding" style={{ background: "#0F1714" }}>
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
 
-              {/* Left: Contact info (45% when form visible, full width when form hidden) */}
+              {/* Left: Contact info */}
               <motion.div
                 className={SHOW_FORM ? "lg:col-span-2" : "lg:col-span-5 max-w-2xl"}
                 initial={{ opacity: 0, x: -30 }}
@@ -104,23 +162,22 @@ export default function Kontakt() {
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 viewport={{ once: true, margin: "-80px" }}
               >
-                <h2 className="heading-section gradient-text mb-3">Find os</h2>
-                <p style={{ fontFamily: "var(--font-body)", color: "#6B7280", lineHeight: 1.75, marginBottom: "2.5rem" }}>
-                  Vi glæder os til at høre fra dig og hjælpe med at skabe en oplevelse, der passer præcis til dine ønsker og behov.
+                <h2 className="heading-section mb-3" style={{ color: "#F2EFE7" }}>{t("Find os", "Find us")}</h2>
+                <p style={{ fontFamily: "var(--font-body)", color: "rgba(242,239,231,0.7)", lineHeight: 1.8, marginBottom: "2.5rem" }}>
+                  {t("Vi glæder os til at høre fra dig og hjælpe med at skabe en oplevelse, der passer præcis til dine ønsker og behov.", "We look forward to hearing from you and helping to create an experience tailored precisely to your wishes and needs.")}
                 </p>
 
-                {/* Contact details */}
                 <div className="space-y-5 mb-10">
                   {CONTACT_ITEMS.map(item => (
                     <div key={item.label} className="flex items-start gap-4">
-                      <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-lg" style={{ background: "linear-gradient(135deg, #F1F0EC, #E8E5DF)", color: "#B89F80" }}>
+                      <div className="flex-shrink-0 w-11 h-11 flex items-center justify-center rounded-lg" style={{ background: "rgba(201,169,106,0.12)", color: "#C9A96A", border: "1px solid rgba(242,239,231,0.1)" }}>
                         {item.icon}
                       </div>
                       <div>
-                        <p style={{ fontFamily: "var(--font-body)", fontWeight: 500, fontSize: "0.8125rem", color: "#B89F80", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.25rem" }}>
+                        <p style={{ fontFamily: "var(--font-body)", fontWeight: 500, fontSize: "0.66rem", color: "#7EA57C", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "0.35rem" }}>
                           {item.label}
                         </p>
-                        <p style={{ fontFamily: "var(--font-body)", color: "#1E293B", lineHeight: 1.5, whiteSpace: "pre-line", fontSize: "0.9375rem" }}>
+                        <p style={{ fontFamily: "var(--font-body)", color: "#F2EFE7", lineHeight: 1.55, whiteSpace: "pre-line", fontSize: "0.95rem" }}>
                           {item.value}
                         </p>
                       </div>
@@ -128,22 +185,22 @@ export default function Kontakt() {
                   ))}
                 </div>
 
-                {/* Map placeholder */}
-                <div className="overflow-hidden rounded-xl" style={{ height: "250px", boxShadow: "0 4px 16px rgba(30,41,59,0.08)", background: "#F1F0EC", position: "relative" }}>
+                {/* Map */}
+                <div className="overflow-hidden" style={{ height: "250px", borderRadius: "2px", border: "1px solid rgba(242,239,231,0.12)", position: "relative" }}>
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d35439.42!2d12.0803!3d55.6415!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4652e2d22f1c13e1%3A0x4f40b8c3bb0e2c87!2sRoskilde!5e0!3m2!1sda!2sdk!4v1700000000000!5m2!1sda!2sdk"
                     width="100%"
                     height="100%"
-                    style={{ border: 0, filter: "sepia(20%) contrast(90%) brightness(105%)" }}
+                    style={{ border: 0, filter: "grayscale(0.35) contrast(0.9) brightness(0.85)" }}
                     allowFullScreen={false}
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title="Svaleholm Roskilde på kort"
+                    title={t("Svaleholm Roskilde på kort", "Svaleholm Roskilde on the map")}
                   />
                 </div>
               </motion.div>
 
-              {/* Right: Form (55%) – hidden for now */}
+              {/* Right: Form */}
               {SHOW_FORM && (
               <motion.div
                 className="lg:col-span-3"
@@ -152,121 +209,115 @@ export default function Kontakt() {
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
                 viewport={{ once: true, margin: "-80px" }}
               >
-                <div className="glass rounded-2xl p-8 md:p-10 card-shadow">
-                  {submitted ? (
+                <div className="glass card-shadow p-8 md:p-10" style={{ borderRadius: "2px" }}>
+                  {success ? (
                     <motion.div
                       className="py-10 text-center"
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.5 }}
                     >
-                      <div className="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center" style={{ background: "linear-gradient(135deg, #D4C1A9, #B89F80)" }}>
-                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <div className="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center" style={{ background: "linear-gradient(135deg, #C9A96A, #7EA57C)" }}>
+                        <svg className="w-8 h-8" style={{ color: "#0F1714" }} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                         </svg>
                       </div>
-                      <h3 className="heading-card mb-3" style={{ color: "#1E293B" }}>Tak for din besked!</h3>
-                      <p style={{ color: "#6B7280", lineHeight: 1.75, marginBottom: "2rem" }}>
-                        Vi har modtaget din henvendelse og vender tilbage inden for 24 timer på hverdage.
+                      <h3 className="heading-card mb-3" style={{ color: "#F2EFE7" }}>{t("Tak for din besked!", "Thank you for your message!")}</h3>
+                      <p style={{ color: "rgba(242,239,231,0.7)", lineHeight: 1.8, marginBottom: "2rem" }}>
+                        {t("Vi har modtaget din henvendelse og vender tilbage inden for 24 timer på hverdage.", "We have received your enquiry and will get back to you within 24 hours on weekdays.")}
                       </p>
-                      <button onClick={() => setSubmitted(false)} className="btn-dark" style={{ fontSize: "0.875rem" }}>
-                        Send en ny besked
-                      </button>
+                      <Link to="/kontakt" className="btn-dark">
+                        {t("Send en ny besked", "Send another message")}
+                      </Link>
                     </motion.div>
                   ) : (
-                    <form onSubmit={handleSubmit} noValidate>
-                      <h3 className="heading-card mb-7" style={{ color: "#1E293B" }}>Send os en besked</h3>
+                    <Form method="post">
+                      <h3 className="heading-card mb-7" style={{ color: "#F2EFE7" }}>{t("Send os en besked", "Send us a message")}</h3>
+
+                      {/* Opsummering fra prisberegner */}
+                      {enquiryRows.length > 0 && (
+                        <div className="mb-7 rounded-lg p-5" style={{ background: "rgba(126,165,124,0.10)", border: "1px solid rgba(126,165,124,0.32)" }}>
+                          <p className="mb-3" style={{ fontFamily: "var(--font-body)", fontSize: "0.66rem", fontWeight: 600, color: "#7EA57C", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+                            {t("Din forespørgsel", "Your enquiry")}
+                          </p>
+                          <div className="space-y-1.5">
+                            {enquiryRows.map((r) => (
+                              <div key={r.key} className="flex items-baseline justify-between gap-4" style={{ fontFamily: "var(--font-body)", fontSize: "0.875rem" }}>
+                                <span style={{ color: "rgba(242,239,231,0.6)" }}>{r.label}</span>
+                                <span style={{ color: "#F2EFE7", fontWeight: 500, textAlign: "right" }}>{r.value}</span>
+                              </div>
+                            ))}
+                          </div>
+                          {/* Sendes med i formularen */}
+                          {enquiryRows.map((r) => (
+                            <input key={r.key} type="hidden" name={r.key} value={r.raw} />
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Fejl-banner ved sendefejl / manglende opsætning */}
+                      {sendError && (
+                        <div className="mb-6 rounded-lg p-4" style={{ background: "rgba(201,169,106,0.10)", border: "1px solid rgba(201,169,106,0.34)" }}>
+                          <p style={{ fontFamily: "var(--font-body)", fontSize: "0.875rem", color: "#E4CFA0", lineHeight: 1.6 }}>
+                            {t(
+                              "Vi kunne ikke sende beskeden automatisk lige nu. Ring til os på 71 53 13 79 eller skriv til ",
+                              "We couldn't send your message automatically right now. Please call us on +45 71 53 13 79 or write to "
+                            )}
+                            <a href="mailto:kontakt@svaleholmroskilde.dk" style={{ color: "#C9A96A", textDecoration: "underline" }}>kontakt@svaleholmroskilde.dk</a>.
+                          </p>
+                        </div>
+                      )}
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
                         <div>
-                          <label className="block mb-2" style={{ fontFamily: "var(--font-body)", fontSize: "0.8125rem", fontWeight: 500, color: "#4B5563", letterSpacing: "0.03em" }}>
-                            Navn *
+                          <label htmlFor="cf-name" className="block mb-2" style={{ fontFamily: "var(--font-body)", fontSize: "0.66rem", fontWeight: 500, color: "#7EA57C", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+                            {t("Navn", "Name")} *
                           </label>
-                          <input
-                            type="text"
-                            className="input-field"
-                            placeholder="Dit fulde navn"
-                            required
-                            value={formState.name}
-                            onChange={e => setFormState(s => ({ ...s, name: e.target.value }))}
-                          />
+                          <input id="cf-name" name="name" type="text" className="input-field" placeholder={t("Dit fulde navn", "Your full name")} required autoComplete="name" />
                         </div>
                         <div>
-                          <label className="block mb-2" style={{ fontFamily: "var(--font-body)", fontSize: "0.8125rem", fontWeight: 500, color: "#4B5563", letterSpacing: "0.03em" }}>
-                            E-mail *
+                          <label htmlFor="cf-phone" className="block mb-2" style={{ fontFamily: "var(--font-body)", fontSize: "0.66rem", fontWeight: 500, color: "#7EA57C", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+                            {t("Nummer", "Number")} *
                           </label>
-                          <input
-                            type="email"
-                            className="input-field"
-                            placeholder="din@email.dk"
-                            required
-                            value={formState.email}
-                            onChange={e => setFormState(s => ({ ...s, email: e.target.value }))}
-                          />
+                          <input id="cf-phone" name="phone" type="tel" className="input-field" placeholder="+45 XX XX XX XX" required autoComplete="tel" />
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
-                        <div>
-                          <label className="block mb-2" style={{ fontFamily: "var(--font-body)", fontSize: "0.8125rem", fontWeight: 500, color: "#4B5563", letterSpacing: "0.03em" }}>
-                            Telefon
-                          </label>
-                          <input
-                            type="tel"
-                            className="input-field"
-                            placeholder="+45 XX XX XX XX"
-                            value={formState.phone}
-                            onChange={e => setFormState(s => ({ ...s, phone: e.target.value }))}
-                          />
-                        </div>
-                        <div>
-                          <label className="block mb-2" style={{ fontFamily: "var(--font-body)", fontSize: "0.8125rem", fontWeight: 500, color: "#4B5563", letterSpacing: "0.03em" }}>
-                            Emne *
-                          </label>
-                          <select
-                            className="input-field"
-                            required
-                            value={formState.topic}
-                            onChange={e => setFormState(s => ({ ...s, topic: e.target.value }))}
-                            style={{ appearance: "none", backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23B89F80' stroke-width='1.5'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5'/%3E%3C/svg%3E")`, backgroundRepeat: "no-repeat", backgroundPosition: "right 0.75rem center", backgroundSize: "1.25rem" }}
-                          >
-                            {TOPICS.map(t => <option key={t.value} value={t.value}>{t.label}</option>)}
-                          </select>
-                        </div>
+                      <div className="mb-5">
+                        <label htmlFor="cf-email" className="block mb-2" style={{ fontFamily: "var(--font-body)", fontSize: "0.66rem", fontWeight: 500, color: "#7EA57C", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+                          {t("E-mail", "E-mail")}
+                        </label>
+                        <input id="cf-email" name="email" type="email" className="input-field" placeholder={t("Så vi kan svare på mail", "So we can reply by e-mail")} autoComplete="email" />
                       </div>
 
                       <div className="mb-7">
-                        <label className="block mb-2" style={{ fontFamily: "var(--font-body)", fontSize: "0.8125rem", fontWeight: 500, color: "#4B5563", letterSpacing: "0.03em" }}>
-                          Besked *
+                        <label htmlFor="cf-message" className="block mb-2" style={{ fontFamily: "var(--font-body)", fontSize: "0.66rem", fontWeight: 500, color: "#7EA57C", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+                          {t("Besked", "Message")}
                         </label>
-                        <textarea
-                          className="input-field"
-                          rows={5}
-                          placeholder="Fortæl os om dine ønsker og planer..."
-                          required
-                          value={formState.message}
-                          onChange={e => setFormState(s => ({ ...s, message: e.target.value }))}
-                          style={{ resize: "vertical" }}
-                        />
+                        <textarea id="cf-message" name="message" className="input-field" rows={5} placeholder={t("Fortæl os om dine ønsker og planer...", "Tell us about your wishes and plans...")} style={{ resize: "vertical" }} />
                       </div>
+
+                      {validationError && (
+                        <p className="mb-4" style={{ fontFamily: "var(--font-body)", fontSize: "0.8125rem", color: "#E4CFA0" }}>
+                          {t("Udfyld venligst navn og telefonnummer.", "Please fill in your name and phone number.")}
+                        </p>
+                      )}
 
                       <motion.button
                         type="submit"
+                        disabled={sending}
                         className="btn-primary w-full"
-                        style={{ fontSize: "1rem", padding: "1rem 2rem" }}
-                        whileHover={{ translateY: -3, boxShadow: "0 16px 40px rgba(184, 159, 128, 0.4)" }}
-                        whileTap={{ translateY: 0 }}
+                        style={sending ? { opacity: 0.6, cursor: "wait" } : undefined}
+                        whileHover={sending ? undefined : { translateY: -3 }}
+                        whileTap={sending ? undefined : { translateY: 0 }}
                       >
-                        Send Besked
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
-                        </svg>
+                        {sending ? t("Sender...", "Sending...") : t("Send Besked", "Send message")}
                       </motion.button>
 
-                      <p className="mt-4 text-center" style={{ fontFamily: "var(--font-body)", fontSize: "0.8125rem", color: "#9CA3AF" }}>
-                        Vi svarer indenfor 24 timer på hverdage. Din information behandles fortroligt.
+                      <p className="mt-4 text-center" style={{ fontFamily: "var(--font-body)", fontSize: "0.8125rem", color: "rgba(242,239,231,0.4)" }}>
+                        {t("Vi svarer indenfor 24 timer på hverdage. Din information behandles fortroligt.", "We reply within 24 hours on weekdays. Your information is treated confidentially.")}
                       </p>
-                    </form>
+                    </Form>
                   )}
                 </div>
               </motion.div>
@@ -276,13 +327,13 @@ export default function Kontakt() {
         </section>
 
         {/* Extra strip */}
-        <section style={{ background: "#F1F0EC", borderTop: "1px solid #E2E8F0", padding: "3rem 1.5rem" }}>
-          <div className="max-w-7xl mx-auto text-center">
-            <p style={{ fontFamily: "var(--font-heading)", fontSize: "1.2rem", color: "#6B7280", fontStyle: "italic" }}>
-              "Det er en fornøjelse at lytte til dine drømme og hjælpe med at gøre dem til virkelighed."
+        <section style={{ background: "#14201B", borderTop: "1px solid rgba(242,239,231,0.08)", padding: "clamp(3rem, 8vh, 5rem) 1.5rem" }}>
+          <div className="max-w-3xl mx-auto text-center">
+            <p style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(1.4rem, 3vw, 2rem)", color: "#F2EFE7", fontStyle: "italic", lineHeight: 1.5 }}>
+              {t("\"Det er en fornøjelse at lytte til dine drømme og hjælpe med at gøre dem til virkelighed.\"", "\"It is a pleasure to listen to your dreams and help make them come true.\"")}
             </p>
-            <p className="mt-2" style={{ fontFamily: "var(--font-body)", fontSize: "0.8125rem", color: "#B89F80", letterSpacing: "0.1em" }}>
-              — Katrine Holst, Medejer
+            <p className="mt-4 eyebrow">
+              {t("— team Svaleholm Roskilde", "— team Svaleholm Roskilde")}
             </p>
           </div>
         </section>

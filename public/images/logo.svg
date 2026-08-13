@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 340" fill="none" role="img" aria-label="Svaleholm 1868">
+  <title>Svaleholm 1868</title>
+
+  <!-- ── Svale i flugt (set nedefra) ────────────────────────────── -->
+  <!-- samlet silhuet: to svungne vinger + kløftet hale -->
+  <path d="M240 92
+           C 300 100 372 120 432 156
+           C 372 150 304 160 262 178
+           L 274 258
+           L 240 214
+           L 206 258
+           L 218 178
+           C 176 160 108 150 48 156
+           C 108 120 180 100 240 92 Z"
+        fill="#141414"/>
+  <!-- rød hale-accent (højre kløft) -->
+  <path d="M262 178 L 274 258 L 240 214 Z" fill="#B7172E"/>
+
+  <!-- ── Wordmark ───────────────────────────────────────────────── -->
+  <text x="240" y="278" text-anchor="middle"
+        font-family="Fraunces, Georgia, 'Times New Roman', serif"
+        font-size="50" font-weight="600" letter-spacing="9" fill="#141414">SVALEHOLM</text>
+
+  <!-- ── Årstal ─────────────────────────────────────────────────── -->
+  <g fill="#B7172E">
+    <rect x="188" y="306" width="16" height="2.4" rx="1.2"/>
+    <text x="240" y="314" text-anchor="middle"
+          font-family="Fraunces, Georgia, serif"
+          font-size="19" font-weight="600" letter-spacing="6">1868</text>
+    <rect x="276" y="306" width="16" height="2.4" rx="1.2"/>
+  </g>
+</svg>

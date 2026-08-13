@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220">
+  <g fill="none" stroke="#6E7F58" stroke-width="1.4" stroke-linecap="round" opacity="0.12">
+    <!-- Sprig / aks – gårdens marker -->
+    <path d="M55 26 C55 56 55 78 55 104"/>
+    <path d="M55 42 C42 37 33 41 30 49 C41 52 50 50 55 42"/>
+    <path d="M55 58 C68 53 77 57 80 65 C69 68 60 66 55 58"/>
+    <path d="M55 74 C42 69 33 73 30 81 C41 84 50 82 55 74"/>
+    <path d="M55 90 C68 85 77 89 80 97 C69 100 60 98 55 90"/>
+    <!-- Lille blad-par -->
+    <path d="M165 128 C165 152 165 170 165 196"/>
+    <path d="M165 142 C153 137 145 141 142 149 C152 152 160 150 165 142"/>
+    <path d="M165 158 C177 153 185 157 188 165 C178 168 170 166 165 158"/>
+    <path d="M165 174 C153 169 145 173 142 181 C152 184 160 182 165 174"/>
+    <!-- Spredte frø-prikker -->
+    <circle cx="120" cy="60" r="1.6" fill="#6E7F58" stroke="none"/>
+    <circle cx="30" cy="150" r="1.6" fill="#6E7F58" stroke="none"/>
+    <circle cx="200" cy="30" r="1.6" fill="#6E7F58" stroke="none"/>
+  </g>
+</svg>

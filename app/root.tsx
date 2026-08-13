@@ -8,6 +8,7 @@ import {
 } from "react-router";
 import type { ReactNode } from "react";
 import type { Route } from "./+types/root";
+import { LanguageProvider } from "~/lib/i18n";
 import "./app.css";
 
 export const links: Route.LinksFunction = () => [
@@ -19,7 +20,7 @@ export const links: Route.LinksFunction = () => [
   },
   {
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap",
+    href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Karla:wght@300;400;500;600;700&display=swap",
   },
 ];
 
@@ -61,72 +62,9 @@ export function Layout({ children }: { children: ReactNode }) {
 
 export default function App() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center px-6 text-center">
-      <h1
-        style={{
-          fontFamily: "var(--font-heading)",
-          fontSize: "clamp(2rem, 5vw, 3.5rem)",
-          fontWeight: 500,
-          color: "#1E293B",
-          lineHeight: 1.2,
-          marginBottom: "1rem",
-        }}
-      >
-        Svaleholm Roskilde
-      </h1>
-      <p
-        style={{
-          fontFamily: "var(--font-body)",
-          fontSize: "1.1rem",
-          color: "#6B7280",
-          marginBottom: "2.5rem",
-        }}
-      >
-        Ny hjemmeside på vej
-      </p>
-      <a
-        href="tel:+4571531379"
-        style={{
-          fontFamily: "var(--font-heading)",
-          fontSize: "clamp(1.5rem, 3vw, 2.25rem)",
-          color: "#B89F80",
-          textDecoration: "none",
-          letterSpacing: "0.04em",
-        }}
-      >
-        +45 71 53 13 79
-      </a>
-      <a
-        href="https://www.instagram.com/svaleholmroskilde/"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Følg Svaleholm Roskilde på Instagram"
-        style={{
-          display: "inline-flex",
-          alignItems: "center",
-          justifyContent: "center",
-          marginTop: "1.5rem",
-          color: "#B89F80",
-        }}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.8"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          aria-hidden="true"
-        >
-          <rect x="3" y="3" width="18" height="18" rx="5" ry="5" />
-          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-        </svg>
-      </a>
-    </main>
+    <LanguageProvider>
+      <Outlet />
+    </LanguageProvider>
   );
 }
 
@@ -147,12 +85,13 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-surface-dim">
+    <main className="flex min-h-screen items-center justify-center" style={{ background: "#0F1714" }}>
       <div className="text-center max-w-md mx-auto px-6 py-16">
         <div className="mb-6">
-          <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-red-50 flex items-center justify-center">
+          <div className="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center" style={{ background: "rgba(201,169,106,0.12)" }}>
             <svg
-              className="w-10 h-10 text-red-500"
+              className="w-10 h-10"
+              style={{ color: "#C9A96A" }}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -160,19 +99,16 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth={2}
+                strokeWidth={1.5}
                 d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
               />
             </svg>
           </div>
-          <h1 className="text-4xl font-bold text-secondary mb-3">{message}</h1>
-          <p className="text-text-muted text-lg">{details}</p>
+          <h1 className="heading-section mb-3" style={{ color: "#F2EFE7" }}>{message}</h1>
+          <p className="text-lg" style={{ color: "rgba(242,239,231,0.7)" }}>{details}</p>
         </div>
-        <a
-          href="/"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-full font-semibold hover:bg-primary-dark transition-colors"
-        >
-          ← Gå til forsiden
+        <a href="/" className="btn-primary">
+          Gå til forsiden
         </a>
       </div>
     </main>

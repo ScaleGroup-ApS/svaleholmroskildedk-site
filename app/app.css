@@ -1,379 +1,359 @@
 @import "tailwindcss";
 
-/* ── Svaleholm Roskilde Design System ───────────────────────────────────── */
+/* ── Svaleholm Gaard · Dark Editorial Design System ─────────────────────────
+   Rød tråd: alle sider deler disse tokens, typer og komponenter, så under-
+   siderne føles som ét sammenhængende sted. Palette og typografi stammer fra
+   redesignet "Svaleholm Gaard".
+   ──────────────────────────────────────────────────────────────────────── */
 
 @theme {
-  /* Palette */
-  --color-primary:       #B89F80;
-  --color-primary-dark:  #A08870;
-  --color-primary-light: #D4C1A9;
-  --color-secondary:     #1E293B;
-  --color-accent:        #B89F80;
-  --color-surface:       #F8F7F4;
-  --color-surface-dim:   #F1F0EC;
-  --color-surface-dark:  #1E293B;
-  --color-text:          #1E293B;
-  --color-text-muted:    #6B7280;
-  --color-text-on-dark:  #F8F7F4;
-  --color-border:        #E2E8F0;
+  /* Palette (mørk, jordnær luksus) */
+  --color-primary:       #C9A96A;   /* hay / guld – primær accent + CTA */
+  --color-primary-dark:  #B08F52;
+  --color-primary-light: #E4CFA0;
+  --color-secondary:     #7EA57C;   /* leaf – sekundær accent / eyebrow */
+  --color-accent:        #7EA57C;
+  --color-surface:       #0F1714;   /* side-baggrund */
+  --color-surface-dim:   #14201B;   /* hævede sektioner */
+  --color-surface-dark:  #0B110E;
+  --color-text:          #F2EFE7;   /* creme tekst */
+  --color-text-muted:    #A9B0A5;
+  --color-text-on-dark:  #F2EFE7;
+  --color-border:        #223029;
 
   /* Fonts */
-  --font-heading: "Playfair Display", Georgia, "Times New Roman", serif;
-  --font-body:    "Manrope", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-heading: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-body:    "Karla", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 }
 
-/* ── Base Styles ───────────────────────────────────────────────────────── */
+/* Rå CSS-variabler til inline-styles rundt om i appen */
+:root {
+  --sv-bg:        #0F1714;
+  --sv-panel:     #14201B;
+  --sv-ink:       #F2EFE7;
+  --sv-ink-dim:   rgba(242, 239, 231, 0.70);
+  --sv-ink-mute:  rgba(242, 239, 231, 0.45);
+  --sv-hay:       #C9A96A;
+  --sv-hay-light: #E4CFA0;
+  --sv-leaf:      #7EA57C;
+  --sv-line:      rgba(242, 239, 231, 0.12);
+}
+
+/* ── Base ──────────────────────────────────────────────────────────────── */
 
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #0F1714;
 }
 
 body {
   font-family: var(--font-body);
-  color: #1E293B;
-  background: linear-gradient(to bottom, #F8F7F4 0%, #F1F0EC 100%);
+  color: #F2EFE7;
+  background-color: #0F1714;
+  background-image:
+    radial-gradient(1100px 620px at 84% -8%, rgba(201, 169, 106, 0.10), transparent 60%),
+    radial-gradient(820px 560px at -6% 4%, rgba(126, 165, 124, 0.09), transparent 58%);
+  background-repeat: no-repeat, no-repeat;
+  background-attachment: fixed, fixed;
   min-height: 100vh;
-  line-height: 1.72;
+  line-height: 1.7;
   font-size: 16.5px;
 }
 
+::selection { background: #C9A96A; color: #0F1714; }
+
 h1, h2, h3, h4, h5 {
   font-family: var(--font-heading);
-  line-height: 1.1;
+  line-height: 1.06;
+  color: #F2EFE7;
+  font-weight: 300;
 }
 
-/* ── Gradient Utilities ──────────────────────────────────────────────────── */
+/* ── Farve-hjælpere ──────────────────────────────────────────────────────── */
 
+/* Beholdt af hensyn til eksisterende markup – på mørk baggrund er overskrifter
+   blot creme. gradient-text giver et diskret guld-skær på store overskrifter. */
 .gradient-text {
-  background: linear-gradient(135deg, #A88F70 0%, #8E775C 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
+  color: #F2EFE7;
 }
 
-.gradient-main { background: linear-gradient(135deg, #D4C1A9 0%, #B89F80 100%); }
+.gradient-main { background: linear-gradient(135deg, #C9A96A 0%, #7EA57C 100%); }
 
-/* ── Button System ──────────────────────────────────────────────────────── */
+/* ── Knapper (pille-form) ───────────────────────────────────────────────── */
 
 .btn-primary {
   display: inline-flex; align-items: center; justify-content: center;
-  gap: 0.5rem; padding: 0.875rem 2rem;
-  background: linear-gradient(135deg, #D4C1A9 0%, #B89F80 100%);
-  color: #1E293B; font-family: var(--font-body); border-radius: 0.5rem;
-  font-weight: 500; font-size: 0.9375rem; letter-spacing: 0.01em;
-  transition: transform 0.3s cubic-bezier(.4,0,.2,1), box-shadow 0.3s ease, filter 0.3s ease;
+  gap: 0.6rem; padding: 1rem 2.1rem;
+  background: #C9A96A; color: #0F1714;
+  font-family: var(--font-body); border-radius: 999px;
+  font-weight: 600; font-size: 0.74rem; letter-spacing: 0.2em; text-transform: uppercase;
+  transition: transform 0.45s cubic-bezier(.16,1,.3,1), box-shadow 0.45s ease, background 0.4s ease;
   cursor: pointer; text-decoration: none; border: none; white-space: nowrap;
 }
 .btn-primary:hover {
+  background: #E4CFA0;
   transform: translateY(-3px);
-  box-shadow: 0 16px 40px rgba(184, 159, 128, 0.4);
-  filter: brightness(1.06);
+  box-shadow: 0 18px 40px rgba(201, 169, 106, 0.28);
 }
 .btn-primary:active { transform: translateY(-1px); }
 
-.btn-ghost {
-  display: inline-flex; align-items: center; justify-content: center;
-  gap: 0.5rem; padding: 0.875rem 2rem; background: transparent;
-  color: #F8F7F4; font-family: var(--font-body);
-  border: 1px solid #B89F80; border-radius: 0.5rem;
-  font-weight: 500; font-size: 0.9375rem; letter-spacing: 0.01em;
-  transition: all 0.3s ease; cursor: pointer; text-decoration: none; white-space: nowrap;
-}
-.btn-ghost:hover {
-  background: rgba(184, 159, 128, 0.15);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(184, 159, 128, 0.25);
-}
-
+/* Sekundær knap – ét fælles udtryk: guld-outline der fyldes ved hover.
+   btn-ghost og btn-dark er bevidst identiske, så alle sekundære knapper
+   ser ens ud på tværs af sitet. */
+.btn-ghost,
 .btn-dark {
   display: inline-flex; align-items: center; justify-content: center;
-  gap: 0.5rem; padding: 0.875rem 2rem; background: #1E293B;
-  color: #F8F7F4; font-family: var(--font-body); border-radius: 0.5rem;
-  font-weight: 500; font-size: 0.9375rem; letter-spacing: 0.01em;
-  transition: all 0.3s ease; cursor: pointer; text-decoration: none; border: none; white-space: nowrap;
+  gap: 0.6rem; padding: 1rem 2.1rem; background: transparent;
+  color: #C9A96A; font-family: var(--font-body); border-radius: 999px;
+  font-weight: 500; font-size: 0.74rem; letter-spacing: 0.2em; text-transform: uppercase;
+  border: 1px solid #C9A96A;
+  transition: all 0.4s cubic-bezier(.16,1,.3,1); cursor: pointer; text-decoration: none; white-space: nowrap;
 }
+.btn-ghost:hover,
 .btn-dark:hover {
-  background: #111827; transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(30, 41, 59, 0.25);
+  background: #C9A96A; color: #0F1714; transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(201, 169, 106, 0.24);
 }
 
-/* ── Section Spacing ─────────────────────────────────────────────────────── */
+/* ── Scrollbar-løs carousel-bane ─────────────────────────────────────────── */
 
-.section-padding    { padding-top: 7.5rem; padding-bottom: 7.5rem; }
-.section-padding-sm { padding-top: 5rem;   padding-bottom: 5rem; }
+.no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
 
-/* ── Glassmorphism ────────────────────────────────────────────────────────── */
+/* ── Sektions-afstand ────────────────────────────────────────────────────── */
+
+.section-padding    { padding-top: clamp(6rem, 14vh, 11rem); padding-bottom: clamp(6rem, 14vh, 11rem); }
+.section-padding-sm { padding-top: clamp(4rem, 10vh, 7rem);   padding-bottom: clamp(4rem, 10vh, 7rem); }
+
+/* ── Kort (mørkt "glas") ─────────────────────────────────────────────────── */
 
 .glass {
-  background: rgba(248, 247, 244, 0.82);
-  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(226, 232, 240, 0.55);
+  background: rgba(242, 239, 231, 0.03);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--sv-line);
 }
 .glass-dark {
-  background: rgba(30, 41, 59, 0.75);
+  background: rgba(11, 17, 14, 0.65);
   backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--sv-line);
 }
 
-/* ── Card Shadows ────────────────────────────────────────────────────────── */
-
-.card-shadow { box-shadow: 0 4px 16px rgba(30, 41, 59, 0.06); }
-.card-shadow-hover { transition: box-shadow 0.3s ease, transform 0.3s ease; }
+.card-shadow { box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35); }
+.card-shadow-hover { transition: box-shadow 0.5s cubic-bezier(.16,1,.3,1), transform 0.5s cubic-bezier(.16,1,.3,1), border-color 0.5s ease; }
 .card-shadow-hover:hover {
-  box-shadow: 0 12px 40px rgba(30, 41, 59, 0.12); transform: translateY(-4px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5); transform: translateY(-5px);
+  border-color: rgba(201, 169, 106, 0.5);
 }
 
-/* ── Form Inputs ─────────────────────────────────────────────────────────── */
+.hover-glow { transition: transform 0.5s cubic-bezier(.16,1,.3,1), box-shadow 0.5s ease; }
+.hover-glow:hover { transform: translateY(-5px); box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5); }
+
+@keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+.animate-floaty { animation: floaty 6.5s ease-in-out infinite; }
+
+/* ── Formularfelter (mørke) ──────────────────────────────────────────────── */
 
 .input-field {
-  width: 100%; padding: 0.875rem 1rem; border: 1px solid #E2E8F0;
-  border-radius: 0.5rem; background: #FFFFFF; color: #1E293B;
+  width: 100%; padding: 0.9rem 1rem; border: 1px solid var(--sv-line);
+  border-radius: 0.6rem; background: rgba(242, 239, 231, 0.04); color: #F2EFE7;
   font-family: var(--font-body); font-size: 1rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
   outline: none; line-height: 1.5;
 }
-.input-field:focus { border-color: #B89F80; box-shadow: 0 0 0 3px rgba(184, 159, 128, 0.18); }
-.input-field::placeholder { color: #9CA3AF; }
+.input-field:focus { border-color: #C9A96A; box-shadow: 0 0 0 3px rgba(201, 169, 106, 0.18); background: rgba(242, 239, 231, 0.06); }
+.input-field::placeholder { color: rgba(242, 239, 231, 0.4); }
 
-/* ── Typography Classes ───────────────────────────────────────────────────── */
+/* ── Typografi-klasser ───────────────────────────────────────────────────── */
 
 .heading-hero {
-  font-size: clamp(3rem, 7vw, 5.8rem);
-  font-family: var(--font-heading); font-weight: 600; line-height: 1.02; letter-spacing: -0.02em;
+  font-size: clamp(3rem, 9vw, 8rem);
+  font-family: var(--font-heading); font-weight: 300; line-height: 0.96; letter-spacing: -0.025em;
 }
 .heading-section {
-  font-size: clamp(2.15rem, 5vw, 3.45rem);
-  font-family: var(--font-heading); font-weight: 600; line-height: 1.14; letter-spacing: -0.01em;
+  font-size: clamp(2.2rem, 5.2vw, 4.2rem);
+  font-family: var(--font-heading); font-weight: 300; line-height: 1.04; letter-spacing: -0.02em;
 }
 .heading-card {
-  font-size: clamp(1.55rem, 3vw, 2.1rem);
-  font-family: var(--font-heading); font-weight: 600; line-height: 1.24;
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  font-family: var(--font-heading); font-weight: 400; line-height: 1.12;
 }
 .heading-sub {
-  font-size: clamp(1.2rem, 2.4vw, 1.6rem);
-  font-family: var(--font-heading); font-weight: 600;
+  font-size: clamp(1.35rem, 2.4vw, 1.9rem);
+  font-family: var(--font-heading); font-weight: 400; line-height: 1.15;
 }
 .eyebrow {
-  font-size: 0.6875rem; font-family: var(--font-body); font-weight: 500;
-  letter-spacing: 0.22em; text-transform: uppercase; color: #B89F80;
+  font-size: 0.68rem; font-family: var(--font-body); font-weight: 500;
+  letter-spacing: 0.34em; text-transform: uppercase; color: #7EA57C;
 }
 
-/* ── Nav Link Hover ──────────────────────────────────────────────────────── */
+/* Kursiv guld-accent til overskrifter (fx <span class="accent-italic">) */
+.accent-italic { font-style: italic; color: #C9A96A; }
 
-.nav-link { position: relative; transition: color 0.2s ease; }
+/* ── Nav-link hover ──────────────────────────────────────────────────────── */
+
+.nav-link { position: relative; transition: color 0.3s ease; }
 .nav-link::after {
   content: ''; position: absolute; bottom: -3px; left: 0;
-  height: 1px; width: 0; background: #B89F80;
+  height: 1px; width: 0; background: #C9A96A;
   transition: width 0.35s cubic-bezier(.4,0,.2,1);
 }
 .nav-link:hover::after { width: 100%; }
 
-/* ── Ornament Divider ─────────────────────────────────────────────────────── */
+/* ── Ornament-divider ────────────────────────────────────────────────────── */
 
-.ornament { display: flex; align-items: center; gap: 0.75rem; color: #B89F80; }
-.ornament::before, .ornament::after { content: ''; flex: 1; height: 1px; background: #E2E8F0; }
+.ornament { display: flex; align-items: center; gap: 0.75rem; color: #C9A96A; }
+.ornament::before, .ornament::after { content: ''; flex: 1; height: 1px; background: var(--sv-line); }
 
-/* ── WordPress Content Styles ──────────────────────────────────────────
-   These styles apply to the rendered HTML from WordPress WP-REST API.
-   They ensure Gutenberg block output looks correct in the React app.
-   ──────────────────────────────────────────────────────────────────────── */
+/* ── Marquee-bånd (forsiden) ─────────────────────────────────────────────── */
+
+@keyframes svMarquee { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
+.marquee-track { display: flex; width: max-content; animation: svMarquee 42s linear infinite; }
+
+/* ── Ken Burns (hero) ────────────────────────────────────────────────────── */
+
+@keyframes svKen { 0% { transform: scale(1.06); } 100% { transform: scale(1.18); } }
+.ken-burns { animation: svKen 26s ease-in-out infinite alternate; }
+
+/* ── Flyvende svaler (brand-animation) ───────────────────────────────────── */
+
+.svale-fly {
+  position: absolute;
+  will-change: transform, opacity;
+  animation-name: svFly;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  pointer-events: none;
+}
+.svale-flap {
+  display: block;
+  transform-origin: 50% 40%;
+  animation: svFlap 0.42s ease-in-out infinite;
+}
+@keyframes svFly {
+  0%   { transform: translate(-14vw, 0) rotate(4deg);   opacity: 0; }
+  10%  { opacity: 0.7; }
+  35%  { transform: translate(30vw, -5vh) rotate(-2deg); }
+  60%  { transform: translate(58vw, 3vh) rotate(3deg); }
+  90%  { opacity: 0.7; }
+  100% { transform: translate(118vw, -4vh) rotate(-3deg); opacity: 0; }
+}
+@keyframes svFlap {
+  0%, 100% { transform: scaleY(1); }
+  50%      { transform: scaleY(0.62); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ken-burns, .marquee-track, .animate-floaty,
+  .svale-fly, .svale-flap, .animate-cue { animation: none !important; }
+  .svale-fly { opacity: 0.5 !important; }
+}
+
+/* ── Mobil: plads til den faste bund-CTA ─────────────────────────────────── */
+
+@media (max-width: 1023px) {
+  body { padding-bottom: 4.75rem; }
+}
+
+/* ── WordPress-indhold (WP-REST output) ──────────────────────────────────── */
 
 .wp-content {
-  /* Headings */
+  color: rgba(242, 239, 231, 0.82);
+
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
-    line-height: 1.15;
+    line-height: 1.1;
     letter-spacing: -0.02em;
     margin-top: 1.5em;
     margin-bottom: 0.5em;
-    font-weight: 700;
+    font-weight: 400;
+    color: #F2EFE7;
   }
 
   h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
   h2 { font-size: clamp(1.5rem, 4vw, 2.5rem); }
   h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
 
-  /* Paragraphs */
-  p {
-    margin-bottom: 1.25em;
-    max-width: 72ch;
-  }
+  p { margin-bottom: 1.25em; max-width: 72ch; }
 
-  /* Links */
   a {
     color: var(--color-primary);
     text-decoration: underline;
     text-underline-offset: 2px;
     transition: color 0.2s ease;
   }
-  a:hover {
-    color: var(--color-primary-dark);
-  }
+  a:hover { color: var(--color-primary-light); }
 
-  /* Images */
-  img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 12px;
-  }
+  img { max-width: 100%; height: auto; border-radius: 4px; }
 
-  /* WordPress alignment classes */
   .alignfull {
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
+    width: 100vw; position: relative; left: 50%; right: 50%;
+    margin-left: -50vw; margin-right: -50vw;
   }
+  .alignwide { max-width: 1400px; margin-left: auto; margin-right: auto; }
+  .aligncenter { text-align: center; margin-left: auto; margin-right: auto; }
 
-  .alignwide {
-    max-width: 1400px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .aligncenter {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  /* WordPress button styles */
   .wp-block-button__link {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.75rem 2rem;
-    border-radius: 9999px;
-    font-weight: 600;
-    font-size: 1rem;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    cursor: pointer;
+    display: inline-flex; align-items: center; padding: 0.9rem 2rem;
+    border-radius: 999px; font-weight: 600; font-size: 0.8rem;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    background: #C9A96A; color: #0F1714;
+    text-decoration: none; transition: all 0.3s ease; cursor: pointer;
   }
-
   .wp-block-button__link:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.25);
+    transform: translateY(-2px); box-shadow: 0 12px 30px rgba(201, 169, 106, 0.25);
   }
 
-  /* WordPress columns */
-  .wp-block-columns {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-  }
+  .wp-block-columns { display: flex; flex-wrap: wrap; gap: 2rem; }
+  .wp-block-column { flex: 1 1 0; min-width: 250px; }
 
-  .wp-block-column {
-    flex: 1 1 0;
-    min-width: 250px;
-  }
-
-  /* WordPress separator */
   .wp-block-separator {
-    border: none;
-    border-top: 1px solid var(--color-border);
-    margin: 3rem auto;
-    max-width: 100px;
+    border: none; border-top: 1px solid var(--color-border);
+    margin: 3rem auto; max-width: 100px;
   }
 
-  /* WordPress cover block */
   .wp-block-cover {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 400px;
-    overflow: hidden;
-    border-radius: 16px;
+    position: relative; display: flex; align-items: center; justify-content: center;
+    min-height: 400px; overflow: hidden; border-radius: 4px;
   }
+  .wp-block-group { box-sizing: border-box; }
+  .wp-block-spacer { display: block; }
 
-  /* WordPress group block */
-  .wp-block-group {
-    box-sizing: border-box;
-  }
+  ul, ol { padding-left: 1.5em; margin-bottom: 1.25em; }
+  li { margin-bottom: 0.5em; }
 
-  /* WordPress spacer */
-  .wp-block-spacer {
-    display: block;
-  }
-
-  /* Lists */
-  ul, ol {
-    padding-left: 1.5em;
-    margin-bottom: 1.25em;
-  }
-
-  li {
-    margin-bottom: 0.5em;
-  }
-
-  /* Blockquotes */
   blockquote {
-    border-left: 4px solid var(--color-primary);
-    padding: 1rem 1.5rem;
-    margin: 2rem 0;
+    border-left: 2px solid var(--color-primary);
+    padding: 1rem 1.5rem; margin: 2rem 0;
     background: var(--color-surface-dim);
-    border-radius: 0 8px 8px 0;
-    font-style: italic;
+    border-radius: 0 4px 4px 0; font-style: italic;
+    font-family: var(--font-heading); font-size: 1.4rem; color: #F2EFE7;
   }
 
-  /* Tables */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 1.5em;
-  }
-
-  th, td {
-    padding: 0.75rem 1rem;
-    border: 1px solid var(--color-border);
-    text-align: left;
-  }
-
-  th {
-    background: var(--color-surface-dim);
-    font-weight: 600;
-  }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 1.5em; }
+  th, td { padding: 0.75rem 1rem; border: 1px solid var(--color-border); text-align: left; }
+  th { background: var(--color-surface-dim); font-weight: 600; }
 }
 
-/* ── Animations ────────────────────────────────────────────────────────── */
+/* ── Animationer ─────────────────────────────────────────────────────────── */
 
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(28px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-@keyframes pulseSlow {
-  0%, 100% { opacity: 0.55; transform: translateY(0) translateX(-50%); }
-  50%       { opacity: 1;    transform: translateY(9px) translateX(-50%); }
-}
-@keyframes scaleIn {
-  from { opacity: 0; transform: scale(0.97); }
-  to   { opacity: 1; transform: scale(1); }
-}
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn   { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scaleIn  { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
+@keyframes svCue    { 0%,100% { opacity: .3; transform: translateY(0); } 50% { opacity: 1; transform: translateY(9px); } }
 
 .animate-fade-in-up { animation: fadeInUp 0.7s ease-out forwards; }
 .animate-fade-in    { animation: fadeIn   1s   ease-out forwards; }
 .animate-scale-in   { animation: scaleIn  0.7s ease-out forwards; }
-.animate-pulse-slow { animation: pulseSlow 2.2s ease-in-out infinite; }
+.animate-cue        { animation: svCue    2.6s ease-in-out infinite; }
 
-/* ── Loading Skeleton ──────────────────────────────────────────────────── */
+/* ── Loading skeleton ────────────────────────────────────────────────────── */
 
-@keyframes shimmer {
-  0%   { background-position: -200% 0; }
-  100% { background-position:  200% 0; }
-}
-
+@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
 .skeleton {
-  background: linear-gradient(90deg,#F1F0EC 25%,#E8E5DF 50%,#F1F0EC 75%);
+  background: linear-gradient(90deg, #14201B 25%, #1c2b24 50%, #14201B 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
-  border-radius: 8px;
+  border-radius: 4px;
 }
