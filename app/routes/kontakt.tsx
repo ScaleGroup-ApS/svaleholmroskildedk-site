@@ -1,11 +1,11 @@
 import type { Route } from "./+types/kontakt";
-import { Form, Link, useActionData, useNavigation, useSearchParams, redirect } from "react-router";
+import { Form, useActionData, useNavigation, useSearchParams, redirect } from "react-router";
 import { motion } from "framer-motion";
 import { Header } from "~/components/Header";
 import { Footer } from "~/components/Footer";
 import { SvaleFlock } from "~/components/Svale";
 import { useT, useLang } from "~/lib/i18n";
-import { sendContactEmail } from "~/lib/mailer.server";
+import { sendContactEmail } from "~/lib/crm.server";
 
 export function meta() {
   return [
@@ -39,8 +39,8 @@ function fmtVal(key: string, raw: string): string {
   return raw;
 }
 
-// ── Server action: sender henvendelsen som e-mail ─────────────────────────────
-export async function action({ request }: Route.ActionArgs) {
+// ── Server action: sender henvendelsen videre til CRM'et ──────────────────────
+export async function action({ request, url }: Route.ActionArgs) {
   const form = await request.formData();
   const name = String(form.get("name") ?? "").trim();
   const phone = String(form.get("phone") ?? "").trim();
@@ -58,12 +58,20 @@ export async function action({ request }: Route.ActionArgs) {
     })
     .filter((x): x is { label: string; value: string } => x !== null);
 
+  // crm-backend sees only the site pod as its peer, so pass the real client IP
+  // along rather than letting it fall back to its own x-forwarded-for.
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
+
   const result = await sendContactEmail({
     name,
     phone,
     email: email || undefined,
     message: message || undefined,
     enquiry,
+    // `url` is the normalized route URL; `request.url` carries the `.data`
+    // suffix on client-side form submissions under RR8 pass-through requests.
+    sourceUrl: url.href,
+    ip: ip || undefined,
   });
 
   if (result.ok) {
@@ -81,7 +89,7 @@ export default function Kontakt() {
   const sending = navigation.state === "submitting";
   const [searchParams] = useSearchParams();
 
-  const success = actionData?.ok === true;
+  // A successful submission redirects to /tak, so actionData is only ever an error.
   const validationError = actionData && !actionData.ok && actionData.error === "validation";
   const sendError = actionData && !actionData.ok && actionData.error !== "validation";
 
@@ -214,115 +222,93 @@ export default function Kontakt() {
                 viewport={{ once: true, margin: "-80px" }}
               >
                 <div className="glass card-shadow p-8 md:p-10" style={{ borderRadius: "2px" }}>
-                  {success ? (
-                    <motion.div
-                      className="py-10 text-center"
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.5 }}
-                    >
-                      <div className="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center" style={{ background: "linear-gradient(135deg, #C9A96A, #7EA57C)" }}>
-                        <svg className="w-8 h-8" style={{ color: "#0F1714" }} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                        </svg>
-                      </div>
-                      <h3 className="heading-card mb-3" style={{ color: "#F2EFE7" }}>{t("Tak for din besked!", "Thank you for your message!")}</h3>
-                      <p style={{ color: "rgba(242,239,231,0.7)", lineHeight: 1.8, marginBottom: "2rem" }}>
-                        {t("Vi har modtaget din henvendelse og vender tilbage inden for 24 timer på hverdage.", "We have received your enquiry and will get back to you within 24 hours on weekdays.")}
-                      </p>
-                      <Link to="/kontakt" className="btn-dark">
-                        {t("Send en ny besked", "Send another message")}
-                      </Link>
-                    </motion.div>
-                  ) : (
-                    <Form method="post">
-                      <h3 className="heading-card mb-7" style={{ color: "#F2EFE7" }}>{t("Send os en besked", "Send us a message")}</h3>
+                  <Form method="post">
+                    <h3 className="heading-card mb-7" style={{ color: "#F2EFE7" }}>{t("Send os en besked", "Send us a message")}</h3>
 
-                      {/* Opsummering fra prisberegner */}
-                      {enquiryRows.length > 0 && (
-                        <div className="mb-7 rounded-lg p-5" style={{ background: "rgba(126,165,124,0.10)", border: "1px solid rgba(126,165,124,0.32)" }}>
-                          <p className="mb-3" style={{ fontFamily: "var(--font-body)", fontSize: "0.66rem", fontWeight: 600, color: "#7EA57C", letterSpacing: "0.2em", textTransform: "uppercase" }}>
-                            {t("Din forespørgsel", "Your enquiry")}
-                          </p>
-                          <div className="space-y-1.5">
-                            {enquiryRows.map((r) => (
-                              <div key={r.key} className="flex items-baseline justify-between gap-4" style={{ fontFamily: "var(--font-body)", fontSize: "0.875rem" }}>
-                                <span style={{ color: "rgba(242,239,231,0.6)" }}>{r.label}</span>
-                                <span style={{ color: "#F2EFE7", fontWeight: 500, textAlign: "right" }}>{r.value}</span>
-                              </div>
-                            ))}
-                          </div>
-                          {/* Sendes med i formularen */}
+                    {/* Opsummering fra prisberegner */}
+                    {enquiryRows.length > 0 && (
+                      <div className="mb-7 rounded-lg p-5" style={{ background: "rgba(126,165,124,0.10)", border: "1px solid rgba(126,165,124,0.32)" }}>
+                        <p className="mb-3" style={{ fontFamily: "var(--font-body)", fontSize: "0.66rem", fontWeight: 600, color: "#7EA57C", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+                          {t("Din forespørgsel", "Your enquiry")}
+                        </p>
+                        <div className="space-y-1.5">
                           {enquiryRows.map((r) => (
-                            <input key={r.key} type="hidden" name={r.key} value={r.raw} />
+                            <div key={r.key} className="flex items-baseline justify-between gap-4" style={{ fontFamily: "var(--font-body)", fontSize: "0.875rem" }}>
+                              <span style={{ color: "rgba(242,239,231,0.6)" }}>{r.label}</span>
+                              <span style={{ color: "#F2EFE7", fontWeight: 500, textAlign: "right" }}>{r.value}</span>
+                            </div>
                           ))}
                         </div>
-                      )}
-
-                      {/* Fejl-banner ved sendefejl / manglende opsætning */}
-                      {sendError && (
-                        <div className="mb-6 rounded-lg p-4" style={{ background: "rgba(201,169,106,0.10)", border: "1px solid rgba(201,169,106,0.34)" }}>
-                          <p style={{ fontFamily: "var(--font-body)", fontSize: "0.875rem", color: "#E4CFA0", lineHeight: 1.6 }}>
-                            {t(
-                              "Vi kunne ikke sende beskeden automatisk lige nu. Ring til os på 71 53 13 79 eller skriv til ",
-                              "We couldn't send your message automatically right now. Please call us on +45 71 53 13 79 or write to "
-                            )}
-                            <a href="mailto:kontakt@svaleholmroskilde.dk" style={{ color: "#C9A96A", textDecoration: "underline" }}>kontakt@svaleholmroskilde.dk</a>.
-                          </p>
-                        </div>
-                      )}
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
-                        <div>
-                          <label htmlFor="cf-name" className="block mb-2" style={{ fontFamily: "var(--font-body)", fontSize: "0.66rem", fontWeight: 500, color: "#7EA57C", letterSpacing: "0.2em", textTransform: "uppercase" }}>
-                            {t("Navn", "Name")} *
-                          </label>
-                          <input id="cf-name" name="name" type="text" className="input-field" placeholder={t("Dit fulde navn", "Your full name")} required autoComplete="name" />
-                        </div>
-                        <div>
-                          <label htmlFor="cf-phone" className="block mb-2" style={{ fontFamily: "var(--font-body)", fontSize: "0.66rem", fontWeight: 500, color: "#7EA57C", letterSpacing: "0.2em", textTransform: "uppercase" }}>
-                            {t("Nummer", "Number")} *
-                          </label>
-                          <input id="cf-phone" name="phone" type="tel" className="input-field" placeholder="+45 XX XX XX XX" required autoComplete="tel" />
-                        </div>
+                        {/* Sendes med i formularen */}
+                        {enquiryRows.map((r) => (
+                          <input key={r.key} type="hidden" name={r.key} value={r.raw} />
+                        ))}
                       </div>
+                    )}
 
-                      <div className="mb-5">
-                        <label htmlFor="cf-email" className="block mb-2" style={{ fontFamily: "var(--font-body)", fontSize: "0.66rem", fontWeight: 500, color: "#7EA57C", letterSpacing: "0.2em", textTransform: "uppercase" }}>
-                          {t("E-mail", "E-mail")}
-                        </label>
-                        <input id="cf-email" name="email" type="email" className="input-field" placeholder={t("Så vi kan svare på mail", "So we can reply by e-mail")} autoComplete="email" />
-                      </div>
-
-                      <div className="mb-7">
-                        <label htmlFor="cf-message" className="block mb-2" style={{ fontFamily: "var(--font-body)", fontSize: "0.66rem", fontWeight: 500, color: "#7EA57C", letterSpacing: "0.2em", textTransform: "uppercase" }}>
-                          {t("Besked", "Message")}
-                        </label>
-                        <textarea id="cf-message" name="message" className="input-field" rows={5} placeholder={t("Fortæl os om dine ønsker og planer...", "Tell us about your wishes and plans...")} style={{ resize: "vertical" }} />
-                      </div>
-
-                      {validationError && (
-                        <p className="mb-4" style={{ fontFamily: "var(--font-body)", fontSize: "0.8125rem", color: "#E4CFA0" }}>
-                          {t("Udfyld venligst navn og telefonnummer.", "Please fill in your name and phone number.")}
+                    {/* Fejl-banner ved sendefejl / manglende opsætning */}
+                    {sendError && (
+                      <div className="mb-6 rounded-lg p-4" style={{ background: "rgba(201,169,106,0.10)", border: "1px solid rgba(201,169,106,0.34)" }}>
+                        <p style={{ fontFamily: "var(--font-body)", fontSize: "0.875rem", color: "#E4CFA0", lineHeight: 1.6 }}>
+                          {t(
+                            "Vi kunne ikke sende beskeden automatisk lige nu. Ring til os på 71 53 13 79 eller skriv til ",
+                            "We couldn't send your message automatically right now. Please call us on +45 71 53 13 79 or write to "
+                          )}
+                          <a href="mailto:kontakt@svaleholmroskilde.dk" style={{ color: "#C9A96A", textDecoration: "underline" }}>kontakt@svaleholmroskilde.dk</a>.
                         </p>
-                      )}
+                      </div>
+                    )}
 
-                      <motion.button
-                        type="submit"
-                        disabled={sending}
-                        className="btn-primary w-full"
-                        style={sending ? { opacity: 0.6, cursor: "wait" } : undefined}
-                        whileHover={sending ? undefined : { translateY: -3 }}
-                        whileTap={sending ? undefined : { translateY: 0 }}
-                      >
-                        {sending ? t("Sender...", "Sending...") : t("Send Besked", "Send message")}
-                      </motion.button>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+                      <div>
+                        <label htmlFor="cf-name" className="block mb-2" style={{ fontFamily: "var(--font-body)", fontSize: "0.66rem", fontWeight: 500, color: "#7EA57C", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+                          {t("Navn", "Name")} *
+                        </label>
+                        <input id="cf-name" name="name" type="text" className="input-field" placeholder={t("Dit fulde navn", "Your full name")} required autoComplete="name" />
+                      </div>
+                      <div>
+                        <label htmlFor="cf-phone" className="block mb-2" style={{ fontFamily: "var(--font-body)", fontSize: "0.66rem", fontWeight: 500, color: "#7EA57C", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+                          {t("Nummer", "Number")} *
+                        </label>
+                        <input id="cf-phone" name="phone" type="tel" className="input-field" placeholder="+45 XX XX XX XX" required autoComplete="tel" />
+                      </div>
+                    </div>
 
-                      <p className="mt-4 text-center" style={{ fontFamily: "var(--font-body)", fontSize: "0.8125rem", color: "rgba(242,239,231,0.4)" }}>
-                        {t("Vi svarer indenfor 24 timer på hverdage. Din information behandles fortroligt.", "We reply within 24 hours on weekdays. Your information is treated confidentially.")}
+                    <div className="mb-5">
+                      <label htmlFor="cf-email" className="block mb-2" style={{ fontFamily: "var(--font-body)", fontSize: "0.66rem", fontWeight: 500, color: "#7EA57C", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+                        {t("E-mail", "E-mail")}
+                      </label>
+                      <input id="cf-email" name="email" type="email" className="input-field" placeholder={t("Så vi kan svare på mail", "So we can reply by e-mail")} autoComplete="email" />
+                    </div>
+
+                    <div className="mb-7">
+                      <label htmlFor="cf-message" className="block mb-2" style={{ fontFamily: "var(--font-body)", fontSize: "0.66rem", fontWeight: 500, color: "#7EA57C", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+                        {t("Besked", "Message")}
+                      </label>
+                      <textarea id="cf-message" name="message" className="input-field" rows={5} placeholder={t("Fortæl os om dine ønsker og planer...", "Tell us about your wishes and plans...")} style={{ resize: "vertical" }} />
+                    </div>
+
+                    {validationError && (
+                      <p className="mb-4" style={{ fontFamily: "var(--font-body)", fontSize: "0.8125rem", color: "#E4CFA0" }}>
+                        {t("Udfyld venligst navn og telefonnummer.", "Please fill in your name and phone number.")}
                       </p>
-                    </Form>
-                  )}
+                    )}
+
+                    <motion.button
+                      type="submit"
+                      disabled={sending}
+                      className="btn-primary w-full"
+                      style={sending ? { opacity: 0.6, cursor: "wait" } : undefined}
+                      whileHover={sending ? undefined : { translateY: -3 }}
+                      whileTap={sending ? undefined : { translateY: 0 }}
+                    >
+                      {sending ? t("Sender...", "Sending...") : t("Send Besked", "Send message")}
+                    </motion.button>
+
+                    <p className="mt-4 text-center" style={{ fontFamily: "var(--font-body)", fontSize: "0.8125rem", color: "rgba(242,239,231,0.4)" }}>
+                      {t("Vi svarer indenfor 24 timer på hverdage. Din information behandles fortroligt.", "We reply within 24 hours on weekdays. Your information is treated confidentially.")}
+                    </p>
+                  </Form>
                 </div>
               </motion.div>
               )}

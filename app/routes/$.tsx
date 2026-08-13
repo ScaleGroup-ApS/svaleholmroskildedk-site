@@ -35,10 +35,10 @@ export async function loader({ params, request }: Route.LoaderArgs) {
 
 // ── Meta ─────────────────────────────────────────────────────────────────────
 
-export function meta({ data }: Route.MetaArgs) {
-  if (!data) return [{ title: "Side ikke fundet" }];
+export function meta({ loaderData }: Route.MetaArgs) {
+  if (!loaderData) return [{ title: "Side ikke fundet" }];
 
-  const { page, siteInfo, siteUrl, slug } = data;
+  const { page, siteInfo, siteUrl, slug } = loaderData;
   const pageTitle = stripHtml(page.title.rendered);
   const siteName = siteInfo?.name ?? "";
   const title = siteName ? `${pageTitle} | ${siteName}` : pageTitle;
