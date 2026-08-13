@@ -56,15 +56,21 @@ spec:
               value: "http://crm-backend.crm-system.svc.cluster.local:5000"
             - name: CRM_SLUG
               value: "{{NAMESPACE}}"
-            # crm-backend's shared AGENT_API_TOKEN. Marked optional so a
-            # namespace without the Secret still starts — the contact form
-            # then falls back to showing the phone number and e-mail address
-            # instead of silently dropping enquiries.
+            # crm-backend's shared AGENT_API_TOKEN, provisioned per namespace
+            # as crm-internal-secret by CRM (kubernetes.ts, "lets the customer
+            # site call /internal/* on crm-backend").
+            #
+            # Optional, and the app treats an empty value as unconfigured: the
+            # secret is written with createOrSkipSecret, so a namespace
+            # provisioned while crm-backend lacked AGENT_API_TOKEN keeps an
+            # empty token forever. Either way the contact form degrades to
+            # showing the phone number and e-mail address rather than
+            # silently dropping enquiries.
             - name: CRM_API_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: app-secrets
-                  key: CRM_API_TOKEN
+                  name: crm-internal-secret
+                  key: token
                   optional: true
 
           livenessProbe:
