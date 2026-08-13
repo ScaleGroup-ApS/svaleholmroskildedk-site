@@ -6,6 +6,7 @@ export default [
   route("vaerelser/:slug", "routes/vaerelser.$slug.tsx"),
   route("tjenester", "routes/tjenester.tsx"),
   route("priser", "routes/priser.tsx"),
+  route("galleri", "routes/galleri.tsx"),
   route("kontakt", "routes/kontakt.tsx"),
   // The kontakt action redirects here on success. Without this entry /tak fell
   // through to the "*" catch-all, which looks for a WordPress page of that

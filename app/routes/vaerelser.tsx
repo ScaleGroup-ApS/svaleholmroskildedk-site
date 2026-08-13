@@ -88,7 +88,7 @@ const FACILITIES = [
 
 // Atmosfærebilleder af Svaleholm og fællesarealerne
 const HIGHLIGHT_IMAGES = [
-  { src: "/images/lounge.jpg", alt: "Fælles opholdsrum på Svaleholm nær Roskilde" },
+  { src: "/images/vaerelse-seng.jpg", alt: "Opredt værelse på Svaleholm nær Roskilde" },
   { src: "/images/bygning-have.jpg", alt: "Svaleholms historiske bygning og have på Sjælland" },
 ];
 

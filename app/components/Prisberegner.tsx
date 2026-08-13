@@ -292,6 +292,7 @@ type EventAddon = { id: string; label: string; labelEn: string; price: number; s
 const EVENT_ADDONS: EventAddon[] = [
   // Bryllup
   { id: "vielsesbue",   label: "Bryllupsbue",         labelEn: "Wedding arch",     price: 3500, spec: "Håndbundet blomsterbue · 2,4 m høj · opsat ved ceremonien",    specEn: "Hand-tied floral arch · 2.4 m tall · set up at the ceremony", themes: ["bryllup"] },
+  { id: "tyl",          label: "Tyl",                 labelEn: "Tulle draping",    price: 1500, spec: "Blødt tyldraperi til borde, buer og bagvæg · romantisk look", specEn: "Soft tulle draping for tables, arches and backdrop · romantic look", themes: ["bryllup"] },
   { id: "champagnetaarn", label: "Champagnetårn",     labelEn: "Champagne tower",  price: 1800, spec: "5 etager · op til 60 glas · inkl. servering",                 specEn: "5 tiers · up to 60 glasses · incl. serving",                  themes: ["bryllup", "fest"] },
   { id: "toastmaster",  label: "Toastmaster-lyd",     labelEn: "Toastmaster sound", price: 2200, spec: "Trådløs mikrofon + headset · lydanlæg til taler",             specEn: "Wireless mic + headset · PA for speeches",                    themes: ["bryllup", "firma"] },
   // Fest
@@ -308,6 +309,19 @@ const EVENT_ADDONS: EventAddon[] = [
   { id: "av",           label: "AV-pakke",            labelEn: "AV package",       price: 3000, spec: "Projektor · 3 m lærred · mikrofon & lyd",                   specEn: "Projector · 3 m screen · mic & sound",                        themes: ["firma"] },
   { id: "teambuilding", label: "Teambuilding",        labelEn: "Team building",    price: 5500, spec: "Instruktør-ledet · 2 timer · op til 40 personer",           specEn: "Instructor-led · 2 hours · up to 40 people",                  themes: ["firma"] },
   { id: "forplejning",  label: "Forplejningsstation", labelEn: "Catering station", price: 1500, spec: "Kaffe, te, vand & snacks · hele dagen",                     specEn: "Coffee, tea, water & snacks · all day",                       themes: ["firma", "bryllup"] },
+];
+
+// Borddækning – tilvalg pr. person (tallerkener, glas og bestik)
+type TableAddon = { id: string; label: string; labelEn: string; price: number };
+const TABLE_ADDONS: TableAddon[] = [
+  { id: "bestik",             label: "Bestik",             labelEn: "Cutlery",           price: 15 },
+  { id: "forretstallerken",   label: "Forretstallerken",   labelEn: "Starter plate",     price: 8 },
+  { id: "hovedretstallerken", label: "Hovedretstallerken", labelEn: "Main course plate", price: 8 },
+  { id: "desserttallerken",   label: "Desserttallerken",   labelEn: "Dessert plate",     price: 7 },
+  { id: "vinglas",            label: "Vinglas",            labelEn: "Wine glass",        price: 6 },
+  { id: "vandglas",           label: "Vandglas",           labelEn: "Water glass",       price: 5 },
+  { id: "vandkande",          label: "Vandkander",         labelEn: "Water jugs",        price: 4 },
+  { id: "kaffekop",           label: "Kaffekopper",        labelEn: "Coffee cups",       price: 5 },
 ];
 
 // ── Beregner 3: Event-pakker (tidsbaseret) – til Events-siden ──────────────────
@@ -336,6 +350,12 @@ export function EventPakkeBeregnerSection() {
   const toggleAddon = (id: string) =>
     setAddonIds((ids) => (ids.includes(id) ? ids.filter((x) => x !== id) : [...ids, id]));
 
+  // Borddækning pr. person (tallerkener, glas og bestik)
+  const [tableIds, setTableIds] = useState<string[]>([]);
+  const toggleTable = (id: string) =>
+    setTableIds((ids) => (ids.includes(id) ? ids.filter((x) => x !== id) : [...ids, id]));
+  const selectedTable = TABLE_ADDONS.filter((a) => tableIds.includes(a.id));
+
   // Tilvalg er kategoriseret efter event-tema (typeId)
   const availableAddons = EVENT_ADDONS.filter((a) => a.themes.includes(typeId));
   const selectedAddons = EVENT_ADDONS.filter((a) => addonIds.includes(a.id));
@@ -360,8 +380,10 @@ export function EventPakkeBeregnerSection() {
 
   const baseTotal = pkg.price * qty;
   const addonsTotal = selectedAddons.reduce((s, a) => s + a.price, 0);
+  const tablePerPerson = selectedTable.reduce((s, a) => s + a.price, 0);
+  const tableTotal = tablePerPerson * guests;
   const roomsTotal = hotelOn ? rooms * nights * ROOM_PRICE_PER_NIGHT : 0;
-  const total = baseTotal + addonsTotal + roomsTotal;
+  const total = baseTotal + addonsTotal + tableTotal + roomsTotal;
 
   const eventType = EVENT_TYPES.find((e) => e.id === typeId) ?? EVENT_TYPES[0];
   const dateObj = date ? new Date(`${date}T00:00:00`) : null;
@@ -386,6 +408,7 @@ export function EventPakkeBeregnerSection() {
   params.set("gaester", String(guests));
   if (date) params.set("dato", date);
   if (addonIds.length) params.set("tilvalg", addonIds.join(","));
+  if (tableIds.length) params.set("borddaekning", tableIds.join(","));
   if (hotelOn) { params.set("ophold", "ja"); params.set("vaerelser", String(rooms)); params.set("naetter", String(nights)); if (arrival) params.set("ankomst", arrival); }
   params.set("total", String(total));
   const ctaTo = `/kontakt?${params.toString()}`;
@@ -501,6 +524,28 @@ export function EventPakkeBeregnerSection() {
             })}
           </div>
         </div>
+
+        {/* Borddækning – tilvalg pr. person */}
+        <div className="mt-7 pt-6" style={{ borderTop: `1px solid ${LINE}` }}>
+          <p style={{ fontFamily: "var(--font-body)", fontWeight: 600, color: INK, fontSize: "0.9rem" }}>
+            {t("Tallerkener, glas og bestik", "Plates, glasses and cutlery")} <span style={{ color: INK_MUTE, fontWeight: 400 }}>· {t("pr. person", "per person")}</span>
+          </p>
+          <p className="mb-4" style={{ fontFamily: "var(--font-body)", fontSize: "0.8125rem", color: INK_DIM }}>{t("Vælg borddækning til – prisen beregnes ud fra antal gæster.", "Add table settings – the price is calculated from the number of guests.")}</p>
+          <div className="flex flex-wrap gap-2.5">
+            {TABLE_ADDONS.map((a) => {
+              const on = tableIds.includes(a.id);
+              return (
+                <button key={a.id} type="button" role="checkbox" aria-checked={on} onClick={() => toggleTable(a.id)}
+                  className="flex items-center gap-2 rounded-full transition-colors"
+                  style={{ padding: "0.55rem 1rem", fontFamily: "var(--font-body)", fontSize: "0.8125rem", fontWeight: 500, cursor: "pointer", border: on ? `1px solid ${LEAF}` : `1px solid ${LINE}`, background: on ? LEAF : "rgba(242,239,231,0.04)", color: on ? "#0F1714" : INK }}>
+                  <span aria-hidden style={{ fontSize: "0.9rem", lineHeight: 1, color: on ? "#0F1714" : LEAF }}>{on ? "✓" : "+"}</span>
+                  {lang === "en" ? a.labelEn : a.label}
+                  <span style={{ color: on ? "rgba(15,23,20,0.7)" : INK_MUTE }}>{kr(a.price)}/{t("pers.", "pp")}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
       </div>
 
       {/* Overslag */}
@@ -530,6 +575,20 @@ export function EventPakkeBeregnerSection() {
                     <svg className="w-3 h-3 flex-shrink-0" style={{ marginTop: "3px" }} fill="none" stroke={LEAF} strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                     {lang === "en" ? a.specEn : a.spec}
                   </p>
+                </div>
+              ))}
+            </div>
+          )}
+          {/* Borddækning pr. person */}
+          {selectedTable.length > 0 && (
+            <div className="pt-1 space-y-2">
+              <p style={{ fontFamily: "var(--font-body)", fontSize: "0.72rem", letterSpacing: "0.12em", textTransform: "uppercase", color: INK_MUTE }}>
+                {t("Tallerkener, glas og bestik", "Plates, glasses and cutlery")}<span style={{ letterSpacing: "0.02em", textTransform: "none" }}> · {guests} {t("gæster", "guests")}</span>
+              </p>
+              {selectedTable.map((a) => (
+                <div key={a.id} className="flex items-center justify-between gap-3" style={{ fontFamily: "var(--font-body)", fontSize: "0.9rem", color: "rgba(242,239,231,0.9)" }}>
+                  <span>{lang === "en" ? a.labelEn : a.label}<span style={{ color: INK_MUTE }}> · {kr(a.price)}/{t("pers.", "pp")}</span></span>
+                  <span className="whitespace-nowrap">{kr(a.price * guests)}</span>
                 </div>
               ))}
             </div>

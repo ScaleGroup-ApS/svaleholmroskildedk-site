@@ -43,10 +43,16 @@ function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ minHeight: "720px" }}>
       <div className="absolute inset-0" style={{ inset: "-6% 0" }}>
-        <img
-          src="/images/hero-mark.jpg"
-          alt="Marker og åben himmel omkring Svaleholm Gaard ved Roskilde"
-          className="w-full h-full object-cover ken-burns"
+        <video
+          className="w-full h-full object-cover"
+          src="/images/hero.mp4"
+          poster="/images/hero-mark.jpg"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden
         />
       </div>
       <div
@@ -207,26 +213,26 @@ function ServicesSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           <ServiceCard
             tag={t("Opholdet", "The stay")}
-            title={t("Enkle værelser i naturen", "Simple rooms in nature")}
+            title={t("Overnat tæt på naturen", "Stay close to nature")}
             description={t(
               "Op til otte hyggelige værelser med fælles køkken, bad og opholdsrum – ideelt, når I fester i salen eller bare vil overnatte i rolige omgivelser tæt på Roskilde.",
               "Up to eight cosy rooms with a shared kitchen, bath and lounge – ideal when you're celebrating in the hall or simply want to stay in peaceful surroundings near Roskilde."
             )}
             href="/vaerelser"
             cta={t("Se ophold", "See the stay")}
-            imgSrc="/images/bygning-have.jpg"
+            imgSrc="/images/vaerelse-seng.jpg"
             delay={0}
           />
           <ServiceCard
             tag={t("Fejringen", "The celebration")}
-            title={t("Fest i festsalen", "Celebrate in the hall")}
+            title={t("Skab minder sammen", "Create memories together")}
             description={t(
-              "Bryllup, fest eller børnefødselsdag med plads til op til 150 gæster – salen, haven og de grønne omgivelser gør dagen særlig.",
-              "A wedding, party or children's birthday with room for up to 150 guests – the hall, the garden and the green surroundings make the day special."
+              "Fra bryllup og konfirmation til fødselsdag og livets andre store øjeblikke. Festsalen og de grønne omgivelser skaber en smuk ramme om fejringen – med plads til op til 150 gæster.",
+              "From weddings and confirmations to birthdays and life's other big moments. The hall and the green surroundings create a beautiful setting for the celebration – with room for up to 150 guests."
             )}
             href="/tjenester"
             cta={t("Se events", "See events")}
-            imgSrc="/images/festsal-2.jpg"
+            imgSrc="/images/festsal-fest-1.png"
             delay={0.12}
           />
         </div>
@@ -394,7 +400,7 @@ function CtaBanner() {
     <section className="relative overflow-hidden">
       <div className="absolute inset-0" style={{ inset: "-8% 0" }}>
         <img
-          src="/images/gaardsplads-2.jpg"
+          src="/images/ankomst-velkommen.png"
           alt=""
           aria-hidden
           className="w-full h-full object-cover"

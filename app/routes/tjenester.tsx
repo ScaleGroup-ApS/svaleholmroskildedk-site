@@ -13,13 +13,6 @@ export function meta() {
   ];
 }
 
-const HALL_SHOTS = [
-  { src: "/images/festsal-lounge.jpg", alt: "Salen rå" },
-  { src: "/images/festsal-4.jpg", alt: "Runde borde" },
-  { src: "/images/festsal-drapes.jpg", alt: "Detalje i salen" },
-  { src: "/images/bar.jpg", alt: "Baren" },
-];
-
 export default function Tjenester() {
   const t = useT();
 
@@ -31,7 +24,7 @@ export default function Tjenester() {
         "Our hall makes a beautiful, nature-close setting for your big day. With room for up to 150 guests and the garden just outside the door, you can create a celebration the family will remember for years to come."
       ),
       capacity: t("Op til 150 gæster", "Up to 150 guests"),
-      img: "/images/festsal-1.jpg",
+      img: "/images/festsal-fest-1.png",
       includes: [
         t("Festsalen hele dagen", "The hall for the whole day"),
         t("Adgang til haven og de grønne omgivelser", "Access to the garden and green surroundings"),
@@ -47,7 +40,7 @@ export default function Tjenester() {
         "Milestone birthdays, confirmations, anniversaries and other special occasions deserve a setting to match. The hall is bright, spacious and ready to make your own."
       ),
       capacity: t("Op til 150 gæster", "Up to 150 guests"),
-      img: "/images/festsal-terrasse-2.jpg",
+      img: "/images/festsal-fest-2.png",
       includes: [
         t("Festsalen til jeres arrangement", "The hall for your event"),
         t("Fri opstilling af borde og stole", "Free arrangement of tables and chairs"),
@@ -82,7 +75,7 @@ export default function Tjenester() {
         {/* Page Hero */}
         <section className="relative flex items-end overflow-hidden" style={{ height: "62vh", minHeight: "460px" }}>
           <div className="absolute inset-0" style={{ inset: "-8% 0" }}>
-            <img src="/images/festsal-2.jpg" alt="Festsalen dækket op" className="w-full h-full object-cover ken-burns" />
+            <img src="/images/festsal-hvid-2.png" alt="Festsalen pyntet i hvidt med draperier og lyskæder" className="w-full h-full object-cover ken-burns" />
           </div>
           <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(15,23,20,0.6) 0%, rgba(15,23,20,0.35) 40%, #0F1714 100%)" }} />
           <SvaleFlock count={2} />
@@ -143,42 +136,6 @@ export default function Tjenester() {
                 </div>
               </motion.div>
             ))}
-          </div>
-        </section>
-
-        {/* Hall gallery */}
-        <section className="section-padding-sm" style={{ background: "#14201B", borderTop: "1px solid rgba(242,239,231,0.08)" }}>
-          <div className="max-w-7xl mx-auto px-6">
-            <motion.h2
-              className="heading-section mb-10"
-              style={{ color: "#F2EFE7" }}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-              viewport={{ once: true, margin: "-60px" }}
-            >
-              {t("Salen,", "The hall,")} <span className="accent-italic">{t("rå og klar", "raw and ready")}</span>
-            </motion.h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-              {HALL_SHOTS.map((shot, i) => (
-                <motion.div
-                  key={shot.src}
-                  className="overflow-hidden group"
-                  style={{ borderRadius: "2px" }}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: i * 0.07 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                >
-                  <img
-                    src={shot.src}
-                    alt={shot.alt}
-                    className="w-full object-cover transition-transform duration-[1400ms] group-hover:scale-105"
-                    style={{ height: "clamp(220px, 30vh, 340px)", filter: "saturate(0.92)" }}
-                  />
-                </motion.div>
-              ))}
-            </div>
           </div>
         </section>
 

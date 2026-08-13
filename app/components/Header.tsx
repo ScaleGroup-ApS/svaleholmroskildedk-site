@@ -3,7 +3,7 @@ import { motion, useScroll, useSpring } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useT, useLang } from "~/lib/i18n";
 
-type IconName = "home" | "rooms" | "events" | "prices" | "about" | "contact";
+type IconName = "home" | "rooms" | "events" | "prices" | "about" | "contact" | "gallery";
 
 interface NavItem {
   href: string;
@@ -15,6 +15,7 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
   { href: "/tjenester", label: "Events", en: "Events", icon: "events" },
   { href: "/vaerelser", label: "Ophold", en: "Stay", icon: "rooms" },
+  { href: "/galleri", label: "Galleri", en: "Gallery", icon: "gallery" },
   { href: "/kontakt", label: "Kontakt", en: "Contact", icon: "contact" },
 ];
 
@@ -66,6 +67,12 @@ function iconFor(icon: IconName) {
       return (
         <svg className="w-4 h-4" {...common}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 7.5l8.25 5.25 8.25-5.25M4.5 6h15A1.5 1.5 0 0121 7.5v9A1.5 1.5 0 0119.5 18h-15A1.5 1.5 0 013 16.5v-9A1.5 1.5 0 014.5 6z" />
+        </svg>
+      );
+    case "gallery":
+      return (
+        <svg className="w-4 h-4" {...common}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M4 5h16a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V6a1 1 0 011-1zm0 11l5-5 4 4 3-3 4 4M9.5 10a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
         </svg>
       );
     default:
@@ -142,7 +149,6 @@ export function Header({ siteName = "Svaleholm", menuItems = [] }: HeaderProps) 
       : NAV_ITEMS;
 
   const opaque = scrolled || mobileOpen;
-  const isHome = location.pathname === "/";
   const labelOf = (item: NavItem) => (lang === "en" ? item.en : item.label);
 
   return (
@@ -255,11 +261,6 @@ export function Header({ siteName = "Svaleholm", menuItems = [] }: HeaderProps) 
 
         <div className="hidden lg:flex items-center gap-4">
           <LangToggle />
-          {!isHome && (
-            <Link to="/priser" className="btn-dark" style={{ padding: "0.75rem 1.6rem" }}>
-              {t("Book festsalen", "Book the hall")}
-            </Link>
-          )}
         </div>
 
         <div className="lg:hidden flex items-center gap-3">
@@ -316,17 +317,6 @@ export function Header({ siteName = "Svaleholm", menuItems = [] }: HeaderProps) 
                 </Link>
               );
             })}
-            {!isHome && (
-              <div className="pt-3" style={{ borderTop: "1px solid rgba(242,239,231,0.1)" }}>
-                <Link
-                  to="/priser"
-                  onClick={closeMobileMenu}
-                  className="btn-primary w-full text-center"
-                >
-                  {t("Book festsalen", "Book the hall")}
-                </Link>
-              </div>
-            )}
           </nav>
         </div>
       )}
@@ -360,23 +350,6 @@ export function Header({ siteName = "Svaleholm", menuItems = [] }: HeaderProps) 
             </svg>
             {t("Ring", "Call")}
           </a>
-          {!isHome && (
-            <Link
-              to="/priser"
-              className="flex items-center justify-center gap-2 flex-1 rounded-full"
-              style={{
-                padding: "0.85rem 1rem", background: "#C9A96A", color: "#0F1714",
-                fontFamily: "var(--font-body)", fontSize: "0.72rem", letterSpacing: "0.16em",
-                textTransform: "uppercase", fontWeight: 700, textDecoration: "none",
-              }}
-              aria-label={t("Book festsalen", "Book the hall")}
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M7 4v4m10-4v4M4 9h16M5 6h14a1 1 0 011 1v12a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1z" />
-              </svg>
-              {t("Book festsalen", "Book the hall")}
-            </Link>
-          )}
         </div>
       </div>
     )}
