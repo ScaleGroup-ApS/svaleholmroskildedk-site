@@ -1,5 +1,5 @@
 import type { Route } from "./+types/kontakt";
-import { Form, Link, useActionData, useNavigation, useSearchParams } from "react-router";
+import { Form, Link, useActionData, useNavigation, useSearchParams, redirect } from "react-router";
 import { motion } from "framer-motion";
 import { Header } from "~/components/Header";
 import { Footer } from "~/components/Footer";
@@ -66,7 +66,11 @@ export async function action({ request }: Route.ActionArgs) {
     enquiry,
   });
 
-  return result.ok ? { ok: true as const } : { ok: false as const, error: result.error };
+  if (result.ok) {
+    return redirect('/tak');
+  }
+
+  return { ok: false as const, error: result.error };
 }
 
 export default function Kontakt() {
