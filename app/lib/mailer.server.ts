@@ -104,24 +104,32 @@ export async function sendContactEmail(p: ContactPayload): Promise<SendResult> {
     }
   }
 
-  // Forward submission to CRM webhook if configured. This runs regardless of whether an email was sent.
+  // Forward submission to CRM webhook if configured. Match Laravel CRMChannel behaviour:
+  // - Do not attempt CRM POST unless both URL and token are configured (PHP returns early if missing).
+  // - Body should include customerId plus the submission payload (no extra wrapper fields).
+  const CRM_CUSTOMER_ID = process.env.CRM_CUSTOMER_ID;
   if (CRM_WEBHOOK_URL) {
+    if (!CRM_API_KEY) {
+      // Mirror PHP: if URL exists but token missing, do not post to CRM.
+      return { ok: false, error: "crm-not-configured" };
+    }
     try {
-      const crmRes = await fetch(CRM_WEBHOOK_URL, {
+      const bodyPayload: any = {
+        customerId: CRM_CUSTOMER_ID,
+        name: p.name,
+        phone: p.phone,
+      };
+      if (p.email) bodyPayload.email = p.email;
+      if (p.message) bodyPayload.message = p.message;
+      if (p.enquiry) bodyPayload.enquiry = p.enquiry;
+
+      const crmRes = await fetch(CRM_WEBHOOK_URL.replace(/\/$/, '') + '/internal/site-submission', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          ...(CRM_API_KEY ? { Authorization: 'Bearer ' + CRM_API_KEY } : {}),
+          Authorization: 'Bearer ' + CRM_API_KEY,
         },
-        body: JSON.stringify({
-          source: "svaleholm-website",
-          name: p.name,
-          phone: p.phone,
-          email: p.email,
-          message: p.message,
-          enquiry: p.enquiry,
-          received_at: new Date().toISOString(),
-        }),
+        body: JSON.stringify(bodyPayload),
       });
       if (!crmRes.ok) {
         const body = await crmRes.text().catch(() => "");
