@@ -18,13 +18,13 @@ export function loader({ params }: Route.LoaderArgs) {
   return { room };
 }
 
-export function meta({ data }: Route.MetaArgs) {
-  if (!data) return [{ title: "Værelse ikke fundet | Svaleholm Roskilde" }];
+export function meta({ loaderData }: Route.MetaArgs) {
+  if (!loaderData) return [{ title: "Værelse ikke fundet | Svaleholm Roskilde" }];
   return [
-    { title: `${data.room.name} – Værelser | Svaleholm Roskilde` },
+    { title: `${loaderData.room.name} – Værelser | Svaleholm Roskilde` },
     {
       name: "description",
-      content: `${data.room.name}: ${data.room.shortDescription} Fra ${data.room.priceFrom} pr. nat.`,
+      content: `${loaderData.room.name}: ${loaderData.room.shortDescription} Fra ${loaderData.room.priceFrom} pr. nat.`,
     },
   ];
 }

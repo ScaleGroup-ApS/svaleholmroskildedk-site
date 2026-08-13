@@ -44,6 +44,25 @@ spec:
             - name: WP_API_URL
               value: "http://wordpress:80/wp-json"
 
+            # Contact-form relay → crm-backend POST /internal/site-submission.
+            # The site identifies itself by slug rather than customerId: the
+            # deploy workflow substitutes {{CUSTOMER_ID}} with the namespace,
+            # not the numeric id, so only the slug is trustworthy here.
+            - name: CRM_API_URL
+              value: "http://crm-backend.crm-system.svc.cluster.local:5000"
+            - name: CRM_SLUG
+              value: "{{NAMESPACE}}"
+            # crm-backend's shared AGENT_API_TOKEN. Marked optional so a
+            # namespace without the Secret still starts — the contact form
+            # then falls back to showing the phone number and e-mail address
+            # instead of silently dropping enquiries.
+            - name: CRM_API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: CRM_API_TOKEN
+                  optional: true
+
           livenessProbe:
             httpGet:
               path: /
