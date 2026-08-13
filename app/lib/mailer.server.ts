@@ -70,61 +70,67 @@ export async function sendContactEmail(p: ContactPayload): Promise<SendResult> {
       ${enquiryHtml}
     </div>`;
 
-  if (!RESEND_API_KEY) {
+  // If neither Resend nor CRM webhook are configured, fail early so UI can show fallback contact info.
+  if (!RESEND_API_KEY && !CRM_WEBHOOK_URL) {
     return { ok: false, error: "not-configured" };
   }
 
-  try {
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: 'Bearer ' + RESEND_API_KEY,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: CONTACT_FROM,
-        to: [CONTACT_TO],
-        reply_to: p.email || undefined,
-        subject,
-        text,
-        html,
-      }),
-    });
-    if (!res.ok) {
-      const body = await res.text().catch(() => "");
-      return { ok: false, error: `send-failed-${res.status}: ${body.slice(0, 300)}` };
-    }
-
-    // Forward submission to CRM webhook if configured
-    if (CRM_WEBHOOK_URL) {
-      try {
-        const crmRes = await fetch(CRM_WEBHOOK_URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            ...(CRM_API_KEY ? { Authorization: 'Bearer ' + CRM_API_KEY } : {}),
-          },
-          body: JSON.stringify({
-            source: "svaleholm-website",
-            name: p.name,
-            phone: p.phone,
-            email: p.email,
-            message: p.message,
-            enquiry: p.enquiry,
-            received_at: new Date().toISOString(),
-          }),
-        });
-        if (!crmRes.ok) {
-          const body = await crmRes.text().catch(() => "");
-          return { ok: false, error: `crm-failed-${crmRes.status}: ${body.slice(0,300)}` };
-        }
-      } catch (err) {
-        return { ok: false, error: `crm-network: ${err instanceof Error ? err.message : String(err)}` };
+  // If RESEND_API_KEY is present, attempt to send the email. If not present, skip sending email and
+  // continue to forward to CRM if CRM_WEBHOOK_URL is configured. This enables CRM-only mode
+  // (no Resend key required) as requested.
+  if (RESEND_API_KEY) {
+    try {
+      const res = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          Authorization: 'Bearer ' + RESEND_API_KEY,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          from: CONTACT_FROM,
+          to: [CONTACT_TO],
+          reply_to: p.email || undefined,
+          subject,
+          text,
+          html,
+        }),
+      });
+      if (!res.ok) {
+        const body = await res.text().catch(() => "");
+        return { ok: false, error: `send-failed-${res.status}: ${body.slice(0, 300)}` };
       }
+    } catch (err) {
+      return { ok: false, error: `network: ${err instanceof Error ? err.message : String(err)}` };
     }
-
-    return { ok: true };
-  } catch (err) {
-    return { ok: false, error: `network: ${err instanceof Error ? err.message : String(err)}` };
   }
+
+  // Forward submission to CRM webhook if configured. This runs regardless of whether an email was sent.
+  if (CRM_WEBHOOK_URL) {
+    try {
+      const crmRes = await fetch(CRM_WEBHOOK_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...(CRM_API_KEY ? { Authorization: 'Bearer ' + CRM_API_KEY } : {}),
+        },
+        body: JSON.stringify({
+          source: "svaleholm-website",
+          name: p.name,
+          phone: p.phone,
+          email: p.email,
+          message: p.message,
+          enquiry: p.enquiry,
+          received_at: new Date().toISOString(),
+        }),
+      });
+      if (!crmRes.ok) {
+        const body = await crmRes.text().catch(() => "");
+        return { ok: false, error: `crm-failed-${crmRes.status}: ${body.slice(0,300)}` };
+      }
+    } catch (err) {
+      return { ok: false, error: `crm-network: ${err instanceof Error ? err.message : String(err)}` };
+    }
+  }
+
+  return { ok: true };
 }
