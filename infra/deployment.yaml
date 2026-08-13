@@ -45,9 +45,13 @@ spec:
               value: "http://wordpress:80/wp-json"
 
             # Contact-form relay → crm-backend POST /internal/site-submission.
-            # The site identifies itself by slug rather than customerId: the
-            # deploy workflow substitutes {{CUSTOMER_ID}} with the namespace,
-            # not the numeric id, so only the slug is trustworthy here.
+            #
+            # Identifies by slug rather than customerId because {{CUSTOMER_ID}}
+            # means different things per deploy path: the legacy workflow in
+            # .github/workflows/ substitutes the namespace, while CRM's
+            # buildTemplateVariables (kubernetes.ts) substitutes the numeric
+            # customer id. {{NAMESPACE}} is unambiguous, and crm-backend treats
+            # slug as the preferred identifier anyway.
             - name: CRM_API_URL
               value: "http://crm-backend.crm-system.svc.cluster.local:5000"
             - name: CRM_SLUG
