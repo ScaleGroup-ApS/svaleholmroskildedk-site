@@ -65,7 +65,6 @@ export const festsalHvid2 = "/images/festsal-hvid-2.png";          // hvide drap
 // Ankomst & have
 export const ankomstVelkommen = "/images/ankomst-velkommen.png";   // par ankommer, "Velkommen"-banner ved skumring
 export const ankomstAften = "/images/ankomst-aften.png";           // gæster ankommer om aftenen m. bagage
-export const havePar = "/images/have-par.png";                     // par på havesti mellem det grønne
 export const haveParHund = "/images/have-par-hund.png";            // par går tur med hund på stien
 export const gaardFamilie = "/images/gaard-familie.png";           // familier spiser ved langborde under egetræet
 

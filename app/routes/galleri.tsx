@@ -32,7 +32,6 @@ const GALLERY: Shot[] = [
   { src: "/images/gaard-familie.png", da: "Familier spiser ved langborde under egetræet", en: "Families dining at long tables under the oak tree" },
   { src: "/images/ankomst-velkommen.png", da: "Par ankommer til Svaleholm ved skumring", en: "A couple arriving at Svaleholm at dusk" },
   { src: "/images/ankomst-aften.png", da: "Gæster ankommer om aftenen", en: "Guests arriving in the evening" },
-  { src: "/images/have-par.png", da: "Par på havestien mellem det grønne", en: "A couple on the garden path amid the greenery" },
   { src: "/images/have-par-hund.png", da: "Par går tur med hunden på stien", en: "A couple walking their dog along the path" },
 
   // Naturen omkring Svaleholm
