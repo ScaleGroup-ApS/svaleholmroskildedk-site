@@ -25,6 +25,22 @@ export async function loader({ request }: Route.LoaderArgs) {
     changefreq: "daily",
   });
 
+  // Faste sider i appen. De findes ikke i WordPress, så uden dem manglede
+  // hele sitet på nær forsiden i sitemap'et.
+  const today = new Date().toISOString().split("T")[0];
+  const STATIC_PATHS: Array<{ path: string; priority: string; changefreq: string }> = [
+    { path: "/tjenester", priority: "0.9", changefreq: "weekly" },
+    { path: "/vaerelser", priority: "0.9", changefreq: "weekly" },
+    { path: "/inspiration", priority: "0.8", changefreq: "weekly" },
+    { path: "/priser", priority: "0.8", changefreq: "weekly" },
+    { path: "/galleri", priority: "0.7", changefreq: "monthly" },
+    { path: "/kontakt", priority: "0.7", changefreq: "monthly" },
+    { path: "/privatlivspolitik", priority: "0.2", changefreq: "yearly" },
+  ];
+  for (const s of STATIC_PATHS) {
+    urls.push({ loc: `${siteUrl}${s.path}`, lastmod: today, priority: s.priority, changefreq: s.changefreq });
+  }
+
   // Pages
   for (const page of pages) {
     if (page.status !== "publish") continue;

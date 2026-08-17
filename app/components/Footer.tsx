@@ -110,6 +110,7 @@ export function Footer({ siteName = "Svaleholm Roskilde", siteDescription }: Foo
             <ul className="space-y-3">
               <FooterLink to="/tjenester" label={t("Events", "Events")} />
               <FooterLink to="/vaerelser" label={t("Ophold", "Stay")} />
+              <FooterLink to="/inspiration" label={t("Inspiration", "Inspiration")} />
               <FooterLink to="/galleri"   label={t("Galleri", "Gallery")} />
               <FooterLink to="/kontakt"   label={t("Kontakt", "Contact")} />
             </ul>

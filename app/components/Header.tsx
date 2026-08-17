@@ -3,7 +3,7 @@ import { motion, useScroll, useSpring } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useT, useLang } from "~/lib/i18n";
 
-type IconName = "home" | "rooms" | "events" | "prices" | "about" | "contact" | "gallery";
+type IconName = "home" | "rooms" | "events" | "prices" | "about" | "contact" | "gallery" | "inspiration";
 
 interface NavItem {
   href: string;
@@ -15,6 +15,7 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
   { href: "/tjenester", label: "Events", en: "Events", icon: "events" },
   { href: "/vaerelser", label: "Ophold", en: "Stay", icon: "rooms" },
+  { href: "/inspiration", label: "Inspiration", en: "Inspiration", icon: "inspiration" },
   { href: "/galleri", label: "Galleri", en: "Gallery", icon: "gallery" },
   { href: "/kontakt", label: "Kontakt", en: "Contact", icon: "contact" },
 ];
@@ -67,6 +68,12 @@ function iconFor(icon: IconName) {
       return (
         <svg className="w-4 h-4" {...common}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 7.5l8.25 5.25 8.25-5.25M4.5 6h15A1.5 1.5 0 0121 7.5v9A1.5 1.5 0 0119.5 18h-15A1.5 1.5 0 013 16.5v-9A1.5 1.5 0 014.5 6z" />
+        </svg>
+      );
+    case "inspiration":
+      return (
+        <svg className="w-4 h-4" {...common}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 3a5.5 5.5 0 00-3 10.1V16h6v-2.9A5.5 5.5 0 0012 3zM10 19h4m-3.5 2h3" />
         </svg>
       );
     case "gallery":
