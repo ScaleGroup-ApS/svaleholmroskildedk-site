@@ -6,22 +6,14 @@ import { useT, useLang } from "~/lib/i18n";
 // ── Prisberegnere (to separate flows: Ophold og Fest) ─────────────────────────
 
 // Priser (nemme at justere ét sted)
-const SAL_PRICE = 15000;            // fast pris for festsalen
-const ROOM_PRICE_PER_NIGHT = 650;   // pr. værelse pr. nat
-const MIN_GUESTS_FESTSAL = 30;      // minimum antal gæster for festsalen
-const MAX_GUESTS_FESTSAL = 150;     // festsalen har plads til maks. 150 gæster
-const MAX_ROOMS = 8;                // hotellet har 8 værelser
-const SHARED_BATHS = 4;             // 4 fælles bad/brusere til alle værelser
-
-// Tilvalg (fx til børnefødselsdage) – hører til fest-beregneren
-type Addon = { id: string; label: string; labelEn: string; price: number };
-const ADDONS: Addon[] = [
-  { id: "hoppeborg",     label: "Hoppeborg",      labelEn: "Bouncy castle", price: 1500 },
-  { id: "skattejagt",    label: "Skattejagt",     labelEn: "Treasure hunt", price: 800 },
-  { id: "ansigtsmaling", label: "Ansigtsmaling",  labelEn: "Face painting", price: 1200 },
-  { id: "ponyridning",   label: "Ponyridning",    labelEn: "Pony rides",    price: 1800 },
-  { id: "festtelt",      label: "Festtelt",       labelEn: "Party tent",    price: 2500 },
-];
+// Eksporteret, så fx inspirationssiden kan skrive de samme tal i teksten
+// uden at de to steder kan nå at komme ud af trit.
+export const SAL_PRICE = 15000;            // fast pris for festsalen
+export const ROOM_PRICE_PER_NIGHT = 650;   // pr. værelse pr. nat
+export const MIN_GUESTS_FESTSAL = 30;      // minimum antal gæster for festsalen
+export const MAX_GUESTS_FESTSAL = 150;     // festsalen har plads til maks. 150 gæster
+export const MAX_ROOMS = 8;                // hotellet har 8 værelser
+const SHARED_BATHS = 4;                    // 4 fælles bad/brusere til alle værelser
 
 const daDK = new Intl.NumberFormat("da-DK");
 const kr = (n: number) => `${daDK.format(n)} kr`;
@@ -275,40 +267,34 @@ const EVENT_TYPES: EventType[] = [
   { id: "firma",            label: "Firmaevent",       labelEn: "Corporate event",     icon: "M3 8h18v11a1 1 0 01-1 1H4a1 1 0 01-1-1V8zm6 0V6a2 2 0 012-2h2a2 2 0 012 2v2" },
 ];
 
-type TimePackage = {
+export type TimePackage = {
   id: string; label: string; labelEn: string; price: number;
   unit: string; unitPlural: string; unitEn: string; unitPluralEn: string;
   min: number; max: number; note: string; noteEn: string;
 };
-const TIME_PACKAGES: TimePackage[] = [
+export const TIME_PACKAGES: TimePackage[] = [
   { id: "time",    label: "Timepakke",    labelEn: "Hourly package",   price: 1800,  unit: "time",    unitPlural: "timer",     unitEn: "hour",    unitPluralEn: "hours",    min: 3, max: 12, note: "Salen pr. time",   noteEn: "The hall per hour" },
   { id: "aften",   label: "Aftenpakke",   labelEn: "Evening package",  price: 9000,  unit: "aften",   unitPlural: "aftener",   unitEn: "evening", unitPluralEn: "evenings", min: 1, max: 3,  note: "Kl. 17–24",        noteEn: "5 pm–midnight" },
   { id: "heldag",  label: "Heldagspakke", labelEn: "Full-day package", price: 15000, unit: "dag",     unitPlural: "dage",      unitEn: "day",     unitPluralEn: "days",     min: 1, max: 5,  note: "Kl. 9–24",         noteEn: "9 am–midnight" },
-  { id: "weekend", label: "Weekendpakke", labelEn: "Weekend package",  price: 26000, unit: "weekend", unitPlural: "weekender", unitEn: "weekend", unitPluralEn: "weekends", min: 1, max: 2,  note: "Fre–søn",          noteEn: "Fri–Sun" },
+  // Weekendpakken er altid én weekend (fre–søn). Antallet kunne før vælges
+  // (1–2), men "antal weekender" forvirrede mere, end det hjalp – derfor er
+  // min = max, og antals-vælgeren skjules helt for pakker med et fast antal.
+  { id: "weekend", label: "Weekendpakke", labelEn: "Weekend package",  price: 26000, unit: "weekend", unitPlural: "weekender", unitEn: "weekend", unitPluralEn: "weekends", min: 1, max: 1,  note: "Fre–søn",          noteEn: "Fri–Sun" },
 ];
 
-// Tilvalgsprodukter kategoriseret efter event-tema (themes) – med specifikationer
+// Tilvalg til beregneren er bevidst holdt til det, vi selv har stående på
+// gården: pynt til salen og vores eget lyd-/AV-udstyr. Alt det udadvendte
+// (DJ, bar, telt, forplejning, underholdning) er taget ud, så beregneren er
+// nem at overskue – de ting aftaler vi i stedet direkte med gæsten.
 type EventAddon = { id: string; label: string; labelEn: string; price: number; spec: string; specEn: string; themes: string[] };
 const EVENT_ADDONS: EventAddon[] = [
-  // Bryllup
-  { id: "vielsesbue",   label: "Bryllupsbue",         labelEn: "Wedding arch",     price: 3500, spec: "Håndbundet blomsterbue · 2,4 m høj · opsat ved ceremonien",    specEn: "Hand-tied floral arch · 2.4 m tall · set up at the ceremony", themes: ["bryllup"] },
-  { id: "tyl",          label: "Tyl",                 labelEn: "Tulle draping",    price: 1500, spec: "Blødt tyldraperi til borde, buer og bagvæg · romantisk look", specEn: "Soft tulle draping for tables, arches and backdrop · romantic look", themes: ["bryllup"] },
-  { id: "champagnetaarn", label: "Champagnetårn",     labelEn: "Champagne tower",  price: 1800, spec: "5 etager · op til 60 glas · inkl. servering",                 specEn: "5 tiers · up to 60 glasses · incl. serving",                  themes: ["bryllup", "fest"] },
-  { id: "toastmaster",  label: "Toastmaster-lyd",     labelEn: "Toastmaster sound", price: 2200, spec: "Trådløs mikrofon + headset · lydanlæg til taler",             specEn: "Wireless mic + headset · PA for speeches",                    themes: ["bryllup", "firma"] },
-  // Fest
-  { id: "festtelt",     label: "Festtelt",            labelEn: "Party tent",       price: 2500, spec: "6×12 m · plads til 80 · sider og gulv inkl.",                specEn: "6×12 m · seats 80 · sides and floor included",                themes: ["fest", "bryllup", "boernefoedselsdag"] },
-  { id: "dj",           label: "DJ-pakke",            labelEn: "DJ package",       price: 6500, spec: "Professionel DJ · fuldt lydanlæg · 5 timer",                 specEn: "Professional DJ · full PA · 5 hours",                         themes: ["fest", "bryllup"] },
-  { id: "bar",          label: "Bar-pakke",           labelEn: "Bar package",      price: 4500, spec: "Bemandet bar · 3 timer · fadøl, vin & cocktails",           specEn: "Staffed bar · 3 hours · draft beer, wine & cocktails",        themes: ["fest", "bryllup", "firma"] },
-  { id: "lys",          label: "Stemningsbelysning",  labelEn: "Ambient lighting", price: 1900, spec: "Lyskæder + spots · opsat i sal og have",                    specEn: "Fairy lights + spots · set up in hall and garden",            themes: ["fest", "bryllup", "firma"] },
-  // Børnefødselsdag
-  { id: "hoppeborg",    label: "Hoppeborg",           labelEn: "Bouncy castle",    price: 1500, spec: "4×5 m · CE-godkendt · opsætning inkl.",                     specEn: "4×5 m · CE-approved · setup included",                        themes: ["boernefoedselsdag"] },
-  { id: "skattejagt",   label: "Skattejagt",          labelEn: "Treasure hunt",    price: 800,  spec: "Tilrettelagt rute i haven · 8–20 børn · ca. 1 time",        specEn: "Planned route in the garden · 8–20 kids · approx. 1 hour",    themes: ["boernefoedselsdag"] },
-  { id: "ansigtsmaling", label: "Ansigtsmaling",      labelEn: "Face painting",    price: 1200, spec: "Professionel maler · 2 timer · alle materialer",            specEn: "Professional painter · 2 hours · all materials",              themes: ["boernefoedselsdag"] },
-  { id: "ponyridning",  label: "Ponyridning",         labelEn: "Pony rides",       price: 1800, spec: "2 ponyer + hjælper · 2 timer · hjelme inkl.",                specEn: "2 ponies + handler · 2 hours · helmets included",             themes: ["boernefoedselsdag"] },
-  // Firmaevent
-  { id: "av",           label: "AV-pakke",            labelEn: "AV package",       price: 3000, spec: "Projektor · 3 m lærred · mikrofon & lyd",                   specEn: "Projector · 3 m screen · mic & sound",                        themes: ["firma"] },
-  { id: "teambuilding", label: "Teambuilding",        labelEn: "Team building",    price: 5500, spec: "Instruktør-ledet · 2 timer · op til 40 personer",           specEn: "Instructor-led · 2 hours · up to 40 people",                  themes: ["firma"] },
-  { id: "forplejning",  label: "Forplejningsstation", labelEn: "Catering station", price: 1500, spec: "Kaffe, te, vand & snacks · hele dagen",                     specEn: "Coffee, tea, water & snacks · all day",                       themes: ["firma", "bryllup"] },
+  // Pynt
+  { id: "vielsesbue",   label: "Bryllupsbue",         labelEn: "Wedding arch",      price: 3500, spec: "Håndbundet blomsterbue · 2,4 m høj · opsat ved ceremonien",    specEn: "Hand-tied floral arch · 2.4 m tall · set up at the ceremony", themes: ["bryllup"] },
+  { id: "tyl",          label: "Tyl",                 labelEn: "Tulle draping",     price: 1500, spec: "Blødt tyldraperi til borde, buer og bagvæg · romantisk look", specEn: "Soft tulle draping for tables, arches and backdrop · romantic look", themes: ["bryllup", "fest", "boernefoedselsdag"] },
+  { id: "lys",          label: "Stemningsbelysning",  labelEn: "Ambient lighting",  price: 1900, spec: "Lyskæder + spots · opsat i sal og have",                      specEn: "Fairy lights + spots · set up in hall and garden",            themes: ["bryllup", "fest", "boernefoedselsdag", "firma"] },
+  // Lyd & AV – vores eget udstyr
+  { id: "toastmaster",  label: "Toastmaster-lyd",     labelEn: "Toastmaster sound", price: 2200, spec: "Vores eget anlæg · trådløs mikrofon + headset til taler",     specEn: "Our own PA · wireless mic + headset for speeches",            themes: ["bryllup", "fest", "firma"] },
+  { id: "av",           label: "AV-pakke",            labelEn: "AV package",        price: 3000, spec: "Vores projektor · 3 m lærred · mikrofon & højttalere",       specEn: "Our projector · 3 m screen · mic & speakers",                 themes: ["firma", "bryllup", "fest"] },
 ];
 
 // Borddækning – tilvalg pr. person (tallerkener, glas og bestik)
@@ -378,6 +364,9 @@ export function EventPakkeBeregnerSection() {
   const unitLabel = (n: number) =>
     lang === "en" ? (n === 1 ? pkg.unitEn : pkg.unitPluralEn) : (n === 1 ? pkg.unit : pkg.unitPlural);
 
+  // Pakker med et fast antal (fx weekendpakken) skal ikke have en antals-vælger
+  const qtyFixed = pkg.min === pkg.max;
+
   const baseTotal = pkg.price * qty;
   const addonsTotal = selectedAddons.reduce((s, a) => s + a.price, 0);
   const tablePerPerson = selectedTable.reduce((s, a) => s + a.price, 0);
@@ -418,7 +407,7 @@ export function EventPakkeBeregnerSection() {
       eyebrow={t("Prisberegner · Event-pakker", "Price calculator · Event packages")}
       title={t("Byg din", "Build your")}
       titleAccent={t("event", "event")}
-      intro={t("Vælg anledning, en tidsbaseret pakke og antal, sæt en dato og tilføj tilvalg – så får du et vejledende overslag med det samme.", "Choose the occasion, a time-based package and quantity, set a date and add extras – and get a guideline estimate right away.")}
+      intro={t("Vælg anledning og pakke, sæt en dato og tilføj pynt, lyd og borddækning – så får du et vejledende overslag med det samme.", "Choose the occasion and package, set a date and add decor, sound and table settings – and get a guideline estimate right away.")}
     >
       {/* Form */}
       <div className="lg:col-span-3 rounded-2xl p-7 md:p-9 flex flex-col" style={{ background: "#14201B", border: `1px solid ${LINE}`, boxShadow: "0 24px 60px rgba(0,0,0,0.35)" }}>
@@ -458,9 +447,11 @@ export function EventPakkeBeregnerSection() {
           })}
         </div>
 
-        {/* Antal + gæster */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-6">
-          <Stepper label={`${t("Antal", "Quantity")} ${unitLabel(qty)}`} value={qty} setValue={setQty} min={pkg.min} max={pkg.max} hint={`${pkg.min}–${pkg.max}`} />
+        {/* Antal + gæster – antals-vælgeren vises kun, når pakken kan varieres */}
+        <div className={`grid grid-cols-1 ${qtyFixed ? "" : "sm:grid-cols-2"} gap-5 mt-6`}>
+          {!qtyFixed && (
+            <Stepper label={`${t("Antal", "Quantity")} ${unitLabel(qty)}`} value={qty} setValue={setQty} min={pkg.min} max={pkg.max} hint={`${pkg.min}–${pkg.max}`} />
+          )}
           <Stepper label={t("Antal gæster", "Number of guests")} value={guests} setValue={setGuests} min={1} max={MAX_GUESTS_FESTSAL} hint={t("maks. 150", "max. 150")} />
         </div>
 
@@ -502,12 +493,13 @@ export function EventPakkeBeregnerSection() {
           )}
         </div>
 
-        {/* Tilvalgsprodukter – kategoriseret efter valgt tema */}
+        {/* Pynt & lyd – kategoriseret efter valgt tema */}
+        {availableAddons.length > 0 && (
         <div className="mt-7 pt-6" style={{ borderTop: `1px solid ${LINE}` }}>
           <p style={{ fontFamily: "var(--font-body)", fontWeight: 600, color: INK, fontSize: "0.9rem" }}>
-            {t("Tilvalgsprodukter", "Add-on products")} <span style={{ color: INK_MUTE, fontWeight: 400 }}>· {lang === "en" ? eventType.labelEn : eventType.label}</span>
+            {t("Pynt & lyd", "Decor & sound")} <span style={{ color: INK_MUTE, fontWeight: 400 }}>· {lang === "en" ? eventType.labelEn : eventType.label}</span>
           </p>
-          <p className="mb-4" style={{ fontFamily: "var(--font-body)", fontSize: "0.8125rem", color: INK_DIM }}>{t("Udvalgt til din anledning – vælg frit til. Specifikationer vises i overslaget.", "Curated for your occasion – add freely. Specifications appear in the estimate.")}</p>
+          <p className="mb-4" style={{ fontFamily: "var(--font-body)", fontSize: "0.8125rem", color: INK_DIM }}>{t("Pynt til salen og vores eget lydudstyr – vælg frit til. Specifikationer vises i overslaget.", "Decor for the hall and our own sound equipment – add freely. Specifications appear in the estimate.")}</p>
           <div className="flex flex-wrap gap-2.5">
             {availableAddons.map((a) => {
               const on = addonIds.includes(a.id);
@@ -524,6 +516,7 @@ export function EventPakkeBeregnerSection() {
             })}
           </div>
         </div>
+        )}
 
         {/* Borddækning – tilvalg pr. person */}
         <div className="mt-7 pt-6" style={{ borderTop: `1px solid ${LINE}` }}>
@@ -559,12 +552,12 @@ export function EventPakkeBeregnerSection() {
           </div>
           <SummaryRow label={<>{lang === "en" ? pkg.labelEn : pkg.label}<span style={{ color: INK_MUTE }}> · {qty} {unitLabel(qty)}</span></>} value={baseTotal} active />
 
-          {/* Valgte tilvalg med specifikationer */}
+          {/* Valgt pynt og lyd med specifikationer */}
           {selectedAddons.length === 0 ? (
-            <SummaryRow label={t("Tilvalg", "Add-ons")} value={0} active={false} />
+            <SummaryRow label={t("Pynt & lyd", "Decor & sound")} value={0} active={false} />
           ) : (
             <div className="pt-1 space-y-3">
-              <p style={{ fontFamily: "var(--font-body)", fontSize: "0.72rem", letterSpacing: "0.12em", textTransform: "uppercase", color: INK_MUTE }}>{t("Tilvalg", "Add-ons")}</p>
+              <p style={{ fontFamily: "var(--font-body)", fontSize: "0.72rem", letterSpacing: "0.12em", textTransform: "uppercase", color: INK_MUTE }}>{t("Pynt & lyd", "Decor & sound")}</p>
               {selectedAddons.map((a) => (
                 <div key={a.id}>
                   <div className="flex items-center justify-between gap-3" style={{ fontFamily: "var(--font-body)", fontSize: "0.9rem", color: "rgba(242,239,231,0.9)" }}>
@@ -620,7 +613,7 @@ export function EventPakkeBeregnerSection() {
   );
 }
 
-// ── Beregner 2: Fest (festsal + tilvalg) ──────────────────────────────────────
+// ── Beregner 2: Fest (festsal + pynt og lyd) ──────────────────────────────────
 
 export function PrisberegnerEventSection() {
   const t = useT();
@@ -633,7 +626,7 @@ export function PrisberegnerEventSection() {
 
   const festsalOk = guests >= MIN_GUESTS_FESTSAL;
   const salTotal = festsalOk ? SAL_PRICE : 0;
-  const addonsTotal = ADDONS.filter((a) => addonIds.includes(a.id)).reduce((s, a) => s + a.price, 0);
+  const addonsTotal = EVENT_ADDONS.filter((a) => addonIds.includes(a.id)).reduce((s, a) => s + a.price, 0);
   const total = salTotal + addonsTotal;
 
   const canSend = festsalOk;
@@ -650,7 +643,7 @@ export function PrisberegnerEventSection() {
       eyebrow={t("Prisberegner · Fest", "Price calculator · Celebration")}
       title={t("Beregn din", "Calculate your")}
       titleAccent={t("fest", "celebration")}
-      intro={t("Fast pris på festsalen med plads til op til 150 gæster – tilføj tilvalg og få et vejledende overslag.", "Fixed price for the hall with room for up to 150 guests – add extras and get a guideline estimate.")}
+      intro={t("Fast pris på festsalen med plads til op til 150 gæster – tilføj pynt og lyd og få et vejledende overslag.", "Fixed price for the hall with room for up to 150 guests – add decor and sound and get a guideline estimate.")}
     >
       {/* Form */}
       <div className="lg:col-span-3 rounded-2xl p-7 md:p-9 flex flex-col" style={{ background: "#14201B", border: `1px solid ${LINE}`, boxShadow: "0 24px 60px rgba(0,0,0,0.35)" }}>
@@ -670,15 +663,16 @@ export function PrisberegnerEventSection() {
           </p>
         )}
 
-        {/* Tilvalg */}
+        {/* Pynt & lyd */}
         <div className="mt-7 pt-6" style={{ borderTop: `1px solid ${LINE}` }}>
-          <p style={{ fontFamily: "var(--font-body)", fontWeight: 600, color: INK, fontSize: "1.05rem" }}>{t("Tilvalg", "Add-ons")}</p>
-          <p className="mb-4" style={{ fontFamily: "var(--font-body)", fontSize: "0.8125rem", color: INK_DIM }}>{t("Gør festen større – fx til børnefødselsdage og fester.", "Make the celebration bigger – e.g. for children's birthdays and parties.")}</p>
+          <p style={{ fontFamily: "var(--font-body)", fontWeight: 600, color: INK, fontSize: "1.05rem" }}>{t("Pynt & lyd", "Decor & sound")}</p>
+          <p className="mb-4" style={{ fontFamily: "var(--font-body)", fontSize: "0.8125rem", color: INK_DIM }}>{t("Pynt til salen og vores eget lydudstyr – vælg det til, I har brug for.", "Decor for the hall and our own sound equipment – add what you need.")}</p>
           <div className="flex flex-wrap gap-2.5">
-            {ADDONS.map((a) => {
+            {EVENT_ADDONS.map((a) => {
               const on = addonIds.includes(a.id);
               return (
                 <button key={a.id} type="button" role="checkbox" aria-checked={on} onClick={() => toggleAddon(a.id)}
+                  title={lang === "en" ? a.specEn : a.spec}
                   className="flex items-center gap-2 rounded-full transition-colors"
                   style={{ padding: "0.55rem 1rem", fontFamily: "var(--font-body)", fontSize: "0.8125rem", fontWeight: 500, cursor: "pointer", border: on ? `1px solid ${LEAF}` : `1px solid ${LINE}`, background: on ? LEAF : "rgba(242,239,231,0.04)", color: on ? "#0F1714" : INK }}>
                   <span aria-hidden style={{ fontSize: "0.9rem", lineHeight: 1, color: on ? "#0F1714" : LEAF }}>{on ? "✓" : "+"}</span>
@@ -697,7 +691,7 @@ export function PrisberegnerEventSection() {
 
         <div className="space-y-3 flex-1">
           <SummaryRow label={<>{t("Festsal", "Hall")}<span style={{ color: INK_MUTE }}> · {guests} {t("gæster", "guests")}</span></>} value={salTotal} active={festsalOk} />
-          <SummaryRow label={<>{t("Tilvalg", "Add-ons")}{addonIds.length > 0 && <span style={{ color: INK_MUTE }}> · {addonIds.length} {t("valgt", "selected")}</span>}</>} value={addonsTotal} active={addonIds.length > 0} />
+          <SummaryRow label={<>{t("Pynt & lyd", "Decor & sound")}{addonIds.length > 0 && <span style={{ color: INK_MUTE }}> · {addonIds.length} {t("valgt", "selected")}</span>}</>} value={addonsTotal} active={addonIds.length > 0} />
         </div>
 
         <div className="mt-6 pt-5" style={{ borderTop: `1px solid ${LINE}` }}>
