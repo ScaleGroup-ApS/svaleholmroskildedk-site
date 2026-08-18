@@ -2,11 +2,39 @@ import { motion } from "framer-motion";
 import { Header } from "~/components/Header";
 import { Footer } from "~/components/Footer";
 import { JsonLd } from "~/components/JsonLd";
+import { FaqSection, type FaqItem } from "~/components/Faq";
 import { PrisberegnerHotelSection, PrisberegnerEventSection } from "~/components/Prisberegner";
 import { SvaleFlock } from "~/components/Svale";
 import { useT } from "~/lib/i18n";
 import { pageMeta } from "~/lib/seo";
-import { graph, breadcrumb, webPageNode, eventOfferCatalogNode } from "~/lib/schema";
+import { graph, breadcrumb, webPageNode, eventOfferCatalogNode, faqNode } from "~/lib/schema";
+
+const PRISER_FAQ: FaqItem[] = [
+  {
+    qDa: "Hvad koster det at leje festsalen?",
+    qEn: "What does it cost to rent the hall?",
+    aDa: "Festsalen kan lejes fra 1.800 kr pr. time. En aften (kl. 17–24) koster 9.000 kr, en heldag (kl. 9–24) 15.000 kr og en hel weekend (fre–søn) 26.000 kr. Alle priser er inkl. moms.",
+    aEn: "The hall can be rented from DKK 1,800 per hour. An evening (5–12 pm) is DKK 9,000, a full day (9 am–12 pm) DKK 15,000 and a whole weekend (Fri–Sun) DKK 26,000. All prices include VAT.",
+  },
+  {
+    qDa: "Hvad koster overnatning?",
+    qEn: "What does an overnight stay cost?",
+    aDa: "Et værelse koster 650 kr pr. nat. Der er op til 8 enkle værelser med fælles bad, køkken og opholdsrum – ideelt til gæster, der overnatter i forbindelse med en fest.",
+    aEn: "A room costs DKK 650 per night. There are up to 8 simple rooms with shared bath, kitchen and lounge – ideal for guests staying over in connection with a celebration.",
+  },
+  {
+    qDa: "Er priserne inkl. moms?",
+    qEn: "Do the prices include VAT?",
+    aDa: "Ja. Alle priser på siden er inkl. moms. Priserne i prisberegneren er vejledende, indtil vi har bekræftet din booking skriftligt.",
+    aEn: "Yes. All prices on the site include VAT. The prices in the calculator are guideline figures until we confirm your booking in writing.",
+  },
+  {
+    qDa: "Kan jeg få et samlet tilbud?",
+    qEn: "Can I get a full quote?",
+    aDa: "Ja. Brug prisberegneren og send en forespørgsel, så vender vi tilbage med et uforpligtende tilbud inden for 24 timer på hverdage.",
+    aEn: "Yes. Use the price calculator and send an enquiry, and we'll get back to you with a no-obligation quote within 24 hours on weekdays.",
+  },
+];
 
 export function meta() {
   return pageMeta({
@@ -32,6 +60,7 @@ const PRISER_JSONLD = graph(
     { name: "Priser & booking", path: "/priser" },
   ]),
   eventOfferCatalogNode(),
+  faqNode(PRISER_FAQ.map((f) => ({ q: f.qDa, a: f.aDa }))),
 );
 
 export default function Priser() {
@@ -71,6 +100,7 @@ export default function Priser() {
 
         <PrisberegnerHotelSection />
         <PrisberegnerEventSection />
+        <FaqSection items={PRISER_FAQ} eyebrowDa="Priser & booking" eyebrowEn="Prices & booking" />
       </main>
       <Footer siteName="Svaleholm Roskilde" />
     </div>
