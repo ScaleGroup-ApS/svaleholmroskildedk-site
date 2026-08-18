@@ -3,15 +3,45 @@ import { motion } from "framer-motion";
 import { Header } from "~/components/Header";
 import { Footer } from "~/components/Footer";
 import { SvaleFlock } from "~/components/Svale";
+import { JsonLd } from "~/components/JsonLd";
 import { EventPakkeBeregnerSection } from "~/components/Prisberegner";
 import { useT } from "~/lib/i18n";
+import { pageMeta } from "~/lib/seo";
+import { graph, breadcrumb, webPageNode, eventServiceNodes, eventOfferCatalogNode } from "~/lib/schema";
 
 export function meta() {
-  return [
-    { title: "Events – Svaleholm Roskilde" },
-    { name: "description", content: "Fejr livets store øjeblikke i Svaleholms festsal – bryllupper, fester og børnefødselsdage i naturnære rammer tæt på Roskilde." },
-  ];
+  return pageMeta({
+    path: "/tjenester",
+    title: "Fest & bryllup i festsal nær Roskilde | Svaleholm Gaard",
+    description:
+      "Hold bryllup, konfirmation, rund fødselsdag eller firmafest i Svaleholms festsal på Sjælland – plads til op til 150 gæster og egen catering tilladt. Få et tilbud.",
+    image: "/images/festsal-hvid-2.png",
+    imageAlt: "Festsalen pyntet i hvidt med draperier og lyskæder",
+  });
 }
+
+// JSON-LD holdes på dansk og uafhængigt af sprogvalget, så markup'en er den
+// samme ved server-render og hydrering.
+const TJENESTER_JSONLD = graph(
+  webPageNode({
+    path: "/tjenester",
+    name: "Fest & bryllup i festsal nær Roskilde",
+    description:
+      "Festsal til bryllup, fest, konfirmation, børnefødselsdag og firmaevent tæt på Roskilde – op til 150 gæster.",
+    primaryImage: "/images/festsal-hvid-2.png",
+  }),
+  breadcrumb([
+    { name: "Forside", path: "" },
+    { name: "Fest & events", path: "/tjenester" },
+  ]),
+  eventServiceNodes([
+    { name: "Bryllup", description: "Bryllup i festsalen på Svaleholm Gaard ved Roskilde – plads til op til 150 gæster med have og grønne omgivelser." },
+    { name: "Fest & mærkedage", description: "Runde fødselsdage, konfirmationer, jubilæer og andre mærkedage i festsalen tæt på Roskilde." },
+    { name: "Børnefødselsdag", description: "Børnefødselsdag i trygge, naturnære rammer med festsal og grønne udearealer." },
+    { name: "Firmaevent", description: "Firmaevents, firmadage og julefrokoster i festsalen på landet nær Roskilde." },
+  ]),
+  eventOfferCatalogNode(),
+);
 
 export default function Tjenester() {
   const t = useT();
@@ -69,6 +99,7 @@ export default function Tjenester() {
 
   return (
     <div className="flex flex-col min-h-screen" style={{ background: "#0F1714" }}>
+      <JsonLd data={TJENESTER_JSONLD} />
       <Header siteName="Svaleholm" />
       <main className="flex-1">
 

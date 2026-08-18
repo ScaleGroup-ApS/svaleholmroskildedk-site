@@ -13,8 +13,9 @@ export default [
   // through to the "*" catch-all, which looks for a WordPress page of that
   // slug and 404s — so every successful enquiry landed on a 404.
   route("tak", "routes/tak.tsx"),
-  // Linked from the Footer on every page — unregistered it 404'd site-wide.
+  // Linked from the Footer on every page — unregistered they 404'd site-wide.
   route("privatlivspolitik", "routes/privatlivspolitik.tsx"),
+  route("handelsbetingelser", "routes/handelsbetingelser.tsx"),
   route("robots.txt", "routes/robots[.]txt.tsx"),
   route("sitemap.xml", "routes/sitemap[.]xml.tsx"),
   route("*", "routes/$.tsx"),

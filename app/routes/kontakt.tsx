@@ -4,15 +4,37 @@ import { motion } from "framer-motion";
 import { Header } from "~/components/Header";
 import { Footer } from "~/components/Footer";
 import { SvaleFlock } from "~/components/Svale";
+import { JsonLd } from "~/components/JsonLd";
 import { useT, useLang } from "~/lib/i18n";
 import { sendContactEmail } from "~/lib/crm.server";
+import { pageMeta } from "~/lib/seo";
+import { graph, breadcrumb, webPageNode } from "~/lib/schema";
 
 export function meta() {
-  return [
-    { title: "Kontakt – Svaleholm Roskilde" },
-    { name: "description", content: "Kontakt Svaleholm Roskilde for spørgsmål om ophold, selskaber og events. Vi ser frem til at høre fra dig." },
-  ];
+  return pageMeta({
+    path: "/kontakt",
+    title: "Kontakt Svaleholm Gaard Roskilde | Frederiksborgvej 388",
+    description:
+      "Kontakt Svaleholm Gaard ved Roskilde om fest, bryllup og overnatning. Ring +45 71 53 13 79, skriv til kontakt@svaleholmroskilde.dk eller udfyld formularen.",
+    image: "/images/have-sti.jpg",
+    imageAlt: "Havesti ved Svaleholm",
+  });
 }
+
+const KONTAKT_JSONLD = graph(
+  webPageNode({
+    path: "/kontakt",
+    name: "Kontakt Svaleholm Gaard Roskilde",
+    description:
+      "Kontakt Svaleholm Gaard ved Roskilde om fest, bryllup og overnatning – telefon, e-mail, adresse og kontaktformular.",
+    type: "ContactPage",
+    primaryImage: "/images/have-sti.jpg",
+  }),
+  breadcrumb([
+    { name: "Forside", path: "" },
+    { name: "Kontakt", path: "/kontakt" },
+  ]),
+);
 
 const SHOW_FORM = true; // Set to false to hide the contact form
 
@@ -134,6 +156,7 @@ export default function Kontakt() {
 
   return (
     <div className="flex flex-col min-h-screen" style={{ background: "#0F1714" }}>
+      <JsonLd data={KONTAKT_JSONLD} />
       <Header siteName="Svaleholm" />
       <main className="flex-1">
 

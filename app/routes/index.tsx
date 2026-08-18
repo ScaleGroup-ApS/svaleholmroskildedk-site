@@ -4,25 +4,46 @@ import { useRef } from "react";
 import { Header } from "~/components/Header";
 import { Footer } from "~/components/Footer";
 import { SvaleFlock } from "~/components/Svale";
+import { JsonLd } from "~/components/JsonLd";
 import { useT, useLang } from "~/lib/i18n";
+import { pageMeta } from "~/lib/seo";
+import { graph, breadcrumb, reviewNodes, webPageNode } from "~/lib/schema";
 
 // ── Meta ─────────────────────────────────────────────────────────────────────
 
 export function meta() {
-  return [
-    { title: "Svaleholm Gaard Roskilde – Ophold & fejring i festsalen" },
-    { name: "description", content: "Svaleholm Gaard ved Roskilde – enkle værelser med fælles køkken, bad og opholdsrum, og en festsal til bryllup, fest og fejring i naturskønne omgivelser på Sjælland." },
-    { property: "og:title", content: "Svaleholm Gaard Roskilde – Ophold & fejring i festsalen" },
-    { property: "og:type", content: "website" },
-    { property: "og:image", content: "/images/hero-mark.jpg" },
-  ];
+  return pageMeta({
+    path: "",
+    title: "Svaleholm Gaard Roskilde – Festsal & overnatning på landet",
+    description:
+      "Historisk festgård ved Roskilde. Fejr bryllup, fest & mærkedage i festsalen (op til 150 gæster) og overnat i enkle værelser fra 650 kr. Ring +45 71 53 13 79.",
+    image: "/images/festsal-hvid-1.png",
+    imageAlt: "Festsalen på Svaleholm Gaard pyntet til fest",
+  });
 }
 
 // ── Component ────────────────────────────────────────────────────────────────
 
 export default function Index() {
+  // Built here (not at module scope) because REVIEWS is declared below.
+  const homeJsonLd = graph(
+    webPageNode({
+      path: "",
+      name: "Svaleholm Gaard Roskilde – Festsal & overnatning",
+      description:
+        "Historisk festgård ved Roskilde med festsal til bryllup og fejring samt enkle værelser til overnatning.",
+      primaryImage: "/images/festsal-hvid-1.png",
+    }),
+    breadcrumb([{ name: "Forside", path: "" }]),
+    // Real guest reviews from Google (individual star ratings not published, so
+    // none are fabricated; the aggregate rating lives on the business node once
+    // real numbers are configured in site.ts).
+    reviewNodes(REVIEWS.map((r) => ({ author: r.name, body: r.text }))),
+  );
+
   return (
     <div className="flex flex-col min-h-screen" style={{ background: "#0F1714" }}>
+      <JsonLd data={homeJsonLd} />
       <Header siteName="Svaleholm" />
       <main className="flex-1">
         <HeroSection />

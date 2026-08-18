@@ -9,6 +9,8 @@ import {
 import type { ReactNode } from "react";
 import type { Route } from "./+types/root";
 import { LanguageProvider } from "~/lib/i18n";
+import { JsonLd } from "~/components/JsonLd";
+import { siteGraph } from "~/lib/schema";
 import "./app.css";
 
 export const links: Route.LinksFunction = () => [
@@ -22,6 +24,11 @@ export const links: Route.LinksFunction = () => [
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Karla:wght@300;400;500;600;700&display=swap",
   },
+  // Favicons — reuse the existing logo assets. A dedicated favicon.ico and a
+  // 180×180 apple-touch-icon PNG would be ideal to add to /public later.
+  { rel: "icon", href: "/images/logo.svg", type: "image/svg+xml" },
+  { rel: "icon", href: "/images/logo.png", type: "image/png" },
+  { rel: "apple-touch-icon", href: "/images/logo.png" },
 ];
 
 export function Layout({ children }: { children: ReactNode }) {
@@ -30,8 +37,12 @@ export function Layout({ children }: { children: ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#0F1714" />
         <Meta />
         <Links />
+        {/* Site-wide structured data: Organization + WebSite + LocalBusiness/EventVenue.
+            Per-page JSON-LD references these nodes by @id. */}
+        <JsonLd data={siteGraph()} />
         {/* Matomo */}
         <script
           dangerouslySetInnerHTML={{

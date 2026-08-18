@@ -2,57 +2,48 @@ import { motion } from "framer-motion";
 import { Header } from "~/components/Header";
 import { Footer } from "~/components/Footer";
 import { SvaleFlock } from "~/components/Svale";
+import { JsonLd } from "~/components/JsonLd";
 import { PrisberegnerHotelSection } from "~/components/Prisberegner";
 import { useT } from "~/lib/i18n";
+import { pageMeta } from "~/lib/seo";
+import { graph, breadcrumb, webPageNode, lodgingNode } from "~/lib/schema";
+
+const VAERELSER_DESC =
+  "Overnat på Svaleholm tæt på Roskilde på Sjælland. Op til 8 enkle værelser uden eget bad – med 4 fælles bad og toiletter, fælles køkken og fælles opholdsrum. Fra 650 kr pr. nat med nem selvcheck-in.";
 
 export function meta() {
   return [
-    { title: "Ophold & overnatning nær Roskilde – Svaleholm" },
-    {
-      name: "description",
-      content:
-        "Overnat på Svaleholm tæt på Roskilde på Sjælland. Op til 8 enkle værelser uden eget bad – med 4 fælles bad og toiletter, fælles køkken og fælles opholdsrum. Fra DKK 650 pr. nat med nem selvcheck-in.",
-    },
+    ...pageMeta({
+      path: "/vaerelser",
+      title: "Overnatning & ophold nær Roskilde fra 650 kr | Svaleholm",
+      description: VAERELSER_DESC,
+      image: "/images/bygning-have.jpg",
+      imageAlt: "Svaleholms bygning og have – ophold nær Roskilde",
+    }),
     {
       name: "keywords",
       content:
         "ophold Roskilde, overnatning Roskilde, billig overnatning Roskilde, værelser Sjælland, overnatning ved bryllup Roskilde, fælles køkken, selvcheck-in, Svaleholm",
     },
-    { property: "og:title", content: "Ophold & overnatning nær Roskilde – Svaleholm" },
-    { property: "og:description", content: "Op til 8 enkle værelser med fælles bad, køkken og opholdsrum – tæt på Roskilde. Beregn dit ophold og book online." },
-    { property: "og:type", content: "website" },
-    { property: "og:image", content: "/images/bygning-have.jpg" },
-    {
-      "script:ld+json": {
-        "@context": "https://schema.org",
-        "@type": "LodgingBusiness",
-        name: "Svaleholm Roskilde",
-        description:
-          "Ophold og overnatning på Svaleholm i landlige omgivelser tæt på Roskilde på Sjælland. Op til 8 enkle værelser uden eget bad, med fælles badefaciliteter, fælles køkken og fælles opholdsrum.",
-        url: "https://svaleholmroskilde.dk/vaerelser",
-        image: "https://svaleholmroskilde.dk/images/bygning-have.jpg",
-        telephone: "+45 71 53 13 79",
-        priceRange: "DKK 650",
-        numberOfRooms: 8,
-        petsAllowed: false,
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: "Roskilde",
-          addressRegion: "Region Sjælland",
-          addressCountry: "DK",
-        },
-        areaServed: ["Roskilde", "Sjælland", "Danmark"],
-        amenityFeature: [
-          { "@type": "LocationFeatureSpecification", name: "Fælles bad og toilet (4 stk.)", value: true },
-          { "@type": "LocationFeatureSpecification", name: "Fælles køkken", value: true },
-          { "@type": "LocationFeatureSpecification", name: "Fælles opholdsrum", value: true },
-          { "@type": "LocationFeatureSpecification", name: "Selvcheck-in", value: true },
-          { "@type": "LocationFeatureSpecification", name: "Have og naturområde", value: true },
-        ],
-      },
-    },
   ];
 }
+
+const VAERELSER_JSONLD = graph(
+  webPageNode({
+    path: "/vaerelser",
+    name: "Overnatning & ophold nær Roskilde",
+    description: VAERELSER_DESC,
+    primaryImage: "/images/bygning-have.jpg",
+  }),
+  breadcrumb([
+    { name: "Forside", path: "" },
+    { name: "Ophold", path: "/vaerelser" },
+  ]),
+  lodgingNode({
+    description:
+      "Ophold og overnatning på Svaleholm i landlige omgivelser tæt på Roskilde på Sjælland. Op til 8 enkle værelser uden eget bad, med fælles badefaciliteter, fælles køkken og fælles opholdsrum.",
+  }),
+);
 
 // Fælles faciliteter til alle gæster
 const FACILITIES = [
@@ -96,6 +87,7 @@ export default function Vaerelser() {
   const t = useT();
   return (
     <div className="flex flex-col min-h-screen" style={{ background: "#0F1714" }}>
+      <JsonLd data={VAERELSER_JSONLD} />
       <Header siteName="Svaleholm" />
       <main className="flex-1">
 

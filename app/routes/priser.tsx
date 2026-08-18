@@ -1,21 +1,44 @@
 import { motion } from "framer-motion";
 import { Header } from "~/components/Header";
 import { Footer } from "~/components/Footer";
+import { JsonLd } from "~/components/JsonLd";
 import { PrisberegnerHotelSection, PrisberegnerEventSection } from "~/components/Prisberegner";
 import { SvaleFlock } from "~/components/Svale";
 import { useT } from "~/lib/i18n";
+import { pageMeta } from "~/lib/seo";
+import { graph, breadcrumb, webPageNode, eventOfferCatalogNode } from "~/lib/schema";
 
 export function meta() {
-  return [
-    { title: "Priser & booking – Svaleholm Roskilde" },
-    { name: "description", content: "Byg din booking og få et hurtigt prisoverslag på overnatning, festsal og tilvalg på Svaleholm Roskilde." },
-  ];
+  return pageMeta({
+    path: "/priser",
+    title: "Priser & booking – festsal og overnatning | Svaleholm Roskilde",
+    description:
+      "Se priser på festsal (fra 15.000 kr) og overnatning (fra 650 kr pr. nat) ved Roskilde. Beregn dit ophold eller din fest og få et uforpligtende tilbud. Inkl. moms.",
+    image: "/images/festsal-terrasse.jpg",
+    imageAlt: "Festsalens terrasse ved Svaleholm",
+  });
 }
+
+const PRISER_JSONLD = graph(
+  webPageNode({
+    path: "/priser",
+    name: "Priser & booking – festsal og overnatning",
+    description:
+      "Priser på festsal og overnatning på Svaleholm Gaard ved Roskilde. Alle priser er vejledende og inkl. moms.",
+    primaryImage: "/images/festsal-terrasse.jpg",
+  }),
+  breadcrumb([
+    { name: "Forside", path: "" },
+    { name: "Priser & booking", path: "/priser" },
+  ]),
+  eventOfferCatalogNode(),
+);
 
 export default function Priser() {
   const t = useT();
   return (
     <div className="flex flex-col min-h-screen" style={{ background: "#0F1714" }}>
+      <JsonLd data={PRISER_JSONLD} />
       <Header siteName="Svaleholm" />
       <main className="flex-1">
 
