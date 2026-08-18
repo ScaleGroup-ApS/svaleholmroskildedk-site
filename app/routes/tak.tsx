@@ -9,6 +9,8 @@ export function meta() {
   return [
     { title: "Tak – Svaleholm Roskilde" },
     { name: "description", content: "Tak for din besked — vi vender tilbage inden for 24 timer på hverdage." },
+    // Post-submission confirmation page — no search value, keep out of the index.
+    { name: "robots", content: "noindex, follow" },
   ];
 }
 

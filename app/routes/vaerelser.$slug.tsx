@@ -26,6 +26,12 @@ export function meta({ loaderData }: Route.MetaArgs) {
       name: "description",
       content: `${loaderData.room.name}: ${loaderData.room.shortDescription} Fra ${loaderData.room.priceFrom} pr. nat.`,
     },
+    // These legacy suite detail pages describe a luxury concept that conflicts
+    // with the current "8 simple shared rooms from 650 kr" business, and they
+    // are orphaned (not linked from /vaerelser, not in the sitemap). Keep them
+    // out of the index until the content is aligned, so search engines and AI
+    // engines don't surface contradictory prices/offers for the same venue.
+    { name: "robots", content: "noindex, follow" },
   ];
 }
 

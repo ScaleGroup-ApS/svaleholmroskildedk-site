@@ -5,9 +5,12 @@
  */
 import type { Route } from "./+types/sitemap[.]xml";
 import { getPages, getPosts } from "~/lib/wp-api";
+import { SITE_URL } from "~/lib/site";
 
-export async function loader({ request }: Route.LoaderArgs) {
-  const siteUrl = new URL(request.url).origin;
+export async function loader(_args: Route.LoaderArgs) {
+  // Always use the canonical production origin so the sitemap doesn't depend on
+  // the request host header (e.g. preview/staging hosts).
+  const siteUrl = SITE_URL;
 
   // Fetch all published pages and posts from WordPress
   const [pages, posts] = await Promise.all([
@@ -28,6 +31,8 @@ export async function loader({ request }: Route.LoaderArgs) {
   // Faste sider i appen. De findes ikke i WordPress, så uden dem manglede
   // hele sitet på nær forsiden i sitemap'et.
   const today = new Date().toISOString().split("T")[0];
+  // Only indexable pages. /privatlivspolitik, /handelsbetingelser, /tak and the
+  // legacy /vaerelser/:slug room pages are noindex, so they are omitted here.
   const STATIC_PATHS: Array<{ path: string; priority: string; changefreq: string }> = [
     { path: "/tjenester", priority: "0.9", changefreq: "weekly" },
     { path: "/vaerelser", priority: "0.9", changefreq: "weekly" },
@@ -35,7 +40,6 @@ export async function loader({ request }: Route.LoaderArgs) {
     { path: "/priser", priority: "0.8", changefreq: "weekly" },
     { path: "/galleri", priority: "0.7", changefreq: "monthly" },
     { path: "/kontakt", priority: "0.7", changefreq: "monthly" },
-    { path: "/privatlivspolitik", priority: "0.2", changefreq: "yearly" },
   ];
   for (const s of STATIC_PATHS) {
     urls.push({ loc: `${siteUrl}${s.path}`, lastmod: today, priority: s.priority, changefreq: s.changefreq });

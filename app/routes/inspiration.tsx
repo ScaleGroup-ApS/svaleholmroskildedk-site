@@ -12,6 +12,8 @@ import {
   TIME_PACKAGES,
 } from "~/components/Prisberegner";
 import { useT, useLang } from "~/lib/i18n";
+import { pageMeta } from "~/lib/seo";
+import { graph, breadcrumb, webPageNode, faqNode, BUSINESS_ID, WEBSITE_ID } from "~/lib/schema";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Inspirationssiden
@@ -32,19 +34,13 @@ const daDK = new Intl.NumberFormat("da-DK");
 const kr = (n: number) => `${daDK.format(n)} kr`;
 
 export function meta() {
-  return [
-    { title: TITLE },
-    { name: "description", content: DESCRIPTION },
-    { property: "og:title", content: TITLE },
-    { property: "og:description", content: DESCRIPTION },
-    { property: "og:type", content: "website" },
-    { property: "og:image", content: HERO_IMAGE },
-    { property: "og:locale", content: "da_DK" },
-    { name: "twitter:card", content: "summary_large_image" },
-    { name: "twitter:title", content: TITLE },
-    { name: "twitter:description", content: DESCRIPTION },
-    { name: "twitter:image", content: HERO_IMAGE },
-  ];
+  return pageMeta({
+    path: "/inspiration",
+    title: TITLE,
+    description: DESCRIPTION,
+    image: HERO_IMAGE,
+    imageAlt: "Festsalen pyntet i hvidt med eukalyptus og guldtallerkener",
+  });
 }
 
 // ── Indhold ──────────────────────────────────────────────────────────────────
@@ -163,9 +159,9 @@ const IDEAS: Idea[] = [
       "AV package with projector, 3 m screen, microphone and speakers",
       "Rooms on the farm if the day continues tomorrow",
     ],
-    img: "/images/festsal-lounge.jpg",
-    altDa: "Loungeområde ved festsalen på Svaleholm",
-    altEn: "Lounge area next to the hall at Svaleholm",
+    img: "/images/skaal-toast.png",
+    altDa: "Gæster skåler til et arrangement på Svaleholm",
+    altEn: "Guests toasting at an event at Svaleholm",
     to: "/tjenester",
     ctaDa: "Planlæg firmaarrangementet",
     ctaEn: "Plan the company event",
@@ -217,9 +213,9 @@ const IDEAS: Idea[] = [
       "Tulle and ambient lighting make the hall warm and intimate",
       "Rooms for those with the longest journey home",
     ],
-    img: "/images/festsal-drapes.jpg",
-    altDa: "Festsalen med draperier og levende lys",
-    altEn: "The hall with drapes and candlelight",
+    img: "/images/festsal-fest-1.png",
+    altDa: "Gæster ved det pyntede langbord i festsalen",
+    altEn: "Guests at the decorated banquet table in the hall",
     to: "/priser",
     ctaDa: "Se priser og pakker",
     ctaEn: "See prices and packages",
@@ -360,45 +356,35 @@ const FAQS: Faq[] = [
 
 // JSON-LD holdes bevidst på dansk og uafhængigt af sprogvalget, så markup'en er
 // den samme ved server-render og hydrering.
-const FAQ_JSONLD = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: FAQS.map((f) => ({
-    "@type": "Question",
-    name: f.qDa,
-    acceptedAnswer: { "@type": "Answer", text: f.aDa },
-  })),
-};
-
-const PAGE_JSONLD = {
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  name: TITLE,
-  description: DESCRIPTION,
-  inLanguage: "da-DK",
-  about: {
-    "@type": "EventVenue",
-    name: "Svaleholm Gaard",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "Frederiksborgvej 388",
-      postalCode: "4000",
-      addressLocality: "Roskilde",
-      addressCountry: "DK",
+// One connected graph: the CollectionPage links to the shared business +
+// website nodes by @id (defined in root), plus the FAQ and a breadcrumb.
+const INSPIRATION_JSONLD = graph(
+  {
+    "@type": "CollectionPage",
+    "@id": "https://svaleholmroskilde.dk/inspiration#webpage",
+    url: "https://svaleholmroskilde.dk/inspiration",
+    name: TITLE,
+    description: DESCRIPTION,
+    inLanguage: "da-DK",
+    isPartOf: { "@id": WEBSITE_ID },
+    about: { "@id": BUSINESS_ID },
+    primaryImageOfPage: `https://svaleholmroskilde.dk${HERO_IMAGE}`,
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: IDEAS.map((idea, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: idea.da,
+        description: idea.bodyDa,
+      })),
     },
-    maximumAttendeeCapacity: MAX_GUESTS_FESTSAL,
-    telephone: "+4571531379",
   },
-  mainEntity: {
-    "@type": "ItemList",
-    itemListElement: IDEAS.map((idea, i) => ({
-      "@type": "ListItem",
-      position: i + 1,
-      name: idea.da,
-      description: idea.bodyDa,
-    })),
-  },
-};
+  breadcrumb([
+    { name: "Forside", path: "" },
+    { name: "Inspiration", path: "/inspiration" },
+  ]),
+  faqNode(FAQS.map((f) => ({ q: f.qDa, a: f.aDa }))),
+);
 
 // ── Side ─────────────────────────────────────────────────────────────────────
 
@@ -409,8 +395,7 @@ export default function Inspiration() {
 
   return (
     <div className="flex flex-col min-h-screen" style={{ background: "#0F1714" }}>
-      <JsonLd data={PAGE_JSONLD} />
-      <JsonLd data={FAQ_JSONLD} />
+      <JsonLd data={INSPIRATION_JSONLD} />
       <Header siteName="Svaleholm" />
       <main className="flex-1">
 

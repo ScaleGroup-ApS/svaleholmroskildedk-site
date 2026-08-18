@@ -4,6 +4,11 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import type { WpPage, WpPost, WpSiteInfo } from "./wp-types";
+import { SITE_NAME, SITE_URL, LOCALE, DEFAULT_OG_IMAGE, abs } from "./site";
+
+// React Router's meta descriptors are loosely typed (title / name+content /
+// property+content / tagName+attrs), so use a permissive shape here.
+type MetaDescriptor = Record<string, unknown>;
 
 interface SeoOptions {
   title: string;
@@ -18,18 +23,24 @@ interface SeoOptions {
   publishedTime?: string;
   modifiedTime?: string;
   noindex?: boolean;
+  canonical?: string;
 }
 
 /**
  * Generate a complete set of meta tags for React Router's `meta` export.
  */
-export function buildMeta(opts: SeoOptions) {
-  const meta: Array<Record<string, string>> = [
+export function buildMeta(opts: SeoOptions): MetaDescriptor[] {
+  const meta: MetaDescriptor[] = [
     { title: opts.title },
   ];
 
   if (opts.description) {
     meta.push({ name: "description", content: opts.description });
+  }
+
+  // Canonical URL (rendered as <link rel="canonical">)
+  if (opts.canonical) {
+    meta.push({ tagName: "link", rel: "canonical", href: opts.canonical });
   }
 
   // Open Graph
@@ -41,10 +52,8 @@ export function buildMeta(opts: SeoOptions) {
   if (opts.url) {
     meta.push({ property: "og:url", content: opts.url });
   }
-  if (opts.siteName) {
-    meta.push({ property: "og:site_name", content: opts.siteName });
-  }
-  meta.push({ property: "og:locale", content: opts.locale ?? "da_DK" });
+  meta.push({ property: "og:site_name", content: opts.siteName ?? SITE_NAME });
+  meta.push({ property: "og:locale", content: opts.locale ?? LOCALE });
 
   if (opts.image) {
     meta.push({ property: "og:image", content: opts.image });
@@ -81,6 +90,32 @@ export function buildMeta(opts: SeoOptions) {
   }
 
   return meta;
+}
+
+/**
+ * Convenience wrapper for the site's static routes — builds a full, consistent
+ * meta set (title, description, canonical, absolute OG/Twitter) from a page
+ * path. `path` is site-relative ("" = home, "/kontakt", …).
+ */
+export function pageMeta(opts: {
+  path: string;
+  title: string;
+  description: string;
+  image?: string;
+  imageAlt?: string;
+  noindex?: boolean;
+}): MetaDescriptor[] {
+  const url = `${SITE_URL}${opts.path}`;
+  const image = abs(opts.image ?? DEFAULT_OG_IMAGE);
+  return buildMeta({
+    title: opts.title,
+    description: opts.description,
+    canonical: url,
+    url,
+    image,
+    imageAlt: opts.imageAlt,
+    noindex: opts.noindex,
+  });
 }
 
 /**

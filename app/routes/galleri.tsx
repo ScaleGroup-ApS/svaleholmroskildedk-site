@@ -3,20 +3,22 @@ import { motion } from "framer-motion";
 import { Header } from "~/components/Header";
 import { Footer } from "~/components/Footer";
 import { SvaleFlock } from "~/components/Svale";
+import { JsonLd } from "~/components/JsonLd";
 import { useT } from "~/lib/i18n";
+import { pageMeta } from "~/lib/seo";
+import { graph, breadcrumb, imageGalleryNode } from "~/lib/schema";
+
+const GALLERI_DESC =
+  "Se billeder fra Svaleholm Gaard ved Roskilde – festsalen til bryllup og fest, gården, de enkle værelser og den omkringliggende natur på Sjælland.";
 
 export function meta() {
-  return [
-    { title: "Galleri – Svaleholm Roskilde" },
-    {
-      name: "description",
-      content:
-        "Se billeder fra Svaleholm Gaard ved Roskilde – festsalen til bryllup og fest, gården, de enkle værelser og den omkringliggende natur på Sjælland.",
-    },
-    { property: "og:title", content: "Galleri – Svaleholm Roskilde" },
-    { property: "og:type", content: "website" },
-    { property: "og:image", content: "/images/festsal-fest-2.png" },
-  ];
+  return pageMeta({
+    path: "/galleri",
+    title: "Galleri – fest, festsal & natur ved Roskilde | Svaleholm",
+    description: GALLERI_DESC,
+    image: "/images/festsal-fest-2.png",
+    imageAlt: "Fest i festsalen med band og lyskæder",
+  });
 }
 
 // Hele billedbiblioteket – rigtige fester, festsalen, gården, ophold og natur.
@@ -69,8 +71,20 @@ export default function Galleri() {
 
   const altOf = (s: Shot) => t(s.da, s.en);
 
+  const galleriJsonLd = graph(
+    imageGalleryNode(
+      GALLERY.map((s) => ({ src: s.src, caption: s.da })),
+      { name: "Galleri – Svaleholm Gaard", description: GALLERI_DESC, path: "/galleri" },
+    ),
+    breadcrumb([
+      { name: "Forside", path: "" },
+      { name: "Galleri", path: "/galleri" },
+    ]),
+  );
+
   return (
     <div className="flex flex-col min-h-screen" style={{ background: "#0F1714" }}>
+      <JsonLd data={galleriJsonLd} />
       <Header siteName="Svaleholm" />
       <main className="flex-1">
 
