@@ -4,10 +4,38 @@ import { Header } from "~/components/Header";
 import { Footer } from "~/components/Footer";
 import { SvaleFlock } from "~/components/Svale";
 import { JsonLd } from "~/components/JsonLd";
+import { FaqSection, type FaqItem } from "~/components/Faq";
 import { EventPakkeBeregnerSection } from "~/components/Prisberegner";
 import { useT } from "~/lib/i18n";
 import { pageMeta } from "~/lib/seo";
-import { graph, breadcrumb, webPageNode, eventServiceNodes, eventOfferCatalogNode } from "~/lib/schema";
+import { graph, breadcrumb, webPageNode, eventServiceNodes, eventOfferCatalogNode, faqNode } from "~/lib/schema";
+
+const TJENESTER_FAQ: FaqItem[] = [
+  {
+    qDa: "Hvor mange gæster er der plads til?",
+    qEn: "How many guests is there room for?",
+    aDa: "Festsalen har plads til op til 150 gæster. Ved leje af salen er der et minimum på 30 gæster.",
+    aEn: "The hall holds up to 150 guests. When renting the hall there is a minimum of 30 guests.",
+  },
+  {
+    qDa: "Hvilke fester kan holdes i festsalen?",
+    qEn: "What kinds of events can be held in the hall?",
+    aDa: "Bryllup, runde fødselsdage, konfirmation, barnedåb, jubilæum, firmaevent, julefrokost og børnefødselsdage – festsalen er et blankt lærred, I kan gøre til jeres eget.",
+    aEn: "Weddings, milestone birthdays, confirmations, christenings, anniversaries, company events, Christmas lunches and children's birthdays – the hall is a blank canvas you can make your own.",
+  },
+  {
+    qDa: "Må vi selv stå for mad og drikke?",
+    qEn: "Can we handle food and drink ourselves?",
+    aDa: "Ja. Der er køkkenfaciliteter til catering, og I bestemmer selv, om I laver maden, bruger en cateringleverandør eller kombinerer.",
+    aEn: "Yes. There are kitchen facilities for catering, and you decide whether you cook, use a caterer or combine the two.",
+  },
+  {
+    qDa: "Kan gæsterne overnatte efter festen?",
+    qEn: "Can guests stay overnight after the celebration?",
+    aDa: "Ja. Op til 8 enkle værelser kan tilkøbes, så gæsterne kan overnatte og blive til morgenmaden – fra 650 kr pr. værelse pr. nat.",
+    aEn: "Yes. Up to 8 simple rooms can be added, so guests can stay over and remain for breakfast – from DKK 650 per room per night.",
+  },
+];
 
 export function meta() {
   return pageMeta({
@@ -41,6 +69,7 @@ const TJENESTER_JSONLD = graph(
     { name: "Firmaevent", description: "Firmaevents, firmadage og julefrokoster i festsalen på landet nær Roskilde." },
   ]),
   eventOfferCatalogNode(),
+  faqNode(TJENESTER_FAQ.map((f) => ({ q: f.qDa, a: f.aDa }))),
 );
 
 export default function Tjenester() {
@@ -170,6 +199,7 @@ export default function Tjenester() {
           </div>
         </section>
 
+        <FaqSection items={TJENESTER_FAQ} eyebrowDa="Fest & events" eyebrowEn="Celebrations & events" />
       </main>
       <Footer siteName="Svaleholm Roskilde" />
     </div>

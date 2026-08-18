@@ -3,10 +3,38 @@ import { Header } from "~/components/Header";
 import { Footer } from "~/components/Footer";
 import { SvaleFlock } from "~/components/Svale";
 import { JsonLd } from "~/components/JsonLd";
+import { FaqSection, type FaqItem } from "~/components/Faq";
 import { PrisberegnerHotelSection } from "~/components/Prisberegner";
 import { useT } from "~/lib/i18n";
 import { pageMeta } from "~/lib/seo";
-import { graph, breadcrumb, webPageNode, lodgingNode } from "~/lib/schema";
+import { graph, breadcrumb, webPageNode, lodgingNode, faqNode } from "~/lib/schema";
+
+const VAERELSER_FAQ: FaqItem[] = [
+  {
+    qDa: "Har værelserne eget bad?",
+    qEn: "Do the rooms have a private bathroom?",
+    aDa: "Nej. Værelserne er enkle og uden eget bad. Der er 4 fælles bad og toiletter samt fælles køkken og opholdsrum, som alle gæster deler.",
+    aEn: "No. The rooms are simple and without a private bathroom. There are 4 shared baths and toilets plus a shared kitchen and lounge that all guests share.",
+  },
+  {
+    qDa: "Hvad koster en overnatning?",
+    qEn: "What does a night cost?",
+    aDa: "Fra 650 kr pr. værelse pr. nat. Der er op til 8 værelser, så I kan overnatte flere sammen – fx i forbindelse med en fest i salen.",
+    aEn: "From DKK 650 per room per night. There are up to 8 rooms, so you can stay together as a group – for example in connection with a celebration in the hall.",
+  },
+  {
+    qDa: "Hvordan foregår check-in?",
+    qEn: "How does check-in work?",
+    aDa: "Der er nem selvcheck-in via dørkode, så I kan ankomme fleksibelt uden at skulle mødes med en vært.",
+    aEn: "There is easy self check-in via a door code, so you can arrive flexibly without having to meet a host.",
+  },
+  {
+    qDa: "Hvor ligger Svaleholm i forhold til Roskilde?",
+    qEn: "Where is Svaleholm in relation to Roskilde?",
+    aDa: "Svaleholm Gaard ligger på Frederiksborgvej 388, 4000 Roskilde – på landet lige uden for byen, med nem parkering ved indkørslen.",
+    aEn: "Svaleholm Gaard is at Frederiksborgvej 388, 4000 Roskilde – in the countryside just outside town, with easy parking by the drive.",
+  },
+];
 
 const VAERELSER_DESC =
   "Overnat på Svaleholm tæt på Roskilde på Sjælland. Op til 8 enkle værelser uden eget bad – med 4 fælles bad og toiletter, fælles køkken og fælles opholdsrum. Fra 650 kr pr. nat med nem selvcheck-in.";
@@ -43,6 +71,7 @@ const VAERELSER_JSONLD = graph(
     description:
       "Ophold og overnatning på Svaleholm i landlige omgivelser tæt på Roskilde på Sjælland. Op til 8 enkle værelser uden eget bad, med fælles badefaciliteter, fælles køkken og fælles opholdsrum.",
   }),
+  faqNode(VAERELSER_FAQ.map((f) => ({ q: f.qDa, a: f.aDa }))),
 );
 
 // Fælles faciliteter til alle gæster
@@ -224,6 +253,7 @@ export default function Vaerelser() {
             </div>
           </div>
         </section>
+        <FaqSection items={VAERELSER_FAQ} eyebrowDa="Ophold & overnatning" eyebrowEn="Stay & overnight" />
       </main>
       <Footer siteName="Svaleholm Roskilde" />
     </div>
