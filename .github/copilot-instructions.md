@@ -91,11 +91,43 @@ Use `.server.ts` suffix for files that run only on the server (e.g., `mailer.ser
 - Use Framer Motion (`framer-motion`) for animations
 - Common pattern: `motion.div` with `motion` prop objects
 
+### Contact Form Spam Defence
+
+The `/kontakt` action runs every submission through `app/lib/antispam.server.ts`
+before handing it to the CRM. Layers, cheapest first:
+
+1. **Honeypot** — hidden `subject_line` / `contact_url` inputs. Never rename
+   these to autofill-friendly names (`company`, `website`, `address`): a
+   browser filling them in silently discards a real enquiry.
+2. **Signed timing token** — the loader mints an HMAC-signed timestamp into a
+   hidden `_fts` field; submits under 3 seconds, or with a forged/expired
+   token, are not humans.
+3. **Per-IP rate limit** — in-memory sliding windows (5 per 15 min, 20 per day),
+   so it is per-pod, not cluster-wide.
+4. **Content scoring** — links, non-Latin script, SEO/crypto phrases, junk
+   phone numbers.
+5. **Cloudflare Turnstile** — only when `TURNSTILE_SECRET_KEY` is set. Verification
+   fails open if Cloudflare is unreachable, so an outage never costs an enquiry.
+
+Bot-shaped submissions get the ordinary `/tak` receipt with nothing delivered
+(so the bot learns nothing); anything that could still be a human gets the form
+back with its typed values and an explanation. Blocks are logged as
+`[kontakt] blokeret henvendelse (...)`.
+
 ## Environment Variables
 
 - `WP_API_URL` — WordPress REST API base URL (default: `http://wordpress/wp-json`)
 - `NODE_ENV` — Set to `production` in Docker runtime
 - `PORT` — Server port (default 3000 in Docker, 5175 in dev)
+- `CRM_API_URL`, `CRM_API_TOKEN`, `CRM_SLUG` / `CRM_CUSTOMER_ID` — contact-form
+  relay to crm-backend (see `app/lib/crm.server.ts`)
+- `TURNSTILE_SITE_KEY` / `TURNSTILE_SECRET_KEY` — optional CAPTCHA; unset means
+  no widget and no verification
+- `FORM_TOKEN_SECRET` — optional HMAC secret for the timing token; falls back to
+  `CRM_API_TOKEN`, which every replica already shares
+
+Set these in App Settings in the CRM (customer 24 → app `api`), not in a
+manifest in this repo.
 
 ## TypeScript Setup
 - Target: ES2022
