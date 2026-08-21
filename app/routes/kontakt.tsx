@@ -1,12 +1,20 @@
 import type { Route } from "./+types/kontakt";
-import { Form, useActionData, useNavigation, useSearchParams, redirect } from "react-router";
+import { Form, useActionData, useLoaderData, useNavigation, useSearchParams, redirect } from "react-router";
 import { motion } from "framer-motion";
 import { Header } from "~/components/Header";
 import { Footer } from "~/components/Footer";
 import { SvaleFlock } from "~/components/Svale";
 import { JsonLd } from "~/components/JsonLd";
 import { useT, useLang } from "~/lib/i18n";
+import { Turnstile } from "~/components/Turnstile";
 import { sendContactEmail } from "~/lib/crm.server";
+import {
+  FORM_TOKEN_FIELD,
+  HONEYPOT_FIELDS,
+  checkSubmission,
+  issueFormToken,
+  turnstileSiteKey,
+} from "~/lib/antispam.server";
 import { pageMeta } from "~/lib/seo";
 import { graph, breadcrumb, webPageNode } from "~/lib/schema";
 
@@ -61,6 +69,26 @@ function fmtVal(key: string, raw: string): string {
   return raw;
 }
 
+// ── Loader: udsteder et friskt, signeret formular-token pr. sidevisning ───────
+// Feltnavnene kommer herfra i stedet for at være hardcodet i komponenten, så
+// spam-laget ejer dem ét sted — `antispam.server.ts` må ikke importeres i
+// klient-koden.
+export function loader() {
+  return {
+    formToken: issueFormToken(),
+    tokenField: FORM_TOKEN_FIELD,
+    honeypotFields: HONEYPOT_FIELDS as readonly string[],
+    turnstileSiteKey: turnstileSiteKey(),
+  };
+}
+
+// Formularen indeholder et tidsstemplet token, så siden må ikke ligge i en
+// delt cache. `no-cache` (frem for `no-store`) lader browseren beholde siden
+// til tilbage-navigation, men tvinger en revalidering mod serveren.
+export function headers() {
+  return { "Cache-Control": "private, no-cache, must-revalidate" };
+}
+
 // ── Server action: sender henvendelsen videre til CRM'et ──────────────────────
 export async function action({ request, url }: Route.ActionArgs) {
   const form = await request.formData();
@@ -69,8 +97,27 @@ export async function action({ request, url }: Route.ActionArgs) {
   const email = String(form.get("email") ?? "").trim();
   const message = String(form.get("message") ?? "").trim();
 
+  // Ved enhver afvisning sendes de indtastede værdier retur, så en kunde uden
+  // JavaScript ikke mister sin besked, når siden gen-renderes.
+  const values = { name, phone, email, message };
+
   if (!name || !phone) {
-    return { ok: false as const, error: "validation" };
+    return { ok: false as const, error: "validation", values };
+  }
+
+  // crm-backend sees only the site pod as its peer, so pass the real client IP
+  // along rather than letting it fall back to its own x-forwarded-for.
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
+
+  // Spam-filter: honeypot, signeret tid, rate limit, indholds-score og
+  // Turnstile (sidstnævnte kun når nøglerne er sat). Se antispam.server.ts.
+  const verdict = await checkSubmission({ form, name, phone, email, message, ip });
+  if (verdict.action !== "accept") {
+    console.warn(`[kontakt] blokeret henvendelse (${verdict.action}): ${verdict.reason}`);
+    // "discard" er bot-sikkert: vis kvitteringen, men send intet videre — så
+    // lærer bottet ikke hvilket felt der afslørede det.
+    if (verdict.action === "discard") return redirect("/tak");
+    return { ok: false as const, error: verdict.error, values };
   }
 
   const enquiry = ENQUIRY_FIELDS
@@ -79,10 +126,6 @@ export async function action({ request, url }: Route.ActionArgs) {
       return v ? { label: f.da, value: fmtVal(f.key, String(v)) } : null;
     })
     .filter((x): x is { label: string; value: string } => x !== null);
-
-  // crm-backend sees only the site pod as its peer, so pass the real client IP
-  // along rather than letting it fall back to its own x-forwarded-for.
-  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
 
   const result = await sendContactEmail({
     name,
@@ -100,20 +143,42 @@ export async function action({ request, url }: Route.ActionArgs) {
     return redirect('/tak');
   }
 
-  return { ok: false as const, error: result.error };
+  return { ok: false as const, error: result.error, values };
 }
 
 export default function Kontakt() {
   const t = useT();
   const { lang } = useLang();
   const actionData = useActionData<typeof action>();
+  const { formToken, tokenField, honeypotFields, turnstileSiteKey } = useLoaderData<typeof loader>();
   const navigation = useNavigation();
   const sending = navigation.state === "submitting";
   const [searchParams] = useSearchParams();
 
   // A successful submission redirects to /tak, so actionData is only ever an error.
-  const validationError = actionData && !actionData.ok && actionData.error === "validation";
-  const sendError = actionData && !actionData.ok && actionData.error !== "validation";
+  const error = actionData && !actionData.ok ? actionData.error : null;
+  const prev = actionData && !actionData.ok ? actionData.values : undefined;
+  const validationError = error === "validation";
+  // Spam-filteret afviste noget, der godt kan være et menneske — fortæl hvad
+  // der skal gøres i stedet for at vise den generiske sendefejl.
+  const spamNotice =
+    error === "stale"
+      ? t(
+          "Formularen var for gammel til at blive sendt. Genindlæs siden og prøv igen.",
+          "The form had expired. Please reload the page and try again.",
+        )
+      : error === "rate-limit"
+        ? t(
+            "Vi har lige modtaget flere henvendelser fra dig. Vent et øjeblik, eller ring til os på 71 53 13 79.",
+            "We just received several messages from you. Please wait a moment, or call us on +45 71 53 13 79.",
+          )
+        : error === "captcha"
+          ? t(
+              "Vi kunne ikke bekræfte, at du ikke er en robot. Prøv at sende igen — eller ring til os på 71 53 13 79, hvis det bliver ved.",
+              "We couldn't confirm that you're not a robot. Please try again — or call us on +45 71 53 13 79 if it keeps happening.",
+            )
+          : null;
+  const sendError = error !== null && !validationError && spamNotice === null;
 
   // Beregner-felter fra URL'en (fx /kontakt?ophold=ja&vaerelser=2&total=1300)
   const enquiryRows = ENQUIRY_FIELDS
@@ -248,6 +313,34 @@ export default function Kontakt() {
                   <Form method="post">
                     <h3 className="heading-card mb-7" style={{ color: "#F2EFE7" }}>{t("Send os en besked", "Send us a message")}</h3>
 
+                    {/* Signeret udstedelsestidspunkt — afslører submits, der er
+                        for hurtige til at være udfyldt af et menneske. */}
+                    <input type="hidden" name={tokenField} value={formToken} />
+
+                    {/* Honeypot: usynligt for mennesker og skærmlæsere, men
+                        formular-bots udfylder alt, de kan finde. data-*-
+                        attributterne holder browser-autofyld og password-
+                        managers væk — en udfyldt honeypot smider henvendelsen
+                        væk, og det må aldrig ramme en rigtig kunde. */}
+                    <div
+                      aria-hidden="true"
+                      style={{ position: "absolute", left: "-9999px", width: "1px", height: "1px", overflow: "hidden" }}
+                    >
+                      {honeypotFields.map((field) => (
+                        <input
+                          key={field}
+                          type="text"
+                          name={field}
+                          defaultValue=""
+                          tabIndex={-1}
+                          autoComplete="off"
+                          data-lpignore="true"
+                          data-1p-ignore=""
+                          data-form-type="other"
+                        />
+                      ))}
+                    </div>
+
                     {/* Opsummering fra prisberegner */}
                     {enquiryRows.length > 0 && (
                       <div className="mb-7 rounded-lg p-5" style={{ background: "rgba(126,165,124,0.10)", border: "1px solid rgba(126,165,124,0.32)" }}>
@@ -269,6 +362,15 @@ export default function Kontakt() {
                       </div>
                     )}
 
+                    {/* Spam-filteret afviste — men måske er det et menneske */}
+                    {spamNotice && (
+                      <div className="mb-6 rounded-lg p-4" style={{ background: "rgba(201,169,106,0.10)", border: "1px solid rgba(201,169,106,0.34)" }}>
+                        <p style={{ fontFamily: "var(--font-body)", fontSize: "0.875rem", color: "#E4CFA0", lineHeight: 1.6 }}>
+                          {spamNotice}
+                        </p>
+                      </div>
+                    )}
+
                     {/* Fejl-banner ved sendefejl / manglende opsætning */}
                     {sendError && (
                       <div className="mb-6 rounded-lg p-4" style={{ background: "rgba(201,169,106,0.10)", border: "1px solid rgba(201,169,106,0.34)" }}>
@@ -287,13 +389,13 @@ export default function Kontakt() {
                         <label htmlFor="cf-name" className="block mb-2" style={{ fontFamily: "var(--font-body)", fontSize: "0.66rem", fontWeight: 500, color: "#7EA57C", letterSpacing: "0.2em", textTransform: "uppercase" }}>
                           {t("Navn", "Name")} *
                         </label>
-                        <input id="cf-name" name="name" type="text" className="input-field" placeholder={t("Dit fulde navn", "Your full name")} required autoComplete="name" />
+                        <input id="cf-name" name="name" type="text" defaultValue={prev?.name} className="input-field" placeholder={t("Dit fulde navn", "Your full name")} required autoComplete="name" />
                       </div>
                       <div>
                         <label htmlFor="cf-phone" className="block mb-2" style={{ fontFamily: "var(--font-body)", fontSize: "0.66rem", fontWeight: 500, color: "#7EA57C", letterSpacing: "0.2em", textTransform: "uppercase" }}>
                           {t("Nummer", "Number")} *
                         </label>
-                        <input id="cf-phone" name="phone" type="tel" className="input-field" placeholder="+45 XX XX XX XX" required autoComplete="tel" />
+                        <input id="cf-phone" name="phone" type="tel" defaultValue={prev?.phone} className="input-field" placeholder="+45 XX XX XX XX" required autoComplete="tel" />
                       </div>
                     </div>
 
@@ -301,20 +403,31 @@ export default function Kontakt() {
                       <label htmlFor="cf-email" className="block mb-2" style={{ fontFamily: "var(--font-body)", fontSize: "0.66rem", fontWeight: 500, color: "#7EA57C", letterSpacing: "0.2em", textTransform: "uppercase" }}>
                         {t("E-mail", "E-mail")}
                       </label>
-                      <input id="cf-email" name="email" type="email" className="input-field" placeholder={t("Så vi kan svare på mail", "So we can reply by e-mail")} autoComplete="email" />
+                      <input id="cf-email" name="email" type="email" defaultValue={prev?.email} className="input-field" placeholder={t("Så vi kan svare på mail", "So we can reply by e-mail")} autoComplete="email" />
                     </div>
 
                     <div className="mb-7">
                       <label htmlFor="cf-message" className="block mb-2" style={{ fontFamily: "var(--font-body)", fontSize: "0.66rem", fontWeight: 500, color: "#7EA57C", letterSpacing: "0.2em", textTransform: "uppercase" }}>
                         {t("Besked", "Message")}
                       </label>
-                      <textarea id="cf-message" name="message" className="input-field" rows={5} placeholder={t("Fortæl os om dine ønsker og planer...", "Tell us about your wishes and plans...")} style={{ resize: "vertical" }} />
+                      <textarea id="cf-message" name="message" defaultValue={prev?.message} className="input-field" rows={5} placeholder={t("Fortæl os om dine ønsker og planer...", "Tell us about your wishes and plans...")} style={{ resize: "vertical" }} />
                     </div>
 
                     {validationError && (
                       <p className="mb-4" style={{ fontFamily: "var(--font-body)", fontSize: "0.8125rem", color: "#E4CFA0" }}>
                         {t("Udfyld venligst navn og telefonnummer.", "Please fill in your name and phone number.")}
                       </p>
+                    )}
+
+                    {/* Cloudflare Turnstile — render kun når nøglen er sat.
+                        Oftest usynlig; sætter ingen sporings-cookies. */}
+                    {turnstileSiteKey && (
+                      <Turnstile
+                        siteKey={turnstileSiteKey}
+                        lang={lang}
+                        resetKey={actionData}
+                        className="mb-5 flex justify-center"
+                      />
                     )}
 
                     <motion.button
