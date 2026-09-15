@@ -6,14 +6,13 @@ import { Footer } from "~/components/Footer";
 import { SvaleFlock } from "~/components/Svale";
 import { JsonLd } from "~/components/JsonLd";
 import { useT, useLang } from "~/lib/i18n";
-import { Turnstile } from "~/components/Turnstile";
+import { ContactSpamProtection } from "~/components/ContactSpamProtection";
 import { sendContactEmail } from "~/lib/crm.server";
 import {
   FORM_TOKEN_FIELD,
   HONEYPOT_FIELDS,
   checkSubmission,
   issueFormToken,
-  turnstileSiteKey,
 } from "~/lib/antispam.server";
 import { pageMeta } from "~/lib/seo";
 import { graph, breadcrumb, webPageNode } from "~/lib/schema";
@@ -78,7 +77,6 @@ export function loader() {
     formToken: issueFormToken(),
     tokenField: FORM_TOKEN_FIELD,
     honeypotFields: HONEYPOT_FIELDS as readonly string[],
-    turnstileSiteKey: turnstileSiteKey(),
   };
 }
 
@@ -150,7 +148,7 @@ export default function Kontakt() {
   const t = useT();
   const { lang } = useLang();
   const actionData = useActionData<typeof action>();
-  const { formToken, tokenField, honeypotFields, turnstileSiteKey } = useLoaderData<typeof loader>();
+  const { formToken, tokenField, honeypotFields } = useLoaderData<typeof loader>();
   const navigation = useNavigation();
   const sending = navigation.state === "submitting";
   const [searchParams] = useSearchParams();
@@ -419,18 +417,10 @@ export default function Kontakt() {
                       </p>
                     )}
 
-                    {/* Cloudflare Turnstile — render kun når nøglen er sat.
-                        Oftest usynlig; sætter ingen sporings-cookies. */}
-                    {turnstileSiteKey && (
-                      <Turnstile
-                        siteKey={turnstileSiteKey}
-                        lang={lang}
-                        resetKey={actionData}
-                        className="mb-5 flex justify-center"
-                      />
-                    )}
+                    <div className="flex flex-col items-stretch gap-6">
+                      <ContactSpamProtection />
 
-                    <motion.button
+                      <motion.button
                       type="submit"
                       disabled={sending}
                       className="btn-primary w-full"
@@ -439,7 +429,8 @@ export default function Kontakt() {
                       whileTap={sending ? undefined : { translateY: 0 }}
                     >
                       {sending ? t("Sender...", "Sending...") : t("Send Besked", "Send message")}
-                    </motion.button>
+                      </motion.button>
+                    </div>
 
                     <p className="mt-4 text-center" style={{ fontFamily: "var(--font-body)", fontSize: "0.8125rem", color: "rgba(242,239,231,0.4)" }}>
                       {t("Vi svarer indenfor 24 timer på hverdage. Din information behandles fortroligt.", "We reply within 24 hours on weekdays. Your information is treated confidentially.")}

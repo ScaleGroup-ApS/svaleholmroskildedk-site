@@ -1,3 +1,4 @@
+import { verifyContactSubmission } from "./contact-spam.server";
 // ─────────────────────────────────────────────────────────────────────────────
 // Server-only spam defence for the contact form (app/routes/kontakt.tsx).
 //
@@ -11,15 +12,14 @@
 //   3. Rate limit    – per-IP sliding windows, in-memory.
 //   4. Heuristics    – link count, non-Latin script, SEO/crypto spam phrases,
 //                      junk phone numbers. Scored, not absolute.
-//   5. Turnstile     – Cloudflare's privacy-friendly CAPTCHA, verified here.
-//                      Only active when TURNSTILE_SECRET_KEY is set, so the
-//                      form keeps working untouched until keys are provisioned.
+//   5. Challenge     – selected ALTCHA, Cap, or Turnstile proof, verified here.
+//                      Verification failures reject the enquiry before delivery.
 //
 // Env vars (set them in App Settings in the CRM — customer 24 → app `api` —
 // the same place CRM_API_TOKEN comes from, not in a manifest in this repo):
 //
-//   TURNSTILE_SITE_KEY    – public key; presence renders the widget
-//   TURNSTILE_SECRET_KEY  – private key; presence enforces verification
+//   CONTACT_SPAM_PROVIDER  – altcha, cap, turnstile, or none
+//   ALTCHA_*               – self-hosted browser and server configuration
 //   FORM_TOKEN_SECRET     – optional HMAC secret for the timing token
 //
 // FORM_TOKEN_SECRET falls back to CRM_API_TOKEN because that value is already
@@ -187,43 +187,6 @@ function scoreContent(f: { name: string; phone: string; email: string; message: 
   return { score, reasons };
 }
 
-// ── Cloudflare Turnstile ─────────────────────────────────────────────────────
-
-const TURNSTILE_SECRET_KEY = process.env.TURNSTILE_SECRET_KEY;
-const TURNSTILE_SITE_KEY = process.env.TURNSTILE_SITE_KEY;
-const TURNSTILE_VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
-
-/** The public site key, for the loader to hand to the widget (null = off). */
-export function turnstileSiteKey(): string | null {
-  return TURNSTILE_SITE_KEY || null;
-}
-
-async function verifyTurnstile(token: string | null, ip?: string): Promise<boolean> {
-  if (!TURNSTILE_SECRET_KEY) return true; // Not configured — nothing to enforce.
-  if (!token) return false;
-  const body = new URLSearchParams({ secret: TURNSTILE_SECRET_KEY, response: token });
-  if (ip) body.set("remoteip", ip);
-  try {
-    const res = await fetch(TURNSTILE_VERIFY_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body,
-      signal: AbortSignal.timeout(8000),
-    });
-    const data = (await res.json()) as { success?: boolean; "error-codes"?: string[] };
-    if (!data.success) {
-      console.warn("[antispam] turnstile rejected:", data["error-codes"]?.join(",") ?? "unknown");
-    }
-    return data.success === true;
-  } catch (err) {
-    // Cloudflare unreachable (network policy, outage). Blocking every enquiry
-    // is worse for this business than letting one through, so fail open — the
-    // honeypot, timing and rate-limit layers still apply.
-    console.error("[antispam] turnstile verify failed, allowing through:", err);
-    return true;
-  }
-}
-
 // ── Entry point ──────────────────────────────────────────────────────────────
 
 export type SpamVerdict =
@@ -287,10 +250,9 @@ export async function checkSubmission(input: SpamCheckInput): Promise<SpamVerdic
     return { action: "discard", reason: `score=${score} [${reasons.join("; ")}] ${seen}` };
   }
 
-  // 5. Turnstile, when configured.
-  const captcha = form.get("cf-turnstile-response");
-  if (!(await verifyTurnstile(captcha ? String(captcha) : null, ip))) {
-    return { action: "reject", error: "captcha", reason: `turnstile ${seen}` };
+  // 5. Selected challenge provider, when configured.
+  if (!(await verifyContactSubmission(form))) {
+    return { action: "reject", error: "captcha", reason: `challenge ${seen}` };
   }
 
   return { action: "accept" };
