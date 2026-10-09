@@ -262,6 +262,7 @@ export function PrisberegnerHotelSection() {
 type EventType = { id: string; label: string; labelEn: string; icon: string };
 const EVENT_TYPES: EventType[] = [
   { id: "bryllup",          label: "Bryllup",          labelEn: "Wedding",             icon: "M12 20l-1.4-1.3C6 14.5 3 11.8 3 8.5 3 6 5 4 7.5 4c1.5 0 2.9.7 3.8 1.9C12.1 4.7 13.5 4 15 4 17.5 4 19.5 6 19.5 8.5c0 3.3-3 6-7.6 10.2L12 20z" },
+  { id: "konfirmation",     label: "Konfirmation",     labelEn: "Confirmation",        icon: "M12 2v4m-2 2h4M5 21V11l7-5 7 5v10M5 21h14M10 21v-5a2 2 0 014 0v5" },
   { id: "fest",             label: "Fest",             labelEn: "Party",               icon: "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" },
   { id: "boernefoedselsdag", label: "Børnefødselsdag", labelEn: "Children's birthday",  icon: "M4 20h16M6 20v-6h12v6M6 14a2 2 0 012-2h8a2 2 0 012 2M9 9V7m3 2V7m3 2V7M12 6a1 1 0 100-2 1 1 0 000 2z" },
   { id: "firma",            label: "Firmaevent",       labelEn: "Corporate event",     icon: "M3 8h18v11a1 1 0 01-1 1H4a1 1 0 01-1-1V8zm6 0V6a2 2 0 012-2h2a2 2 0 012 2v2" },
@@ -275,6 +276,9 @@ export type TimePackage = {
 export const TIME_PACKAGES: TimePackage[] = [
   { id: "time",    label: "Timepakke",    labelEn: "Hourly package",   price: 1800,  unit: "time",    unitPlural: "timer",     unitEn: "hour",    unitPluralEn: "hours",    min: 3, max: 12, note: "Salen pr. time",   noteEn: "The hall per hour" },
   { id: "aften",   label: "Aftenpakke",   labelEn: "Evening package",  price: 9000,  unit: "aften",   unitPlural: "aftener",   unitEn: "evening", unitPluralEn: "evenings", min: 1, max: 3,  note: "Kl. 17–24",        noteEn: "5 pm–midnight" },
+  // Halvdagspakken passer fx til en konfirmation, der varer en lille halv dag
+  // (frokost + eftermiddag). Fast varighed, så antals-vælgeren skjules (min = max).
+  { id: "halvdag", label: "Halvdagspakke", labelEn: "Half-day package", price: 11000, unit: "halv dag", unitPlural: "halve dage", unitEn: "half day", unitPluralEn: "half days", min: 1, max: 1, note: "Ca. en halv dag · kl. 10–16", noteEn: "Approx. half a day · 10 am–4 pm" },
   { id: "heldag",  label: "Heldagspakke", labelEn: "Full-day package", price: 15000, unit: "dag",     unitPlural: "dage",      unitEn: "day",     unitPluralEn: "days",     min: 1, max: 5,  note: "Kl. 9–24",         noteEn: "9 am–midnight" },
   // Weekendpakken er altid én weekend (fre–søn). Antallet kunne før vælges
   // (1–2), men "antal weekender" forvirrede mere, end det hjalp – derfor er
@@ -290,10 +294,10 @@ type EventAddon = { id: string; label: string; labelEn: string; price: number; s
 const EVENT_ADDONS: EventAddon[] = [
   // Pynt
   { id: "vielsesbue",   label: "Bryllupsbue",         labelEn: "Wedding arch",      price: 3500, spec: "Håndbundet blomsterbue · 2,4 m høj · opsat ved ceremonien",    specEn: "Hand-tied floral arch · 2.4 m tall · set up at the ceremony", themes: ["bryllup"] },
-  { id: "tyl",          label: "Tyl",                 labelEn: "Tulle draping",     price: 1500, spec: "Blødt tyldraperi til borde, buer og bagvæg · romantisk look", specEn: "Soft tulle draping for tables, arches and backdrop · romantic look", themes: ["bryllup", "fest", "boernefoedselsdag"] },
-  { id: "lys",          label: "Stemningsbelysning",  labelEn: "Ambient lighting",  price: 1900, spec: "Lyskæder + spots · opsat i sal og have",                      specEn: "Fairy lights + spots · set up in hall and garden",            themes: ["bryllup", "fest", "boernefoedselsdag", "firma"] },
+  { id: "tyl",          label: "Tyl",                 labelEn: "Tulle draping",     price: 1500, spec: "Blødt tyldraperi til borde, buer og bagvæg · romantisk look", specEn: "Soft tulle draping for tables, arches and backdrop · romantic look", themes: ["bryllup", "konfirmation", "fest", "boernefoedselsdag"] },
+  { id: "lys",          label: "Stemningsbelysning",  labelEn: "Ambient lighting",  price: 1900, spec: "Lyskæder + spots · opsat i sal og have",                      specEn: "Fairy lights + spots · set up in hall and garden",            themes: ["bryllup", "konfirmation", "fest", "boernefoedselsdag", "firma"] },
   // Lyd & AV – vores eget udstyr
-  { id: "toastmaster",  label: "Toastmaster-lyd",     labelEn: "Toastmaster sound", price: 2200, spec: "Vores eget anlæg · trådløs mikrofon + headset til taler",     specEn: "Our own PA · wireless mic + headset for speeches",            themes: ["bryllup", "fest", "firma"] },
+  { id: "toastmaster",  label: "Toastmaster-lyd",     labelEn: "Toastmaster sound", price: 2200, spec: "Vores eget anlæg · trådløs mikrofon + headset til taler",     specEn: "Our own PA · wireless mic + headset for speeches",            themes: ["bryllup", "konfirmation", "fest", "firma"] },
   { id: "av",           label: "AV-pakke",            labelEn: "AV package",        price: 3000, spec: "Vores projektor · 3 m lærred · mikrofon & højttalere",       specEn: "Our projector · 3 m screen · mic & speakers",                 themes: ["firma", "bryllup", "fest"] },
 ];
 
