@@ -9,6 +9,9 @@ export default [
   route("inspiration", "routes/inspiration.tsx"),
   route("galleri", "routes/galleri.tsx"),
   route("kontakt", "routes/kontakt.tsx"),
+  // Legacy WordPress URL → current lodging page (301). Google had /hotel/
+  // indexed and it was 404'ing.
+  route("hotel", "routes/hotel.tsx"),
   // Local SEO/GEO landing pages (data-driven in app/lib/landingPages.ts).
   // Must stay above the "*" catch-all, or they'd fall through to the WordPress
   // slug lookup and 404. Unknown slugs 404 via each route's loader.
