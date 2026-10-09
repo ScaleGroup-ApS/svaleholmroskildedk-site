@@ -852,6 +852,558 @@ export const LANDING_PAGES: LandingPage[] = [
     ],
     relatedSlugs: ["bryllup-naer-roskilde", "rund-foedselsdag-naer-roskilde", "konfirmation-naer-roskilde"],
   },
+
+  // ─── Batch 2 · fest (anledninger) ─────────────────────────────────────────
+  {
+    category: "fest",
+    slug: "barnedaab-naer-roskilde",
+    metaTitle: "Barnedåb nær Roskilde | Festsal på Svaleholm Gaard",
+    metaDescription:
+      "Hold barnedåb eller navngivning i festsalen på Svaleholm Gaard nær Roskilde – hyggelige rammer, egen catering tilladt og mulighed for overnatning. Få et tilbud.",
+    heroEyebrowDa: "Barnedåb nær Roskilde",
+    heroEyebrowEn: "Christenings near Roskilde",
+    h1Da: "Barnedåb nær Roskilde",
+    h1En: "Christenings near Roskilde",
+    heroSubDa:
+      "Fejr den lille i rolige, naturnære rammer – en lys festsal til familie og venner, egen catering og mulighed for, at gæsterne overnatter.",
+    heroSubEn:
+      "Celebrate the little one in calm, nature-close surroundings – a bright hall for family and friends, your own catering and the option for guests to stay over.",
+    image: "/images/gaard-familie.png",
+    imageAlt: "Familie samlet til barnedåb på Svaleholm Gaard nær Roskilde",
+    jsonLdName: "Barnedåb nær Roskilde",
+    jsonLdDescription:
+      "Barnedåb og navngivningsfest i festsalen på Svaleholm Gaard ved Roskilde – hyggelige rammer med egen catering tilladt og mulighed for overnatning.",
+    breadcrumbLabel: "Barnedåb nær Roskilde",
+    serviceName: "Barnedåb",
+    serviceDescription:
+      "Barnedåb og navngivningsfest i festsalen på Svaleholm Gaard nær Roskilde – plads til familie og venner, egen catering tilladt og mulighed for overnatning.",
+    intro: [
+      {
+        headingDa: "En rolig dag for hele familien",
+        headingEn: "A calm day for the whole family",
+        bodyDa:
+          "En barnedåb eller navngivning er en blid, familiær fejring – og festsalen på Svaleholm Gaard giver netop de rolige, lyse rammer, dagen fortjener. Gården ligger landligt lige uden for Roskilde med have og grønne omgivelser, så der er god plads til både den nærmeste familie og en større flok, og luft til, at børnene kan røre sig.",
+        bodyEn:
+          "A christening or naming celebration is a gentle, family affair – and the hall at Svaleholm Gaard offers exactly the calm, bright setting the day deserves. The farm lies in the countryside just outside Roskilde with a garden and green surroundings, so there's plenty of room for both close family and a larger crowd, and space for the children to move about.",
+      },
+      {
+        headingDa: "Jeres mad, jeres opstilling",
+        headingEn: "Your food, your layout",
+        bodyDa:
+          "I står selv for forplejningen med adgang til køkkenfaciliteter, så dåbsfrokosten kan være præcis, som I ønsker – hjemmelavet, fra en leverandør eller en kombination. Borde og stole stilles frit op, og skal gudfar, mormor eller gæster langvejsfra blive natten over, kan op til 8 enkle værelser tilkøbes. Kontakt os for et uforpligtende tilbud.",
+        bodyEn:
+          "You handle the catering yourselves with access to kitchen facilities, so the christening lunch can be exactly as you wish – homemade, from a supplier or a combination. Tables and chairs are arranged freely, and if godparents, grandparents or guests from afar need to stay the night, up to 8 simple rooms can be added. Contact us for a no-obligation quote.",
+      },
+    ],
+    highlightsDa: [
+      "Lys, rolig festsal til familie og venner",
+      "Have og grønne omgivelser med plads til børnene",
+      "Egen catering tilladt – køkkenfaciliteter til rådighed",
+      "Fri opstilling af borde og stole",
+      "Overnatning kan tilkøbes (fra 650 kr pr. nat)",
+    ],
+    highlightsEn: [
+      "A bright, calm hall for family and friends",
+      "Garden and green surroundings with room for the children",
+      "Your own catering allowed – kitchen facilities available",
+      "Free arrangement of tables and chairs",
+      "Overnight stays can be added (from DKK 650 per night)",
+    ],
+    faqs: [
+      {
+        qDa: "Er festsalen god til en mindre barnedåb?",
+        qEn: "Is the hall suitable for a smaller christening?",
+        aDa: "Ja. Salen kan rumme op til 150 gæster, men egner sig også fint til en mindre, hyggelig dåbsfrokost. Ved leje af salen er der et minimum på 30 gæster.",
+        aEn: "Yes. The hall holds up to 150 guests but also works well for a smaller, cosy christening lunch. When renting the hall there is a minimum of 30 guests.",
+      },
+      {
+        qDa: "Må vi selv stå for dåbsfrokosten?",
+        qEn: "Can we handle the christening lunch ourselves?",
+        aDa: "Ja. Der er køkkenfaciliteter til catering, og I bestemmer selv, om I laver maden, bruger en leverandør eller kombinerer.",
+        aEn: "Yes. There are kitchen facilities for catering, and you decide whether you cook, use a supplier or combine the two.",
+      },
+      FAQ_ROOMS,
+      FAQ_LOCATION,
+    ],
+    relatedSlugs: ["konfirmation-naer-roskilde", "rund-foedselsdag-naer-roskilde", "reception-naer-roskilde"],
+  },
+  {
+    category: "fest",
+    slug: "mindesammenkomst-naer-roskilde",
+    metaTitle: "Mindesammenkomst nær Roskilde | Svaleholm Gaard",
+    metaDescription:
+      "Rolige rammer til mindesammenkomst og begravelseskaffe nær Roskilde. Festsal på Svaleholm Gaard med egen catering og mulighed for overnatning. Kontakt os.",
+    heroEyebrowDa: "Mindesammenkomst nær Roskilde",
+    heroEyebrowEn: "Memorial gatherings near Roskilde",
+    h1Da: "Mindesammenkomst nær Roskilde",
+    h1En: "Memorial gatherings near Roskilde",
+    heroSubDa:
+      "Et stille, værdigt sted at samles efter en bisættelse eller begravelse – rolige rammer på landet tæt på Roskilde, hvor I selv bestemmer forplejning og forløb.",
+    heroSubEn:
+      "A quiet, dignified place to gather after a funeral – calm surroundings in the countryside near Roskilde, where you decide the catering and the pace.",
+    image: "/images/festsal-drapes.jpg",
+    imageAlt: "Rolig, stemningsfuld festsal til mindesammenkomst på Svaleholm Gaard",
+    jsonLdName: "Mindesammenkomst nær Roskilde",
+    jsonLdDescription:
+      "Mindesammenkomst og begravelseskaffe i rolige rammer på Svaleholm Gaard ved Roskilde – egen catering tilladt og mulighed for overnatning.",
+    breadcrumbLabel: "Mindesammenkomst nær Roskilde",
+    serviceName: "Mindesammenkomst",
+    serviceDescription:
+      "Mindesammenkomst og begravelseskaffe i festsalen på Svaleholm Gaard nær Roskilde – rolige, værdige rammer med egen catering og mulighed for overnatning.",
+    intro: [
+      {
+        headingDa: "Rolige rammer til at mindes",
+        headingEn: "Calm surroundings to remember",
+        bodyDa:
+          "Når familien samles efter en bisættelse eller begravelse, er der brug for ro, plads og værdighed. Festsalen på Svaleholm Gaard ligger i stille, landlige omgivelser lige uden for Roskilde – væk fra trafik og travlhed. Her kan I mødes til mindesammenkomst eller begravelseskaffe i rammer, der giver plads til både eftertanke og de gode minder.",
+        bodyEn:
+          "When the family gathers after a funeral, there's a need for calm, space and dignity. The hall at Svaleholm Gaard lies in quiet, rural surroundings just outside Roskilde – away from traffic and bustle. Here you can meet for a memorial gathering or coffee in a setting that leaves room for both reflection and fond memories.",
+      },
+      {
+        headingDa: "Enkelt at arrangere i en svær tid",
+        headingEn: "Simple to arrange at a difficult time",
+        bodyDa:
+          "I bestemmer selv over forplejningen: der er køkkenfaciliteter, så kaffe, kage og mad kan ordnes af jer, en leverandør eller et traktørsted. Salen stilles op efter antal og ønsker, og skal gæster langvejsfra blive natten over, kan op til 8 enkle værelser tilkøbes. Kontakt os, så hjælper vi jer trygt videre.",
+        bodyEn:
+          "You decide on the catering: there are kitchen facilities, so coffee, cake and food can be handled by you, a supplier or a caterer. The hall is arranged to fit the number and your wishes, and if guests from afar need to stay the night, up to 8 simple rooms can be added. Contact us and we'll help you gently from there.",
+      },
+    ],
+    highlightsDa: [
+      "Stille, værdige rammer væk fra trafik",
+      "Fleksibel opstilling efter antal gæster",
+      "Egen catering/traktør tilladt – køkkenfaciliteter til rådighed",
+      "Overnatning kan tilkøbes til gæster langvejsfra",
+      "Landlige omgivelser tæt på Roskilde med nem parkering",
+    ],
+    highlightsEn: [
+      "Quiet, dignified surroundings away from traffic",
+      "Flexible layout for the number of guests",
+      "Your own catering allowed – kitchen facilities available",
+      "Overnight stays can be added for guests from afar",
+      "Rural surroundings near Roskilde with easy parking",
+    ],
+    faqs: [
+      {
+        qDa: "Kan I rumme en mindesammenkomst med både få og mange gæster?",
+        qEn: "Can you host a memorial gathering for both few and many guests?",
+        aDa: "Ja. Salen kan tilpasses alt fra en mindre, intim sammenkomst til op til 150 gæster. Ved leje af salen er der et minimum på 30 gæster.",
+        aEn: "Yes. The hall can be adapted to anything from a smaller, intimate gathering to up to 150 guests. When renting the hall there is a minimum of 30 guests.",
+      },
+      {
+        qDa: "Må vi selv eller en leverandør stå for kaffe og mad?",
+        qEn: "Can we or a supplier handle the coffee and food?",
+        aDa: "Ja. Der er køkkenfaciliteter, og I vælger selv, om I ordner forplejningen, bruger en leverandør eller et traktørsted.",
+        aEn: "Yes. There are kitchen facilities, and you choose whether you handle the catering, use a supplier or a caterer.",
+      },
+      FAQ_LOCATION,
+      FAQ_ROOMS,
+    ],
+    relatedSlugs: ["reception-naer-roskilde", "rund-foedselsdag-naer-roskilde", "konfirmation-naer-roskilde"],
+  },
+  {
+    category: "fest",
+    slug: "julefrokost-naer-roskilde",
+    metaTitle: "Julefrokost med overnatning nær Roskilde | Svaleholm Gaard",
+    metaDescription:
+      "Hold julefrokost i festsalen på Svaleholm Gaard nær Roskilde – egen catering, plads til op til 150 og op til 8 værelser, så ingen skal hjem i nattekulden. Få et tilbud.",
+    heroEyebrowDa: "Julefrokost nær Roskilde",
+    heroEyebrowEn: "Christmas lunches near Roskilde",
+    h1Da: "Julefrokost med overnatning nær Roskilde",
+    h1En: "Christmas lunches with a stay near Roskilde",
+    heroSubDa:
+      "Hold årets julefrokost i festsalen på landet – plads til op til 150, egen catering og op til 8 værelser, så I kan feste trygt og blive til morgenmaden.",
+    heroSubEn:
+      "Hold this year's Christmas lunch in the country hall – room for up to 150, your own catering and up to 8 rooms, so you can celebrate and stay for breakfast.",
+    image: "/images/skaal-toast.png",
+    imageAlt: "Skål og julefrokost i festsalen på Svaleholm Gaard nær Roskilde",
+    jsonLdName: "Julefrokost med overnatning nær Roskilde",
+    jsonLdDescription:
+      "Julefrokost i festsalen på Svaleholm Gaard ved Roskilde – plads til op til 150 gæster, egen catering tilladt og op til 8 værelser til overnatning.",
+    breadcrumbLabel: "Julefrokost nær Roskilde",
+    serviceName: "Julefrokost",
+    serviceDescription:
+      "Julefrokost for firma, venner eller familie i festsalen på Svaleholm Gaard nær Roskilde – egen catering tilladt og mulighed for overnatning i op til 8 værelser.",
+    intro: [
+      {
+        headingDa: "Julefrokost på landet – uden hjemtransporten",
+        headingEn: "A Christmas lunch in the country – without the trip home",
+        bodyDa:
+          "Den bedste julefrokost slutter ikke, fordi nogen skal nå sidste tog. På Svaleholm Gaard kan I holde festen i salen og overnatte bagefter i op til 8 enkle værelser – så ingen behøver at bekymre sig om hjemtransport i nattekulden. Gården ligger landligt tæt på Roskilde med plads til op til 150 gæster, uanset om det er firmaet, vennerne eller familien.",
+        bodyEn:
+          "The best Christmas lunch doesn't end because someone has to catch the last train. At Svaleholm Gaard you can hold the party in the hall and stay afterwards in up to 8 simple rooms – so no one has to worry about getting home in the cold. The farm lies in the countryside near Roskilde with room for up to 150 guests, whether it's the company, friends or family.",
+      },
+      {
+        headingDa: "Egen menu og fri opstilling",
+        headingEn: "Your own menu and a free layout",
+        bodyDa:
+          "I vælger selv julemenuen via køkkenfaciliteterne – det klassiske kolde bord, en cateringleverandør eller jeres egen løsning. Salen stilles op til langborde, buffet eller fest, og I kan vælge time-, aften-, heldags- eller weekendpakke. Kontakt os for et uforpligtende tilbud med eller uden overnatning.",
+        bodyEn:
+          "You choose the Christmas menu via the kitchen facilities – the classic cold table, a caterer or your own solution. The hall is arranged for long tables, a buffet or a party, and you can choose an hourly, evening, full-day or weekend package. Contact us for a no-obligation quote with or without an overnight stay.",
+      },
+    ],
+    highlightsDa: [
+      "Festsal til op til 150 gæster",
+      "Op til 8 værelser – fest uden bekymring om hjemtransport",
+      "Egen julemenu/catering tilladt – køkkenfaciliteter til rådighed",
+      "Time-, aften-, heldags- og weekendpakker",
+      "Landlige rammer tæt på Roskilde med nem parkering",
+    ],
+    highlightsEn: [
+      "A hall for up to 150 guests",
+      "Up to 8 rooms – party without worrying about the trip home",
+      "Your own Christmas menu/catering allowed – kitchen facilities available",
+      "Hourly, evening, full-day and weekend packages",
+      "Country setting near Roskilde with easy parking",
+    ],
+    faqs: [
+      {
+        qDa: "Kan gæsterne overnatte efter julefrokosten?",
+        qEn: "Can guests stay overnight after the Christmas lunch?",
+        aDa: "Ja. Op til 8 enkle værelser kan tilkøbes, så I kan feste og blive til morgenmaden – fra 650 kr pr. værelse pr. nat.",
+        aEn: "Yes. Up to 8 simple rooms can be added, so you can celebrate and stay for breakfast – from DKK 650 per room per night.",
+      },
+      {
+        qDa: "Må vi selv bestemme julemenuen?",
+        qEn: "Can we decide the Christmas menu ourselves?",
+        aDa: "Ja. Der er køkkenfaciliteter til catering, og I vælger selv kok, cateringleverandør eller egen løsning.",
+        aEn: "Yes. There are kitchen facilities for catering, and you choose your own chef, caterer or solution.",
+      },
+      FAQ_LOCATION,
+      FAQ_ROOMS,
+    ],
+    relatedSlugs: ["firmafest-naer-roskilde", "firmatur-naer-roskilde", "reception-naer-roskilde"],
+  },
+  {
+    category: "fest",
+    slug: "polterabend-naer-roskilde",
+    metaTitle: "Polterabend med overnatning nær Roskilde | Svaleholm Gaard",
+    metaDescription:
+      "Saml holdet til polterabend nær Roskilde – privat festsal og op til 8 værelser på Svaleholm Gaard, så I kan feste og sove på samme sted. Få et uforpligtende tilbud.",
+    heroEyebrowDa: "Polterabend nær Roskilde",
+    heroEyebrowEn: "Hen & stag parties near Roskilde",
+    h1Da: "Polterabend med overnatning nær Roskilde",
+    h1En: "Hen & stag parties with a stay near Roskilde",
+    heroSubDa:
+      "Et privat sted, hvor holdet både kan feste og sove – festsal og op til 8 værelser i rolige, landlige rammer tæt på Roskilde.",
+    heroSubEn:
+      "A private place where the group can both party and sleep – a hall and up to 8 rooms in calm, rural surroundings near Roskilde.",
+    image: "/images/bar.jpg",
+    imageAlt: "Bar og festområde til polterabend på Svaleholm Gaard nær Roskilde",
+    jsonLdName: "Polterabend med overnatning nær Roskilde",
+    jsonLdDescription:
+      "Polterabend med egen festsal og overnatning på Svaleholm Gaard ved Roskilde – privat hold-sted med op til 8 værelser og egen catering.",
+    breadcrumbLabel: "Polterabend nær Roskilde",
+    serviceName: "Polterabend",
+    serviceDescription:
+      "Polterabend med privat festsal og overnatning på Svaleholm Gaard nær Roskilde – plads til holdet, egen catering og op til 8 værelser.",
+    intro: [
+      {
+        headingDa: "Fest og overnatning samme sted",
+        headingEn: "Party and sleep in one place",
+        bodyDa:
+          "De fleste polterabends ender med spørgsmålet: hvor skal vi sove? På Svaleholm Gaard slipper I for det. Her har holdet en privat festsal og op til 8 enkle værelser på samme adresse, i rolige landlige omgivelser tæt på Roskilde. I kan holde jeres eget program – middag, lege og fest – uden at skulle videre til et andet sted bagefter.",
+        bodyEn:
+          "Most hen and stag parties end with the question: where do we sleep? At Svaleholm Gaard you avoid that. Here the group has a private hall and up to 8 simple rooms at the same address, in calm rural surroundings near Roskilde. You can run your own programme – dinner, games and party – without having to move on somewhere else afterwards.",
+      },
+      {
+        headingDa: "Jeres eget rum til dagen",
+        headingEn: "Your own space for the day",
+        bodyDa:
+          "I står selv for mad og drikke med adgang til køkkenfaciliteter, og salen er jeres at indrette. Det er et roligt, privat alternativ til byens barer – god plads, natur og ingen naboer tæt på. Overnatning starter ved 650 kr pr. værelse pr. nat, og der er nem parkering. Kontakt os for et uforpligtende tilbud til holdet.",
+        bodyEn:
+          "You handle the food and drink yourselves with access to kitchen facilities, and the hall is yours to arrange. It's a calm, private alternative to the city's bars – plenty of space, nature and no close neighbours. Overnight stays start at DKK 650 per room per night, and there's easy parking. Contact us for a no-obligation quote for the group.",
+      },
+    ],
+    highlightsDa: [
+      "Privat festsal – holdet for sig selv",
+      "Op til 8 værelser: fest og sov samme sted",
+      "Egen catering/drikkevarer tilladt – køkkenfaciliteter til rådighed",
+      "Rolige, private omgivelser uden naboer tæt på",
+      "Tæt på Roskilde med nem parkering",
+    ],
+    highlightsEn: [
+      "A private hall – the group to yourselves",
+      "Up to 8 rooms: party and sleep in one place",
+      "Your own catering/drinks allowed – kitchen facilities available",
+      "Calm, private surroundings with no close neighbours",
+      "Close to Roskilde with easy parking",
+    ],
+    faqs: [
+      {
+        qDa: "Kan holdet overnatte efter polterabenden?",
+        qEn: "Can the group stay overnight after the party?",
+        aDa: "Ja. Der er op til 8 enkle værelser med fælles køkken, bad og opholdsrum, så hele holdet kan blive på stedet – fra 650 kr pr. værelse pr. nat.",
+        aEn: "Yes. There are up to 8 simple rooms with a shared kitchen, bath and lounge, so the whole group can stay on site – from DKK 650 per room per night.",
+      },
+      {
+        qDa: "Tilbyder I aktiviteter til polterabenden?",
+        qEn: "Do you offer activities for the party?",
+        aDa: "Vi tilbyder stedet – en privat festsal, overnatning og rolige omgivelser. Aktiviteter og underholdning arrangerer I selv, så dagen bliver jeres egen.",
+        aEn: "We offer the venue – a private hall, overnight stays and calm surroundings. You arrange activities and entertainment yourselves, so the day is your own.",
+      },
+      FAQ_LOCATION,
+      FAQ_CHECKIN,
+    ],
+    relatedSlugs: ["bryllup-naer-roskilde", "firmatur-naer-roskilde", "rund-foedselsdag-naer-roskilde"],
+  },
+  {
+    category: "fest",
+    slug: "reception-naer-roskilde",
+    metaTitle: "Reception & jubilæum nær Roskilde | Svaleholm Gaard",
+    metaDescription:
+      "Hold reception eller jubilæum i festsalen på Svaleholm Gaard nær Roskilde – fleksibel sal til op til 150, egen catering og mulighed for overnatning. Få et tilbud.",
+    heroEyebrowDa: "Reception & jubilæum nær Roskilde",
+    heroEyebrowEn: "Receptions & anniversaries near Roskilde",
+    h1Da: "Reception & jubilæum nær Roskilde",
+    h1En: "Receptions & anniversaries near Roskilde",
+    heroSubDa:
+      "Rammer til reception, jubilæum og mærkedage – en fleksibel festsal til både stående reception og siddende fejring, i rolige omgivelser nær Roskilde.",
+    heroSubEn:
+      "A setting for receptions, anniversaries and milestones – a flexible hall for both a standing reception and a seated celebration, in calm surroundings near Roskilde.",
+    image: "/images/festsal-terrasse.jpg",
+    imageAlt: "Festsal med terrasse til reception på Svaleholm Gaard nær Roskilde",
+    jsonLdName: "Reception & jubilæum nær Roskilde",
+    jsonLdDescription:
+      "Reception og jubilæum i festsalen på Svaleholm Gaard ved Roskilde – fleksibel sal til op til 150 gæster, egen catering tilladt og mulighed for overnatning.",
+    breadcrumbLabel: "Reception & jubilæum nær Roskilde",
+    serviceName: "Reception & jubilæum",
+    serviceDescription:
+      "Reception og jubilæum i festsalen på Svaleholm Gaard nær Roskilde – fleksibel sal til stående reception eller siddende fejring, egen catering og mulighed for overnatning.",
+    intro: [
+      {
+        headingDa: "Fleksible rammer til receptionen",
+        headingEn: "A flexible setting for the reception",
+        bodyDa:
+          "En reception eller et jubilæum – personligt eller for virksomheden – kræver en sal, der kan tilpasses. Festsalen på Svaleholm Gaard kan stilles op til alt fra stående reception med drinks og snacks til siddende fejring med tale og middag. Gården ligger landligt tæt på Roskilde med have og grønne omgivelser til velkomst og billeder.",
+        bodyEn:
+          "A reception or anniversary – personal or for the company – calls for a hall that can adapt. The hall at Svaleholm Gaard can be arranged for anything from a standing reception with drinks and snacks to a seated celebration with speeches and dinner. The farm lies in the countryside near Roskilde with a garden and green surroundings for the welcome and photos.",
+      },
+      {
+        headingDa: "Jeres program, jeres forplejning",
+        headingEn: "Your programme, your catering",
+        bodyDa:
+          "I bestemmer selv forløbet og forplejningen via køkkenfaciliteterne, og salen rummer op til 150 gæster. Skal gæster langvejsfra blive natten over, kan op til 8 værelser tilkøbes. Vælg time-, aften-, heldags- eller weekendpakke, og kontakt os for et uforpligtende tilbud til jeres reception eller jubilæum.",
+        bodyEn:
+          "You decide the flow and the catering via the kitchen facilities, and the hall holds up to 150 guests. If guests from afar need to stay the night, up to 8 rooms can be added. Choose an hourly, evening, full-day or weekend package, and contact us for a no-obligation quote for your reception or anniversary.",
+      },
+    ],
+    highlightsDa: [
+      "Fleksibel sal: stående reception eller siddende fejring",
+      "Plads til op til 150 gæster",
+      "Have og grønne omgivelser til velkomst og billeder",
+      "Egen catering tilladt – køkkenfaciliteter til rådighed",
+      "Overnatning kan tilkøbes (fra 650 kr pr. nat)",
+    ],
+    highlightsEn: [
+      "A flexible hall: standing reception or seated celebration",
+      "Room for up to 150 guests",
+      "Garden and green surroundings for the welcome and photos",
+      "Your own catering allowed – kitchen facilities available",
+      "Overnight stays can be added (from DKK 650 per night)",
+    ],
+    faqs: [
+      {
+        qDa: "Kan salen bruges til en stående reception?",
+        qEn: "Can the hall be used for a standing reception?",
+        aDa: "Ja. Salen stilles op efter jeres program – stående reception, buffet eller siddende middag – med plads til op til 150 gæster.",
+        aEn: "Yes. The hall is arranged to fit your programme – a standing reception, a buffet or a seated dinner – with room for up to 150 guests.",
+      },
+      {
+        qDa: "Hvilke pakker kan vi vælge?",
+        qEn: "What packages can we choose?",
+        aDa: "I kan leje salen pr. time, som aften-, heldags- eller weekendpakke. Se priser og beregn jeres arrangement på prissiden.",
+        aEn: "You can rent the hall by the hour, or as an evening, full-day or weekend package. See prices and calculate your event on the pricing page.",
+      },
+      FAQ_LOCATION,
+      FAQ_ROOMS,
+    ],
+    relatedSlugs: ["bryllup-naer-roskilde", "rund-foedselsdag-naer-roskilde", "firmafest-naer-roskilde"],
+  },
+  {
+    category: "fest",
+    slug: "firmatur-naer-roskilde",
+    metaTitle: "Firmatur & firmaarrangement med overnatning nær Roskilde",
+    metaDescription:
+      "Hold firmatur eller firmaarrangement med overnatning nær Roskilde. Svaleholm Gaard har festsal til op til 150 og op til 8 værelser i rolige, landlige rammer. Få et tilbud.",
+    heroEyebrowDa: "Firmatur nær Roskilde",
+    heroEyebrowEn: "Company retreats near Roskilde",
+    h1Da: "Firmatur & firmaarrangement med overnatning nær Roskilde",
+    h1En: "Company retreats with a stay near Roskilde",
+    heroSubDa:
+      "En rolig base til firmaturen – festsal til samling og op til 8 værelser til overnatning, i naturnære rammer tæt på Roskilde.",
+    heroSubEn:
+      "A calm base for the company trip – a hall to gather in and up to 8 rooms to stay in, in nature-close surroundings near Roskilde.",
+    image: "/images/lounge.jpg",
+    imageAlt: "Lounge og mødeområde til firmatur på Svaleholm Gaard nær Roskilde",
+    jsonLdName: "Firmatur & firmaarrangement med overnatning nær Roskilde",
+    jsonLdDescription:
+      "Firmatur og firmaarrangement med overnatning på Svaleholm Gaard ved Roskilde – festsal til op til 150 gæster og op til 8 værelser i landlige rammer.",
+    breadcrumbLabel: "Firmatur nær Roskilde",
+    serviceName: "Firmatur",
+    serviceDescription:
+      "Firmatur og firmaarrangement med overnatning på Svaleholm Gaard nær Roskilde – festsal til samling og op til 8 værelser, i rolige landlige rammer.",
+    intro: [
+      {
+        headingDa: "En rolig base for firmaturen",
+        headingEn: "A calm base for the company trip",
+        bodyDa:
+          "Skal virksomheden samles over flere dage, er Svaleholm Gaard en rolig base tæt på Roskilde. I har festsalen til fælles samling, middag og hygge, og op til 8 enkle værelser til overnatning – alt sammen på samme landlige adresse. De grønne omgivelser giver luft til pauser og uformelt samvær uden for mødet.",
+        bodyEn:
+          "If the company is gathering over several days, Svaleholm Gaard is a calm base near Roskilde. You have the hall for gathering together, dinner and socialising, and up to 8 simple rooms for the overnight stay – all at the same rural address. The green surroundings offer space for breaks and informal time together outside the meeting.",
+      },
+      {
+        headingDa: "Enkelt, fleksibelt – stedet, ikke pakken",
+        headingEn: "Simple, flexible – the venue, not the package",
+        bodyDa:
+          "Svaleholm leverer stedet: en fleksibel sal, overnatning og ro. I står selv for forplejning via køkkenfaciliteterne og for program og eventuelle aktiviteter, så turen bliver præcis jeres. Det gør det til et enkelt, prisvenligt alternativ til de store kursuscentre. Kontakt os for et uforpligtende tilbud til virksomheden.",
+        bodyEn:
+          "Svaleholm provides the venue: a flexible hall, overnight stays and calm. You handle the catering via the kitchen facilities and the programme and any activities yourselves, so the trip is exactly yours. That makes it a simple, affordable alternative to the big conference centres. Contact us for a no-obligation quote for your company.",
+      },
+    ],
+    highlightsDa: [
+      "Festsal til fælles samling og middag (op til 150)",
+      "Op til 8 værelser til overnatning på stedet",
+      "Grønne omgivelser til pauser og uformelt samvær",
+      "Egen catering tilladt – køkkenfaciliteter til rådighed",
+      "Prisvenligt alternativ til store kursuscentre nær Roskilde",
+    ],
+    highlightsEn: [
+      "A hall for gathering and dinner (up to 150)",
+      "Up to 8 rooms for staying on site",
+      "Green surroundings for breaks and informal time together",
+      "Your own catering allowed – kitchen facilities available",
+      "An affordable alternative to large conference centres near Roskilde",
+    ],
+    faqs: [
+      {
+        qDa: "Kan medarbejderne overnatte under firmaturen?",
+        qEn: "Can staff stay overnight during the company trip?",
+        aDa: "Ja. Der er op til 8 enkle værelser med fælles køkken, bad og opholdsrum – fra 650 kr pr. værelse pr. nat, så I kan samles og overnatte samme sted.",
+        aEn: "Yes. There are up to 8 simple rooms with a shared kitchen, bath and lounge – from DKK 650 per room per night, so you can gather and stay in one place.",
+      },
+      {
+        qDa: "Tilbyder I AV-udstyr og teambuilding-aktiviteter?",
+        qEn: "Do you offer AV equipment and team-building activities?",
+        aDa: "Svaleholm leverer stedet – festsal, overnatning og rolige omgivelser. Program, aktiviteter og eventuelt AV-udstyr arrangerer I selv, så turen bliver fleksibel og jeres egen.",
+        aEn: "Svaleholm provides the venue – a hall, overnight stays and calm surroundings. You arrange the programme, activities and any AV equipment yourselves, so the trip stays flexible and your own.",
+      },
+      FAQ_LOCATION,
+      FAQ_ROOMS,
+    ],
+    relatedSlugs: ["firmafest-naer-roskilde", "julefrokost-naer-roskilde", "polterabend-naer-roskilde"],
+  },
+
+  // ─── Batch 2 · overnatning (byer & seværdigheder) ─────────────────────────
+  {
+    category: "overnatning",
+    slug: "naer-sagnlandet-lejre",
+    metaTitle: "Overnatning nær Sagnlandet Lejre | Svaleholm Gaard",
+    metaDescription:
+      "Besøg Sagnlandet Lejre med familien og overnat landligt på Svaleholm Gaard – op til 8 enkle værelser fra 650 kr pr. nat med fælles køkken og nem selvcheck-in.",
+    heroEyebrowDa: "Overnatning nær Sagnlandet Lejre",
+    heroEyebrowEn: "Stay near the Land of Legends",
+    h1Da: "Overnatning nær Sagnlandet Lejre",
+    h1En: "Stay near the Land of Legends (Sagnlandet Lejre)",
+    heroSubDa:
+      "Et børnevenligt, naturnært udgangspunkt for en dag i Sagnlandet Lejre – enkle værelser med fælles køkken tæt på Roskilde og fleksibel selvcheck-in.",
+    heroSubEn:
+      "A family-friendly, nature-close base for a day at the Land of Legends – simple rooms with a shared kitchen near Roskilde and flexible self check-in.",
+    image: "/images/natur-3.jpg",
+    imageAlt: "Natur og skov nær Svaleholm Gaard og Sagnlandet Lejre",
+    jsonLdName: "Overnatning nær Sagnlandet Lejre",
+    jsonLdDescription:
+      "Enkle værelser til overnatning på Svaleholm Gaard i landlige omgivelser tæt på Sagnlandet Lejre og Roskilde på Sjælland.",
+    breadcrumbLabel: "Overnatning nær Sagnlandet Lejre",
+    intro: [
+      {
+        headingDa: "Perfekt til familiens oplevelsesdag",
+        headingEn: "Perfect for a family day out",
+        bodyDa:
+          "Sagnlandet Lejre er et stort oplevelses- og historieland, hvor familier går på opdagelse i jernalder, vikingetid og stenalder. En dag dér trækker ofte ud, og så er det rart ikke at skulle køre langt bagefter. Svaleholm Gaard ligger i de samme grønne omgivelser tæt på Roskilde og er et børnevenligt, naturnært sted at overnatte før eller efter besøget.",
+        bodyEn:
+          "The Land of Legends in Lejre is a large open-air history park where families explore the Iron Age, the Viking Age and the Stone Age. A day there often runs long, and then it's nice not to have to drive far afterwards. Svaleholm Gaard lies in the same green surroundings near Roskilde and is a family-friendly, nature-close place to stay before or after the visit.",
+      },
+      {
+        headingDa: "Enkelt og billigt for familien",
+        headingEn: "Simple and affordable for the family",
+        bodyDa:
+          "Med op til 8 enkle værelser, fælles køkken, fælles bad og et opholdsrum er der god plads til familien eller flere familier sammen. Det fælles køkken gør det nemt at ordne aftensmad og madpakker, og prisen fra 650 kr pr. nat holder budgettet nede. Selvcheck-in med dørkode betyder, at I ankommer, når dagen tillader det.",
+        bodyEn:
+          "With up to 8 simple rooms, a shared kitchen, shared baths and a lounge, there's plenty of room for the family or several families together. The shared kitchen makes it easy to sort out dinner and packed lunches, and the price from DKK 650 per night keeps the budget down. Self check-in with a door code means you arrive whenever the day allows.",
+      },
+    ],
+    highlightsDa: [
+      "Børnevenligt udgangspunkt for Sagnlandet Lejre",
+      "Op til 8 enkle værelser – fra 650 kr pr. nat inkl. moms",
+      "Fælles køkken til aftensmad og madpakker",
+      "Nem digital selvcheck-in via dørkode",
+      "Grønne, rolige omgivelser tæt på Roskilde",
+    ],
+    highlightsEn: [
+      "Family-friendly base for the Land of Legends",
+      "Up to 8 simple rooms – from DKK 650 per night incl. VAT",
+      "Shared kitchen for dinner and packed lunches",
+      "Easy digital self check-in via door code",
+      "Green, peaceful surroundings close to Roskilde",
+    ],
+    faqs: [FAQ_LOCATION, FAQ_ROOMS, FAQ_CHECKIN],
+    relatedSlugs: ["naer-lejre", "naer-vikingeskibsmuseet", "naer-roskilde-domkirke"],
+  },
+  {
+    category: "overnatning",
+    slug: "naer-frederikssund",
+    metaTitle: "Overnatning nær Frederikssund | Svaleholm Gaard ved Roskilde",
+    metaDescription:
+      "Landlig overnatning mellem Roskilde og Frederikssund. Svaleholm Gaard har op til 8 enkle værelser fra 650 kr pr. nat med fælles køkken, bad og nem selvcheck-in.",
+    heroEyebrowDa: "Overnatning nær Frederikssund",
+    heroEyebrowEn: "Stay near Frederikssund",
+    h1Da: "Overnatning nær Frederikssund",
+    h1En: "Stay near Frederikssund",
+    heroSubDa:
+      "Enkle, hyggelige værelser i landlige omgivelser på vejen mellem Roskilde og Frederikssund – et roligt, billigt sted at overnatte på Sjælland.",
+    heroSubEn:
+      "Simple, cosy rooms in rural surroundings on the road between Roskilde and Frederikssund – a quiet, affordable place to stay on Zealand.",
+    image: "/images/natur-4.jpg",
+    imageAlt: "Landskab og natur nær Svaleholm Gaard mod Frederikssund",
+    jsonLdName: "Overnatning nær Frederikssund",
+    jsonLdDescription:
+      "Enkle værelser til overnatning på Svaleholm Gaard i landlige omgivelser mellem Roskilde og Frederikssund på Sjælland.",
+    breadcrumbLabel: "Overnatning nær Frederikssund",
+    intro: [
+      {
+        headingDa: "På vejen mod Frederikssund og fjorden",
+        headingEn: "On the road towards Frederikssund and the fjord",
+        bodyDa:
+          "Svaleholm Gaard ligger på Frederiksborgvej lige uden for Roskilde – på korridoren nordpå mod Frederikssund, Hornsherred og fjordlandet. Det gør gården til et praktisk, landligt sted at overnatte, uanset om ærindet er familiebesøg, arbejde eller en tur i det nordsjællandske fjordlandskab. I bor roligt og naturnært, men med nem adgang til vejen.",
+        bodyEn:
+          "Svaleholm Gaard sits on Frederiksborgvej just outside Roskilde – on the corridor north towards Frederikssund, Hornsherred and the fjord country. That makes it a practical, rural place to stay, whether your errand is a family visit, work or a trip into the North Zealand fjord landscape. You stay calmly and close to nature, yet with easy road access.",
+      },
+      {
+        headingDa: "Enkelt ophold med plads til flere",
+        headingEn: "A simple stay with room for several",
+        bodyDa:
+          "Der er op til 8 enkle værelser uden eget bad, med fire fælles bad og toiletter, et fælles køkken og et opholdsrum. Det holder prisen nede fra 650 kr pr. nat og gør det nemt at være familie eller gruppe samlet. Digital selvcheck-in giver fleksibel ankomst, og der er nem parkering ved gården.",
+        bodyEn:
+          "There are up to 8 simple rooms without a private bath, with four shared baths and toilets, a shared kitchen and a lounge. That keeps the price down from DKK 650 per night and makes it easy to stay together as a family or group. Digital self check-in allows a flexible arrival, and there's easy parking at the farm.",
+      },
+    ],
+    highlightsDa: [
+      "På korridoren mod Frederikssund og fjordlandet",
+      "Op til 8 enkle værelser – fra 650 kr pr. nat inkl. moms",
+      "Fælles køkken, bad og opholdsrum",
+      "Nem digital selvcheck-in via dørkode",
+      "Landlige, rolige omgivelser tæt på Roskilde",
+    ],
+    highlightsEn: [
+      "On the corridor towards Frederikssund and the fjord country",
+      "Up to 8 simple rooms – from DKK 650 per night incl. VAT",
+      "Shared kitchen, bath and lounge",
+      "Easy digital self check-in via door code",
+      "Rural, peaceful surroundings close to Roskilde",
+    ],
+    faqs: [FAQ_LOCATION, FAQ_ROOMS, FAQ_CHECKIN],
+    relatedSlugs: ["naer-holbaek", "naer-lejre", "naer-roskilde-domkirke"],
+  },
 ];
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
