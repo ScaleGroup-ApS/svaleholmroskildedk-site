@@ -5,6 +5,7 @@ import { Footer } from "~/components/Footer";
 import { SvaleFlock } from "~/components/Svale";
 import { JsonLd } from "~/components/JsonLd";
 import { FaqSection, type FaqItem } from "~/components/Faq";
+import { LandingLinksSection } from "~/components/LandingLinks";
 import { EventPakkeBeregnerSection } from "~/components/Prisberegner";
 import { useT } from "~/lib/i18n";
 import { pageMeta } from "~/lib/seo";
@@ -198,6 +199,17 @@ export default function Tjenester() {
             ))}
           </div>
         </section>
+
+        <LandingLinksSection
+          category="fest"
+          eyebrowDa="Fester & mærkedage"
+          eyebrowEn="Celebrations & occasions"
+          headingDa="Fest "
+          headingEn="Celebrations "
+          accentDa="nær Roskilde"
+          accentEn="near Roskilde"
+          background="#0B110E"
+        />
 
         <FaqSection items={TJENESTER_FAQ} eyebrowDa="Fest & events" eyebrowEn="Celebrations & events" />
       </main>

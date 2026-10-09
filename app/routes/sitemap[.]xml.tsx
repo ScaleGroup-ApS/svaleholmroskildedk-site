@@ -6,6 +6,7 @@
 import type { Route } from "./+types/sitemap[.]xml";
 import { getPages, getPosts } from "~/lib/wp-api";
 import { SITE_URL } from "~/lib/site";
+import { landingPagePaths } from "~/lib/landingPages";
 
 export async function loader(_args: Route.LoaderArgs) {
   // Always use the canonical production origin so the sitemap doesn't depend on
@@ -43,6 +44,12 @@ export async function loader(_args: Route.LoaderArgs) {
   ];
   for (const s of STATIC_PATHS) {
     urls.push({ loc: `${siteUrl}${s.path}`, lastmod: today, priority: s.priority, changefreq: s.changefreq });
+  }
+
+  // Local SEO/GEO landing pages (/overnatning/* and /fest/*). Generated from
+  // app/lib/landingPages.ts, so new entries appear here automatically.
+  for (const path of landingPagePaths()) {
+    urls.push({ loc: `${siteUrl}${path}`, lastmod: today, priority: "0.8", changefreq: "weekly" });
   }
 
   // Pages

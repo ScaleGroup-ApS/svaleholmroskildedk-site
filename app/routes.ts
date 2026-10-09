@@ -9,6 +9,11 @@ export default [
   route("inspiration", "routes/inspiration.tsx"),
   route("galleri", "routes/galleri.tsx"),
   route("kontakt", "routes/kontakt.tsx"),
+  // Local SEO/GEO landing pages (data-driven in app/lib/landingPages.ts).
+  // Must stay above the "*" catch-all, or they'd fall through to the WordPress
+  // slug lookup and 404. Unknown slugs 404 via each route's loader.
+  route("overnatning/:slug", "routes/overnatning.$slug.tsx"),
+  route("fest/:slug", "routes/fest.$slug.tsx"),
   // The kontakt action redirects here on success. Without this entry /tak fell
   // through to the "*" catch-all, which looks for a WordPress page of that
   // slug and 404s — so every successful enquiry landed on a 404.

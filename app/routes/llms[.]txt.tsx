@@ -6,8 +6,14 @@
  */
 import type { Route } from "./+types/llms[.]txt";
 import { SITE_URL, SITE_NAME, NAP, PRICE_RANGE, MAX_GUESTS, NUMBER_OF_ROOMS, SAME_AS } from "~/lib/site";
+import { LANDING_PAGES, landingPagePath } from "~/lib/landingPages";
 
 export function loader(_args: Route.LoaderArgs) {
+  const lodging = LANDING_PAGES.filter((p) => p.category === "overnatning");
+  const events = LANDING_PAGES.filter((p) => p.category === "fest");
+  const lpLine = (p: (typeof LANDING_PAGES)[number]) =>
+    `- [${p.jsonLdName}](${SITE_URL}${landingPagePath(p)})`;
+
   const body = `# ${SITE_NAME}
 
 > Historisk festgård og overnatningssted på landet tæt på Roskilde på Sjælland.
@@ -49,6 +55,14 @@ ${SAME_AS.map((u) => `- Profil: ${u}`).join("\n")}
 - [Inspiration](${SITE_URL}/inspiration): Idéer til, hvordan gården kan bruges + FAQ.
 - [Galleri](${SITE_URL}/galleri): Billeder af festsal, gård, ophold og natur.
 - [Kontakt](${SITE_URL}/kontakt): Kontaktoplysninger og forespørgselsformular.
+
+## Overnatning i nærområdet (område & seværdigheder)
+
+${lodging.map(lpLine).join("\n")}
+
+## Fest & mærkedage (anledninger)
+
+${events.map(lpLine).join("\n")}
 
 ## Ofte stillede spørgsmål
 
