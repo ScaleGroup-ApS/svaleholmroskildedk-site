@@ -4,6 +4,7 @@ import { Footer } from "~/components/Footer";
 import { SvaleFlock } from "~/components/Svale";
 import { JsonLd } from "~/components/JsonLd";
 import { FaqSection, type FaqItem } from "~/components/Faq";
+import { LandingLinksSection } from "~/components/LandingLinks";
 import { PrisberegnerHotelSection } from "~/components/Prisberegner";
 import { useT } from "~/lib/i18n";
 import { pageMeta } from "~/lib/seo";
@@ -253,6 +254,16 @@ export default function Vaerelser() {
             </div>
           </div>
         </section>
+        <LandingLinksSection
+          category="overnatning"
+          eyebrowDa="Overnatning i nærområdet"
+          eyebrowEn="Stays in the area"
+          headingDa="Overnatning "
+          headingEn="Stays "
+          accentDa="nær Roskilde"
+          accentEn="near Roskilde"
+        />
+
         <FaqSection items={VAERELSER_FAQ} eyebrowDa="Ophold & overnatning" eyebrowEn="Stay & overnight" />
       </main>
       <Footer siteName="Svaleholm Roskilde" />
