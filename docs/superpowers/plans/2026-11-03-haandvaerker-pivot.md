@@ -282,10 +282,31 @@ relatedSlugs: ["mandskabsindkvartering-roskilde","hele-huset-til-sjak","naer-fre
 ```
 Intro brief: (1) for projects running weeks/months — a stable base near the site; (2) tailored long-stay agreement, 650 kr/nat baseline min. 4 nætter, invoicing, self check-in.
 
-- [ ] **Step 6: Typecheck**
+- [ ] **Step 5b: Wire up `usecase` routing + retarget `LandingPageView`**
 
-Run: `npm run typecheck`
-Expected: PASS. (Type errors here will also flag any schema code in Task 4 still referencing `"fest"` — that is fixed in Task 4; if typecheck fails only on `schema.ts`/`llms`, proceed and let Task 4/6 resolve, otherwise fix the data file.)
+Narrowing `LandingCategory` to `"overnatning" | "usecase"` breaks `app/components/LandingPageView.tsx`, which branches on `"fest"`. Update it and add a route so `usecase` pages are reachable.
+
+1. `app/lib/landingPages.ts` — `landingPagePath`: map `usecase` → `/til-projektet/${slug}`, keep `overnatning` → `/overnatning/${slug}`:
+   ```ts
+   export function landingPagePath(p: Pick<LandingPage, "category" | "slug">): string {
+     const prefix = p.category === "usecase" ? "til-projektet" : "overnatning";
+     return `/${prefix}/${p.slug}`;
+   }
+   ```
+2. Create `app/routes/til-projektet.$slug.tsx` — mirror `overnatning.$slug.tsx` but `findLandingPage("usecase", params.slug)` (no redirect check needed; usecase slugs are all new). Same meta/loader/component shape.
+3. `app/routes.ts` — register `route("til-projektet/:slug", "routes/til-projektet.$slug.tsx"),` directly below the `overnatning/:slug` line (above the `*` catch-all).
+4. `app/components/LandingPageView.tsx` — replace every `"fest"` branch with `"usecase"`:
+   - Import `haandvaerkerServiceNodes` instead of `eventServiceNodes`.
+   - `buildJsonLd`: breadcrumb 2nd crumb for non-overnatning → `{ name: "Håndværkerindkvartering", path: "/indkvartering-haandvaerkere" }`; the service branch → `haandvaerkerServiceNodes([{ name: page.serviceName, description: page.serviceDescription }])`.
+   - `pillarHref`/`pillarLabel`: non-overnatning → `/indkvartering-haandvaerkere`, label `t("Se håndværkerindkvartering","See tradesperson lodging")`.
+   - Intro CTA button label: non-overnatning → `t("Få et tilbud til sjakket","Get a quote for your crew")`.
+   - "Se også" heading non-overnatning → `t("indkvartering til projektet","lodging for the project")`.
+   - `FaqSection` eyebrow non-overnatning → `"Til projektet"` / `"For the project"`.
+   - Bottom CTA section (currently "Lad os fejre sammen") → pivot to håndværker: eyebrow `t("Klar til at booke til sjakket?","Ready to book for the crew?")`, H2 `t("Lad os finde en ","Let's find an ")`+accent `t("aftale","agreement")`, body a B2B line (quote by crew size/period, invoicing — confirmed facts only). Keep phone CTA. This section renders on ALL landing pages, so it must be de-evented here.
+
+- [ ] **Step 6: Typecheck + build**
+
+Run: `npm run typecheck` → PASS, then `npm run build` → PASS. (With Task 4 already merged, schema exports align; `eventServiceNodes` is no longer imported by `LandingPageView` after this task — it remains only in `priser.tsx`/`tjenester.tsx` until Tasks 10/11.)
 
 - [ ] **Step 7: Grep assertions**
 
