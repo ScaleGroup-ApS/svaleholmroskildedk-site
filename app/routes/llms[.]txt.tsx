@@ -5,23 +5,20 @@
  * key pages, prices, FAQ). Emerging convention for AI answer engines (GEO).
  */
 import type { Route } from "./+types/llms[.]txt";
-import { SITE_URL, SITE_NAME, NAP, PRICE_RANGE, MAX_GUESTS, NUMBER_OF_ROOMS, SAME_AS } from "~/lib/site";
-import { LANDING_PAGES, landingPagePath } from "~/lib/landingPages";
+import { SITE_URL, SITE_NAME, NAP, NIGHTLY_PRICE, MIN_NIGHTS, NUMBER_OF_ROOMS, SAME_AS } from "~/lib/site";
+import { landingPagesByCategory, landingPagePath } from "~/lib/landingPages";
 
 export function loader(_args: Route.LoaderArgs) {
-  const lodging = LANDING_PAGES.filter((p) => p.category === "overnatning");
-  // "fest" is no longer a LandingCategory (Task 2 retargeted the data layer to
-  // håndværker intent); no entries match this literal, so this list stays
-  // empty. Left as-is pending the Task 10/11 rewrite of this file's content.
-  const events = LANDING_PAGES.filter((p) => (p.category as string) === "fest");
-  const lpLine = (p: (typeof LANDING_PAGES)[number]) =>
+  const lodging = landingPagesByCategory("overnatning");
+  const usecases = landingPagesByCategory("usecase");
+  const lpLine = (p: (typeof lodging)[number]) =>
     `- [${p.jsonLdName}](${SITE_URL}${landingPagePath(p)})`;
 
   const body = `# ${SITE_NAME}
 
-> Historisk festgård og overnatningssted på landet tæt på Roskilde på Sjælland.
-> Festsal til bryllup og fejring (op til ${MAX_GUESTS} gæster) og ${NUMBER_OF_ROOMS} enkle
-> værelser til overnatning. Alle priser er inkl. moms.
+> Indkvartering til håndværkere på bygge- og renoveringsprojekter nær Roskilde på
+> Sjælland. Op til ${NUMBER_OF_ROOMS} enkle værelser eller hele huset til ét sjak. Fælles køkken,
+> fakturabetaling mod CVR, nem selvcheck-in. ${NIGHTLY_PRICE} kr pr. nat inkl. moms, min. ${MIN_NIGHTS} nætter.
 
 ## Kontakt (NAP)
 
@@ -34,46 +31,50 @@ ${SAME_AS.map((u) => `- Profil: ${u}`).join("\n")}
 
 ## Det tilbyder vi
 
-- Festsal til bryllup, runde fødselsdage, konfirmation, barnedåb, jubilæum,
-  firmaevent, julefrokost og børnefødselsdage. Plads til op til ${MAX_GUESTS} gæster
-  (minimum 30 ved leje af sal). Egen catering er tilladt; køkkenfaciliteter er til rådighed.
-- Overnatning i op til ${NUMBER_OF_ROOMS} enkle værelser uden eget bad, med 4 fælles bad
-  og toiletter, fælles køkken og fælles opholdsrum. Nem selvcheck-in via dørkode.
+- Indkvartering til håndværkere og mandskab på projekt nær Roskilde: op til
+  ${NUMBER_OF_ROOMS} enkle værelser med fælles køkken, 4 fælles bad og toiletter samt
+  fælles opholdsrum.
+- Hele huset kan lejes eksklusivt til ét firmas sjak – vi laver en skræddersyet
+  aftale ud fra antal mand og periode.
+- Nem digital selvcheck-in via dørkode, så sjakket kan ankomme og rejse
+  fleksibelt.
+- Fakturabetaling: vi fakturerer virksomheden direkte mod CVR, så
+  administrationen er enkel for byggelederen.
 
-## Priser (inkl. moms, vejledende)
+## Priser
 
-- Festsal pr. time: fra 1.800 kr
-- Festsal, aften (kl. 17–24): 9.000 kr
-- Festsal, heldag (kl. 9–24): 15.000 kr
-- Festsal, weekend (fre–søn): 26.000 kr
-- Overnatning: 650 kr pr. værelse pr. nat
-- Samlet prisinterval: ${PRICE_RANGE}
+- ${NIGHTLY_PRICE} kr pr. nat inkl. moms, minimum ${MIN_NIGHTS} nætter.
+- Ved leje af hele huset eller længere ophold laver vi en skræddersyet aftale
+  ud fra antal mand og periode.
 
 ## Vigtige sider
 
-- [Forside](${SITE_URL}/): Overblik over ophold og fejring.
-- [Fest & events](${SITE_URL}/tjenester): Bryllup, fest, konfirmation, firmaevent i festsalen.
-- [Ophold & overnatning](${SITE_URL}/vaerelser): Enkle værelser fra 650 kr pr. nat.
-- [Priser & booking](${SITE_URL}/priser): Prisberegner for festsal og overnatning.
-- [Inspiration](${SITE_URL}/inspiration): Idéer til, hvordan gården kan bruges + FAQ.
-- [Galleri](${SITE_URL}/galleri): Billeder af festsal, gård, ophold og natur.
+- [Forside](${SITE_URL}/): Overblik over håndværkerindkvartering nær Roskilde.
+- [Indkvartering til håndværkere](${SITE_URL}/indkvartering-haandvaerkere): Hvad vi tilbyder sjak og entreprenører.
+- [Værelser](${SITE_URL}/vaerelser): Enkle værelser fra ${NIGHTLY_PRICE} kr pr. nat.
+- [Priser](${SITE_URL}/priser): Priser og betingelser for indkvartering.
 - [Kontakt](${SITE_URL}/kontakt): Kontaktoplysninger og forespørgselsformular.
 
-## Overnatning i nærområdet (område & seværdigheder)
+## Indkvartering i nærområdet
 
 ${lodging.map(lpLine).join("\n")}
 
-## Fest & mærkedage (anledninger)
+## Til byggeprojektet
 
-${events.map(lpLine).join("\n")}
+${usecases.map(lpLine).join("\n")}
 
 ## Ofte stillede spørgsmål
 
-- Hvor mange gæster er der plads til? Op til ${MAX_GUESTS} gæster i festsalen (min. 30 ved leje af sal).
-- Må vi selv stå for mad og drikke? Ja – der er køkkenfaciliteter til catering, og I bestemmer selv.
-- Har værelserne eget bad? Nej – værelserne er enkle med fælles bad, køkken og opholdsrum.
-- Hvordan foregår check-in? Nem selvcheck-in via dørkode.
-- Hvor ligger gården? ${NAP.streetAddress}, ${NAP.postalCode} ${NAP.addressLocality} – på landet tæt på Roskilde.
+- Kan I fakturere firmaet mod CVR? Ja. Vi laver en fast aftale og fakturerer
+  virksomheden mod CVR, så administrationen er enkel for byggelederen.
+- Kan vi leje hele huset til sjakket? Ja. Hele huset kan lejes eksklusivt, så
+  sjakket bor samlet. Vi laver en skræddersyet aftale ud fra antal mand og
+  periode.
+- Er der et fælles køkken? Ja, der er fælles køkken, hvor sjakket selv kan
+  lave mad efter arbejdsdagen.
+- Hvor mange nætter skal man bo minimum? Minimum ${MIN_NIGHTS} nætter.
+- Hvad koster en overnatning? ${NIGHTLY_PRICE} kr pr. nat inkl. moms, minimum ${MIN_NIGHTS} nætter.
+- Hvor ligger Svaleholm Gaard? ${NAP.streetAddress}, ${NAP.postalCode} ${NAP.addressLocality} – nær Roskilde på Sjælland.
 `;
 
   return new Response(body, {
