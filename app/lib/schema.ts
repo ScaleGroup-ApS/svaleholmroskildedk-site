@@ -17,8 +17,9 @@ import {
   SAME_AS,
   PRICE_RANGE,
   AREA_SERVED,
-  MAX_GUESTS,
   NUMBER_OF_ROOMS,
+  NIGHTLY_PRICE,
+  MIN_NIGHTS,
   LOGO,
   RATING,
   VAT_ID,
@@ -79,18 +80,18 @@ export function websiteNode(): Node {
 }
 
 /**
- * The core LocalBusiness + EventVenue node. This is the entity every page's
+ * The core LodgingBusiness + LocalBusiness node. This is the entity every page's
  * `about`/`provider`/`itemReviewed` points at. AggregateRating is only added
  * when real Google numbers exist in `RATING` (no fabricated ratings).
  */
 export function localBusinessNode(): Node {
   const node: Node = {
-    "@type": ["LocalBusiness", "EventVenue"],
+    "@type": ["LodgingBusiness", "LocalBusiness"],
     "@id": BUSINESS_ID,
     name: SITE_NAME,
     legalName: LEGAL_NAME,
     url: SITE_URL,
-    image: abs("/images/festsal-hvid-1.png"),
+    image: abs("/images/gaardsplads.jpg"),
     logo: abs(LOGO),
     telephone: NAP.telephone,
     email: NAP.email,
@@ -104,7 +105,6 @@ export function localBusinessNode(): Node {
     },
     hasMap: MAP_URL,
     areaServed: AREA_SERVED.map((name) => ({ "@type": "AdministrativeArea", name })),
-    maximumAttendeeCapacity: MAX_GUESTS,
     sameAs: SAME_AS,
     parentOrganization: { "@id": ORG_ID },
     knowsLanguage: ["da", "en"],
@@ -170,7 +170,7 @@ export function webPageNode(opts: {
   return node;
 }
 
-/** An OfferCatalog of the event packages (real prices from Prisberegner.tsx). */
+// Deprecated — event business retired; consumers removed in Tasks 10/11, delete in Task 12.
 export function eventOfferCatalogNode(): Node {
   const offers: Array<{ name: string; price: string; unit?: string; desc: string }> = [
     { name: "Timepakke – festsal pr. time", price: "1800", unit: "HUR", desc: "Leje af festsalen pr. time (min. 3 timer)." },
@@ -210,6 +210,21 @@ export function eventServiceNodes(
   }));
 }
 
+/** Service nodes for håndværker lodging use-cases (from landingPages usecase entries). */
+export function haandvaerkerServiceNodes(
+  services: Array<{ name: string; description: string }>,
+): Node[] {
+  return services.map((s) => ({
+    "@type": "Service",
+    name: s.name,
+    description: s.description,
+    serviceType: s.name,
+    provider: { "@id": BUSINESS_ID },
+    areaServed: AREA_SERVED,
+    audience: { "@type": "Audience", audienceType: "Byggefirmaer og håndværkere" },
+  }));
+}
+
 /** LodgingBusiness node for the rooms/stay, with a from-price Offer. */
 export function lodgingNode(opts: { description: string }): Node {
   return {
@@ -223,20 +238,25 @@ export function lodgingNode(opts: { description: string }): Node {
     email: NAP.email,
     address: postalAddress(),
     geo: { "@type": "GeoCoordinates", latitude: GEO.latitude, longitude: GEO.longitude },
-    priceRange: "fra 650 kr",
+    priceRange: "fra 650 kr/nat",
     numberOfRooms: NUMBER_OF_ROOMS,
     petsAllowed: false,
     areaServed: AREA_SERVED,
     parentOrganization: { "@id": ORG_ID },
     makesOffer: {
       "@type": "Offer",
-      name: "Overnatning pr. værelse pr. nat",
-      price: "650",
+      name: "Indkvartering til håndværkere pr. værelse pr. nat",
+      price: String(NIGHTLY_PRICE),
       priceCurrency: "DKK",
       availability: "https://schema.org/InStock",
+      eligibleDuration: {
+        "@type": "QuantitativeValue",
+        minValue: MIN_NIGHTS,
+        unitCode: "DAY",
+      },
       priceSpecification: {
         "@type": "UnitPriceSpecification",
-        price: "650",
+        price: String(NIGHTLY_PRICE),
         priceCurrency: "DKK",
         unitCode: "DAY",
         referenceQuantity: { "@type": "QuantitativeValue", value: 1, unitCode: "DAY" },
@@ -247,7 +267,6 @@ export function lodgingNode(opts: { description: string }): Node {
       { "@type": "LocationFeatureSpecification", name: "Fælles bad og toilet (4 stk.)", value: true },
       { "@type": "LocationFeatureSpecification", name: "Fælles køkken", value: true },
       { "@type": "LocationFeatureSpecification", name: "Selvcheck-in", value: true },
-      { "@type": "LocationFeatureSpecification", name: "Have og naturområde", value: true },
     ],
   };
 }
