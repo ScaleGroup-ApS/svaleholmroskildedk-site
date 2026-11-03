@@ -356,9 +356,9 @@ Drop the `EventVenue` type and all event nodes; model the business as lodging on
 
 In `localBusinessNode()` (lines 86-122): change `"@type": ["LocalBusiness", "EventVenue"]` → `"@type": ["LodgingBusiness", "LocalBusiness"]`; remove the `maximumAttendeeCapacity: MAX_GUESTS` line; change default `image` from `/images/festsal-hvid-1.png` to `/images/gaardsplads.jpg`. Remove `MAX_GUESTS` from the import block.
 
-- [ ] **Step 2: Delete event node builders**
+- [ ] **Step 2: DEFER deletion of event node builders**
 
-Remove `eventOfferCatalogNode()` (lines 173-196) and `eventServiceNodes()` (lines 198-211) entirely.
+`eventOfferCatalogNode()` and `eventServiceNodes()` are still imported by `LandingPageView.tsx`, `priser.tsx` and `tjenester.tsx`, which are migrated only in Tasks 10/11. Deleting them now breaks typecheck. **Keep both functions as (soon-to-be) dead code** with a comment `// Deprecated — event business retired; consumers removed in Tasks 10/11, delete in Task 12.` Their actual deletion happens in Task 12 Step 2b, after their consumers are gone.
 
 - [ ] **Step 3: Add håndværker service builder**
 
@@ -714,6 +714,11 @@ git commit -m "chore(content): sweep residual event language from nav, gallery, 
 - [ ] **Step 2: Remove the dead `MAX_GUESTS` export** from `site.ts` now that Tasks 4 and 6 cleared its references. Verify no references remain:
 ```bash
 grep -rn 'MAX_GUESTS' app/ && echo "STILL REFERENCED — fix before removing" || echo "OK: safe to remove"
+```
+
+- [ ] **Step 2b: Delete the deferred event node builders** — now that Tasks 10/11 removed `LandingPageView.tsx`/`priser.tsx`/`tjenester.tsx` consumers, delete `eventOfferCatalogNode()` and `eventServiceNodes()` from `schema.ts`. Verify no importers remain first:
+```bash
+grep -rn 'eventOfferCatalogNode\|eventServiceNodes' app/ && echo "STILL REFERENCED — do not delete" || echo "OK: safe to delete"
 ```
 
 - [ ] **Step 3: Full-site grep gate**
