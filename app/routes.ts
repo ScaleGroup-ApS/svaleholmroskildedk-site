@@ -16,6 +16,7 @@ export default [
   // Must stay above the "*" catch-all, or they'd fall through to the WordPress
   // slug lookup and 404. Unknown slugs 404 via each route's loader.
   route("overnatning/:slug", "routes/overnatning.$slug.tsx"),
+  route("til-projektet/:slug", "routes/til-projektet.$slug.tsx"),
   // Retired event URLs — loader 301s every /fest/* to the håndværker pillar.
   route("fest/:slug", "routes/fest.$slug.tsx"),
   // The kontakt action redirects here on success. Without this entry /tak fell

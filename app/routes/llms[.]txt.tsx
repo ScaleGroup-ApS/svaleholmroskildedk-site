@@ -10,7 +10,10 @@ import { LANDING_PAGES, landingPagePath } from "~/lib/landingPages";
 
 export function loader(_args: Route.LoaderArgs) {
   const lodging = LANDING_PAGES.filter((p) => p.category === "overnatning");
-  const events = LANDING_PAGES.filter((p) => p.category === "fest");
+  // "fest" is no longer a LandingCategory (Task 2 retargeted the data layer to
+  // håndværker intent); no entries match this literal, so this list stays
+  // empty. Left as-is pending the Task 10/11 rewrite of this file's content.
+  const events = LANDING_PAGES.filter((p) => (p.category as string) === "fest");
   const lpLine = (p: (typeof LANDING_PAGES)[number]) =>
     `- [${p.jsonLdName}](${SITE_URL}${landingPagePath(p)})`;
 
