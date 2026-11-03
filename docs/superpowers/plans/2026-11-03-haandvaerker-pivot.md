@@ -675,6 +675,8 @@ git commit -m "feat(seo): add håndværkerindkvartering pillar page"
 
 - [ ] **Step 1: Read each file** to locate meta, hero and body copy.
 
+> **Carry-over from Task 5:** `Prisberegner.tsx` contains a third calculator, `EventPakkeBeregnerSection`, consumed only by `/tjenester`. Task 5 kept it alive with local festsal constants to stay compiling. When `/tjenester` is redirected in Step 2 below, `EventPakkeBeregnerSection` and its local festsal constants (SAL_PRICE etc.) become dead and MUST be deleted — verify no other importer first (`grep -rn 'EventPakkeBeregnerSection' app/`).
+
 - [ ] **Step 2: `/tjenester` decision — redirect.** Per spec §9.3 the recommendation is to repurpose, but the cleanest single-product IA is to 301 `/tjenester` → `/indkvartering-haandvaerkere` (the pillar now carries "hvad vi tilbyder"). Replace the route file with a redirect loader (like `hotel.tsx`): `return redirect("/indkvartering-haandvaerkere", 301);`. Remove `/tjenester` from the sitemap `STATIC_PATHS` (Task 12 handles the sitemap sweep; note it here). **If the user prefers a repurposed /tjenester page instead, build that rather than redirect — flag at execution.**
 
 - [ ] **Step 3: `/vaerelser`** — retarget meta + copy from "ophold i naturen" to "værelser til håndværkere / sjak": shared kitchen/bath/lounge, self check-in, 650 kr/nat min. 4 nætter, whole-house option, invoicing. Confirmed facts only. Update `lodgingNode` description usage if referenced.
