@@ -57,20 +57,27 @@ export const SAME_AS: string[] = [
   // "https://www.google.com/maps/place/…",     // add the Google Business Profile place URL
 ];
 
-/** Broad price range across lodging (from 650 kr) and event packages (up to 26.000 kr). */
-export const PRICE_RANGE = "650–26.000 kr";
+/** Nightly lodging price (from 650 kr). */
+export const PRICE_RANGE = "650 kr/nat";
+
+/** Nightly price in DKK. */
+export const NIGHTLY_PRICE = 650;
+
+/** Minimum number of nights for lodging. */
+export const MIN_NIGHTS = 4;
 
 /** Areas served (local SEO). */
-export const AREA_SERVED = ["Roskilde", "Sjælland", "Danmark"];
+export const AREA_SERVED = ["Roskilde", "Lejre", "Køge", "Holbæk", "Frederikssund"];
 
 /** Max guest capacity of the festsal (event hall). */
+// Deprecated after event removal — last refs cleared in Task 4/6, export removed in Task 12.
 export const MAX_GUESTS = 150;
 
 /** Number of lodging rooms. */
 export const NUMBER_OF_ROOMS = 8;
 
 /** Default social-share image (absolute URL built via `abs()`). */
-export const DEFAULT_OG_IMAGE = "/images/festsal-hvid-1.png";
+export const DEFAULT_OG_IMAGE = "/images/gaardsplads.jpg";
 
 /** Logo (absolute URL built via `abs()`). */
 export const LOGO = "/images/logo.png";
