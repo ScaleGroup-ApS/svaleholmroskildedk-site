@@ -12,6 +12,10 @@ export default [
   // Legacy WordPress URL → current lodging page (301). Google had /hotel/
   // indexed and it was 404'ing.
   route("hotel", "routes/hotel.tsx"),
+  // The håndværker pillar page — hub every retired URL + usecase/overnatning
+  // landing page links back to. Must stay above the dynamic landing-page
+  // routes below (and the "*" catch-all), or it would be shadowed.
+  route("indkvartering-haandvaerkere", "routes/indkvartering-haandvaerkere.tsx"),
   // Local SEO/GEO landing pages (data-driven in app/lib/landingPages.ts).
   // Must stay above the "*" catch-all, or they'd fall through to the WordPress
   // slug lookup and 404. Unknown slugs 404 via each route's loader.
