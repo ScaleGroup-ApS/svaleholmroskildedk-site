@@ -5,8 +5,6 @@ import { Footer } from "~/components/Footer";
 import { SvaleFlock } from "~/components/Svale";
 import { JsonLd } from "~/components/JsonLd";
 import {
-  MAX_GUESTS_FESTSAL,
-  MIN_GUESTS_FESTSAL,
   MAX_ROOMS,
   ROOM_PRICE_PER_NIGHT,
   TIME_PACKAGES,
@@ -315,12 +313,6 @@ const SEASONS: Season[] = [
 type Faq = { qDa: string; qEn: string; aDa: string; aEn: string };
 const FAQS: Faq[] = [
   {
-    qDa: "Hvor mange gæster er der plads til på Svaleholm?",
-    qEn: "How many guests is there room for at Svaleholm?",
-    aDa: `Festsalen har plads til op til ${MAX_GUESTS_FESTSAL} gæster, og til fest i salen regner vi med minimum ${MIN_GUESTS_FESTSAL} gæster. Til mindre selskaber kan salen stilles op, så rummet virker mindre.`,
-    aEn: `The hall seats up to ${MAX_GUESTS_FESTSAL} guests, and for a celebration in the hall we work with a minimum of ${MIN_GUESTS_FESTSAL} guests. For smaller parties the hall can be arranged so the room feels smaller.`,
-  },
-  {
     qDa: "Kan gæsterne overnatte på gården?",
     qEn: "Can guests stay overnight at the farm?",
     aDa: `Ja. Vi har ${MAX_ROOMS} værelser til ${kr(ROOM_PRICE_PER_NIGHT)} pr. værelse pr. nat med fælles bad, køkken og opholdsrum. Der er selvcheck-in, og dørkoden kommer på mail eller sms inden ankomst.`,
@@ -447,8 +439,8 @@ export default function Inspiration() {
               <div style={{ fontFamily: "var(--font-body)", color: "rgba(242,239,231,0.72)", fontSize: "1.02rem", lineHeight: 1.95, display: "flex", flexDirection: "column", gap: "1.25rem" }}>
                 <p>
                   {t(
-                    `Svaleholm Gaard ligger på landet ved Roskilde med festsal til op til ${MAX_GUESTS_FESTSAL} gæster, ${MAX_ROOMS} værelser og marker hele vejen rundt. Det gør stedet brugbart til mere end den klassiske fest: en dag kan begynde med et oplæg i salen, fortsætte med middag ved langborde og slutte med, at gæsterne går i seng på samme adresse.`,
-                    `Svaleholm Gaard sits in the countryside near Roskilde with a hall for up to ${MAX_GUESTS_FESTSAL} guests, ${MAX_ROOMS} rooms and fields all the way around. That makes the place useful for more than the classic party: a day can begin with a presentation in the hall, continue with dinner at long tables and end with guests going to bed at the same address.`
+                    `Svaleholm Gaard ligger på landet ved Roskilde med festsal, ${MAX_ROOMS} værelser og marker hele vejen rundt. Det gør stedet brugbart til mere end den klassiske fest: en dag kan begynde med et oplæg i salen, fortsætte med middag ved langborde og slutte med, at gæsterne går i seng på samme adresse.`,
+                    `Svaleholm Gaard sits in the countryside near Roskilde with a hall, ${MAX_ROOMS} rooms and fields all the way around. That makes the place useful for more than the classic party: a day can begin with a presentation in the hall, continue with dinner at long tables and end with guests going to bed at the same address.`
                   )}
                 </p>
                 <p>

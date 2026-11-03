@@ -3,16 +3,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState, type ReactNode } from "react";
 import { useT, useLang } from "~/lib/i18n";
 
-// ── Prisberegnere (to separate flows: Ophold og Fest) ─────────────────────────
+// ── Prisberegner (ophold) ──────────────────────────────────────────────────────
 
 // Priser (nemme at justere ét sted)
 // Eksporteret, så fx inspirationssiden kan skrive de samme tal i teksten
 // uden at de to steder kan nå at komme ud af trit.
-export const SAL_PRICE = 15000;            // fast pris for festsalen
 export const ROOM_PRICE_PER_NIGHT = 650;   // pr. værelse pr. nat
-export const MIN_GUESTS_FESTSAL = 30;      // minimum antal gæster for festsalen
-export const MAX_GUESTS_FESTSAL = 150;     // festsalen har plads til maks. 150 gæster
 export const MAX_ROOMS = 8;                // hotellet har 8 værelser
+export const MIN_NIGHTS = 4;               // minimum antal nætter pr. booking
 const SHARED_BATHS = 4;                    // 4 fælles bad/brusere til alle værelser
 
 const daDK = new Intl.NumberFormat("da-DK");
@@ -137,9 +135,9 @@ function Toggle({ on, setOn, ariaLabel }: { on: boolean; setOn: (v: boolean) => 
 
 // Alle ophold-felter (værelser, nætter, ankomst + fælles faciliteter) – genbruges
 // i både ophold-beregneren og event-beregneren, så funktionaliteten er identisk.
-function AccommodationFields({ idPrefix, rooms, setRooms, nights, setNights, arrival, setArrival, todayIso, invalidDate }: {
+function AccommodationFields({ idPrefix, rooms, setRooms, nights, setNights, arrival, setArrival, todayIso, invalidDate, minNights = 1 }: {
   idPrefix: string; rooms: number; setRooms: (n: number) => void; nights: number; setNights: (n: number) => void;
-  arrival: string; setArrival: (s: string) => void; todayIso: string; invalidDate: boolean;
+  arrival: string; setArrival: (s: string) => void; todayIso: string; invalidDate: boolean; minNights?: number;
 }) {
   const t = useT();
   const arrivalDate = arrival ? new Date(`${arrival}T00:00:00`) : null;
@@ -148,7 +146,8 @@ function AccommodationFields({ idPrefix, rooms, setRooms, nights, setNights, arr
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <Stepper label={t("Værelser", "Rooms")} value={rooms} setValue={setRooms} min={1} max={MAX_ROOMS} hint={`${t("maks.", "max.")} ${MAX_ROOMS}`} />
-        <Stepper label={t("Nætter", "Nights")} value={nights} setValue={setNights} min={1} />
+        <Stepper label={t("Nætter", "Nights")} value={nights} setValue={setNights} min={minNights}
+          hint={minNights > 1 ? `${t("min.", "min.")} ${minNights} ${t("nætter", "nights")}` : undefined} />
       </div>
       <div className="mt-5">
         <label htmlFor={`${idPrefix}-arrival`} className="block mb-2" style={{ fontFamily: "var(--font-body)", fontSize: "0.8125rem", fontWeight: 500, color: INK, letterSpacing: "0.02em" }}>{t("Ankomstdato", "Arrival date")} *</label>
@@ -184,7 +183,7 @@ export function PrisberegnerHotelSection() {
   const t = useT();
 
   const [rooms, setRooms] = useState(1);
-  const [nights, setNights] = useState(1);
+  const [nights, setNights] = useState(MIN_NIGHTS);
   const [arrival, setArrival] = useState("");
   const [todayIso, setTodayIso] = useState("");
   useEffect(() => setTodayIso(new Date().toISOString().slice(0, 10)), []);
@@ -217,11 +216,11 @@ export function PrisberegnerHotelSection() {
         <div className="flex items-center justify-between gap-4 pb-5 mb-6" style={{ borderBottom: `1px solid ${LINE}` }}>
           <div>
             <p style={{ fontFamily: "var(--font-body)", fontWeight: 600, color: INK, fontSize: "1.05rem" }}>{t("Overnatning", "Accommodation")}</p>
-            <p style={{ fontFamily: "var(--font-body)", color: INK_DIM, fontSize: "0.8125rem" }}>{kr(ROOM_PRICE_PER_NIGHT)} {t("pr. værelse pr. nat", "per room per night")} · {t("maks.", "max.")} {MAX_ROOMS} {t("værelser", "rooms")}</p>
+            <p style={{ fontFamily: "var(--font-body)", color: INK_DIM, fontSize: "0.8125rem" }}>{kr(ROOM_PRICE_PER_NIGHT)} {t("pr. værelse pr. nat", "per room per night")} · {t("maks.", "max.")} {MAX_ROOMS} {t("værelser", "rooms")} · {t("min.", "min.")} {MIN_NIGHTS} {t("nætter", "nights")}</p>
           </div>
         </div>
 
-        <AccommodationFields idPrefix="hotel" rooms={rooms} setRooms={setRooms} nights={nights} setNights={setNights} arrival={arrival} setArrival={setArrival} todayIso={todayIso} invalidDate={dateMissing} />
+        <AccommodationFields idPrefix="hotel" rooms={rooms} setRooms={setRooms} nights={nights} setNights={setNights} arrival={arrival} setArrival={setArrival} todayIso={todayIso} invalidDate={dateMissing} minNights={MIN_NIGHTS} />
       </div>
 
       {/* Overslag */}
@@ -316,6 +315,9 @@ const TABLE_ADDONS: TableAddon[] = [
 
 // ── Beregner 3: Event-pakker (tidsbaseret) – til Events-siden ──────────────────
 
+const EVENT_GUESTS_DEFAULT = 30; // udgangspunkt for antal gæster i event-pakken
+const EVENT_GUESTS_MAX = 150;    // maks. antal gæster event-pakken er dimensioneret til
+
 export function EventPakkeBeregnerSection() {
   const t = useT();
   const { lang } = useLang();
@@ -325,7 +327,7 @@ export function EventPakkeBeregnerSection() {
   const pkg = TIME_PACKAGES.find((p) => p.id === pkgId) ?? TIME_PACKAGES[0];
 
   const [qty, setQty] = useState(pkg.min);
-  const [guests, setGuests] = useState(MIN_GUESTS_FESTSAL);
+  const [guests, setGuests] = useState(EVENT_GUESTS_DEFAULT);
   const [date, setDate] = useState("");
   const [todayIso, setTodayIso] = useState("");
   useEffect(() => setTodayIso(new Date().toISOString().slice(0, 10)), []);
@@ -456,7 +458,7 @@ export function EventPakkeBeregnerSection() {
           {!qtyFixed && (
             <Stepper label={`${t("Antal", "Quantity")} ${unitLabel(qty)}`} value={qty} setValue={setQty} min={pkg.min} max={pkg.max} hint={`${pkg.min}–${pkg.max}`} />
           )}
-          <Stepper label={t("Antal gæster", "Number of guests")} value={guests} setValue={setGuests} min={1} max={MAX_GUESTS_FESTSAL} hint={t("maks. 150", "max. 150")} />
+          <Stepper label={t("Antal gæster", "Number of guests")} value={guests} setValue={setGuests} min={1} max={EVENT_GUESTS_MAX} hint={t("maks. 150", "max. 150")} />
         </div>
 
         {/* Dato */}
@@ -617,105 +619,3 @@ export function EventPakkeBeregnerSection() {
   );
 }
 
-// ── Beregner 2: Fest (festsal + pynt og lyd) ──────────────────────────────────
-
-export function PrisberegnerEventSection() {
-  const t = useT();
-  const { lang } = useLang();
-
-  const [guests, setGuests] = useState(MIN_GUESTS_FESTSAL);
-  const [addonIds, setAddonIds] = useState<string[]>([]);
-  const toggleAddon = (id: string) =>
-    setAddonIds((ids) => (ids.includes(id) ? ids.filter((x) => x !== id) : [...ids, id]));
-
-  const festsalOk = guests >= MIN_GUESTS_FESTSAL;
-  const salTotal = festsalOk ? SAL_PRICE : 0;
-  const addonsTotal = EVENT_ADDONS.filter((a) => addonIds.includes(a.id)).reduce((s, a) => s + a.price, 0);
-  const total = salTotal + addonsTotal;
-
-  const canSend = festsalOk;
-
-  const params = new URLSearchParams();
-  params.set("fest", "ja");
-  params.set("gaester", String(guests));
-  if (addonIds.length) params.set("tilvalg", addonIds.join(","));
-  params.set("total", String(total));
-  const ctaTo = `/kontakt?${params.toString()}`;
-
-  return (
-    <CalculatorShell
-      eyebrow={t("Prisberegner · Fest", "Price calculator · Celebration")}
-      title={t("Beregn din", "Calculate your")}
-      titleAccent={t("fest", "celebration")}
-      intro={t("Fast pris på festsalen med plads til op til 150 gæster – tilføj pynt og lyd og få et vejledende overslag.", "Fixed price for the hall with room for up to 150 guests – add decor and sound and get a guideline estimate.")}
-    >
-      {/* Form */}
-      <div className="lg:col-span-3 rounded-2xl p-7 md:p-9 flex flex-col" style={{ background: "#14201B", border: `1px solid ${LINE}`, boxShadow: "0 24px 60px rgba(0,0,0,0.35)" }}>
-        <div className="flex items-center justify-between gap-4 pb-5 mb-6" style={{ borderBottom: `1px solid ${LINE}` }}>
-          <div>
-            <p style={{ fontFamily: "var(--font-body)", fontWeight: 600, color: INK, fontSize: "1.05rem" }}>{t("Fest i festsalen", "Celebration in the hall")}</p>
-            <p style={{ fontFamily: "var(--font-body)", color: INK_DIM, fontSize: "0.8125rem" }}>{t("Fast pris", "Fixed price")} {kr(SAL_PRICE)} · {t("min.", "min.")} {MIN_GUESTS_FESTSAL} {t("gæster", "guests")}</p>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          <Stepper label={t("Antal gæster", "Number of guests")} value={guests} setValue={setGuests} min={1} max={MAX_GUESTS_FESTSAL} hint={`${t("min.", "min.")} ${MIN_GUESTS_FESTSAL} · ${t("maks.", "max.")} ${MAX_GUESTS_FESTSAL}`} />
-        </div>
-        {!festsalOk && (
-          <p className="mt-4 rounded-lg px-4 py-3" style={{ fontFamily: "var(--font-body)", fontSize: "0.875rem", color: WARN_TEXT, background: WARN_BG, border: `1px solid ${WARN_BORDER}` }}>
-            {t("Festsalen kræver minimum", "The hall requires a minimum of")} {MIN_GUESTS_FESTSAL} {t("gæster.", "guests.")}
-          </p>
-        )}
-
-        {/* Pynt & lyd */}
-        <div className="mt-7 pt-6" style={{ borderTop: `1px solid ${LINE}` }}>
-          <p style={{ fontFamily: "var(--font-body)", fontWeight: 600, color: INK, fontSize: "1.05rem" }}>{t("Pynt & lyd", "Decor & sound")}</p>
-          <p className="mb-4" style={{ fontFamily: "var(--font-body)", fontSize: "0.8125rem", color: INK_DIM }}>{t("Pynt til salen og vores eget lydudstyr – vælg det til, I har brug for.", "Decor for the hall and our own sound equipment – add what you need.")}</p>
-          <div className="flex flex-wrap gap-2.5">
-            {EVENT_ADDONS.map((a) => {
-              const on = addonIds.includes(a.id);
-              return (
-                <button key={a.id} type="button" role="checkbox" aria-checked={on} onClick={() => toggleAddon(a.id)}
-                  title={lang === "en" ? a.specEn : a.spec}
-                  className="flex items-center gap-2 rounded-full transition-colors"
-                  style={{ padding: "0.55rem 1rem", fontFamily: "var(--font-body)", fontSize: "0.8125rem", fontWeight: 500, cursor: "pointer", border: on ? `1px solid ${LEAF}` : `1px solid ${LINE}`, background: on ? LEAF : "rgba(242,239,231,0.04)", color: on ? "#0F1714" : INK }}>
-                  <span aria-hidden style={{ fontSize: "0.9rem", lineHeight: 1, color: on ? "#0F1714" : LEAF }}>{on ? "✓" : "+"}</span>
-                  {lang === "en" ? a.labelEn : a.label}
-                  <span style={{ color: on ? "rgba(15,23,20,0.7)" : INK_MUTE }}>{kr(a.price)}</span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-
-      {/* Overslag */}
-      <div className="lg:col-span-2 rounded-2xl p-7 md:p-8 flex flex-col" style={{ background: "rgba(242,239,231,0.04)", border: `1px solid ${LINE}`, backdropFilter: "blur(6px)" }}>
-        <p className="eyebrow mb-5">{t("Dit overslag", "Your estimate")}</p>
-
-        <div className="space-y-3 flex-1">
-          <SummaryRow label={<>{t("Festsal", "Hall")}<span style={{ color: INK_MUTE }}> · {guests} {t("gæster", "guests")}</span></>} value={salTotal} active={festsalOk} />
-          <SummaryRow label={<>{t("Pynt & lyd", "Decor & sound")}{addonIds.length > 0 && <span style={{ color: INK_MUTE }}> · {addonIds.length} {t("valgt", "selected")}</span>}</>} value={addonsTotal} active={addonIds.length > 0} />
-        </div>
-
-        <div className="mt-6 pt-5" style={{ borderTop: `1px solid ${LINE}` }}>
-          <div className="flex items-baseline justify-between">
-            <span style={{ fontFamily: "var(--font-body)", fontSize: "0.8125rem", letterSpacing: "0.14em", textTransform: "uppercase", color: LEAF }}>{t("I alt", "Total")} <span style={{ textTransform: "none", letterSpacing: "0.02em", color: INK_MUTE }}>· {t("inkl. moms", "incl. VAT")}</span></span>
-            <AnimatedTotal total={total} />
-          </div>
-          <p className="mt-3" style={{ fontFamily: "var(--font-body)", fontSize: "0.75rem", color: INK_MUTE, lineHeight: 1.6 }}>
-            {t("Vejledende pris inkl. moms. Kontakt os for et endeligt tilbud.", "Guideline price incl. VAT. Contact us for a final quote.")}
-          </p>
-          {canSend ? (
-            <Link to={ctaTo} className="btn-primary w-full mt-5" style={{ padding: "0.8rem 1.5rem" }}>{t("Send forespørgsel", "Send enquiry")}</Link>
-          ) : (
-            <>
-              <button type="button" disabled aria-disabled="true" className="btn-primary w-full mt-5" style={{ padding: "0.8rem 1.5rem", opacity: 0.4, cursor: "not-allowed", boxShadow: "none" }}>{t("Send forespørgsel", "Send enquiry")}</button>
-              <p className="mt-2.5 text-center" style={{ fontFamily: "var(--font-body)", fontSize: "0.75rem", color: INK_DIM }}>{`${t("Festsalen kræver minimum", "The hall requires a minimum of")} ${MIN_GUESTS_FESTSAL} ${t("gæster", "guests")}`}</p>
-            </>
-          )}
-        </div>
-      </div>
-    </CalculatorShell>
-  );
-}

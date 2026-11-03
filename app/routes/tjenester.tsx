@@ -201,7 +201,11 @@ export default function Tjenester() {
         </section>
 
         <LandingLinksSection
-          category="fest"
+          // "fest" is no longer a LandingCategory (Task 2 retargeted the data
+          // layer to håndværker intent); no entries match this literal, so the
+          // section renders nothing. Left as-is pending the Task 10/11 rewrite
+          // of this page to håndværker services.
+          category={"fest" as never}
           eyebrowDa="Fester & mærkedage"
           eyebrowEn="Celebrations & occasions"
           headingDa="Fest "

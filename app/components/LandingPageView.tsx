@@ -11,7 +11,7 @@ import {
   breadcrumb,
   webPageNode,
   lodgingNode,
-  eventServiceNodes,
+  haandvaerkerServiceNodes,
   faqNode,
 } from "~/lib/schema";
 import {
@@ -46,7 +46,7 @@ function buildJsonLd(page: LandingPage) {
       { name: "Forside", path: "" },
       page.category === "overnatning"
         ? { name: "Ophold", path: "/vaerelser" }
-        : { name: "Fest & events", path: "/tjenester" },
+        : { name: "Håndværkerindkvartering", path: "/indkvartering-haandvaerkere" },
       { name: page.breadcrumbLabel, path },
     ]),
   ];
@@ -55,7 +55,7 @@ function buildJsonLd(page: LandingPage) {
     nodes.push(lodgingNode({ description: page.jsonLdDescription }));
   } else if (page.serviceName && page.serviceDescription) {
     nodes.push(
-      ...eventServiceNodes([
+      ...haandvaerkerServiceNodes([
         { name: page.serviceName, description: page.serviceDescription },
       ]),
     );
@@ -69,15 +69,17 @@ function buildJsonLd(page: LandingPage) {
 export function LandingPageView({ page }: { page: LandingPage }) {
   const t = useT();
 
-  const pillarHref = page.category === "overnatning" ? "/vaerelser" : "/tjenester";
+  const pillarHref = page.category === "overnatning" ? "/vaerelser" : "/indkvartering-haandvaerkere";
   const pillarLabel =
     page.category === "overnatning"
       ? t("Se alle ophold", "See all stays")
-      : t("Se fest & events", "See celebrations & events");
+      : t("Se håndværkerindkvartering", "See tradesperson lodging");
 
   // Resolve related (sibling) pages for the hub-and-spoke internal-link block.
+  // relatedSlugs may cross categories (e.g. an overnatning page linking to a
+  // usecase page), so try both categories rather than only the page's own.
   const related = page.relatedSlugs
-    .map((slug) => findLandingPage(page.category, slug))
+    .map((slug) => findLandingPage("overnatning", slug) ?? findLandingPage("usecase", slug))
     .filter((p): p is LandingPage => Boolean(p));
 
   return (
@@ -163,7 +165,7 @@ export function LandingPageView({ page }: { page: LandingPage }) {
                 <Link to="/kontakt" className="btn-primary">
                   {page.category === "overnatning"
                     ? t("Forespørg på ophold", "Enquire about a stay")
-                    : t("Få et uforpligtende tilbud", "Get a no-obligation quote")}
+                    : t("Få et tilbud til sjakket", "Get a quote for your crew")}
                 </Link>
                 <Link to={pillarHref} className="btn-ghost">{pillarLabel}</Link>
               </div>
@@ -186,7 +188,7 @@ export function LandingPageView({ page }: { page: LandingPage }) {
                 <h2 className="heading-section" style={{ color: "#F2EFE7" }}>
                   {page.category === "overnatning"
                     ? <>{t("Mere ", "More ")}<span className="accent-italic">{t("overnatning i nærområdet", "stays nearby")}</span></>
-                    : <>{t("Andre ", "Other ")}<span className="accent-italic">{t("fester & mærkedage", "celebrations & occasions")}</span></>}
+                    : <>{t("Mere ", "More ")}<span className="accent-italic">{t("indkvartering til projektet", "lodging for the project")}</span></>}
                 </h2>
               </motion.div>
 
@@ -231,8 +233,8 @@ export function LandingPageView({ page }: { page: LandingPage }) {
 
         <FaqSection
           items={page.faqs}
-          eyebrowDa={page.category === "overnatning" ? "Ophold & overnatning" : "Fest & events"}
-          eyebrowEn={page.category === "overnatning" ? "Stay & overnight" : "Celebrations & events"}
+          eyebrowDa={page.category === "overnatning" ? "Ophold & overnatning" : "Til projektet"}
+          eyebrowEn={page.category === "overnatning" ? "Stay & overnight" : "For the project"}
         />
 
         {/* CTA */}
@@ -252,14 +254,14 @@ export function LandingPageView({ page }: { page: LandingPage }) {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true, margin: "-80px" }}
           >
-            <p className="eyebrow mb-5">{t("Klar til at opleve Svaleholm?", "Ready to experience Svaleholm?")}</p>
+            <p className="eyebrow mb-5">{t("Klar til at booke til sjakket?", "Ready to book for the crew?")}</p>
             <h2 className="heading-section mb-6" style={{ color: "#F2EFE7" }}>
-              {t("Lad os fejre ", "Let's celebrate ")}<span className="accent-italic">{t("sammen", "together")}</span>
+              {t("Lad os finde en ", "Let's find an ")}<span className="accent-italic">{t("aftale", "agreement")}</span>
             </h2>
             <p style={{ fontFamily: "var(--font-body)", color: "rgba(242,239,231,0.72)", lineHeight: 1.85, maxWidth: "46ch", margin: "0 auto 2.6rem", fontSize: "1rem" }}>
               {t(
-                "Tag det første skridt. Vi ser frem til at byde jer velkommen til Svaleholm Gaard.",
-                "Take the first step. We look forward to welcoming you to Svaleholm Gaard."
+                "Fortæl os om antal mand og periode, og vi laver et tilbud og en skræddersyet aftale – med fakturabetaling til firmaet mod CVR.",
+                "Tell us the crew size and period, and we'll put together a quote and a tailored agreement – with invoicing to the company against CVR."
               )}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

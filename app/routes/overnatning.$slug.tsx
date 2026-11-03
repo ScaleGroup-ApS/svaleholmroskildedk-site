@@ -1,6 +1,8 @@
 import type { Route } from "./+types/overnatning.$slug";
+import { redirect } from "react-router";
 import { LandingPageView } from "~/components/LandingPageView";
 import { findLandingPage, landingPagePath } from "~/lib/landingPages";
+import { redirectTargetFor } from "~/lib/legacyRedirects";
 import { pageMeta } from "~/lib/seo";
 
 // Lodging-intent local landing pages, served at /overnatning/:slug.
@@ -21,6 +23,8 @@ export function meta({ params }: Route.MetaArgs) {
 }
 
 export function loader({ params }: Route.LoaderArgs) {
+  const target = redirectTargetFor("overnatning", params.slug);
+  if (target) throw redirect(target, 301);
   const page = findLandingPage("overnatning", params.slug);
   if (!page) throw new Response("Not Found", { status: 404 });
   return { page };

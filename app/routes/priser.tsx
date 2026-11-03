@@ -3,7 +3,7 @@ import { Header } from "~/components/Header";
 import { Footer } from "~/components/Footer";
 import { JsonLd } from "~/components/JsonLd";
 import { FaqSection, type FaqItem } from "~/components/Faq";
-import { PrisberegnerHotelSection, PrisberegnerEventSection } from "~/components/Prisberegner";
+import { PrisberegnerHotelSection } from "~/components/Prisberegner";
 import { SvaleFlock } from "~/components/Svale";
 import { useT } from "~/lib/i18n";
 import { pageMeta } from "~/lib/seo";
@@ -99,7 +99,6 @@ export default function Priser() {
         </section>
 
         <PrisberegnerHotelSection />
-        <PrisberegnerEventSection />
         <FaqSection items={PRISER_FAQ} eyebrowDa="Priser & booking" eyebrowEn="Prices & booking" />
       </main>
       <Footer siteName="Svaleholm Roskilde" />
