@@ -4,7 +4,7 @@ import { useT } from "~/lib/i18n";
 export function meta() {
   return [
     { title: "Handelsbetingelser – Svaleholm Gaard Roskilde" },
-    { name: "description", content: "Vilkår og betingelser for booking af festsal og overnatning hos Svaleholm Gaard Roskilde – priser, betaling, afbestilling og ansvar." },
+    { name: "description", content: "Vilkår og betingelser for booking af overnatning hos Svaleholm Gaard Roskilde – priser, betaling, afbestilling og ansvar." },
     { name: "robots", content: "noindex" },
   ];
 }
@@ -19,8 +19,8 @@ export default function Handelsbetingelser() {
     >
       <LSection heading={t("1. Generelt", "1. General")}>
         <LP>{t(
-          "Disse handelsbetingelser gælder for leje af festsal og overnatning hos Svaleholm Gaard Roskilde. Betingelserne udgør sammen med den konkrete aftale grundlaget for din booking.",
-          "These terms apply to the rental of the event hall and accommodation at Svaleholm Gaard Roskilde. Together with the specific agreement, they form the basis of your booking."
+          "Disse handelsbetingelser gælder for booking af overnatning hos Svaleholm Gaard Roskilde. Betingelserne udgør sammen med den konkrete aftale grundlaget for din booking.",
+          "These terms apply to accommodation bookings at Svaleholm Gaard Roskilde. Together with the specific agreement, they form the basis of your booking."
         )}</LP>
         <LUL items={[
           "Svaleholm Gaard Roskilde",
