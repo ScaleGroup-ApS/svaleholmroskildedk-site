@@ -38,8 +38,8 @@ const VAERELSER_FAQ: FaqItem[] = [
   {
     qDa: "Er der wifi, vaskemaskine og parkering til varevogne?",
     qEn: "Is there wifi, a washing machine and parking for vans?",
-    aDa: "Ja, der er wifi, fælles vaskemaskine og god parkering til varevogne på pladsen ved gården.",
-    aEn: "Yes, there is wifi, a shared washing machine and good parking for vans at the farm.",
+    aDa: "Ja, der er wifi, fælles vaskemaskine og parkering til varevogne på pladsen ved gården.",
+    aEn: "Yes, there is wifi, a shared washing machine and parking for vans at the farm.",
   },
 ];
 
@@ -114,8 +114,8 @@ const FACILITIES = [
   {
     title: "Wifi",
     titleEn: "Wifi",
-    desc: "Wifi i hele huset til aften og weekend.",
-    descEn: "Wifi throughout the house for evenings and weekends.",
+    desc: "Wifi i hele huset.",
+    descEn: "Wifi throughout the house.",
     icon: "M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0M8.53 16.11a6 6 0 016.95 0M12 20h.01",
   },
   {
@@ -128,8 +128,8 @@ const FACILITIES = [
   {
     title: "Parkering til varevogne",
     titleEn: "Parking for vans",
-    desc: "God parkering til varevogne på pladsen ved gården.",
-    descEn: "Good parking for vans at the farm.",
+    desc: "Parkering til varevogne på pladsen ved gården.",
+    descEn: "Parking for vans at the farm.",
     icon: "M3 13l1.5-5A2 2 0 016.4 7h11.2a2 2 0 011.9 1.37L21 13v6H3v-6zM5 17h.01M19 17h.01",
   },
 ];

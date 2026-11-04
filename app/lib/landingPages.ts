@@ -99,8 +99,8 @@ const FAQ_WHOLE_HOUSE: FaqItem = {
 const FAQ_FACILITIES: FaqItem = {
   qDa: "Er der wifi, vaskemaskine og parkering til varevogne?",
   qEn: "Is there wifi, a washing machine and parking for vans?",
-  aDa: "Ja, der er wifi, fælles vaskemaskine og god parkering til varevogne på pladsen ved gården.",
-  aEn: "Yes, there is wifi, a shared washing machine and good parking for vans at the farm.",
+  aDa: "Ja, der er wifi, fælles vaskemaskine og parkering til varevogne på pladsen ved gården.",
+  aEn: "Yes, there is wifi, a shared washing machine and parking for vans at the farm.",
 };
 
 const AREA_FAQS: FaqItem[] = [FAQ_LOCATION, FAQ_ROOMS, FAQ_INVOICE, FAQ_WHOLE_HOUSE, FAQ_CHECKIN, FAQ_FACILITIES];

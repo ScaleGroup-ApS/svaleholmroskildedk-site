@@ -78,8 +78,8 @@ const FAQS: FaqItem[] = [
   {
     qDa: "Er der wifi, vaskemaskine og parkering til varevogne?",
     qEn: "Is there wifi, a washing machine and parking for vans?",
-    aDa: "Ja. Der er wifi, en fælles vaskemaskine og god parkering til varevogne på pladsen ved gården.",
-    aEn: "Yes. There is wifi, a shared washing machine and good parking for vans at the farm.",
+    aDa: "Ja. Der er wifi, en fælles vaskemaskine og parkering til varevogne på pladsen ved gården.",
+    aEn: "Yes. There is wifi, a shared washing machine and parking for vans at the farm.",
   },
 ];
 
@@ -123,8 +123,8 @@ const VALUE_POINTS: Array<{ titleDa: string; titleEn: string; bodyDa: string; bo
   {
     titleDa: "Wifi, vaskemaskine og parkering til varevogne",
     titleEn: "Wifi, washing machine and parking for vans",
-    bodyDa: "Wifi til aften og weekend, fælles vaskemaskine til arbejdstøjet og god parkering til varevogne ved gården.",
-    bodyEn: "Wifi for evenings and weekends, a shared washing machine for work clothes, and good parking for vans at the farm.",
+    bodyDa: "Wifi, fælles vaskemaskine til arbejdstøjet og parkering til varevogne ved gården.",
+    bodyEn: "Wifi, a shared washing machine for work clothes, and parking for vans at the farm.",
   },
 ];
 
