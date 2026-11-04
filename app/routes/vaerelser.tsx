@@ -14,45 +14,45 @@ const VAERELSER_FAQ: FaqItem[] = [
   {
     qDa: "Har værelserne eget bad?",
     qEn: "Do the rooms have a private bathroom?",
-    aDa: "Nej. Værelserne er enkle og uden eget bad. Der er 4 fælles bad og toiletter samt fælles køkken og opholdsrum, som alle gæster deler.",
-    aEn: "No. The rooms are simple and without a private bathroom. There are 4 shared baths and toilets plus a shared kitchen and lounge that all guests share.",
+    aDa: "Nej. Værelserne er enkle og uden eget bad. Der er 4 fælles bad og toiletter samt fælles køkken og opholdsrum, som alle håndværkere deler.",
+    aEn: "No. The rooms are simple and without a private bathroom. There are 4 shared baths and toilets plus a shared kitchen and lounge that all tradespeople share.",
   },
   {
     qDa: "Hvad koster en overnatning?",
     qEn: "What does a night cost?",
-    aDa: "Fra 650 kr pr. værelse pr. nat. Der er op til 8 værelser, så I kan overnatte flere sammen – fx i forbindelse med en fest i salen.",
-    aEn: "From DKK 650 per room per night. There are up to 8 rooms, so you can stay together as a group – for example in connection with a celebration in the hall.",
+    aDa: "Fra 650 kr pr. værelse pr. nat inkl. moms, minimum 4 nætter pr. booking. Der er op til 8 værelser, så hele sjakket kan bo samlet.",
+    aEn: "From DKK 650 per room per night incl. VAT, minimum 4 nights per booking. There are up to 8 rooms, so the whole crew can stay together.",
   },
   {
-    qDa: "Hvordan foregår check-in?",
-    qEn: "How does check-in work?",
-    aDa: "Der er nem selvcheck-in via dørkode, så I kan ankomme fleksibelt uden at skulle mødes med en vært.",
-    aEn: "There is easy self check-in via a door code, so you can arrive flexibly without having to meet a host.",
+    qDa: "Kan vi leje hele huset til vores sjak?",
+    qEn: "Can we rent the whole house for our crew?",
+    aDa: "Ja. Hele huset kan lejes eksklusivt – oplagt ved et længere projekt eller når flere håndværkere skal bo samlet. Vi laver en skræddersyet aftale ved hele huset eller langtidsleje.",
+    aEn: "Yes. The whole house can be rented exclusively – ideal for a longer project or when several tradespeople need to stay together. We put together a tailored agreement for the whole house or a long-term stay.",
   },
   {
-    qDa: "Hvor ligger Svaleholm i forhold til Roskilde?",
-    qEn: "Where is Svaleholm in relation to Roskilde?",
-    aDa: "Svaleholm Gaard ligger på Frederiksborgvej 388, 4000 Roskilde – på landet lige uden for byen, med nem parkering ved indkørslen.",
-    aEn: "Svaleholm Gaard is at Frederiksborgvej 388, 4000 Roskilde – in the countryside just outside town, with easy parking by the drive.",
+    qDa: "Hvordan foregår check-in, og kan firmaet faktureres?",
+    qEn: "How does check-in work, and can the company be invoiced?",
+    aDa: "Der er nem selvcheck-in via dørkode, så sjakket kan ankomme fleksibelt uden at skulle mødes med en vært. Vi fakturerer mod CVR-nummer.",
+    aEn: "There is easy self check-in via a door code, so the crew can arrive flexibly without having to meet a host. We invoice against a CVR (business registration) number.",
   },
 ];
 
 const VAERELSER_DESC =
-  "Overnat på Svaleholm tæt på Roskilde på Sjælland. Op til 8 enkle værelser uden eget bad – med 4 fælles bad og toiletter, fælles køkken og fælles opholdsrum. Fra 650 kr pr. nat med nem selvcheck-in.";
+  "Overnatning til håndværkere og sjak nær Roskilde på Sjælland. Op til 8 enkle værelser uden eget bad – med 4 fælles bad og toiletter, fælles køkken og fælles opholdsrum. Fra 650 kr pr. nat inkl. moms, min. 4 nætter, med nem selvcheck-in og fakturabetaling mod CVR.";
 
 export function meta() {
   return [
     ...pageMeta({
       path: "/vaerelser",
-      title: "Overnatning & ophold nær Roskilde fra 650 kr | Svaleholm",
+      title: "Overnatning til håndværkere nær Roskilde fra 650 kr | Svaleholm",
       description: VAERELSER_DESC,
       image: "/images/bygning-have.jpg",
-      imageAlt: "Svaleholms bygning og have – ophold nær Roskilde",
+      imageAlt: "Svaleholms bygning og have – overnatning til håndværkere nær Roskilde",
     }),
     {
       name: "keywords",
       content:
-        "ophold Roskilde, overnatning Roskilde, billig overnatning Roskilde, værelser Sjælland, overnatning ved bryllup Roskilde, fælles køkken, selvcheck-in, Svaleholm",
+        "overnatning håndværkere Roskilde, indkvartering håndværkere Sjælland, værelser til sjak Roskilde, fælles køkken, selvcheck-in, fakturabetaling CVR, Svaleholm",
     },
   ];
 }
@@ -60,7 +60,7 @@ export function meta() {
 const VAERELSER_JSONLD = graph(
   webPageNode({
     path: "/vaerelser",
-    name: "Overnatning & ophold nær Roskilde",
+    name: "Overnatning til håndværkere nær Roskilde",
     description: VAERELSER_DESC,
     primaryImage: "/images/bygning-have.jpg",
   }),
@@ -70,7 +70,7 @@ const VAERELSER_JSONLD = graph(
   ]),
   lodgingNode({
     description:
-      "Ophold og overnatning på Svaleholm i landlige omgivelser tæt på Roskilde på Sjælland. Op til 8 enkle værelser uden eget bad, med fælles badefaciliteter, fælles køkken og fælles opholdsrum.",
+      "Overnatning til håndværkere og sjak på Svaleholm tæt på Roskilde på Sjælland. Op til 8 enkle værelser uden eget bad, med fælles badefaciliteter, fælles køkken og fælles opholdsrum. Hele huset kan lejes eksklusivt ved længere projekter.",
   }),
   faqNode(VAERELSER_FAQ.map((f) => ({ q: f.qDa, a: f.aDa }))),
 );
@@ -135,14 +135,14 @@ export default function Vaerelser() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="eyebrow mb-4">{t("Overnatning nær Roskilde", "Stay near Roskilde")}</p>
+            <p className="eyebrow mb-4">{t("Overnatning til håndværkere nær Roskilde", "Stay for tradespeople near Roskilde")}</p>
             <h1 className="heading-hero" style={{ color: "#F2EFE7", fontSize: "clamp(3rem, 8vw, 7rem)" }}>
-              {t("Vores ", "Our ")}<span className="accent-italic">{t("ophold", "stay")}</span>
+              {t("Værelser til ", "Rooms for ")}<span className="accent-italic">{t("sjakket", "the crew")}</span>
             </h1>
             <p style={{ fontFamily: "var(--font-body)", color: "rgba(242,239,231,0.75)", fontSize: "1.05rem", lineHeight: 1.8, maxWidth: "54ch", marginTop: "1.5rem" }}>
               {t(
-                "Enkle, hyggelige værelser med fælles køkken, bad og opholdsrum – i naturskønne omgivelser tæt på Roskilde. Beregn dit ophold herunder.",
-                "Simple, cosy rooms with shared kitchen, bath and lounge – in scenic surroundings close to Roskilde. Calculate your stay below."
+                "Enkle, praktiske værelser med fælles køkken, bad og opholdsrum – tæt på jeres arbejdsplads. Beregn jeres ophold herunder.",
+                "Simple, practical rooms with shared kitchen, bath and lounge – close to your worksite. Calculate your stay below."
               )}
             </p>
           </motion.div>
@@ -160,20 +160,20 @@ export default function Vaerelser() {
               transition={{ duration: 0.7 }}
               viewport={{ once: true, margin: "-80px" }}
             >
-              <p className="eyebrow mb-4">{t("Overnatning på Sjælland", "Stay on Zealand")}</p>
+              <p className="eyebrow mb-4">{t("Indkvartering til håndværkere", "Lodging for tradespeople")}</p>
               <h2 className="heading-section mb-6" style={{ color: "#F2EFE7" }}>
-                {t("Enkelt ophold ", "A simple stay ")}<span className="accent-italic">{t("tæt på Roskilde", "close to Roskilde")}</span>
+                {t("Enkel indkvartering ", "Simple lodging ")}<span className="accent-italic">{t("tæt på pladsen", "close to the job")}</span>
               </h2>
               <p style={{ color: "rgba(242,239,231,0.72)", lineHeight: 1.9, marginBottom: "1.4rem", maxWidth: "54ch" }}>
                 {t(
-                  "Svaleholm ligger i fredfyldte, landlige omgivelser på Sjælland – kun kort afstand fra Roskilde. Vi har op til 8 enkle værelser, der er ideelle, når I holder bryllup eller fest i festsalen, er på weekendophold eller blot ønsker en rolig overnatning i naturen.",
-                  "Svaleholm sits in peaceful, rural surroundings on Zealand – just a short distance from Roskilde. We have up to 8 simple rooms, ideal when you're holding a wedding or party in the hall, on a weekend break or simply want a quiet overnight stay in nature."
+                  "Svaleholm ligger i rolige, landlige omgivelser på Sjælland. Vi har op til 8 enkle værelser, der er ideelle til sjak og håndværkere, der skal bo samlet, mens de arbejder på et projekt i området.",
+                  "Svaleholm sits in quiet, rural surroundings on Zealand. We have up to 8 simple rooms, ideal for crews and tradespeople who need to stay together while working on a project in the area."
                 )}
               </p>
               <p style={{ color: "rgba(242,239,231,0.72)", lineHeight: 1.9, marginBottom: "2rem", maxWidth: "54ch" }}>
                 {t(
-                  "Værelserne er uden eget bad og toilet. I stedet deles fire fælles bad og toiletter mellem værelserne, og der er et fælles køkken, hvor I selv kan lave mad, samt et fælles opholdsrum til hygge. Check-in foregår nemt og digitalt, så I kan ankomme, når det passer jer.",
-                  "The rooms have no private bath or toilet. Instead, four shared baths and toilets serve the rooms, and there is a shared kitchen where you can cook your own meals, plus a shared lounge to relax in. Check-in is easy and digital, so you can arrive whenever it suits you."
+                  "Værelserne er uden eget bad og toilet. I stedet deles fire fælles bad og toiletter mellem værelserne, og der er et fælles køkken, hvor I selv kan lave mad, samt et fælles opholdsrum til afslapning. Check-in foregår nemt og digitalt med dørkode, så I kan ankomme, når det passer med arbejdet.",
+                  "The rooms have no private bath or toilet. Instead, four shared baths and toilets serve the rooms, and there is a shared kitchen where you can cook your own meals, plus a shared lounge to unwind in. Check-in is easy and digital with a door code, so you can arrive whenever suits the job."
                 )}
               </p>
 
@@ -182,12 +182,13 @@ export default function Vaerelser() {
               </h3>
               <ul style={{ display: "flex", flexDirection: "column", gap: "0.8rem" }}>
                 {[
-                  t("Op til 8 enkle værelser – hyggelige og rolige", "Up to 8 simple rooms – cosy and quiet"),
+                  t("Op til 8 enkle værelser – til sjak og hold", "Up to 8 simple rooms – for crews and teams"),
                   t("Værelserne er uden eget bad og toilet", "The rooms have no private bath or toilet"),
                   t("4 fælles bad og toiletter deles mellem værelserne", "4 shared baths and toilets serve the rooms"),
                   t("Fælles køkken, hvor I selv kan lave mad", "Shared kitchen where you can cook your own meals"),
-                  t("Fælles opholdsrum til fælles hygge", "Shared lounge for spending time together"),
-                  t("Kort afstand til Roskilde – fra DKK 650 pr. nat inkl. moms", "A short distance to Roskilde – from DKK 650 per night incl. VAT"),
+                  t("Fælles opholdsrum til afslapning efter arbejdsdagen", "Shared lounge for relaxing after the workday"),
+                  t("Hele huset kan lejes eksklusivt ved længere projekter", "The whole house can be rented exclusively for longer projects"),
+                  t("Fra DKK 650 pr. nat inkl. moms – min. 4 nætter – fakturabetaling mod CVR", "From DKK 650 per night incl. VAT – min. 4 nights – invoiced against a CVR number"),
                 ].map((item) => (
                   <li key={item} className="flex items-baseline gap-3" style={{ fontFamily: "var(--font-body)", color: "rgba(242,239,231,0.78)", fontSize: "0.95rem" }}>
                     <span style={{ color: "#7EA57C", fontSize: "0.7rem" }}>✦</span>

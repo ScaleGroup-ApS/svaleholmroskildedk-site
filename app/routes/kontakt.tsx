@@ -22,7 +22,7 @@ export function meta() {
     path: "/kontakt",
     title: "Kontakt Svaleholm Gaard Roskilde | Frederiksborgvej 388",
     description:
-      "Kontakt Svaleholm Gaard ved Roskilde om fest, bryllup og overnatning. Ring +45 71 53 13 79, skriv til kontakt@svaleholmroskilde.dk eller udfyld formularen.",
+      "Få tilbud til dit sjak. Kontakt Svaleholm Gaard ved Roskilde om overnatning til håndværkere. Ring +45 71 53 13 79, skriv til kontakt@svaleholmroskilde.dk eller udfyld formularen.",
     image: "/images/have-sti.jpg",
     imageAlt: "Havesti ved Svaleholm",
   });
@@ -33,7 +33,7 @@ const KONTAKT_JSONLD = graph(
     path: "/kontakt",
     name: "Kontakt Svaleholm Gaard Roskilde",
     description:
-      "Kontakt Svaleholm Gaard ved Roskilde om fest, bryllup og overnatning – telefon, e-mail, adresse og kontaktformular.",
+      "Kontakt Svaleholm Gaard ved Roskilde om overnatning til håndværkere og sjak – telefon, e-mail, adresse og kontaktformular.",
     type: "ContactPage",
     primaryImage: "/images/have-sti.jpg",
   }),
@@ -88,16 +88,36 @@ export function headers() {
 }
 
 // ── Server action: sender henvendelsen videre til CRM'et ──────────────────────
+// B2B-felter (Task 10): valgfrie, så en privat forespørgsel stadig kan sendes
+// uden dem. crm-backend har ikke dedikerede kolonner for disse, så de
+// tilføjes som ekstra "enquiry"-rækker og vises dermed i den fritekst-besked,
+// der allerede bruges til prisberegner-felterne (se composeMessage i
+// crm.server.ts) — samme mønster, ingen ændring af CRM-payloadets kontrakt.
+const COMPANY_FIELDS: { key: string; da: string; en: string }[] = [
+  { key: "company",         da: "Firma / virksomhed",        en: "Company" },
+  { key: "cvr",              da: "CVR",                        en: "CVR (business reg. no.)" },
+  { key: "crewSize",         da: "Antal håndværkere",         en: "Number of tradespeople" },
+  { key: "periodFrom",       da: "Periode fra",                en: "Period from" },
+  { key: "periodTo",         da: "Periode til",                en: "Period to" },
+  { key: "projectAddress",   da: "Projekt-adresse/by",         en: "Project address/city" },
+];
+
 export async function action({ request, url }: Route.ActionArgs) {
   const form = await request.formData();
   const name = String(form.get("name") ?? "").trim();
   const phone = String(form.get("phone") ?? "").trim();
   const email = String(form.get("email") ?? "").trim();
   const message = String(form.get("message") ?? "").trim();
+  const company = String(form.get("company") ?? "").trim();
+  const cvr = String(form.get("cvr") ?? "").trim();
+  const crewSize = String(form.get("crewSize") ?? "").trim();
+  const periodFrom = String(form.get("periodFrom") ?? "").trim();
+  const periodTo = String(form.get("periodTo") ?? "").trim();
+  const projectAddress = String(form.get("projectAddress") ?? "").trim();
 
   // Ved enhver afvisning sendes de indtastede værdier retur, så en kunde uden
   // JavaScript ikke mister sin besked, når siden gen-renderes.
-  const values = { name, phone, email, message };
+  const values = { name, phone, email, message, company, cvr, crewSize, periodFrom, periodTo, projectAddress };
 
   if (!name || !phone) {
     return { ok: false as const, error: "validation", values };
@@ -125,12 +145,20 @@ export async function action({ request, url }: Route.ActionArgs) {
     })
     .filter((x): x is { label: string; value: string } => x !== null);
 
+  // B2B-felterne er valgfrie fritekst-/tal-felter udfyldt direkte i
+  // formularen (ikke via prisberegnerens query-string), så de tilføjes som
+  // deres egne enquiry-rækker i stedet for at gå gennem ENQUIRY_FIELDS.
+  const companyValues: Record<string, string> = { company, cvr, crewSize, periodFrom, periodTo, projectAddress };
+  const companyRows = COMPANY_FIELDS
+    .map((f) => (companyValues[f.key] ? { label: f.da, value: companyValues[f.key] } : null))
+    .filter((x): x is { label: string; value: string } => x !== null);
+
   const result = await sendContactEmail({
     name,
     phone,
     email: email || undefined,
     message: message || undefined,
-    enquiry,
+    enquiry: [...enquiry, ...companyRows],
     // `url` is the normalized route URL; `request.url` carries the `.data`
     // suffix on client-side form submissions under RR8 pass-through requests.
     sourceUrl: url.href,
@@ -237,12 +265,12 @@ export default function Kontakt() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="eyebrow mb-4">{t("Vi er her for dig", "We're here for you")}</p>
+            <p className="eyebrow mb-4">{t("Få tilbud til dit sjak", "Get a quote for your crew")}</p>
             <h1 className="heading-hero" style={{ color: "#F2EFE7", fontSize: "clamp(2.8rem, 7vw, 6rem)" }}>
               {t("Lad os", "Let's")} <span className="accent-italic">{t("tale sammen", "talk")}</span>
             </h1>
             <p style={{ fontFamily: "var(--font-body)", color: "rgba(242,239,231,0.75)", fontSize: "1.05rem", lineHeight: 1.8, maxWidth: "54ch", marginTop: "1.5rem" }}>
-              {t("Uanset om du vil booke et ophold, planlægge en fejring eller blot stille et spørgsmål – vi svarer hurtigt og personligt.", "Whether you want to book a stay, plan a celebration or simply ask a question – we reply quickly and personally.")}
+              {t("Uanset om I skal booke overnatning til sjakket, planlægge et længere projekt eller blot stille et spørgsmål – vi svarer hurtigt og personligt.", "Whether you need to book lodging for your crew, plan a longer project or simply ask a question – we reply quickly and personally.")}
             </p>
           </motion.div>
         </section>
@@ -262,7 +290,7 @@ export default function Kontakt() {
               >
                 <h2 className="heading-section mb-3" style={{ color: "#F2EFE7" }}>{t("Find os", "Find us")}</h2>
                 <p style={{ fontFamily: "var(--font-body)", color: "rgba(242,239,231,0.7)", lineHeight: 1.8, marginBottom: "2.5rem" }}>
-                  {t("Vi glæder os til at høre fra dig og hjælpe med at skabe en oplevelse, der passer præcis til dine ønsker og behov.", "We look forward to hearing from you and helping to create an experience tailored precisely to your wishes and needs.")}
+                  {t("Vi glæder os til at høre fra jer og lave en aftale, der passer præcis til jeres projekt og sjak.", "We look forward to hearing from you and putting together an agreement tailored precisely to your project and crew.")}
                 </p>
 
                 <div className="space-y-5 mb-10">
@@ -309,7 +337,7 @@ export default function Kontakt() {
               >
                 <div className="glass card-shadow p-8 md:p-10" style={{ borderRadius: "2px" }}>
                   <Form method="post">
-                    <h3 className="heading-card mb-7" style={{ color: "#F2EFE7" }}>{t("Send os en besked", "Send us a message")}</h3>
+                    <h3 className="heading-card mb-7" style={{ color: "#F2EFE7" }}>{t("Få tilbud til dit sjak", "Get a quote for your crew")}</h3>
 
                     {/* Signeret udstedelsestidspunkt — afslører submits, der er
                         for hurtige til at være udfyldt af et menneske. */}
@@ -402,6 +430,53 @@ export default function Kontakt() {
                         {t("E-mail", "E-mail")}
                       </label>
                       <input id="cf-email" name="email" type="email" defaultValue={prev?.email} className="input-field" placeholder={t("Så vi kan svare på mail", "So we can reply by e-mail")} autoComplete="email" />
+                    </div>
+
+                    {/* B2B-felter — alle valgfrie, så en privat forespørgsel
+                        stadig kan sendes uden dem. */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+                      <div>
+                        <label htmlFor="cf-company" className="block mb-2" style={{ fontFamily: "var(--font-body)", fontSize: "0.66rem", fontWeight: 500, color: "#7EA57C", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+                          {t("Firma / virksomhed", "Company")}
+                        </label>
+                        <input id="cf-company" name="company" type="text" defaultValue={prev?.company} className="input-field" placeholder={t("Navn på virksomhed", "Company name")} autoComplete="organization" />
+                      </div>
+                      <div>
+                        <label htmlFor="cf-cvr" className="block mb-2" style={{ fontFamily: "var(--font-body)", fontSize: "0.66rem", fontWeight: 500, color: "#7EA57C", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+                          {t("CVR", "CVR")}
+                        </label>
+                        <input id="cf-cvr" name="cvr" type="text" defaultValue={prev?.cvr} className="input-field" placeholder={t("Til fakturering", "For invoicing")} inputMode="numeric" />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+                      <div>
+                        <label htmlFor="cf-crew-size" className="block mb-2" style={{ fontFamily: "var(--font-body)", fontSize: "0.66rem", fontWeight: 500, color: "#7EA57C", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+                          {t("Antal håndværkere", "Number of tradespeople")}
+                        </label>
+                        <input id="cf-crew-size" name="crewSize" type="number" min={1} defaultValue={prev?.crewSize} className="input-field" placeholder={t("Fx 4", "E.g. 4")} inputMode="numeric" />
+                      </div>
+                      <div>
+                        <label htmlFor="cf-project-address" className="block mb-2" style={{ fontFamily: "var(--font-body)", fontSize: "0.66rem", fontWeight: 500, color: "#7EA57C", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+                          {t("Projekt-adresse/by", "Project address/city")}
+                        </label>
+                        <input id="cf-project-address" name="projectAddress" type="text" defaultValue={prev?.projectAddress} className="input-field" placeholder={t("Hvor arbejder sjakket?", "Where is the crew working?")} />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+                      <div>
+                        <label htmlFor="cf-period-from" className="block mb-2" style={{ fontFamily: "var(--font-body)", fontSize: "0.66rem", fontWeight: 500, color: "#7EA57C", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+                          {t("Periode fra", "Period from")}
+                        </label>
+                        <input id="cf-period-from" name="periodFrom" type="date" defaultValue={prev?.periodFrom} className="input-field" style={{ colorScheme: "dark" }} />
+                      </div>
+                      <div>
+                        <label htmlFor="cf-period-to" className="block mb-2" style={{ fontFamily: "var(--font-body)", fontSize: "0.66rem", fontWeight: 500, color: "#7EA57C", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+                          {t("Periode til", "Period to")}
+                        </label>
+                        <input id="cf-period-to" name="periodTo" type="date" defaultValue={prev?.periodTo} className="input-field" style={{ colorScheme: "dark" }} />
+                      </div>
                     </div>
 
                     <div className="mb-7">

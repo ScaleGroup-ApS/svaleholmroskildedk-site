@@ -59,15 +59,16 @@ function placeholderEmail(phone: string): string {
 }
 
 /**
- * crm-backend has no field for the price-calculator rows, so they are appended
- * to the free-text message rather than dropped.
+ * crm-backend has no dedicated fields for the price-calculator rows or the
+ * optional B2B fields (company, CVR, crew size, period, project address), so
+ * they are appended to the free-text message rather than dropped.
  */
 function composeMessage(p: ContactPayload): string | undefined {
   const parts: string[] = [];
   if (p.message) parts.push(p.message);
   if (p.enquiry && p.enquiry.length > 0) {
     parts.push(
-      ["── Forespørgsel fra prisberegner ──", ...p.enquiry.map((r) => `${r.label}: ${r.value}`)].join(
+      ["── Detaljer fra formular ──", ...p.enquiry.map((r) => `${r.label}: ${r.value}`)].join(
         "\n",
       ),
     );
