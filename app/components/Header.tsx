@@ -3,7 +3,7 @@ import { motion, useScroll, useSpring } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useT, useLang } from "~/lib/i18n";
 
-type IconName = "home" | "rooms" | "events" | "prices" | "about" | "contact" | "gallery" | "inspiration";
+type IconName = "home" | "rooms" | "work" | "prices" | "about" | "contact" | "gallery" | "inspiration";
 
 interface NavItem {
   href: string;
@@ -13,9 +13,8 @@ interface NavItem {
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { href: "/tjenester", label: "Events", en: "Events", icon: "events" },
+  { href: "/indkvartering-haandvaerkere", label: "Indkvartering", en: "Accommodation", icon: "work" },
   { href: "/vaerelser", label: "Ophold", en: "Stay", icon: "rooms" },
-  { href: "/inspiration", label: "Inspiration", en: "Inspiration", icon: "inspiration" },
   { href: "/galleri", label: "Galleri", en: "Gallery", icon: "gallery" },
   { href: "/kontakt", label: "Kontakt", en: "Contact", icon: "contact" },
 ];
@@ -46,10 +45,10 @@ function iconFor(icon: IconName) {
           <path strokeLinecap="round" strokeLinejoin="round" d="M3 8h18v8H3V8zm0 8v3m18-3v3M7 8V6h4v2m2-2h4v2" />
         </svg>
       );
-    case "events":
+    case "work":
       return (
         <svg className="w-4 h-4" {...common}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M7 4v4m10-4v4M4 9h16M5 6h14a1 1 0 011 1v12a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1z" />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M14.7 6.3a1 1 0 010 1.4l-6 6a1 1 0 01-1.4 0l-2-2a1 1 0 010-1.4l6-6a1 1 0 011.4 0l2 2zM4 20l3-1 8-8-2-2-8 8-1 3z" />
         </svg>
       );
     case "prices":
@@ -150,7 +149,7 @@ export function Header({ siteName = "Svaleholm", menuItems = [] }: HeaderProps) 
             href,
             label: item.title,
             en: match?.en ?? item.title,
-            icon: match?.icon ?? "events",
+            icon: match?.icon ?? "work",
           };
         })
       : NAV_ITEMS;

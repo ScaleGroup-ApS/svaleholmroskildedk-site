@@ -9,32 +9,27 @@ import { pageMeta } from "~/lib/seo";
 import { graph, breadcrumb, imageGalleryNode } from "~/lib/schema";
 
 const GALLERI_DESC =
-  "Se billeder fra Svaleholm Gaard ved Roskilde – festsalen til bryllup og fest, gården, de enkle værelser og den omkringliggende natur på Sjælland.";
+  "Se billeder fra Svaleholm Gaard ved Roskilde – værelserne, gården og den omkringliggende natur på Sjælland.";
 
 export function meta() {
   return pageMeta({
     path: "/galleri",
-    title: "Galleri – fest, festsal & natur ved Roskilde | Svaleholm",
+    title: "Galleri – værelser, gård & natur ved Roskilde | Svaleholm",
     description: GALLERI_DESC,
-    image: "/images/festsal-fest-2.png",
-    imageAlt: "Fest i festsalen med band og lyskæder",
+    image: "/images/gaard-familie.png",
+    imageAlt: "Gården på Svaleholm set fra gårdspladsen",
   });
 }
 
-// Hele billedbiblioteket – rigtige fester, festsalen, gården, ophold og natur.
+// Hele billedbiblioteket – værelser, gården, ophold og natur.
 type Shot = { src: string; da: string; en: string };
 
 const GALLERY: Shot[] = [
-  // Gæster der nyder festen
-  { src: "/images/festsal-fest-1.png", da: "Bryllupsmiddag ved langbord med lys og blomster", en: "Wedding dinner at a long table with candles and flowers" },
-  { src: "/images/festsal-fest-2.png", da: "Fest i salen med band og lyskæder", en: "Celebration in the hall with a band and string lights" },
-  { src: "/images/festsal-hvid-1.png", da: "Festsalen pyntet i hvidt med eukalyptus og guldtallerkener", en: "The hall dressed in white with eucalyptus and gold plates" },
-  { src: "/images/festsal-hvid-2.png", da: "Hvide draperier, lyskæder og blomster i festsalen", en: "White drapes, string lights and flowers in the hall" },
-  { src: "/images/skaal-toast.png", da: "Gæster skåler i champagne", en: "Guests toasting with champagne" },
-  { src: "/images/gaard-familie.png", da: "Familier spiser ved langborde under egetræet", en: "Families dining at long tables under the oak tree" },
-  { src: "/images/ankomst-velkommen.png", da: "Par ankommer til Svaleholm ved skumring", en: "A couple arriving at Svaleholm at dusk" },
-  { src: "/images/ankomst-aften.png", da: "Gæster ankommer om aftenen", en: "Guests arriving in the evening" },
-  { src: "/images/have-par-hund.png", da: "Par går tur med hunden på stien", en: "A couple walking their dog along the path" },
+  // Gården og ankomst
+  { src: "/images/gaard-familie.png", da: "Gæster ved langborde under egetræet på gårdspladsen", en: "Guests at long tables under the oak tree in the courtyard" },
+  { src: "/images/ankomst-velkommen.png", da: "Ankomst til Svaleholm ved skumring", en: "Arriving at Svaleholm at dusk" },
+  { src: "/images/ankomst-aften.png", da: "Ankomst om aftenen", en: "Arriving in the evening" },
+  { src: "/images/have-par-hund.png", da: "Gåtur med hunden på stien", en: "A walk with the dog along the path" },
 
   // Naturen omkring Svaleholm
   { src: "/images/have-sti.jpg", da: "Havesti gennem haven", en: "A path through the garden" },
@@ -91,7 +86,7 @@ export default function Galleri() {
         {/* Page Hero */}
         <section className="relative flex items-end overflow-hidden" style={{ height: "52vh", minHeight: "380px" }}>
           <div className="absolute inset-0" style={{ inset: "-8% 0" }}>
-            <img src="/images/festsal-fest-2.png" alt="Fest i festsalen på Svaleholm nær Roskilde" className="w-full h-full object-cover ken-burns" />
+            <img src="/images/gaard-familie.png" alt="Gården på Svaleholm nær Roskilde" className="w-full h-full object-cover ken-burns" />
           </div>
           <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(15,23,20,0.6) 0%, rgba(15,23,20,0.35) 40%, #0F1714 100%)" }} />
           <SvaleFlock count={2} />
@@ -108,8 +103,8 @@ export default function Galleri() {
             </h1>
             <p style={{ fontFamily: "var(--font-body)", color: "rgba(242,239,231,0.75)", fontSize: "1.05rem", lineHeight: 1.8, maxWidth: "54ch", marginTop: "1.5rem" }}>
               {t(
-                "Fester i salen, gården, de enkle værelser og naturen omkring Svaleholm. Klik på et billede for at se det i fuld størrelse.",
-                "Celebrations in the hall, the courtyard, the simple rooms and the nature around Svaleholm. Click an image to see it full size."
+                "Gården, de enkle værelser og naturen omkring Svaleholm. Klik på et billede for at se det i fuld størrelse.",
+                "The courtyard, the simple rooms and the nature around Svaleholm. Click an image to see it full size."
               )}
             </p>
           </motion.div>
