@@ -64,16 +64,12 @@ function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ minHeight: "720px" }}>
       <div className="absolute inset-0" style={{ inset: "-6% 0" }}>
-        <video
+        <img
           className="w-full h-full object-cover"
-          src="/images/hero.mp4"
-          poster="/images/hero-mark.jpg"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
+          src="/images/hero-mark.jpg"
+          alt=""
           aria-hidden
+          fetchPriority="high"
         />
       </div>
       <div
