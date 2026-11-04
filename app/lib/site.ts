@@ -69,10 +69,6 @@ export const MIN_NIGHTS = 4;
 /** Areas served (local SEO). */
 export const AREA_SERVED = ["Roskilde", "Lejre", "Køge", "Holbæk", "Frederikssund"];
 
-/** Max guest capacity of the festsal (event hall). */
-// Deprecated after event removal — last refs cleared in Task 4/6, export removed in Task 12.
-export const MAX_GUESTS = 150;
-
 /** Number of lodging rooms. */
 export const NUMBER_OF_ROOMS = 8;
 

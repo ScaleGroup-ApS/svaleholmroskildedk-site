@@ -40,7 +40,7 @@ export default function Privatlivspolitik() {
           t("Navn og telefonnummer", "Name and phone number"),
           t("E-mailadresse (hvis du oplyser den)", "E-mail address (if you provide it)"),
           t("Din besked til os", "Your message to us"),
-          t("Detaljer fra prisberegneren: ophold eller event, antal, datoer, tilvalg og vejledende pris", "Details from the price calculator: stay or event, quantity, dates, add-ons and guideline price"),
+          t("Detaljer fra prisberegneren: ophold, antal, datoer, tilvalg og vejledende pris", "Details from the price calculator: stay, quantity, dates, add-ons and guideline price"),
         ]} />
         <LP>{t(
           "Derudover registrerer vores hosting-server tekniske oplysninger som IP-adresse og tidspunkt af sikkerheds- og driftshensyn.",
@@ -50,8 +50,8 @@ export default function Privatlivspolitik() {
 
       <LSection heading={t("3. Formål og retsgrundlag", "3. Purpose and legal basis")}>
         <LP>{t(
-          "Vi bruger dine oplysninger til at besvare din henvendelse, udarbejde et tilbud og indgå samt gennemføre en eventuel booking af ophold eller festsal.",
-          "We use your information to answer your enquiry, prepare a quote and enter into and carry out any booking of accommodation or the hall."
+          "Vi bruger dine oplysninger til at besvare din henvendelse, udarbejde et tilbud og indgå samt gennemføre en eventuel booking af ophold.",
+          "We use your information to answer your enquiry, prepare a quote and enter into and carry out any booking of accommodation."
         )}</LP>
         <LP>{t(
           "Retsgrundlaget er databeskyttelsesforordningen (GDPR) art. 6, stk. 1, litra b (foranstaltninger forud for og opfyldelse af en aftale) og litra a (dit samtykke, når du kontakter os).",

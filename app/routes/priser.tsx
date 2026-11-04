@@ -7,59 +7,58 @@ import { PrisberegnerHotelSection } from "~/components/Prisberegner";
 import { SvaleFlock } from "~/components/Svale";
 import { useT } from "~/lib/i18n";
 import { pageMeta } from "~/lib/seo";
-import { graph, breadcrumb, webPageNode, eventOfferCatalogNode, faqNode } from "~/lib/schema";
+import { graph, breadcrumb, webPageNode, faqNode } from "~/lib/schema";
 
 const PRISER_FAQ: FaqItem[] = [
   {
-    qDa: "Hvad koster det at leje festsalen?",
-    qEn: "What does it cost to rent the hall?",
-    aDa: "Festsalen kan lejes fra 1.800 kr pr. time. En aften (kl. 17–24) koster 9.000 kr, en heldag (kl. 9–24) 15.000 kr og en hel weekend (fre–søn) 26.000 kr. Alle priser er inkl. moms.",
-    aEn: "The hall can be rented from DKK 1,800 per hour. An evening (5–12 pm) is DKK 9,000, a full day (9 am–12 pm) DKK 15,000 and a whole weekend (Fri–Sun) DKK 26,000. All prices include VAT.",
+    qDa: "Hvad koster en overnatning til håndværkere?",
+    qEn: "What does a night cost for tradespeople?",
+    aDa: "Et værelse koster 650 kr pr. nat inkl. moms. Der er op til 8 enkle værelser med fælles køkken, 4 bad og opholdsrum – ideelt til sjak, der arbejder på et projekt i området.",
+    aEn: "A room costs DKK 650 per night incl. VAT. There are up to 8 simple rooms with a shared kitchen, 4 bathrooms and a lounge – ideal for crews working a project in the area.",
   },
   {
-    qDa: "Hvad koster overnatning?",
-    qEn: "What does an overnight stay cost?",
-    aDa: "Et værelse koster 650 kr pr. nat. Der er op til 8 enkle værelser med fælles bad, køkken og opholdsrum – ideelt til gæster, der overnatter i forbindelse med en fest.",
-    aEn: "A room costs DKK 650 per night. There are up to 8 simple rooms with shared bath, kitchen and lounge – ideal for guests staying over in connection with a celebration.",
+    qDa: "Er der minimum antal nætter?",
+    qEn: "Is there a minimum number of nights?",
+    aDa: "Ja, minimum 4 nætter pr. booking. Ved hele huset eller længere forløb laver vi en skræddersyet aftale – kontakt os for et tilbud.",
+    aEn: "Yes, a minimum of 4 nights per booking. For the whole house or a longer stay we put together a tailored agreement – contact us for a quote.",
   },
   {
-    qDa: "Er priserne inkl. moms?",
-    qEn: "Do the prices include VAT?",
-    aDa: "Ja. Alle priser på siden er inkl. moms. Priserne i prisberegneren er vejledende, indtil vi har bekræftet din booking skriftligt.",
-    aEn: "Yes. All prices on the site include VAT. The prices in the calculator are guideline figures until we confirm your booking in writing.",
+    qDa: "Kan vi booke hele huset til sjakket?",
+    qEn: "Can we book the whole house for the crew?",
+    aDa: "Ja. Hele huset kan lejes eksklusivt til jeres sjak – fx ved et længere projekt, hvor flere håndværkere skal bo samlet. Kontakt os for en skræddersyet aftale.",
+    aEn: "Yes. The whole house can be rented exclusively for your crew – for example on a longer project where several tradespeople need to stay together. Contact us for a tailored agreement.",
   },
   {
-    qDa: "Kan jeg få et samlet tilbud?",
-    qEn: "Can I get a full quote?",
-    aDa: "Ja. Brug prisberegneren og send en forespørgsel, så vender vi tilbage med et uforpligtende tilbud inden for 24 timer på hverdage.",
-    aEn: "Yes. Use the price calculator and send an enquiry, and we'll get back to you with a no-obligation quote within 24 hours on weekdays.",
+    qDa: "Kan I fakturere firmaet?",
+    qEn: "Can you invoice the company?",
+    aDa: "Ja. Vi fakturerer mod CVR-nummer, så I kan afregne opholdet gennem virksomheden.",
+    aEn: "Yes. We invoice against a CVR (business registration) number, so you can settle the stay through the company.",
   },
 ];
 
 export function meta() {
   return pageMeta({
     path: "/priser",
-    title: "Priser & booking – festsal og overnatning | Svaleholm Roskilde",
+    title: "Priser & booking – overnatning til håndværkere | Svaleholm Roskilde",
     description:
-      "Se priser på festsal (fra 15.000 kr) og overnatning (fra 650 kr pr. nat) ved Roskilde. Beregn dit ophold eller din fest og få et uforpligtende tilbud. Inkl. moms.",
-    image: "/images/festsal-terrasse.jpg",
-    imageAlt: "Festsalens terrasse ved Svaleholm",
+      "Se priser på overnatning til håndværkere og sjak nær Roskilde. Fra 650 kr pr. nat inkl. moms, min. 4 nætter. Fakturabetaling mod CVR. Beregn jeres ophold og få et tilbud.",
+    image: "/images/bygning-have.jpg",
+    imageAlt: "Svaleholms bygning og have ved Roskilde",
   });
 }
 
 const PRISER_JSONLD = graph(
   webPageNode({
     path: "/priser",
-    name: "Priser & booking – festsal og overnatning",
+    name: "Priser & booking – overnatning til håndværkere",
     description:
-      "Priser på festsal og overnatning på Svaleholm Gaard ved Roskilde. Alle priser er vejledende og inkl. moms.",
-    primaryImage: "/images/festsal-terrasse.jpg",
+      "Priser på overnatning til håndværkere og sjak på Svaleholm Gaard ved Roskilde. Alle priser er vejledende og inkl. moms.",
+    primaryImage: "/images/bygning-have.jpg",
   }),
   breadcrumb([
     { name: "Forside", path: "" },
     { name: "Priser & booking", path: "/priser" },
   ]),
-  eventOfferCatalogNode(),
   faqNode(PRISER_FAQ.map((f) => ({ q: f.qDa, a: f.aDa }))),
 );
 
@@ -74,7 +73,7 @@ export default function Priser() {
         {/* Page Hero */}
         <section className="relative flex items-end overflow-hidden" style={{ height: "48vh", minHeight: "380px" }}>
           <div className="absolute inset-0" style={{ inset: "-8% 0" }}>
-            <img src="/images/festsal-terrasse.jpg" alt="Festsalens terrasse ved Svaleholm" className="w-full h-full object-cover ken-burns" />
+            <img src="/images/bygning-have.jpg" alt="Svaleholms bygning og have ved Roskilde" className="w-full h-full object-cover ken-burns" />
           </div>
           <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(15,23,20,0.6) 0%, rgba(15,23,20,0.4) 40%, #0F1714 100%)" }} />
           <SvaleFlock count={2} />
@@ -91,8 +90,8 @@ export default function Priser() {
             </h1>
             <p style={{ fontFamily: "var(--font-body)", color: "rgba(242,239,231,0.75)", fontSize: "1.05rem", lineHeight: 1.8, maxWidth: "52ch", marginTop: "1.5rem" }}>
               {t(
-                "Sammensæt din booking herunder, og få et vejledende overslag med det samme. Kontakt os, så laver vi et tilbud på præcis jeres ophold eller fest.",
-                "Build your booking below and get a guideline estimate right away. Contact us and we'll make an offer for exactly your stay or celebration."
+                "Sammensæt jeres overnatning herunder, og få et vejledende overslag med det samme. Kontakt os, så laver vi et skræddersyet tilbud til jeres sjak – fx ved hele huset eller et længere projekt.",
+                "Build your stay below and get a guideline estimate right away. Contact us and we'll make a tailored offer for your crew – for example the whole house or a longer project."
               )}
             </p>
           </motion.div>

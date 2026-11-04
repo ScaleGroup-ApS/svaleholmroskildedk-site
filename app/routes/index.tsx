@@ -14,11 +14,11 @@ import { graph, breadcrumb, reviewNodes, webPageNode } from "~/lib/schema";
 export function meta() {
   return pageMeta({
     path: "",
-    title: "Svaleholm Gaard Roskilde – Festsal & overnatning på landet",
+    title: "Indkvartering til håndværkere nær Roskilde | Svaleholm Gaard",
     description:
-      "Historisk festgård ved Roskilde. Fejr bryllup, fest & mærkedage i festsalen (op til 150 gæster) og overnat i enkle værelser fra 650 kr. Ring +45 71 53 13 79.",
-    image: "/images/festsal-hvid-1.png",
-    imageAlt: "Festsalen på Svaleholm Gaard pyntet til fest",
+      "Få dit sjak til at bo tæt på pladsen. Svaleholm Gaard udlejer enkle værelser eller hele huset til håndværkere nær Roskilde – fælles køkken, fakturabetaling. 650 kr/nat, min. 4 nætter.",
+    image: "/images/gaardsplads.jpg",
+    imageAlt: "Svaleholm Gaards gårdsplads",
   });
 }
 
@@ -29,10 +29,10 @@ export default function Index() {
   const homeJsonLd = graph(
     webPageNode({
       path: "",
-      name: "Svaleholm Gaard Roskilde – Festsal & overnatning",
+      name: "Svaleholm Gaard Roskilde – Indkvartering til håndværkere",
       description:
-        "Historisk festgård ved Roskilde med festsal til bryllup og fejring samt enkle værelser til overnatning.",
-      primaryImage: "/images/festsal-hvid-1.png",
+        "Svaleholm Gaard udlejer enkle værelser eller hele huset til håndværkere nær Roskilde – fælles køkken, fakturabetaling. 650 kr/nat, min. 4 nætter.",
+      primaryImage: "/images/gaardsplads.jpg",
     }),
     breadcrumb([{ name: "Forside", path: "" }]),
     // Real guest reviews from Google (individual star ratings not published, so
@@ -104,7 +104,7 @@ function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.08 }}
           >
-            {t("Ophold og fejring", "Stay and celebrate")}
+            {t("Indkvartering til", "Lodging for")}
           </motion.span>
           <motion.span
             className="block accent-italic"
@@ -112,7 +112,7 @@ function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
           >
-            {t("midt i naturen.", "amid nature.")}
+            {t("håndværkere", "tradespeople")}
           </motion.span>
         </h1>
 
@@ -124,8 +124,8 @@ function HeroSection() {
           transition={{ duration: 0.7, ease: "easeOut", delay: 0.32 }}
         >
           {t(
-            "En historisk gård tæt på Roskilde – med en festsal til livets store øjeblikke og enkle værelser til at blive til morgenmaden.",
-            "A historic farm near Roskilde – with a hall for life's great moments and simple rooms so you can stay for breakfast."
+            "Et praktisk hjem til sjakket tæt på pladsen – enkle værelser eller hele huset, fælles køkken og fakturabetaling. 650 kr pr. nat, min. 4 nætter.",
+            "A practical base for the crew close to the site – simple rooms or the whole house, a shared kitchen and company invoicing. DKK 650 per night, minimum 4 nights."
           )}
         </motion.p>
 
@@ -135,11 +135,11 @@ function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, ease: "easeOut", delay: 0.44 }}
         >
-          <Link to="/tjenester" className="btn-primary">
-            {t("Planlæg din fejring", "Plan your celebration")}
+          <Link to="/kontakt" className="btn-primary">
+            {t("Få tilbud til dit sjak", "Get a quote for your crew")}
           </Link>
-          <Link to="/vaerelser" className="btn-ghost">
-            {t("Se ophold", "See the stay")}
+          <Link to="/indkvartering-haandvaerkere" className="btn-ghost">
+            {t("Se faciliteter", "See the facilities")}
           </Link>
         </motion.div>
       </div>
@@ -186,22 +186,22 @@ function IntroSection() {
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.12 }}
             viewport={{ once: true, margin: "-80px" }}
           >
-            <p className="eyebrow mb-5">{t("Vores sjæl", "Our soul")}</p>
+            <p className="eyebrow mb-5">{t("Til håndværkere", "For tradespeople")}</p>
             <h2 className="heading-section mb-8" style={{ color: "#F2EFE7" }}>
-              {t("En ", "An ")}<span className="accent-italic">{t("oase", "oasis")}</span>{t(" af ro.", " of calm.")}
+              {t("En praktisk ", "A practical ")}<span className="accent-italic">{t("base", "base")}</span>{t(" nær Roskilde.", " near Roskilde.")}
             </h2>
             <div style={{ borderLeft: "1px solid #C9A96A", paddingLeft: "1.5rem", marginBottom: "2rem" }}>
               <p style={{ fontFamily: "var(--font-heading)", fontSize: "1.5rem", color: "#F2EFE7", lineHeight: 1.5, fontStyle: "italic" }}>
                 {t(
-                  "\"Historien skal ikke blot bevares – den skal leves og deles.\"",
-                  "\"History shouldn't merely be preserved – it should be lived and shared.\""
+                  "\"Hele sjakket bor samlet – og vi sender regningen til firmaet.\"",
+                  "\"The whole crew stays together – and we invoice the company.\""
                 )}
               </p>
             </div>
             <p style={{ color: "rgba(242,239,231,0.7)", lineHeight: 1.9, marginBottom: "2.5rem", maxWidth: "48ch" }}>
               {t(
-                "Svaleholm Gaard ligger i fredfyldte, landlige omgivelser tæt på Roskilde. Her mødes historisk arkitektur og enkel, autentisk komfort – et sted, hvor I kan fejre livets store øjeblikke i festsalen og overnatte i rolige rammer, tæt på naturen.",
-                "Svaleholm Gaard lies in peaceful, rural surroundings close to Roskilde. Here historic architecture meets simple, authentic comfort – a place to celebrate life's great moments in the hall and stay overnight in calm surroundings, close to nature."
+                "Svaleholm Gaard ligger i rolige, landlige omgivelser tæt på Roskilde. Sjakket bor samlet under samme tag med fælles køkken, bad og opholdsrum, og selv kan I checke ind med egen kode, når arbejdsdagen er slut. Vi fakturerer firmaet mod CVR, så I slipper for bilag.",
+                "Svaleholm Gaard lies in calm, rural surroundings close to Roskilde. The crew stays together under one roof with a shared kitchen, bathrooms and lounge, and you check in yourselves with your own door code once the workday is done. We invoice the company against a CVR number, so there's no paperwork for individuals."
               )}
             </p>
           </motion.div>
@@ -227,33 +227,33 @@ function ServicesSection() {
         >
           <p className="eyebrow mb-5">{t("Hvad vi tilbyder", "What we offer")}</p>
           <h2 className="heading-section" style={{ color: "#F2EFE7" }}>
-            {t("Ophold ", "Stay ")}<span className="accent-italic">&</span>{t(" fejring", " celebrate")}
+            {t("Værelser ", "Rooms ")}<span className="accent-italic">&</span>{t(" hele huset", " or the whole house")}
           </h2>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           <ServiceCard
-            tag={t("Opholdet", "The stay")}
-            title={t("Overnat tæt på naturen", "Stay close to nature")}
+            tag={t("Til sjakket", "For the crew")}
+            title={t("Enkeltværelser til sjakket", "Single rooms for the crew")}
             description={t(
-              "Op til otte hyggelige værelser med fælles køkken, bad og opholdsrum – ideelt, når I fester i salen eller bare vil overnatte i rolige omgivelser tæt på Roskilde.",
-              "Up to eight cosy rooms with a shared kitchen, bath and lounge – ideal when you're celebrating in the hall or simply want to stay in peaceful surroundings near Roskilde."
+              "Op til otte enkle værelser med fælles køkken, bad og opholdsrum – tæt på pladsen og klar til sjakket, mand for mand. 650 kr/nat, min. 4 nætter, faktureres til firmaet.",
+              "Up to eight simple rooms with a shared kitchen, bathrooms and lounge – close to the site and ready for the crew, one man at a time. DKK 650/night, minimum 4 nights, invoiced to the company."
             )}
             href="/vaerelser"
-            cta={t("Se ophold", "See the stay")}
+            cta={t("Se værelser", "See the rooms")}
             imgSrc="/images/vaerelse-seng.jpg"
             delay={0}
           />
           <ServiceCard
-            tag={t("Fejringen", "The celebration")}
-            title={t("Skab minder sammen", "Create memories together")}
+            tag={t("Til firmaet", "For the company")}
+            title={t("Hele huset til ét firma", "The whole house for one company")}
             description={t(
-              "Fra bryllup og konfirmation til fødselsdag og livets andre store øjeblikke. Festsalen og de grønne omgivelser skaber en smuk ramme om fejringen – med plads til op til 150 gæster.",
-              "From weddings and confirmations to birthdays and life's other big moments. The hall and the green surroundings create a beautiful setting for the celebration – with room for up to 150 guests."
+              "Book hele huset eksklusivt til jeres firma – en skræddersyet aftale for sjakket, med fælles køkken og opholdsrum under samme tag.",
+              "Book the whole house exclusively for your company – a tailored agreement for the crew, with a shared kitchen and lounge under one roof."
             )}
-            href="/tjenester"
-            cta={t("Se events", "See events")}
-            imgSrc="/images/festsal-fest-1.png"
+            href="/indkvartering-haandvaerkere"
+            cta={t("Se faciliteter", "See the facilities")}
+            imgSrc="/images/gaardsplads.jpg"
             delay={0.12}
           />
         </div>
@@ -439,19 +439,19 @@ function CtaBanner() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         viewport={{ once: true, margin: "-80px" }}
       >
-        <p className="eyebrow mb-5">{t("Klar til at opleve Svaleholm?", "Ready to experience Svaleholm?")}</p>
+        <p className="eyebrow mb-5">{t("Klar til at booke til sjakket?", "Ready to book for the crew?")}</p>
         <h2 className="heading-section mb-6" style={{ color: "#F2EFE7" }}>
-          {t("Lad os fejre ", "Let's celebrate ")}<span className="accent-italic">{t("sammen", "together")}</span>
+          {t("Lad os finde en ", "Let's find an ")}<span className="accent-italic">{t("aftale", "agreement")}</span>
         </h2>
         <p style={{ fontFamily: "var(--font-body)", color: "rgba(242,239,231,0.72)", lineHeight: 1.85, maxWidth: "46ch", margin: "0 auto 2.6rem", fontSize: "1rem" }}>
           {t(
-            "Tag det første skridt mod en uforglemmelig oplevelse. Vi ser frem til at byde jer velkommen til Svaleholm Gaard.",
-            "Take the first step towards an unforgettable experience. We look forward to welcoming you to Svaleholm Gaard."
+            "Fortæl os, hvor mange mand og hvor længe, og vi sender et tilbud – fakturaen går til firmaet mod CVR. Vi ser frem til at byde jer velkommen til Svaleholm Gaard.",
+            "Tell us how many people and for how long, and we'll send a quote – the invoice goes to the company against a CVR number. We look forward to welcoming you to Svaleholm Gaard."
           )}
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link to="/kontakt" className="btn-primary">{t("Kontakt os", "Contact us")}</Link>
-          <Link to="/tjenester" className="btn-ghost">{t("Se muligheder", "See options")}</Link>
+          <Link to="/indkvartering-haandvaerkere" className="btn-ghost">{t("Se faciliteter", "See the facilities")}</Link>
         </div>
         <p className="mt-8" style={{ fontFamily: "var(--font-body)", fontSize: "0.95rem", color: "rgba(242,239,231,0.7)" }}>
           {t("Eller ring", "Or call")}{" "}

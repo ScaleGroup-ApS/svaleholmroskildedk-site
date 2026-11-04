@@ -34,10 +34,12 @@ export async function loader(_args: Route.LoaderArgs) {
   const today = new Date().toISOString().split("T")[0];
   // Only indexable pages. /privatlivspolitik, /handelsbetingelser, /tak and the
   // legacy /vaerelser/:slug room pages are noindex, so they are omitted here.
+  // /tjenester and /inspiration are retired 301 redirects to
+  // /indkvartering-haandvaerkere (the håndværker pivot pillar page) — list the
+  // redirect target, not the redirecting URLs.
   const STATIC_PATHS: Array<{ path: string; priority: string; changefreq: string }> = [
-    { path: "/tjenester", priority: "0.9", changefreq: "weekly" },
+    { path: "/indkvartering-haandvaerkere", priority: "0.9", changefreq: "weekly" },
     { path: "/vaerelser", priority: "0.9", changefreq: "weekly" },
-    { path: "/inspiration", priority: "0.8", changefreq: "weekly" },
     { path: "/priser", priority: "0.8", changefreq: "weekly" },
     { path: "/galleri", priority: "0.7", changefreq: "monthly" },
     { path: "/kontakt", priority: "0.7", changefreq: "monthly" },
@@ -46,8 +48,9 @@ export async function loader(_args: Route.LoaderArgs) {
     urls.push({ loc: `${siteUrl}${s.path}`, lastmod: today, priority: s.priority, changefreq: s.changefreq });
   }
 
-  // Local SEO/GEO landing pages (/overnatning/* and /fest/*). Generated from
-  // app/lib/landingPages.ts, so new entries appear here automatically.
+  // Local SEO/GEO landing pages (/overnatning/* and /til-projektet/*).
+  // Generated from app/lib/landingPages.ts, so new entries appear here
+  // automatically.
   for (const path of landingPagePaths()) {
     urls.push({ loc: `${siteUrl}${path}`, lastmod: today, priority: "0.8", changefreq: "weekly" });
   }

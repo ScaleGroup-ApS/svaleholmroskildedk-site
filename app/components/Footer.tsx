@@ -26,8 +26,8 @@ export function Footer({ siteName = "Svaleholm Roskilde", siteDescription }: Foo
   const description =
     siteDescription ??
     t(
-      "Fest og overnatning på landet ved Roskilde. Et sted, hvor historien møder nuet i naturnære rammer.",
-      "Celebrations and stays in the countryside near Roskilde. A place where history meets the present in natural surroundings."
+      "Indkvartering til håndværkere på landet ved Roskilde. Et sted, hvor historien møder nuet i naturnære rammer.",
+      "Accommodation for tradespeople in the countryside near Roskilde. A place where history meets the present in natural surroundings."
     );
 
   return (
@@ -108,9 +108,8 @@ export function Footer({ siteName = "Svaleholm Roskilde", siteDescription }: Foo
               {t("Sider", "Pages")}
             </h4>
             <ul className="space-y-3">
-              <FooterLink to="/tjenester" label={t("Events", "Events")} />
+              <FooterLink to="/indkvartering-haandvaerkere" label={t("Indkvartering", "Accommodation")} />
               <FooterLink to="/vaerelser" label={t("Ophold", "Stay")} />
-              <FooterLink to="/inspiration" label={t("Inspiration", "Inspiration")} />
               <FooterLink to="/galleri"   label={t("Galleri", "Gallery")} />
               <FooterLink to="/kontakt"   label={t("Kontakt", "Contact")} />
             </ul>

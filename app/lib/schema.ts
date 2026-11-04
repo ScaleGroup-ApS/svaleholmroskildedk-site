@@ -170,46 +170,6 @@ export function webPageNode(opts: {
   return node;
 }
 
-// Deprecated — event business retired; consumers removed in Tasks 10/11, delete in Task 12.
-export function eventOfferCatalogNode(): Node {
-  const offers: Array<{ name: string; price: string; unit?: string; desc: string }> = [
-    { name: "Timepakke – festsal pr. time", price: "1800", unit: "HUR", desc: "Leje af festsalen pr. time (min. 3 timer)." },
-    { name: "Aftenpakke – festsal kl. 17–24", price: "9000", desc: "Festsalen en hel aften." },
-    { name: "Heldagspakke – festsal kl. 9–24", price: "15000", desc: "Festsalen en hel dag." },
-    { name: "Weekendpakke – festsal fre–søn", price: "26000", desc: "Festsalen hele weekenden." },
-  ];
-  return {
-    "@type": "OfferCatalog",
-    name: "Fest- og eventpakker",
-    itemListElement: offers.map((o) => ({
-      "@type": "Offer",
-      name: o.name,
-      description: o.desc,
-      price: o.price,
-      priceCurrency: "DKK",
-      ...(o.unit ? { priceSpecification: { "@type": "UnitPriceSpecification", price: o.price, priceCurrency: "DKK", unitCode: o.unit } } : {}),
-      availability: "https://schema.org/InStock",
-      seller: { "@id": BUSINESS_ID },
-      areaServed: AREA_SERVED,
-    })),
-  };
-}
-
-/** Service nodes per event type (wedding, party, kids' birthday, company event). */
-export function eventServiceNodes(
-  services: Array<{ name: string; description: string }>,
-): Node[] {
-  return services.map((s) => ({
-    "@type": "Service",
-    name: s.name,
-    description: s.description,
-    serviceType: s.name,
-    provider: { "@id": BUSINESS_ID },
-    areaServed: AREA_SERVED,
-    audience: { "@type": "Audience", geographicArea: { "@type": "AdministrativeArea", name: "Roskilde" } },
-  }));
-}
-
 /** Service nodes for håndværker lodging use-cases (from landingPages usecase entries). */
 export function haandvaerkerServiceNodes(
   services: Array<{ name: string; description: string }>,
