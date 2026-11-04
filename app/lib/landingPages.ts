@@ -96,9 +96,15 @@ const FAQ_WHOLE_HOUSE: FaqItem = {
   aDa: "Ja. Hele huset kan lejes eksklusivt, så sjakket bor samlet. Vi laver en skræddersyet aftale ud fra antal mand og periode.",
   aEn: "Yes. The whole house can be rented exclusively so the crew stays together. We tailor the agreement to crew size and period.",
 };
+const FAQ_FACILITIES: FaqItem = {
+  qDa: "Er der wifi, vaskemaskine og parkering til varevogne?",
+  qEn: "Is there wifi, a washing machine and parking for vans?",
+  aDa: "Ja, der er wifi, fælles vaskemaskine og parkering til varevogne på pladsen ved gården.",
+  aEn: "Yes, there is wifi, a shared washing machine and parking for vans at the farm.",
+};
 
-const AREA_FAQS: FaqItem[] = [FAQ_LOCATION, FAQ_ROOMS, FAQ_INVOICE, FAQ_WHOLE_HOUSE, FAQ_CHECKIN];
-const USECASE_FAQS: FaqItem[] = [FAQ_ROOMS, FAQ_INVOICE, FAQ_WHOLE_HOUSE, FAQ_CHECKIN, FAQ_LOCATION];
+const AREA_FAQS: FaqItem[] = [FAQ_LOCATION, FAQ_ROOMS, FAQ_INVOICE, FAQ_WHOLE_HOUSE, FAQ_CHECKIN, FAQ_FACILITIES];
+const USECASE_FAQS: FaqItem[] = [FAQ_ROOMS, FAQ_INVOICE, FAQ_WHOLE_HOUSE, FAQ_CHECKIN, FAQ_LOCATION, FAQ_FACILITIES];
 
 export const LANDING_PAGES: LandingPage[] = [
   // ─── Overnatning · nærliggende byer/områder (håndværkerindkvartering) ─────
@@ -144,6 +150,7 @@ export const LANDING_PAGES: LandingPage[] = [
       "Landligt, praktisk udgangspunkt for projekter nær Lejre",
       "Op til 8 værelser fra 650 kr/nat inkl. moms, min. 4 nætter",
       "Fælles køkken, bad og opholdsrum",
+      "Wifi, vaskemaskine og parkering til varevogne",
       "Nem digital selvcheck-in via dørkode",
       "Fakturabetaling til firmaet mod CVR",
     ],
@@ -151,6 +158,7 @@ export const LANDING_PAGES: LandingPage[] = [
       "Rural, practical base for projects near Lejre",
       "Up to 8 rooms from DKK 650/night incl. VAT, min. 4 nights",
       "Shared kitchen, bath and lounge",
+      "Wifi, washing machine and parking for vans",
       "Easy digital self check-in via door code",
       "Invoicing to the company against CVR",
     ],
@@ -199,6 +207,7 @@ export const LANDING_PAGES: LandingPage[] = [
       "Landligt, praktisk udgangspunkt for projekter nær Holbæk",
       "Op til 8 værelser fra 650 kr/nat inkl. moms, min. 4 nætter",
       "Fælles køkken, bad og opholdsrum",
+      "Wifi, vaskemaskine og parkering til varevogne",
       "Nem digital selvcheck-in via dørkode",
       "Fakturabetaling til firmaet mod CVR",
     ],
@@ -206,6 +215,7 @@ export const LANDING_PAGES: LandingPage[] = [
       "Rural, practical base for projects near Holbæk",
       "Up to 8 rooms from DKK 650/night incl. VAT, min. 4 nights",
       "Shared kitchen, bath and lounge",
+      "Wifi, washing machine and parking for vans",
       "Easy digital self check-in via door code",
       "Invoicing to the company against CVR",
     ],
@@ -254,6 +264,7 @@ export const LANDING_PAGES: LandingPage[] = [
       "Landligt, praktisk udgangspunkt for projekter nær Køge",
       "Op til 8 værelser fra 650 kr/nat inkl. moms, min. 4 nætter",
       "Fælles køkken, bad og opholdsrum",
+      "Wifi, vaskemaskine og parkering til varevogne",
       "Nem digital selvcheck-in via dørkode",
       "Fakturabetaling til firmaet mod CVR",
     ],
@@ -261,6 +272,7 @@ export const LANDING_PAGES: LandingPage[] = [
       "Rural, practical base for projects near Køge",
       "Up to 8 rooms from DKK 650/night incl. VAT, min. 4 nights",
       "Shared kitchen, bath and lounge",
+      "Wifi, washing machine and parking for vans",
       "Easy digital self check-in via door code",
       "Invoicing to the company against CVR",
     ],
@@ -309,6 +321,7 @@ export const LANDING_PAGES: LandingPage[] = [
       "Landligt, praktisk udgangspunkt for projekter nær Hvalsø",
       "Op til 8 værelser fra 650 kr/nat inkl. moms, min. 4 nætter",
       "Fælles køkken, bad og opholdsrum",
+      "Wifi, vaskemaskine og parkering til varevogne",
       "Nem digital selvcheck-in via dørkode",
       "Fakturabetaling til firmaet mod CVR",
     ],
@@ -316,6 +329,7 @@ export const LANDING_PAGES: LandingPage[] = [
       "Rural, practical base for projects near Hvalsø",
       "Up to 8 rooms from DKK 650/night incl. VAT, min. 4 nights",
       "Shared kitchen, bath and lounge",
+      "Wifi, washing machine and parking for vans",
       "Easy digital self check-in via door code",
       "Invoicing to the company against CVR",
     ],
@@ -364,6 +378,7 @@ export const LANDING_PAGES: LandingPage[] = [
       "Landligt, praktisk udgangspunkt for projekter nær Frederikssund",
       "Op til 8 værelser fra 650 kr/nat inkl. moms, min. 4 nætter",
       "Fælles køkken, bad og opholdsrum",
+      "Wifi, vaskemaskine og parkering til varevogne",
       "Nem digital selvcheck-in via dørkode",
       "Fakturabetaling til firmaet mod CVR",
     ],
@@ -371,6 +386,7 @@ export const LANDING_PAGES: LandingPage[] = [
       "Rural, practical base for projects near Frederikssund",
       "Up to 8 rooms from DKK 650/night incl. VAT, min. 4 nights",
       "Shared kitchen, bath and lounge",
+      "Wifi, washing machine and parking for vans",
       "Easy digital self check-in via door code",
       "Invoicing to the company against CVR",
     ],
@@ -424,6 +440,7 @@ export const LANDING_PAGES: LandingPage[] = [
       "Enkeltværelser eller hele huset til sjakket",
       "Op til 8 værelser fra 650 kr/nat inkl. moms, min. 4 nætter",
       "Fælles køkken, bad og opholdsrum",
+      "Wifi, vaskemaskine og parkering til varevogne",
       "Nem digital selvcheck-in via dørkode",
       "Fakturabetaling til firmaet mod CVR",
     ],
@@ -431,6 +448,7 @@ export const LANDING_PAGES: LandingPage[] = [
       "Single rooms or the whole house for the crew",
       "Up to 8 rooms from DKK 650/night incl. VAT, min. 4 nights",
       "Shared kitchen, bath and lounge",
+      "Wifi, washing machine and parking for vans",
       "Easy digital self check-in via door code",
       "Invoicing to the company against CVR",
     ],
@@ -599,6 +617,7 @@ export const LANDING_PAGES: LandingPage[] = [
       "Skræddersyet langtidsaftale efter varighed og antal mand",
       "Fra 650 kr/nat inkl. moms, min. 4 nætter",
       "Fælles køkken, bad og opholdsrum",
+      "Wifi, vaskemaskine og parkering til varevogne",
       "Fakturabetaling til firmaet mod CVR",
     ],
     highlightsEn: [
@@ -606,6 +625,7 @@ export const LANDING_PAGES: LandingPage[] = [
       "Tailored long-stay agreement based on duration and crew size",
       "From DKK 650/night incl. VAT, min. 4 nights",
       "Shared kitchen, bath and lounge",
+      "Wifi, washing machine and parking for vans",
       "Invoicing to the company against CVR",
     ],
     faqs: USECASE_FAQS,

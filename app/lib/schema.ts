@@ -227,6 +227,9 @@ export function lodgingNode(opts: { description: string }): Node {
       { "@type": "LocationFeatureSpecification", name: "Fælles bad og toilet (4 stk.)", value: true },
       { "@type": "LocationFeatureSpecification", name: "Fælles køkken", value: true },
       { "@type": "LocationFeatureSpecification", name: "Selvcheck-in", value: true },
+      { "@type": "LocationFeatureSpecification", name: "Vaskemaskine", value: true },
+      { "@type": "LocationFeatureSpecification", name: "Wifi", value: true },
+      { "@type": "LocationFeatureSpecification", name: "Parkering til varevogne", value: true },
     ],
   };
 }
