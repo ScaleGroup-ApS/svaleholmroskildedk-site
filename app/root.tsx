@@ -41,7 +41,7 @@ export function Layout({ children }: { children: ReactNode }) {
         <meta name="theme-color" content="#0F1714" />
         <Meta />
         <Links />
-        {/* Site-wide structured data: Organization + WebSite + LocalBusiness/EventVenue.
+        {/* Site-wide structured data: Organization + WebSite + LocalBusiness.
             Per-page JSON-LD references these nodes by @id. */}
         <JsonLd data={siteGraph()} />
         {/* Matomo */}

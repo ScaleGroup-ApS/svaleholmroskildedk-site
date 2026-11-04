@@ -256,26 +256,3 @@ export function PrisberegnerHotelSection() {
   );
 }
 
-// ── Time-based packages ────────────────────────────────────────────────────
-// Kept for /inspiration (festsal legacy content, out of scope for the
-// håndværker pivot) which still quotes these prices in body copy. Not used
-// by the lodging calculators on /vaerelser or /priser.
-
-export type TimePackage = {
-  id: string; label: string; labelEn: string; price: number;
-  unit: string; unitPlural: string; unitEn: string; unitPluralEn: string;
-  min: number; max: number; note: string; noteEn: string;
-};
-export const TIME_PACKAGES: TimePackage[] = [
-  { id: "time",    label: "Timepakke",    labelEn: "Hourly package",   price: 1800,  unit: "time",    unitPlural: "timer",     unitEn: "hour",    unitPluralEn: "hours",    min: 3, max: 12, note: "Salen pr. time",   noteEn: "The hall per hour" },
-  { id: "aften",   label: "Aftenpakke",   labelEn: "Evening package",  price: 9000,  unit: "aften",   unitPlural: "aftener",   unitEn: "evening", unitPluralEn: "evenings", min: 1, max: 3,  note: "Kl. 17–24",        noteEn: "5 pm–midnight" },
-  // Halvdagspakken passer fx til en konfirmation, der varer en lille halv dag
-  // (frokost + eftermiddag). Fast varighed, så antals-vælgeren skjules (min = max).
-  { id: "halvdag", label: "Halvdagspakke", labelEn: "Half-day package", price: 11000, unit: "halv dag", unitPlural: "halve dage", unitEn: "half day", unitPluralEn: "half days", min: 1, max: 1, note: "Ca. en halv dag · kl. 10–16", noteEn: "Approx. half a day · 10 am–4 pm" },
-  { id: "heldag",  label: "Heldagspakke", labelEn: "Full-day package", price: 15000, unit: "dag",     unitPlural: "dage",      unitEn: "day",     unitPluralEn: "days",     min: 1, max: 5,  note: "Kl. 9–24",         noteEn: "9 am–midnight" },
-  // Weekendpakken er altid én weekend (fre–søn). Antallet kunne før vælges
-  // (1–2), men "antal weekender" forvirrede mere, end det hjalp – derfor er
-  // min = max, og antals-vælgeren skjules helt for pakker med et fast antal.
-  { id: "weekend", label: "Weekendpakke", labelEn: "Weekend package",  price: 26000, unit: "weekend", unitPlural: "weekender", unitEn: "weekend", unitPluralEn: "weekends", min: 1, max: 1,  note: "Fre–søn",          noteEn: "Fri–Sun" },
-];
-
