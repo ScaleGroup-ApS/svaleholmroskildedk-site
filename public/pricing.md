@@ -5,7 +5,7 @@ Indkvartering til håndværkere på projekt nær Roskilde. Alle priser inkl. mom
 ## Enkeltværelse
 - Pris: 650 kr pr. værelse pr. nat
 - Minimum: 4 nætter
-- Inkluderet: fælles køkken, 4 fælles bad/toilet, fælles opholdsrum, selvcheck-in via dørkode
+- Inkluderet: fælles køkken, 4 fælles bad/toilet, fælles opholdsrum, selvcheck-in via dørkode, wifi, vaskemaskine, parkering til varevogne
 - Antal værelser: op til 8
 
 ## Hele huset (til ét sjak)

@@ -38,6 +38,7 @@ ${SAME_AS.map((u) => `- Profil: ${u}`).join("\n")}
   aftale ud fra antal mand og periode.
 - Nem digital selvcheck-in via dørkode, så sjakket kan ankomme og rejse
   fleksibelt.
+- Wifi, fælles vaskemaskine og parkering til varevogne på pladsen.
 - Fakturabetaling: vi fakturerer virksomheden direkte mod CVR, så
   administrationen er enkel for byggelederen.
 
@@ -72,6 +73,8 @@ ${usecases.map(lpLine).join("\n")}
   periode.
 - Er der et fælles køkken? Ja, der er fælles køkken, hvor sjakket selv kan
   lave mad efter arbejdsdagen.
+- Er der wifi, vaskemaskine og parkering til varevogne? Ja. Der er wifi,
+  fælles vaskemaskine og god parkering til varevogne på pladsen ved gården.
 - Hvor mange nætter skal man bo minimum? Minimum ${MIN_NIGHTS} nætter.
 - Hvad koster en overnatning? ${NIGHTLY_PRICE} kr pr. nat inkl. moms, minimum ${MIN_NIGHTS} nætter.
 - Hvor ligger Svaleholm Gaard? ${NAP.streetAddress}, ${NAP.postalCode} ${NAP.addressLocality} – nær Roskilde på Sjælland.

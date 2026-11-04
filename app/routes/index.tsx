@@ -200,8 +200,8 @@ function IntroSection() {
             </div>
             <p style={{ color: "rgba(242,239,231,0.7)", lineHeight: 1.9, marginBottom: "2.5rem", maxWidth: "48ch" }}>
               {t(
-                "Svaleholm Gaard ligger i rolige, landlige omgivelser tæt på Roskilde. Sjakket bor samlet under samme tag med fælles køkken, bad og opholdsrum, og selv kan I checke ind med egen kode, når arbejdsdagen er slut. Vi fakturerer firmaet mod CVR, så I slipper for bilag.",
-                "Svaleholm Gaard lies in calm, rural surroundings close to Roskilde. The crew stays together under one roof with a shared kitchen, bathrooms and lounge, and you check in yourselves with your own door code once the workday is done. We invoice the company against a CVR number, so there's no paperwork for individuals."
+                "Svaleholm Gaard ligger i rolige, landlige omgivelser tæt på Roskilde. Sjakket bor samlet under samme tag med fælles køkken, bad og opholdsrum, wifi og vaskemaskine, og selv kan I checke ind med egen kode, når arbejdsdagen er slut. Der er også parkering til varevogne på pladsen. Vi fakturerer firmaet mod CVR, så I slipper for bilag.",
+                "Svaleholm Gaard lies in calm, rural surroundings close to Roskilde. The crew stays together under one roof with a shared kitchen, bathrooms, lounge, wifi and a washing machine, and you check in yourselves with your own door code once the workday is done. There is also parking for vans at the farm. We invoice the company against a CVR number, so there's no paperwork for individuals."
               )}
             </p>
           </motion.div>

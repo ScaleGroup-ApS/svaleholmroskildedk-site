@@ -75,6 +75,12 @@ const FAQS: FaqItem[] = [
     aDa: "Der er nem digital selvcheck-in via dørkode, så sjakket kan ankomme og rejse fleksibelt, uden at skulle koordinere med en vært.",
     aEn: "There is easy digital self check-in via a door code, so the crew can arrive and leave flexibly, without coordinating with a host.",
   },
+  {
+    qDa: "Er der wifi, vaskemaskine og parkering til varevogne?",
+    qEn: "Is there wifi, a washing machine and parking for vans?",
+    aDa: "Ja. Der er wifi, en fælles vaskemaskine og god parkering til varevogne på pladsen ved gården.",
+    aEn: "Yes. There is wifi, a shared washing machine and good parking for vans at the farm.",
+  },
 ];
 
 const VALUE_POINTS: Array<{ titleDa: string; titleEn: string; bodyDa: string; bodyEn: string }> = [
@@ -113,6 +119,12 @@ const VALUE_POINTS: Array<{ titleDa: string; titleEn: string; bodyDa: string; bo
     titleEn: "A flexible, tailored agreement",
     bodyDa: "Minimum 4 nætter – vi laver en aftale, der passer til antal mand og periode.",
     bodyEn: "Minimum 4 nights – we tailor an agreement to crew size and period.",
+  },
+  {
+    titleDa: "Wifi, vaskemaskine og parkering til varevogne",
+    titleEn: "Wifi, washing machine and parking for vans",
+    bodyDa: "Wifi til aften og weekend, fælles vaskemaskine til arbejdstøjet og god parkering til varevogne ved gården.",
+    bodyEn: "Wifi for evenings and weekends, a shared washing machine for work clothes, and good parking for vans at the farm.",
   },
 ];
 
@@ -231,8 +243,8 @@ function AnswerBlockSection() {
           viewport={{ once: true, margin: "-80px" }}
         >
           {t(
-            "Svaleholm Gaard tilbyder indkvartering til håndværkere på projekt nær Roskilde: op til 8 værelser med fælles køkken, fire fælles bad og toiletter samt opholdsrum, eller hele huset eksklusivt til sjakket. Prisen er 650 kr pr. nat inkl. moms, minimum 4 nætter, med fakturabetaling til firmaet mod CVR og skræddersyet aftale ved leje af hele huset.",
-            "Svaleholm Gaard offers accommodation for tradespeople on a project near Roskilde: up to 8 rooms with a shared kitchen, four shared baths and toilets, and a lounge, or the whole house rented exclusively for the crew. The price is DKK 650 per night incl. VAT, minimum 4 nights, with company invoicing against CVR and a tailored agreement when renting the whole house."
+            "Svaleholm Gaard tilbyder indkvartering til håndværkere på projekt nær Roskilde: op til 8 værelser med fælles køkken, fire fælles bad og toiletter samt opholdsrum, eller hele huset eksklusivt til sjakket. Der er wifi, fælles vaskemaskine og parkering til varevogne. Prisen er 650 kr pr. nat inkl. moms, minimum 4 nætter, med fakturabetaling til firmaet mod CVR og skræddersyet aftale ved leje af hele huset.",
+            "Svaleholm Gaard offers accommodation for tradespeople on a project near Roskilde: up to 8 rooms with a shared kitchen, four shared baths and toilets, and a lounge, or the whole house rented exclusively for the crew. There is wifi, a shared washing machine and parking for vans. The price is DKK 650 per night incl. VAT, minimum 4 nights, with company invoicing against CVR and a tailored agreement when renting the whole house."
           )}
         </motion.p>
       </div>

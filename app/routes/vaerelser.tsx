@@ -35,6 +35,12 @@ const VAERELSER_FAQ: FaqItem[] = [
     aDa: "Der er nem selvcheck-in via dørkode, så sjakket kan ankomme fleksibelt uden at skulle mødes med en vært. Vi fakturerer mod CVR-nummer.",
     aEn: "There is easy self check-in via a door code, so the crew can arrive flexibly without having to meet a host. We invoice against a CVR (business registration) number.",
   },
+  {
+    qDa: "Er der wifi, vaskemaskine og parkering til varevogne?",
+    qEn: "Is there wifi, a washing machine and parking for vans?",
+    aDa: "Ja, der er wifi, fælles vaskemaskine og god parkering til varevogne på pladsen ved gården.",
+    aEn: "Yes, there is wifi, a shared washing machine and good parking for vans at the farm.",
+  },
 ];
 
 const VAERELSER_DESC =
@@ -104,6 +110,27 @@ const FACILITIES = [
     desc: "Digital check-in med dørkode – ankom, når det passer jer.",
     descEn: "Digital check-in with a door code – arrive whenever it suits you.",
     icon: "M15 7a2 2 0 012 2m4-2a6 6 0 01-7.743 5.743L11 14H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z",
+  },
+  {
+    title: "Wifi",
+    titleEn: "Wifi",
+    desc: "Wifi i hele huset til aften og weekend.",
+    descEn: "Wifi throughout the house for evenings and weekends.",
+    icon: "M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0M8.53 16.11a6 6 0 016.95 0M12 20h.01",
+  },
+  {
+    title: "Fælles vaskemaskine",
+    titleEn: "Shared washing machine",
+    desc: "En fælles vaskemaskine til arbejdstøjet under opholdet.",
+    descEn: "A shared washing machine for work clothes during the stay.",
+    icon: "M4 4h16v16H4V4zm4 0v2m8-2v2M8 12a4 4 0 108 0 4 4 0 00-8 0z",
+  },
+  {
+    title: "Parkering til varevogne",
+    titleEn: "Parking for vans",
+    desc: "God parkering til varevogne på pladsen ved gården.",
+    descEn: "Good parking for vans at the farm.",
+    icon: "M3 13l1.5-5A2 2 0 016.4 7h11.2a2 2 0 011.9 1.37L21 13v6H3v-6zM5 17h.01M19 17h.01",
   },
 ];
 
@@ -187,6 +214,8 @@ export default function Vaerelser() {
                   t("4 fælles bad og toiletter deles mellem værelserne", "4 shared baths and toilets serve the rooms"),
                   t("Fælles køkken, hvor I selv kan lave mad", "Shared kitchen where you can cook your own meals"),
                   t("Fælles opholdsrum til afslapning efter arbejdsdagen", "Shared lounge for relaxing after the workday"),
+                  t("Wifi og fælles vaskemaskine", "Wifi and a shared washing machine"),
+                  t("Parkering til varevogne på pladsen", "Parking for vans at the farm"),
                   t("Hele huset kan lejes eksklusivt ved længere projekter", "The whole house can be rented exclusively for longer projects"),
                   t("Fra DKK 650 pr. nat inkl. moms – min. 4 nætter – fakturabetaling mod CVR", "From DKK 650 per night incl. VAT – min. 4 nights – invoiced against a CVR number"),
                 ].map((item) => (
