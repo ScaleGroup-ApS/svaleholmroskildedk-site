@@ -727,6 +727,35 @@ git commit -m "chore(content): sweep residual event language from nav, gallery, 
 
 ---
 
+### Task 11b: Retire the luxury room-detail pages (`/vaerelser/:slug` + `rooms.ts`)
+
+Surfaced during Task 11: `app/lib/rooms.ts` + `app/routes/vaerelser.$slug.tsx` are pre-pivot luxury suite pages (named suites, "DKK 2.495–6.995", clawfoot bathtub, free minibar, breakfast included, King beds) — they directly contradict the "8 simple shared rooms from 650 kr" business and violate the fact constraint. They are already `noindex` and orphaned (not linked from `/vaerelser`, not in the sitemap), but reachable by direct URL. The suite concept no longer exists, so retire the pages rather than rewrite fabricated content.
+
+**Files:**
+- Delete: `app/routes/vaerelser.$slug.tsx`, `app/lib/rooms.ts`
+- Modify: `app/routes.ts` (replace the `vaerelser/:slug` content route with a redirect)
+
+- [ ] **Step 1:** Confirm `rooms.ts` / `ROOMS` / `getRoomBySlug` have no importers other than `vaerelser.$slug.tsx`: `grep -rn 'lib/rooms\|getRoomBySlug\|ROOMS' app/`. If another file imports it, STOP and report.
+- [ ] **Step 2:** Replace `vaerelser.$slug.tsx` with a redirect-only loader (mirror `hotel.tsx`): 301 `/vaerelser/:slug` → `/vaerelser`. Keep the route registered so the 301 fires (don't let it fall to the catch-all). Then delete `app/lib/rooms.ts`.
+- [ ] **Step 3:** `npm run typecheck` → PASS, `npm run build` → PASS. Dev: `curl -sI http://localhost:5175/vaerelser/svalereden` → 301 to `/vaerelser`. `grep -rniE '2\.495|clawfoot|minibar|butler|jacuzzi' app/` → no hits.
+- [ ] **Step 4:** Commit: `chore(content): retire luxury room-detail pages; 301 /vaerelser/:slug to /vaerelser`.
+
+---
+
+### Task 11c: Neutralise event references in legal pages
+
+Surfaced during Task 11: `handelsbetingelser.tsx` and `privatlivspolitik.tsx` still scope "festsal" as a service. Remove/neutralise those references ONLY — do NOT invent new legal clauses or obligations. Scope the terms to lodging.
+
+**Files:**
+- Modify: `app/routes/handelsbetingelser.tsx`, `app/routes/privatlivspolitik.tsx`
+
+- [ ] **Step 1:** In `handelsbetingelser.tsx`: meta description and the intro — change "leje af festsal og overnatning" → "leje af indkvartering/overnatning" (drop festsal). Review the rest of the file for festsal-specific clauses (e.g. festsal cancellation/capacity terms) and remove ONLY those that describe the retired event service; leave all generic booking/payment/cancellation terms intact. If any clause mixes lodging + festsal obligations such that editing it would change a lodging obligation, leave it and flag it.
+- [ ] **Step 2:** In `privatlivspolitik.tsx`: "booking af ophold eller festsal" → "booking af ophold". Scan for other festsal mentions; neutralise.
+- [ ] **Step 3:** `npm run typecheck` → PASS, `npm run build` → PASS. `grep -niE 'festsal' app/routes/handelsbetingelser.tsx app/routes/privatlivspolitik.tsx` → no hits.
+- [ ] **Step 4:** Commit: `chore(legal): scope terms + privacy policy to lodging (drop festsal references)`. Report any clause left in place that needs human/legal review.
+
+---
+
 ### Task 12: Final verification + cleanup
 
 **Files:**
