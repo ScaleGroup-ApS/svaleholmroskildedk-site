@@ -78,7 +78,7 @@ export default function CatchAll({ loaderData }: Route.ComponentProps) {
       <main className="flex-1">
         <article className="animate-fade-in-up">
           <div className="max-w-5xl mx-auto px-6 pt-40 pb-8">
-            <p className="eyebrow mb-5">Svaleholm Gaard</p>
+            <p className="eyebrow mb-5">Svaleholm Gæstegaard</p>
             <h1
               className="heading-hero"
               style={{ color: "#F2EFE7" }}

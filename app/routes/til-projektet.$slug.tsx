@@ -9,7 +9,7 @@ import { pageMeta } from "~/lib/seo";
 export function meta({ params }: Route.MetaArgs) {
   const page = findLandingPage("usecase", params.slug);
   if (!page) {
-    return [{ title: "Siden blev ikke fundet | Svaleholm Gaard" }, { name: "robots", content: "noindex" }];
+    return [{ title: "Siden blev ikke fundet | Svaleholm Gæstegaard" }, { name: "robots", content: "noindex" }];
   }
   return pageMeta({
     path: landingPagePath(page),

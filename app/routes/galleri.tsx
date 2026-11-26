@@ -9,7 +9,7 @@ import { pageMeta } from "~/lib/seo";
 import { graph, breadcrumb, imageGalleryNode } from "~/lib/schema";
 
 const GALLERI_DESC =
-  "Se billeder fra Svaleholm Gaard ved Roskilde – værelserne, gården og den omkringliggende natur på Sjælland.";
+  "Se billeder fra Svaleholm Gæstegaard ved Roskilde – værelserne, gården og den omkringliggende natur på Sjælland.";
 
 export function meta() {
   return pageMeta({
@@ -26,9 +26,9 @@ type Shot = { src: string; da: string; en: string };
 
 const GALLERY: Shot[] = [
   // Værelser og fællesarealer (gæster efterspørger disse)
-  { src: "/images/vaerelse-dobbeltseng.jpg", da: "Værelse med dobbeltseng og skrivebord på Svaleholm Gaard i Roskilde", en: "Room with a double bed and a desk at Svaleholm Gaard in Roskilde" },
-  { src: "/images/faellesstue.jpg", da: "Fælles opholdsstue med sofa og hyggekrog på Svaleholm Gaard", en: "Shared lounge with sofa and seating area at Svaleholm Gaard" },
-  { src: "/images/faelleskoekken.jpg", da: "Fuldt udstyret fælleskøkken med opvaskemaskine og kaffemaskiner på Svaleholm Gaard", en: "Fully equipped shared kitchen with dishwasher and coffee makers at Svaleholm Gaard" },
+  { src: "/images/vaerelse-dobbeltseng.jpg", da: "Værelse med dobbeltseng og skrivebord på Svaleholm Gæstegaard i Roskilde", en: "Room with a double bed and a desk at Svaleholm Gæstegaard in Roskilde" },
+  { src: "/images/faellesstue.jpg", da: "Fælles opholdsstue med sofa og hyggekrog på Svaleholm Gæstegaard", en: "Shared lounge with sofa and seating area at Svaleholm Gæstegaard" },
+  { src: "/images/faelleskoekken.jpg", da: "Fuldt udstyret fælleskøkken med opvaskemaskine og kaffemaskiner på Svaleholm Gæstegaard", en: "Fully equipped shared kitchen with dishwasher and coffee makers at Svaleholm Gæstegaard" },
 
   // Gården og ankomst
   { src: "/images/gaard-familie.png", da: "Gæster ved langborde under egetræet på gårdspladsen", en: "Guests at long tables under the oak tree in the courtyard" },
@@ -74,7 +74,7 @@ export default function Galleri() {
   const galleriJsonLd = graph(
     imageGalleryNode(
       GALLERY.map((s) => ({ src: s.src, caption: s.da })),
-      { name: "Galleri – Svaleholm Gaard", description: GALLERI_DESC, path: "/galleri" },
+      { name: "Galleri – Svaleholm Gæstegaard", description: GALLERI_DESC, path: "/galleri" },
     ),
     breadcrumb([
       { name: "Forside", path: "" },

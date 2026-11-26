@@ -52,7 +52,7 @@ const PRISER_JSONLD = graph(
     path: "/priser",
     name: "Priser & booking – overnatning til håndværkere",
     description:
-      "Priser på overnatning til håndværkere og sjak på Svaleholm Gaard ved Roskilde. Alle priser er vejledende og inkl. moms.",
+      "Priser på overnatning til håndværkere og sjak på Svaleholm Gæstegaard ved Roskilde. Alle priser er vejledende og inkl. moms.",
     primaryImage: "/images/bygning-have.jpg",
   }),
   breadcrumb([

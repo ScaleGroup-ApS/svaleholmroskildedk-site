@@ -14,11 +14,11 @@ import { graph, breadcrumb, reviewNodes, webPageNode } from "~/lib/schema";
 export function meta() {
   return pageMeta({
     path: "",
-    title: "Indkvartering til håndværkere nær Roskilde | Svaleholm Gaard",
+    title: "Indkvartering til håndværkere nær Roskilde | Svaleholm Gæstegaard",
     description:
-      "Få dit sjak til at bo tæt på pladsen. Svaleholm Gaard udlejer enkle værelser eller hele huset til håndværkere nær Roskilde – fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
+      "Få dit sjak til at bo tæt på pladsen. Svaleholm Gæstegaard udlejer enkle værelser eller hele huset til håndværkere nær Roskilde – fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
     image: "/images/gaardsplads.jpg",
-    imageAlt: "Svaleholm Gaards gårdsplads",
+    imageAlt: "Svaleholm Gæstegaards gårdsplads",
   });
 }
 
@@ -29,9 +29,9 @@ export default function Index() {
   const homeJsonLd = graph(
     webPageNode({
       path: "",
-      name: "Svaleholm Gaard Roskilde – Indkvartering til håndværkere",
+      name: "Svaleholm Gæstegaard Roskilde – Indkvartering til håndværkere",
       description:
-        "Svaleholm Gaard udlejer enkle værelser eller hele huset til håndværkere nær Roskilde – fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
+        "Svaleholm Gæstegaard udlejer enkle værelser eller hele huset til håndværkere nær Roskilde – fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
       primaryImage: "/images/gaardsplads.jpg",
     }),
     breadcrumb([{ name: "Forside", path: "" }]),
@@ -90,7 +90,7 @@ function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          {t("Svaleholm Gaard · Roskilde", "Svaleholm Gaard · Roskilde")}
+          {t("Svaleholm Gæstegaard · Roskilde", "Svaleholm Gæstegaard · Roskilde")}
         </motion.p>
 
         <h1 className="heading-hero" style={{ color: "#F2EFE7", fontSize: "clamp(2.6rem, 6.5vw, 5rem)" }}>
@@ -167,7 +167,7 @@ function IntroSection() {
             <div className="overflow-hidden group" style={{ borderRadius: "2px" }}>
               <img
                 src="/images/gaardsplads.jpg"
-                alt="Svaleholm Gaards facade og gårdsplads"
+                alt="Svaleholm Gæstegaards facade og gårdsplads"
                 className="w-full object-cover transition-transform duration-[1600ms] group-hover:scale-105"
                 style={{ height: "clamp(340px, 50vh, 560px)", filter: "saturate(0.92)" }}
                 loading="lazy"
@@ -196,8 +196,8 @@ function IntroSection() {
             </div>
             <p style={{ color: "rgba(242,239,231,0.7)", lineHeight: 1.9, marginBottom: "2.5rem", maxWidth: "48ch" }}>
               {t(
-                "Svaleholm Gaard ligger i rolige, landlige omgivelser tæt på Roskilde. Sjakket bor samlet under samme tag med fælles køkken, bad og opholdsrum, wifi og vaskemaskine, og selv kan I checke ind med egen kode, når arbejdsdagen er slut. Der er også parkering til varevogne på pladsen. Vi fakturerer firmaet mod CVR, så I slipper for bilag.",
-                "Svaleholm Gaard lies in calm, rural surroundings close to Roskilde. The crew stays together under one roof with a shared kitchen, bathrooms, lounge, wifi and a washing machine, and you check in yourselves with your own door code once the workday is done. There is also parking for vans at the farm. We invoice the company against a CVR number, so there's no paperwork for individuals."
+                "Svaleholm Gæstegaard ligger i rolige, landlige omgivelser tæt på Roskilde. Sjakket bor samlet under samme tag med fælles køkken, bad og opholdsrum, wifi og vaskemaskine, og selv kan I checke ind med egen kode, når arbejdsdagen er slut. Der er også parkering til varevogne på pladsen. Vi fakturerer firmaet mod CVR, så I slipper for bilag.",
+                "Svaleholm Gæstegaard lies in calm, rural surroundings close to Roskilde. The crew stays together under one roof with a shared kitchen, bathrooms, lounge, wifi and a washing machine, and you check in yourselves with your own door code once the workday is done. There is also parking for vans at the farm. We invoice the company against a CVR number, so there's no paperwork for individuals."
               )}
             </p>
           </motion.div>
@@ -441,8 +441,8 @@ function CtaBanner() {
         </h2>
         <p style={{ fontFamily: "var(--font-body)", color: "rgba(242,239,231,0.72)", lineHeight: 1.85, maxWidth: "46ch", margin: "0 auto 2.6rem", fontSize: "1rem" }}>
           {t(
-            "Fortæl os, hvor mange mand og hvor længe, og vi sender et tilbud – betaling sker forud via betalingslink, og kvittering med CVR sendes automatisk. Vi ser frem til at byde jer velkommen til Svaleholm Gaard.",
-            "Tell us how many people and for how long, and we'll send a quote – the invoice goes to the company against a CVR number. We look forward to welcoming you to Svaleholm Gaard."
+            "Fortæl os, hvor mange mand og hvor længe, og vi sender et tilbud – betaling sker forud via betalingslink, og kvittering med CVR sendes automatisk. Vi ser frem til at byde jer velkommen til Svaleholm Gæstegaard.",
+            "Tell us how many people and for how long, and we'll send a quote – the invoice goes to the company against a CVR number. We look forward to welcoming you to Svaleholm Gæstegaard."
           )}
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">

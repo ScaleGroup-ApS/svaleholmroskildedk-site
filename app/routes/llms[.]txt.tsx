@@ -77,7 +77,7 @@ ${usecases.map(lpLine).join("\n")}
   fælles vaskemaskine og parkering til varevogne på pladsen ved gården.
 - Hvor mange nætter skal man bo minimum? Minimum ${MIN_NIGHTS} nætter.
 - Hvad koster en overnatning? ${NIGHTLY_PRICE} kr pr. nat inkl. moms, minimum ${MIN_NIGHTS} nætter.
-- Hvor ligger Svaleholm Gaard? ${NAP.streetAddress}, ${NAP.postalCode} ${NAP.addressLocality} – nær Roskilde på Sjælland.
+- Hvor ligger Svaleholm Gæstegaard? ${NAP.streetAddress}, ${NAP.postalCode} ${NAP.addressLocality} – nær Roskilde på Sjælland.
 `;
 
   return new Response(body, {

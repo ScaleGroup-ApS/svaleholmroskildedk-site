@@ -28,11 +28,11 @@ import { landingPagesByCategory, landingPagePath } from "~/lib/landingPages";
 export function meta() {
   return pageMeta({
     path: "/indkvartering-haandvaerkere",
-    title: "Håndværkerindkvartering nær Roskilde | Svaleholm Gaard",
+    title: "Håndværkerindkvartering nær Roskilde | Svaleholm Gæstegaard",
     description:
       "Indkvartering af håndværkere på projekt nær Roskilde – enkeltværelser eller hele huset til sjakket, fælles køkken, betaling via betalingslink mod CVR. 650 kr/nat, min. 4 nætter, skræddersyet aftale.",
     image: "/images/gaardsplads.jpg",
-    imageAlt: "Svaleholm Gaards facade og gårdsplads",
+    imageAlt: "Svaleholm Gæstegaards facade og gårdsplads",
   });
 }
 
@@ -42,14 +42,14 @@ const USECASE_PAGES = landingPagesByCategory("usecase");
 const OVERNATNING_PAGES = landingPagesByCategory("overnatning");
 
 const PILLAR_DESCRIPTION =
-  "Svaleholm Gaard udlejer indkvartering til håndværkere på projekt nær Roskilde – enkeltværelser eller hele huset til sjakket, fælles køkken, betaling via betalingslink mod CVR. 650 kr pr. nat, min. 4 nætter, skræddersyet aftale ved leje af hele huset.";
+  "Svaleholm Gæstegaard udlejer indkvartering til håndværkere på projekt nær Roskilde – enkeltværelser eller hele huset til sjakket, fælles køkken, betaling via betalingslink mod CVR. 650 kr pr. nat, min. 4 nætter, skræddersyet aftale ved leje af hele huset.";
 
 const FAQS: FaqItem[] = [
   {
-    qDa: "Hvor ligger Svaleholm Gaard?",
-    qEn: "Where is Svaleholm Gaard located?",
-    aDa: "Svaleholm Gaard ligger på Frederiksborgvej 390, 4000 Roskilde – i landlige, naturskønne omgivelser tæt på pladsen, uanset hvor i området projektet ligger.",
-    aEn: "Svaleholm Gaard is at Frederiksborgvej 390, 4000 Roskilde – in rural, scenic surroundings close to the site, wherever in the area the project is.",
+    qDa: "Hvor ligger Svaleholm Gæstegaard?",
+    qEn: "Where is Svaleholm Gæstegaard located?",
+    aDa: "Svaleholm Gæstegaard ligger på Frederiksborgvej 390, 4000 Roskilde – i landlige, naturskønne omgivelser tæt på pladsen, uanset hvor i området projektet ligger.",
+    aEn: "Svaleholm Gæstegaard is at Frederiksborgvej 390, 4000 Roskilde – in rural, scenic surroundings close to the site, wherever in the area the project is.",
   },
   {
     qDa: "Hvor mange håndværkere kan bo her, og hvad koster det?",
@@ -188,7 +188,7 @@ function HeroSection() {
       <div className="absolute inset-0" style={{ inset: "-8% 0" }}>
         <img
           src="/images/gaardsplads.jpg"
-          alt="Svaleholm Gaards facade og gårdsplads"
+          alt="Svaleholm Gæstegaards facade og gårdsplads"
           className="w-full h-full object-cover ken-burns"
         />
       </div>
@@ -243,8 +243,8 @@ function AnswerBlockSection() {
           viewport={{ once: true, margin: "-80px" }}
         >
           {t(
-            "Svaleholm Gaard tilbyder indkvartering til håndværkere på projekt nær Roskilde: op til 8 værelser med fælles køkken, fire fælles bad og toiletter samt opholdsrum, eller hele huset eksklusivt til sjakket. Der er wifi, fælles vaskemaskine og parkering til varevogne. Prisen er 650 kr pr. nat inkl. moms, minimum 4 nætter, med betaling forud via betalingslink og skræddersyet aftale ved leje af hele huset.",
-            "Svaleholm Gaard offers accommodation for tradespeople on a project near Roskilde: up to 8 rooms with a shared kitchen, four shared baths and toilets, and a lounge, or the whole house rented exclusively for the crew. There is wifi, a shared washing machine and parking for vans. The price is DKK 650 per night incl. VAT, minimum 4 nights, with company invoicing against CVR and a tailored agreement when renting the whole house."
+            "Svaleholm Gæstegaard tilbyder indkvartering til håndværkere på projekt nær Roskilde: op til 8 værelser med fælles køkken, fire fælles bad og toiletter samt opholdsrum, eller hele huset eksklusivt til sjakket. Der er wifi, fælles vaskemaskine og parkering til varevogne. Prisen er 650 kr pr. nat inkl. moms, minimum 4 nætter, med betaling forud via betalingslink og skræddersyet aftale ved leje af hele huset.",
+            "Svaleholm Gæstegaard offers accommodation for tradespeople on a project near Roskilde: up to 8 rooms with a shared kitchen, four shared baths and toilets, and a lounge, or the whole house rented exclusively for the crew. There is wifi, a shared washing machine and parking for vans. The price is DKK 650 per night incl. VAT, minimum 4 nights, with company invoicing against CVR and a tailored agreement when renting the whole house."
           )}
         </motion.p>
       </div>

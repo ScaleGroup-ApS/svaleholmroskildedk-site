@@ -11,13 +11,13 @@
 export const SITE_URL = "https://svaleholmroskilde.dk";
 
 /** Brand name used in titles/OG. */
-export const SITE_NAME = "Svaleholm Gaard Roskilde";
+export const SITE_NAME = "Svaleholm Gæstegaard Roskilde";
 
 /** Short brand used in some UI contexts. */
 export const SHORT_NAME = "Svaleholm";
 
 /** Legal/organisation name. */
-export const LEGAL_NAME = "Svaleholm Gaard";
+export const LEGAL_NAME = "Svaleholm Gæstegaard";
 
 /** Default locale. */
 export const LOCALE = "da_DK";

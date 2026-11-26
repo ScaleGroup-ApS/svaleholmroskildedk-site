@@ -20,9 +20,9 @@ import { graph, breadcrumb, webPageNode } from "~/lib/schema";
 export function meta() {
   return pageMeta({
     path: "/kontakt",
-    title: "Kontakt Svaleholm Gaard Roskilde | Frederiksborgvej 390",
+    title: "Kontakt Svaleholm Gæstegaard Roskilde | Frederiksborgvej 390",
     description:
-      "Få tilbud til dit sjak. Kontakt Svaleholm Gaard ved Roskilde om overnatning til håndværkere. Ring +45 71 53 13 79, skriv til kontakt@svaleholmroskilde.dk eller udfyld formularen.",
+      "Få tilbud til dit sjak. Kontakt Svaleholm Gæstegaard ved Roskilde om overnatning til håndværkere. Ring +45 71 53 13 79, skriv til kontakt@svaleholmroskilde.dk eller udfyld formularen.",
     image: "/images/have-sti.jpg",
     imageAlt: "Havesti ved Svaleholm",
   });
@@ -31,9 +31,9 @@ export function meta() {
 const KONTAKT_JSONLD = graph(
   webPageNode({
     path: "/kontakt",
-    name: "Kontakt Svaleholm Gaard Roskilde",
+    name: "Kontakt Svaleholm Gæstegaard Roskilde",
     description:
-      "Kontakt Svaleholm Gaard ved Roskilde om overnatning til håndværkere og sjak – telefon, e-mail, adresse og kontaktformular.",
+      "Kontakt Svaleholm Gæstegaard ved Roskilde om overnatning til håndværkere og sjak – telefon, e-mail, adresse og kontaktformular.",
     type: "ContactPage",
     primaryImage: "/images/have-sti.jpg",
   }),

@@ -67,10 +67,10 @@ export type LandingPage = {
 // facts (shared bath, self check-in, capacity, invoicing) are identical across
 // the site, so the answers stay consistent with /vaerelser and /tjenester.
 const FAQ_LOCATION: FaqItem = {
-  qDa: "Hvor ligger Svaleholm Gaard?",
-  qEn: "Where is Svaleholm Gaard located?",
-  aDa: "Svaleholm Gaard ligger på Frederiksborgvej 390, 4000 Roskilde – i landlige, naturskønne omgivelser lige uden for Roskilde på Sjælland, med nem parkering ved indkørslen.",
-  aEn: "Svaleholm Gaard is at Frederiksborgvej 390, 4000 Roskilde – in rural, scenic surroundings just outside Roskilde on Zealand, with easy parking by the drive.",
+  qDa: "Hvor ligger Svaleholm Gæstegaard?",
+  qEn: "Where is Svaleholm Gæstegaard located?",
+  aDa: "Svaleholm Gæstegaard ligger på Frederiksborgvej 390, 4000 Roskilde – i landlige, naturskønne omgivelser lige uden for Roskilde på Sjælland, med nem parkering ved indkørslen.",
+  aEn: "Svaleholm Gæstegaard is at Frederiksborgvej 390, 4000 Roskilde – in rural, scenic surroundings just outside Roskilde on Zealand, with easy parking by the drive.",
 };
 const FAQ_CHECKIN: FaqItem = {
   qDa: "Hvordan foregår check-in ved overnatning?",
@@ -111,9 +111,9 @@ export const LANDING_PAGES: LandingPage[] = [
   {
     category: "overnatning",
     slug: "naer-lejre",
-    metaTitle: "Indkvartering til håndværkere nær Lejre | Svaleholm Gaard",
+    metaTitle: "Indkvartering til håndværkere nær Lejre | Svaleholm Gæstegaard",
     metaDescription:
-      "Bygge- eller renoveringsprojekt i Lejre-området? Svaleholm Gaard udlejer indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
+      "Bygge- eller renoveringsprojekt i Lejre-området? Svaleholm Gæstegaard udlejer indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
     heroEyebrowDa: "Håndværkerindkvartering nær Lejre",
     heroEyebrowEn: "Tradesperson lodging near Lejre",
     h1Da: "Indkvartering til håndværkere nær Lejre",
@@ -123,19 +123,19 @@ export const LANDING_PAGES: LandingPage[] = [
     heroSubEn:
       "A quiet, practical base for crews on a project in the Lejre area – simple rooms with a shared kitchen, easy self check-in and company invoicing.",
     image: "/images/natur-eng.jpg",
-    imageAlt: "Grønne enge og natur nær Svaleholm Gaard ved Lejre",
+    imageAlt: "Grønne enge og natur nær Svaleholm Gæstegaard ved Lejre",
     jsonLdName: "Indkvartering til håndværkere nær Lejre",
     jsonLdDescription:
-      "Svaleholm Gaard udlejer enkle værelser til håndværkere på projekt nær Lejre og Roskilde. Fælles køkken, betaling via betalingslink, 650 kr pr. nat, min. 4 nætter.",
+      "Svaleholm Gæstegaard udlejer enkle værelser til håndværkere på projekt nær Lejre og Roskilde. Fælles køkken, betaling via betalingslink, 650 kr pr. nat, min. 4 nætter.",
     breadcrumbLabel: "Håndværkere nær Lejre",
     intro: [
       {
         headingDa: "Sjak på projekt nær Lejre",
         headingEn: "Crews on a project near Lejre",
         bodyDa:
-          "Sjak med projekt i Lejre-området har brug for et sted at bo, der giver overskud til arbejdsdagen. I stedet for en skurvogn på byggepladsen bor I på Svaleholm Gaard i enkle værelser med et fælles køkken, hvor I selv kan lave mad efter en lang dag, og et fælles opholdsrum til at slappe af i. Her er ro til at hvile ordentligt, inden næste arbejdsdag starter – en rigtig seng, et rigtigt bad og plads til at trække sig tilbage, så sjakket står friskere op hver morgen.",
+          "Sjak med projekt i Lejre-området har brug for et sted at bo, der giver overskud til arbejdsdagen. I stedet for en skurvogn på byggepladsen bor I på Svaleholm Gæstegaard i enkle værelser med et fælles køkken, hvor I selv kan lave mad efter en lang dag, og et fælles opholdsrum til at slappe af i. Her er ro til at hvile ordentligt, inden næste arbejdsdag starter – en rigtig seng, et rigtigt bad og plads til at trække sig tilbage, så sjakket står friskere op hver morgen.",
         bodyEn:
-          "Crews working on a project in the Lejre area need somewhere to stay that leaves them with energy for the workday. Instead of a site cabin, you stay at Svaleholm Gaard in simple rooms with a shared kitchen where you can cook after a long day, and a shared lounge to unwind in. There's calm here to rest properly before the next working day starts – a real bed, a real bath, and space to retreat, so the crew wakes up fresher every morning.",
+          "Crews working on a project in the Lejre area need somewhere to stay that leaves them with energy for the workday. Instead of a site cabin, you stay at Svaleholm Gæstegaard in simple rooms with a shared kitchen where you can cook after a long day, and a shared lounge to unwind in. There's calm here to rest properly before the next working day starts – a real bed, a real bath, and space to retreat, so the crew wakes up fresher every morning.",
       },
       {
         headingDa: "Enkelt, fleksibelt og fakturérbart",
@@ -168,9 +168,9 @@ export const LANDING_PAGES: LandingPage[] = [
   {
     category: "overnatning",
     slug: "naer-holbaek",
-    metaTitle: "Indkvartering til håndværkere nær Holbæk | Svaleholm Gaard",
+    metaTitle: "Indkvartering til håndværkere nær Holbæk | Svaleholm Gæstegaard",
     metaDescription:
-      "Bygge- eller renoveringsprojekt i Holbæk-området? Svaleholm Gaard udlejer indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
+      "Bygge- eller renoveringsprojekt i Holbæk-området? Svaleholm Gæstegaard udlejer indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
     heroEyebrowDa: "Håndværkerindkvartering nær Holbæk",
     heroEyebrowEn: "Tradesperson lodging near Holbæk",
     h1Da: "Indkvartering til håndværkere nær Holbæk",
@@ -180,19 +180,19 @@ export const LANDING_PAGES: LandingPage[] = [
     heroSubEn:
       "A quiet, practical base for crews on projects along the Holbæk–Roskilde corridor – simple rooms with a shared kitchen, easy self check-in and company invoicing.",
     image: "/images/natur-mark.jpg",
-    imageAlt: "Åbne marker og landskab nær Svaleholm Gaard mod Holbæk",
+    imageAlt: "Åbne marker og landskab nær Svaleholm Gæstegaard mod Holbæk",
     jsonLdName: "Indkvartering til håndværkere nær Holbæk",
     jsonLdDescription:
-      "Svaleholm Gaard udlejer enkle værelser til håndværkere på projekt nær Holbæk og Roskilde. Fælles køkken, betaling via betalingslink, 650 kr pr. nat, min. 4 nætter.",
+      "Svaleholm Gæstegaard udlejer enkle værelser til håndværkere på projekt nær Holbæk og Roskilde. Fælles køkken, betaling via betalingslink, 650 kr pr. nat, min. 4 nætter.",
     breadcrumbLabel: "Håndværkere nær Holbæk",
     intro: [
       {
         headingDa: "Sjak på projekt langs Holbæk-korridoren",
         headingEn: "Crews on a project along the Holbæk corridor",
         bodyDa:
-          "Projekter langs korridoren mellem Roskilde og Holbæk kræver et sted at bo, der giver overskud til arbejdsdagen. I stedet for en skurvogn bor sjakket på Svaleholm Gaard i enkle værelser med et fælles køkken, hvor I selv kan lave mad efter en lang dag, og et fælles opholdsrum til at slappe af i. Her er ro til at hvile ordentligt, inden næste arbejdsdag starter – en rigtig seng, et rigtigt bad og plads til at trække sig tilbage, så sjakket står friskere op hver morgen.",
+          "Projekter langs korridoren mellem Roskilde og Holbæk kræver et sted at bo, der giver overskud til arbejdsdagen. I stedet for en skurvogn bor sjakket på Svaleholm Gæstegaard i enkle værelser med et fælles køkken, hvor I selv kan lave mad efter en lang dag, og et fælles opholdsrum til at slappe af i. Her er ro til at hvile ordentligt, inden næste arbejdsdag starter – en rigtig seng, et rigtigt bad og plads til at trække sig tilbage, så sjakket står friskere op hver morgen.",
         bodyEn:
-          "Projects along the corridor between Roskilde and Holbæk need somewhere to stay that leaves the crew with energy for the workday. Instead of a site cabin, you stay at Svaleholm Gaard in simple rooms with a shared kitchen where you can cook after a long day, and a shared lounge to unwind in. There's calm here to rest properly before the next working day starts – a real bed, a real bath, and space to retreat, so the crew wakes up fresher every morning.",
+          "Projects along the corridor between Roskilde and Holbæk need somewhere to stay that leaves the crew with energy for the workday. Instead of a site cabin, you stay at Svaleholm Gæstegaard in simple rooms with a shared kitchen where you can cook after a long day, and a shared lounge to unwind in. There's calm here to rest properly before the next working day starts – a real bed, a real bath, and space to retreat, so the crew wakes up fresher every morning.",
       },
       {
         headingDa: "Enkelt, fleksibelt og fakturérbart",
@@ -225,9 +225,9 @@ export const LANDING_PAGES: LandingPage[] = [
   {
     category: "overnatning",
     slug: "naer-koege",
-    metaTitle: "Indkvartering til håndværkere nær Køge | Svaleholm Gaard",
+    metaTitle: "Indkvartering til håndværkere nær Køge | Svaleholm Gæstegaard",
     metaDescription:
-      "Anlægs- eller boligprojekt i Køge-området? Svaleholm Gaard udlejer indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
+      "Anlægs- eller boligprojekt i Køge-området? Svaleholm Gæstegaard udlejer indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
     heroEyebrowDa: "Håndværkerindkvartering nær Køge",
     heroEyebrowEn: "Tradesperson lodging near Køge",
     h1Da: "Indkvartering til håndværkere nær Køge",
@@ -237,19 +237,19 @@ export const LANDING_PAGES: LandingPage[] = [
     heroSubEn:
       "A quiet, practical base for crews on large civil and housing projects in the Køge area – simple rooms with a shared kitchen, easy self check-in and company invoicing.",
     image: "/images/have-sti.jpg",
-    imageAlt: "Havesti og grønne omgivelser ved Svaleholm Gaard nær Køge",
+    imageAlt: "Havesti og grønne omgivelser ved Svaleholm Gæstegaard nær Køge",
     jsonLdName: "Indkvartering til håndværkere nær Køge",
     jsonLdDescription:
-      "Svaleholm Gaard udlejer enkle værelser til håndværkere på projekt nær Køge og Roskilde. Fælles køkken, betaling via betalingslink, 650 kr pr. nat, min. 4 nætter.",
+      "Svaleholm Gæstegaard udlejer enkle værelser til håndværkere på projekt nær Køge og Roskilde. Fælles køkken, betaling via betalingslink, 650 kr pr. nat, min. 4 nætter.",
     breadcrumbLabel: "Håndværkere nær Køge",
     intro: [
       {
         headingDa: "Sjak på anlægs- og boligprojekter i Køge-området",
         headingEn: "Crews on civil and housing projects in the Køge area",
         bodyDa:
-          "Køge-området har løbende store anlægs- og boligprojekter, der trækker håndværkere og entreprenører til i længere perioder. I stedet for en skurvogn på pladsen bor sjakket på Svaleholm Gaard i enkle værelser med et fælles køkken, hvor I selv kan lave mad efter en lang dag, og et fælles opholdsrum til at slappe af i. Her er ro til at hvile ordentligt, inden næste arbejdsdag starter – en rigtig seng, et rigtigt bad og plads til at trække sig tilbage.",
+          "Køge-området har løbende store anlægs- og boligprojekter, der trækker håndværkere og entreprenører til i længere perioder. I stedet for en skurvogn på pladsen bor sjakket på Svaleholm Gæstegaard i enkle værelser med et fælles køkken, hvor I selv kan lave mad efter en lang dag, og et fælles opholdsrum til at slappe af i. Her er ro til at hvile ordentligt, inden næste arbejdsdag starter – en rigtig seng, et rigtigt bad og plads til at trække sig tilbage.",
         bodyEn:
-          "The Køge area regularly sees large civil and housing projects that bring in tradespeople and contractors for extended periods. Instead of a site cabin, the crew stays at Svaleholm Gaard in simple rooms with a shared kitchen where you can cook after a long day, and a shared lounge to unwind in. There's calm here to rest properly before the next working day starts – a real bed, a real bath, and space to retreat.",
+          "The Køge area regularly sees large civil and housing projects that bring in tradespeople and contractors for extended periods. Instead of a site cabin, the crew stays at Svaleholm Gæstegaard in simple rooms with a shared kitchen where you can cook after a long day, and a shared lounge to unwind in. There's calm here to rest properly before the next working day starts – a real bed, a real bath, and space to retreat.",
       },
       {
         headingDa: "Enkelt, fleksibelt og fakturérbart",
@@ -282,9 +282,9 @@ export const LANDING_PAGES: LandingPage[] = [
   {
     category: "overnatning",
     slug: "naer-hvalsoe",
-    metaTitle: "Indkvartering til håndværkere nær Hvalsø | Svaleholm Gaard",
+    metaTitle: "Indkvartering til håndværkere nær Hvalsø | Svaleholm Gæstegaard",
     metaDescription:
-      "Bygge- eller renoveringsprojekt i Hvalsø/Lejre kommune? Svaleholm Gaard udlejer indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
+      "Bygge- eller renoveringsprojekt i Hvalsø/Lejre kommune? Svaleholm Gæstegaard udlejer indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
     heroEyebrowDa: "Håndværkerindkvartering nær Hvalsø",
     heroEyebrowEn: "Tradesperson lodging near Hvalsø",
     h1Da: "Indkvartering til håndværkere nær Hvalsø",
@@ -294,19 +294,19 @@ export const LANDING_PAGES: LandingPage[] = [
     heroSubEn:
       "A quiet, practical base for crews on projects in Hvalsø and Lejre municipality – simple rooms with a shared kitchen, easy self check-in and company invoicing.",
     image: "/images/natur-1.jpg",
-    imageAlt: "Skov og natur nær Svaleholm Gaard ved Hvalsø",
+    imageAlt: "Skov og natur nær Svaleholm Gæstegaard ved Hvalsø",
     jsonLdName: "Indkvartering til håndværkere nær Hvalsø",
     jsonLdDescription:
-      "Svaleholm Gaard udlejer enkle værelser til håndværkere på projekt nær Hvalsø, Lejre kommune og Roskilde. Fælles køkken, betaling via betalingslink, 650 kr pr. nat, min. 4 nætter.",
+      "Svaleholm Gæstegaard udlejer enkle værelser til håndværkere på projekt nær Hvalsø, Lejre kommune og Roskilde. Fælles køkken, betaling via betalingslink, 650 kr pr. nat, min. 4 nætter.",
     breadcrumbLabel: "Håndværkere nær Hvalsø",
     intro: [
       {
         headingDa: "Sjak på projekt i Hvalsø og Lejre kommune",
         headingEn: "Crews on a project in Hvalsø and Lejre municipality",
         bodyDa:
-          "Projekter i Hvalsø og den øvrige del af Lejre kommune kræver et sted at bo, der giver overskud til arbejdsdagen. I stedet for en skurvogn bor sjakket på Svaleholm Gaard i enkle værelser med et fælles køkken, hvor I selv kan lave mad efter en lang dag, og et fælles opholdsrum til at slappe af i. Her er ro til at hvile ordentligt, inden næste arbejdsdag starter – en rigtig seng, et rigtigt bad og plads til at trække sig tilbage, så sjakket står friskere op hver morgen.",
+          "Projekter i Hvalsø og den øvrige del af Lejre kommune kræver et sted at bo, der giver overskud til arbejdsdagen. I stedet for en skurvogn bor sjakket på Svaleholm Gæstegaard i enkle værelser med et fælles køkken, hvor I selv kan lave mad efter en lang dag, og et fælles opholdsrum til at slappe af i. Her er ro til at hvile ordentligt, inden næste arbejdsdag starter – en rigtig seng, et rigtigt bad og plads til at trække sig tilbage, så sjakket står friskere op hver morgen.",
         bodyEn:
-          "Projects in Hvalsø and the rest of Lejre municipality need somewhere to stay that leaves the crew with energy for the workday. Instead of a site cabin, you stay at Svaleholm Gaard in simple rooms with a shared kitchen where you can cook after a long day, and a shared lounge to unwind in. There's calm here to rest properly before the next working day starts – a real bed, a real bath, and space to retreat, so the crew wakes up fresher every morning.",
+          "Projects in Hvalsø and the rest of Lejre municipality need somewhere to stay that leaves the crew with energy for the workday. Instead of a site cabin, you stay at Svaleholm Gæstegaard in simple rooms with a shared kitchen where you can cook after a long day, and a shared lounge to unwind in. There's calm here to rest properly before the next working day starts – a real bed, a real bath, and space to retreat, so the crew wakes up fresher every morning.",
       },
       {
         headingDa: "Enkelt, fleksibelt og fakturérbart",
@@ -339,9 +339,9 @@ export const LANDING_PAGES: LandingPage[] = [
   {
     category: "overnatning",
     slug: "naer-frederikssund",
-    metaTitle: "Indkvartering til håndværkere nær Frederikssund | Svaleholm Gaard",
+    metaTitle: "Indkvartering til håndværkere nær Frederikssund | Svaleholm Gæstegaard",
     metaDescription:
-      "Byggeprojekt omkring Frederikssund? Svaleholm Gaard udlejer indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
+      "Byggeprojekt omkring Frederikssund? Svaleholm Gæstegaard udlejer indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
     heroEyebrowDa: "Håndværkerindkvartering nær Frederikssund",
     heroEyebrowEn: "Tradesperson lodging near Frederikssund",
     h1Da: "Indkvartering til håndværkere nær Frederikssund",
@@ -351,19 +351,19 @@ export const LANDING_PAGES: LandingPage[] = [
     heroSubEn:
       "A quiet, practical base for crews on construction and development projects around Frederikssund – simple rooms with a shared kitchen, easy self check-in and company invoicing.",
     image: "/images/natur-4.jpg",
-    imageAlt: "Landskab og natur nær Svaleholm Gaard mod Frederikssund",
+    imageAlt: "Landskab og natur nær Svaleholm Gæstegaard mod Frederikssund",
     jsonLdName: "Indkvartering til håndværkere nær Frederikssund",
     jsonLdDescription:
-      "Svaleholm Gaard udlejer enkle værelser til håndværkere på projekt nær Frederikssund og Roskilde. Fælles køkken, betaling via betalingslink, 650 kr pr. nat, min. 4 nætter.",
+      "Svaleholm Gæstegaard udlejer enkle værelser til håndværkere på projekt nær Frederikssund og Roskilde. Fælles køkken, betaling via betalingslink, 650 kr pr. nat, min. 4 nætter.",
     breadcrumbLabel: "Håndværkere nær Frederikssund",
     intro: [
       {
         headingDa: "Sjak på byggeri og byudvikling omkring Frederikssund",
         headingEn: "Crews on construction and development around Frederikssund",
         bodyDa:
-          "Byudvikling og byggeri omkring Frederikssund trækker håndværkere til i perioder, hvor det er praktisk at bo samlet tæt på projektet. I stedet for en skurvogn bor sjakket på Svaleholm Gaard i enkle værelser med et fælles køkken, hvor I selv kan lave mad efter en lang dag, og et fælles opholdsrum til at slappe af i. Her er ro til at hvile ordentligt, inden næste arbejdsdag starter – en rigtig seng, et rigtigt bad og plads til at trække sig tilbage.",
+          "Byudvikling og byggeri omkring Frederikssund trækker håndværkere til i perioder, hvor det er praktisk at bo samlet tæt på projektet. I stedet for en skurvogn bor sjakket på Svaleholm Gæstegaard i enkle værelser med et fælles køkken, hvor I selv kan lave mad efter en lang dag, og et fælles opholdsrum til at slappe af i. Her er ro til at hvile ordentligt, inden næste arbejdsdag starter – en rigtig seng, et rigtigt bad og plads til at trække sig tilbage.",
         bodyEn:
-          "Development and construction around Frederikssund bring in tradespeople for periods where it's practical to stay together near the project. Instead of a site cabin, the crew stays at Svaleholm Gaard in simple rooms with a shared kitchen where you can cook after a long day, and a shared lounge to unwind in. There's calm here to rest properly before the next working day starts – a real bed, a real bath, and space to retreat.",
+          "Development and construction around Frederikssund bring in tradespeople for periods where it's practical to stay together near the project. Instead of a site cabin, the crew stays at Svaleholm Gæstegaard in simple rooms with a shared kitchen where you can cook after a long day, and a shared lounge to unwind in. There's calm here to rest properly before the next working day starts – a real bed, a real bath, and space to retreat.",
       },
       {
         headingDa: "Enkelt, fleksibelt og fakturérbart",
@@ -398,7 +398,7 @@ export const LANDING_PAGES: LandingPage[] = [
   {
     category: "usecase",
     slug: "mandskabsindkvartering-roskilde",
-    metaTitle: "Mandskabsindkvartering i Roskilde | Svaleholm Gaard",
+    metaTitle: "Mandskabsindkvartering i Roskilde | Svaleholm Gæstegaard",
     metaDescription:
       "Indkvartering af mandskab og håndværkere i Roskilde-området. Op til 8 værelser eller hele huset til sjakket, fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
     heroEyebrowDa: "Mandskabsindkvartering",
@@ -410,10 +410,10 @@ export const LANDING_PAGES: LandingPage[] = [
     heroSubEn:
       "Accommodation for tradespeople and crews on a project in the Roskilde area – single rooms or the whole house, company invoicing and easy self check-in.",
     image: "/images/vaerelse-seng.jpg",
-    imageAlt: "Enkelt værelse til mandskabsindkvartering på Svaleholm Gaard nær Roskilde",
+    imageAlt: "Enkelt værelse til mandskabsindkvartering på Svaleholm Gæstegaard nær Roskilde",
     jsonLdName: "Mandskabsindkvartering i Roskilde-området",
     jsonLdDescription:
-      "Svaleholm Gaard udlejer enkeltværelser eller hele gården til mandskab og håndværkere på projekt i Roskilde-området. Fælles køkken, betaling via betalingslink, 650 kr pr. nat, min. 4 nætter.",
+      "Svaleholm Gæstegaard udlejer enkeltværelser eller hele gården til mandskab og håndværkere på projekt i Roskilde-området. Fælles køkken, betaling via betalingslink, 650 kr pr. nat, min. 4 nætter.",
     breadcrumbLabel: "Mandskabsindkvartering Roskilde",
     serviceName: "Mandskabsindkvartering",
     serviceDescription:
@@ -423,9 +423,9 @@ export const LANDING_PAGES: LandingPage[] = [
         headingDa: "Til entreprenøren og byggelederen",
         headingEn: "For the contractor and site manager",
         bodyDa:
-          "Har I et sjak på 2-8 mand, der skal bo tæt på et projekt i Roskilde-området, er Svaleholm Gaard et praktisk valg for byggelederen. Gården ligger på Frederiksborgvej 390, 4000 Roskilde, med op til 8 enkle værelser, fælles køkken, fire fælles bad og toiletter samt et fælles opholdsrum. Det gør det enkelt at samle hele sjakket på én adresse, uanset om projektet varer få uger eller flere måneder.",
+          "Har I et sjak på 2-8 mand, der skal bo tæt på et projekt i Roskilde-området, er Svaleholm Gæstegaard et praktisk valg for byggelederen. Gården ligger på Frederiksborgvej 390, 4000 Roskilde, med op til 8 enkle værelser, fælles køkken, fire fælles bad og toiletter samt et fælles opholdsrum. Det gør det enkelt at samle hele sjakket på én adresse, uanset om projektet varer få uger eller flere måneder.",
         bodyEn:
-          "If you have a crew of 2-8 people who need to stay close to a project in the Roskilde area, Svaleholm Gaard is a practical choice for the site manager. The farm is at Frederiksborgvej 390, 4000 Roskilde, with up to 8 simple rooms, a shared kitchen, four shared baths and toilets, and a shared lounge. That makes it simple to keep the whole crew at one address, whether the project runs for a few weeks or several months.",
+          "If you have a crew of 2-8 people who need to stay close to a project in the Roskilde area, Svaleholm Gæstegaard is a practical choice for the site manager. The farm is at Frederiksborgvej 390, 4000 Roskilde, with up to 8 simple rooms, a shared kitchen, four shared baths and toilets, and a shared lounge. That makes it simple to keep the whole crew at one address, whether the project runs for a few weeks or several months.",
       },
       {
         headingDa: "Enkeltværelser eller hele huset",
@@ -458,7 +458,7 @@ export const LANDING_PAGES: LandingPage[] = [
   {
     category: "usecase",
     slug: "skurby-alternativ",
-    metaTitle: "Alternativ til skurvogn og skurby | Svaleholm Gaard Roskilde",
+    metaTitle: "Alternativ til skurvogn og skurby | Svaleholm Gæstegaard Roskilde",
     metaDescription:
       "Et bedre alternativ til skurvogn: rigtige værelser med køkken, bad og opholdsrum til håndværkere nær Roskilde. 650 kr/nat, min. 4 nætter, betaling via betalingslink.",
     heroEyebrowDa: "Alternativ til skurvogn",
@@ -470,10 +470,10 @@ export const LANDING_PAGES: LandingPage[] = [
     heroSubEn:
       "A real house with a kitchen, bath and lounge instead of a site cabin – for tradespeople on a longer project near Roskilde.",
     image: "/images/bygning-have.jpg",
-    imageAlt: "Svaleholm Gaards bygning som alternativ til skurvogn for håndværkere",
+    imageAlt: "Svaleholm Gæstegaards bygning som alternativ til skurvogn for håndværkere",
     jsonLdName: "Alternativ til skurvogn og skurby nær Roskilde",
     jsonLdDescription:
-      "Svaleholm Gaard udlejer rigtige værelser med køkken, bad og opholdsrum som alternativ til skurvogn/skurby for håndværkere nær Roskilde. 650 kr pr. nat, min. 4 nætter, betaling via betalingslink.",
+      "Svaleholm Gæstegaard udlejer rigtige værelser med køkken, bad og opholdsrum som alternativ til skurvogn/skurby for håndværkere nær Roskilde. 650 kr pr. nat, min. 4 nætter, betaling via betalingslink.",
     breadcrumbLabel: "Alternativ til skurvogn",
     serviceName: "Alternativ til skurvogn",
     serviceDescription:
@@ -483,9 +483,9 @@ export const LANDING_PAGES: LandingPage[] = [
         headingDa: "Mere end fire vægge og en køjeseng",
         headingEn: "More than four walls and a bunk bed",
         bodyDa:
-          "På et længerevarende projekt betyder det noget, hvor sjakket bor om natten. En skurvogn giver et sted at sove, men sjældent plads til at lave mad ordentligt eller falde ned efter en lang dag. Svaleholm Gaard er et rigtigt hus med et fælles køkken, hvor I selv kan tilberede mad, fire fælles bad og toiletter samt et opholdsrum til at slappe af i – fordele, der gør en forskel, når projektet varer uger eller måneder.",
+          "På et længerevarende projekt betyder det noget, hvor sjakket bor om natten. En skurvogn giver et sted at sove, men sjældent plads til at lave mad ordentligt eller falde ned efter en lang dag. Svaleholm Gæstegaard er et rigtigt hus med et fælles køkken, hvor I selv kan tilberede mad, fire fælles bad og toiletter samt et opholdsrum til at slappe af i – fordele, der gør en forskel, når projektet varer uger eller måneder.",
         bodyEn:
-          "On a longer project, it matters where the crew sleeps at night. A site cabin gives you somewhere to sleep, but rarely room to cook properly or wind down after a long day. Svaleholm Gaard is a real house with a shared kitchen where you can cook your own food, four shared baths and toilets, and a lounge to relax in – benefits that matter when a project runs for weeks or months.",
+          "On a longer project, it matters where the crew sleeps at night. A site cabin gives you somewhere to sleep, but rarely room to cook properly or wind down after a long day. Svaleholm Gæstegaard is a real house with a shared kitchen where you can cook your own food, four shared baths and toilets, and a lounge to relax in – benefits that matter when a project runs for weeks or months.",
       },
       {
         headingDa: "Samme pris-logik, bedre forhold",
@@ -516,7 +516,7 @@ export const LANDING_PAGES: LandingPage[] = [
   {
     category: "usecase",
     slug: "hele-huset-til-sjak",
-    metaTitle: "Lej hele huset til sjakket | Svaleholm Gaard Roskilde",
+    metaTitle: "Lej hele huset til sjakket | Svaleholm Gæstegaard Roskilde",
     metaDescription:
       "Lej hele gården eksklusivt til dit sjak nær Roskilde – op til 8 værelser, fælles køkken og opholdsrum. Skræddersyet aftale, betaling via betalingslink, min. 4 nætter.",
     heroEyebrowDa: "Hele huset til ét sjak",
@@ -524,14 +524,14 @@ export const LANDING_PAGES: LandingPage[] = [
     h1Da: "Lej hele huset til sjakket",
     h1En: "Rent the whole house for your crew",
     heroSubDa:
-      "Lej hele Svaleholm Gaard eksklusivt til sjakket – op til 8 værelser, fælles køkken og opholdsrum, skræddersyet aftale efter antal mand og periode.",
+      "Lej hele Svaleholm Gæstegaard eksklusivt til sjakket – op til 8 værelser, fælles køkken og opholdsrum, skræddersyet aftale efter antal mand og periode.",
     heroSubEn:
-      "Rent the whole of Svaleholm Gaard exclusively for your crew – up to 8 rooms, a shared kitchen and lounge, tailored to crew size and period.",
+      "Rent the whole of Svaleholm Gæstegaard exclusively for your crew – up to 8 rooms, a shared kitchen and lounge, tailored to crew size and period.",
     image: "/images/gaardsplads.jpg",
-    imageAlt: "Svaleholm Gaards gårdsplads ved eksklusiv udlejning til ét sjak",
+    imageAlt: "Svaleholm Gæstegaards gårdsplads ved eksklusiv udlejning til ét sjak",
     jsonLdName: "Hele huset til ét sjak nær Roskilde",
     jsonLdDescription:
-      "Eksklusiv leje af hele Svaleholm Gaard til ét firmas sjak nær Roskilde – op til 8 værelser, fælles køkken og opholdsrum, skræddersyet aftale.",
+      "Eksklusiv leje af hele Svaleholm Gæstegaard til ét firmas sjak nær Roskilde – op til 8 værelser, fælles køkken og opholdsrum, skræddersyet aftale.",
     breadcrumbLabel: "Hele huset til sjakket",
     serviceName: "Hele huset til ét sjak",
     serviceDescription:
@@ -541,9 +541,9 @@ export const LANDING_PAGES: LandingPage[] = [
         headingDa: "Hele sjakket under ét tag",
         headingEn: "The whole crew under one roof",
         bodyDa:
-          "Når et sjak skal bo sammen i en periode, er det en fordel at have hele huset for sig selv. Svaleholm Gaard kan lejes eksklusivt til ét firma, så I har op til 8 værelser, et fælles køkken og et fælles opholdsrum for jer selv – uden at dele med andre gæster. Det gør det nemt at holde sammen på sjakket, både i arbejdstiden og om aftenen.",
+          "Når et sjak skal bo sammen i en periode, er det en fordel at have hele huset for sig selv. Svaleholm Gæstegaard kan lejes eksklusivt til ét firma, så I har op til 8 værelser, et fælles køkken og et fælles opholdsrum for jer selv – uden at dele med andre gæster. Det gør det nemt at holde sammen på sjakket, både i arbejdstiden og om aftenen.",
         bodyEn:
-          "When a crew needs to stay together for a period, it's an advantage to have the whole house to yourselves. Svaleholm Gaard can be rented exclusively to one company, so you have up to 8 rooms, a shared kitchen and a shared lounge entirely to yourselves – without sharing with other guests. That makes it easy to keep the crew together, both during work hours and in the evening.",
+          "When a crew needs to stay together for a period, it's an advantage to have the whole house to yourselves. Svaleholm Gæstegaard can be rented exclusively to one company, so you have up to 8 rooms, a shared kitchen and a shared lounge entirely to yourselves – without sharing with other guests. That makes it easy to keep the crew together, both during work hours and in the evening.",
       },
       {
         headingDa: "En aftale, der passer til jeres projekt",
@@ -574,7 +574,7 @@ export const LANDING_PAGES: LandingPage[] = [
   {
     category: "usecase",
     slug: "langtidsleje-haandvaerkere",
-    metaTitle: "Langtidsleje til håndværkere nær Roskilde | Svaleholm Gaard",
+    metaTitle: "Langtidsleje til håndværkere nær Roskilde | Svaleholm Gæstegaard",
     metaDescription:
       "Langvarigt bygge- eller renoveringsprojekt? Langtidsindkvartering til håndværkere nær Roskilde med fælles køkken og betaling via betalingslink. Fra 650 kr/nat, skræddersyet aftale.",
     heroEyebrowDa: "Langtidsleje til håndværkere",
@@ -586,10 +586,10 @@ export const LANDING_PAGES: LandingPage[] = [
     heroSubEn:
       "A stable base near the project when the work runs for weeks or months – a tailored long-stay agreement with company invoicing and easy self check-in.",
     image: "/images/have-sti.jpg",
-    imageAlt: "Have og sti ved Svaleholm Gaard til langtidsleje for håndværkere",
+    imageAlt: "Have og sti ved Svaleholm Gæstegaard til langtidsleje for håndværkere",
     jsonLdName: "Langtidsleje til håndværkere nær Roskilde",
     jsonLdDescription:
-      "Svaleholm Gaard udlejer langtidsindkvartering til håndværkere på længerevarende projekter nær Roskilde – skræddersyet aftale og betaling via betalingslink.",
+      "Svaleholm Gæstegaard udlejer langtidsindkvartering til håndværkere på længerevarende projekter nær Roskilde – skræddersyet aftale og betaling via betalingslink.",
     breadcrumbLabel: "Langtidsleje til håndværkere",
     serviceName: "Langtidsleje til håndværkere",
     serviceDescription:
@@ -599,9 +599,9 @@ export const LANDING_PAGES: LandingPage[] = [
         headingDa: "Til projekter, der varer uger eller måneder",
         headingEn: "For projects running weeks or months",
         bodyDa:
-          "Nogle projekter varer langt mere end et par dage, og så er det en fordel at have en stabil base nær pladsen. Svaleholm Gaard tilbyder langtidsindkvartering til håndværkere, der skal bo i området over en længere periode – med op til 8 enkle værelser, fælles køkken og et opholdsrum, hvor sjakket kan falde ned efter arbejdsdagen.",
+          "Nogle projekter varer langt mere end et par dage, og så er det en fordel at have en stabil base nær pladsen. Svaleholm Gæstegaard tilbyder langtidsindkvartering til håndværkere, der skal bo i området over en længere periode – med op til 8 enkle værelser, fælles køkken og et opholdsrum, hvor sjakket kan falde ned efter arbejdsdagen.",
         bodyEn:
-          "Some projects run for far more than a few days, and then it's an advantage to have a stable base near the site. Svaleholm Gaard offers long-stay lodging for tradespeople who need to stay in the area over a longer period – with up to 8 simple rooms, a shared kitchen and a lounge where the crew can unwind after the working day.",
+          "Some projects run for far more than a few days, and then it's an advantage to have a stable base near the site. Svaleholm Gæstegaard offers long-stay lodging for tradespeople who need to stay in the area over a longer period – with up to 8 simple rooms, a shared kitchen and a lounge where the crew can unwind after the working day.",
       },
       {
         headingDa: "Skræddersyet aftale, enkel administration",

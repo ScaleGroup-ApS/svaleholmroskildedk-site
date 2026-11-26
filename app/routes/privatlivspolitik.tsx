@@ -4,7 +4,7 @@ import { useT } from "~/lib/i18n";
 export function meta() {
   return [
     { title: "Privatlivspolitik – Svaleholm Roskilde" },
-    { name: "description", content: "Sådan behandler Svaleholm Gaard Roskilde dine personoplysninger, når du kontakter os eller bruger vores prisberegner." },
+    { name: "description", content: "Sådan behandler Svaleholm Gæstegaard Roskilde dine personoplysninger, når du kontakter os eller bruger vores prisberegner." },
     { name: "robots", content: "noindex" },
   ];
 }
@@ -19,11 +19,11 @@ export default function Privatlivspolitik() {
     >
       <LSection heading={t("1. Dataansvarlig", "1. Data controller")}>
         <LP>{t(
-          "Svaleholm Gaard Roskilde er dataansvarlig for behandlingen af de personoplysninger, du deler med os via hjemmesiden. Du kan kontakte os her:",
-          "Svaleholm Gaard Roskilde is the data controller for the personal data you share with us via this website. You can reach us here:"
+          "Svaleholm Gæstegaard Roskilde er dataansvarlig for behandlingen af de personoplysninger, du deler med os via hjemmesiden. Du kan kontakte os her:",
+          "Svaleholm Gæstegaard Roskilde is the data controller for the personal data you share with us via this website. You can reach us here:"
         )}</LP>
         <LUL items={[
-          "Svaleholm Gaard Roskilde",
+          "Svaleholm Gæstegaard Roskilde",
           "Frederiksborgvej 390, 4000 Roskilde",
           t("Telefon: +45 71 53 13 79", "Phone: +45 71 53 13 79"),
           "E-mail: kontakt@svaleholmroskilde.dk",

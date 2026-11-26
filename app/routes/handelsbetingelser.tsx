@@ -3,8 +3,8 @@ import { useT } from "~/lib/i18n";
 
 export function meta() {
   return [
-    { title: "Handelsbetingelser – Svaleholm Gaard Roskilde" },
-    { name: "description", content: "Vilkår og betingelser for leje af overnatning hos Svaleholm Gaard Roskilde – priser, betaling, afbestilling og ansvar." },
+    { title: "Handelsbetingelser – Svaleholm Gæstegaard Roskilde" },
+    { name: "description", content: "Vilkår og betingelser for leje af overnatning hos Svaleholm Gæstegaard Roskilde – priser, betaling, afbestilling og ansvar." },
     { name: "robots", content: "noindex" },
   ];
 }
@@ -19,11 +19,11 @@ export default function Handelsbetingelser() {
     >
       <LSection heading={t("1. Generelt", "1. General")}>
         <LP>{t(
-          "Disse handelsbetingelser gælder for leje af overnatning hos Svaleholm Gaard Roskilde. Betingelserne udgør sammen med den konkrete aftale grundlaget for din leje.",
-          "These terms apply to the rental of accommodation at Svaleholm Gaard Roskilde. Together with the specific agreement, they form the basis of your rental."
+          "Disse handelsbetingelser gælder for leje af overnatning hos Svaleholm Gæstegaard Roskilde. Betingelserne udgør sammen med den konkrete aftale grundlaget for din leje.",
+          "These terms apply to the rental of accommodation at Svaleholm Gæstegaard Roskilde. Together with the specific agreement, they form the basis of your rental."
         )}</LP>
         <LUL items={[
-          "Svaleholm Gaard Roskilde",
+          "Svaleholm Gæstegaard Roskilde",
           "Frederiksborgvej 390, 4000 Roskilde",
           t("Telefon: +45 71 53 13 79", "Phone: +45 71 53 13 79"),
           "E-mail: kontakt@svaleholmroskilde.dk",
@@ -61,8 +61,8 @@ export default function Handelsbetingelser() {
 
       <LSection heading={t("6. Ansvarsbegrænsning", "6. Limitation of liability")}>
         <LP>{t(
-          "Svaleholm Gaard Roskilde er ikke ansvarlig for gæsters personlige ejendele eller for forhold uden for vores kontrol (force majeure). Vores erstatningsansvar er begrænset til det beløb, der er betalt for den pågældende booking.",
-          "Svaleholm Gaard Roskilde is not liable for guests' personal belongings or for circumstances beyond our control (force majeure). Our liability is limited to the amount paid for the booking in question."
+          "Svaleholm Gæstegaard Roskilde er ikke ansvarlig for gæsters personlige ejendele eller for forhold uden for vores kontrol (force majeure). Vores erstatningsansvar er begrænset til det beløb, der er betalt for den pågældende booking.",
+          "Svaleholm Gæstegaard Roskilde is not liable for guests' personal belongings or for circumstances beyond our control (force majeure). Our liability is limited to the amount paid for the booking in question."
         )}</LP>
       </LSection>
 

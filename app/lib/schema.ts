@@ -190,7 +190,7 @@ export function lodgingNode(opts: { description: string }): Node {
   return {
     "@type": "LodgingBusiness",
     "@id": `${SITE_URL}/vaerelser#lodging`,
-    name: "Ophold på Svaleholm Gaard",
+    name: "Ophold på Svaleholm Gæstegaard",
     description: opts.description,
     url: `${SITE_URL}/vaerelser`,
     image: abs("/images/bygning-have.jpg"),
