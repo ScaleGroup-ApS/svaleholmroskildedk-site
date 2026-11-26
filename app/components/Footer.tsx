@@ -100,6 +100,9 @@ export function Footer({ siteName = "Svaleholm Roskilde", siteDescription }: Foo
               </svg>
               kontakt@svaleholmroskilde.dk
             </div>
+            <p className="mt-4" style={{ color: "rgba(242,239,231,0.38)", fontSize: "0.75rem", letterSpacing: "0.04em" }}>
+              {t("Drives af AA-Ejendomme ApS · CVR 38891197", "Operated by AA-Ejendomme ApS · CVR 38891197")}
+            </p>
           </div>
 
           {/* Navigation */}
