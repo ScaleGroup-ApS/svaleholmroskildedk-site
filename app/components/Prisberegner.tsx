@@ -8,10 +8,24 @@ import { useT, useLang } from "~/lib/i18n";
 // Priser (nemme at justere ét sted)
 // Eksporteret, så fx inspirationssiden kan skrive de samme tal i teksten
 // uden at de to steder kan nå at komme ud af trit.
-export const ROOM_PRICE_PER_NIGHT = 650;   // pr. værelse pr. nat
-export const MAX_ROOMS = 8;                // hotellet har 8 værelser
-export const MIN_NIGHTS = 4;               // minimum antal nætter pr. booking
-const SHARED_BATHS = 4;                    // 4 fælles bad/brusere til alle værelser
+export const ROOM_PRICE_PER_NIGHT = 650;         // pr. værelse pr. nat (1–7 værelser)
+export const LONG_STAY_PRICE_PER_NIGHT = 600;    // pr. værelse/nat ved 31+ nætter
+export const LONG_STAY_THRESHOLD = 31;           // nætter hvor langtidsprisen gælder
+export const WHOLE_HOUSE_PRICE_PER_NIGHT = 5200; // hele gården (alle 8 værelser), flad pris
+export const MAX_ROOMS = 8;                      // hotellet har 8 værelser
+export const MIN_NIGHTS = 4;                     // min. nætter ved 1–7 værelser
+export const WHOLE_HOUSE_MIN_NIGHTS = 2;         // min. nætter ved hele gården
+const SHARED_BATHS = 4;                          // 4 fælles bad/brusere til alle værelser
+
+// Flad pris for hele gården (8 værelser); ellers pr. værelse, med langtidsrabat ved 31+ nætter.
+export function nightlyTotal(rooms: number, nights: number): number {
+  if (rooms >= MAX_ROOMS) return WHOLE_HOUSE_PRICE_PER_NIGHT * nights;
+  const perRoom = nights >= LONG_STAY_THRESHOLD ? LONG_STAY_PRICE_PER_NIGHT : ROOM_PRICE_PER_NIGHT;
+  return rooms * perRoom * nights;
+}
+export function minNightsFor(rooms: number): number {
+  return rooms >= MAX_ROOMS ? WHOLE_HOUSE_MIN_NIGHTS : MIN_NIGHTS;
+}
 
 const daDK = new Intl.NumberFormat("da-DK");
 const kr = (n: number) => `${daDK.format(n)} kr`;
@@ -182,13 +196,22 @@ function AccommodationFields({ idPrefix, rooms, setRooms, nights, setNights, arr
 export function PrisberegnerHotelSection() {
   const t = useT();
 
-  const [rooms, setRooms] = useState(1);
+  const [rooms, setRoomsRaw] = useState(1);
   const [nights, setNights] = useState(MIN_NIGHTS);
   const [arrival, setArrival] = useState("");
   const [todayIso, setTodayIso] = useState("");
   useEffect(() => setTodayIso(new Date().toISOString().slice(0, 10)), []);
 
-  const total = rooms * nights * ROOM_PRICE_PER_NIGHT;
+  // Hele gården (8 vær.) har min. 2 nætter; 1–7 vær. har min. 4. Justér nætter når antal skifter.
+  const setRooms = (n: number) => {
+    setRoomsRaw(n);
+    const newMin = minNightsFor(n);
+    setNights((cur) => (cur < newMin ? newMin : cur));
+  };
+  const minNights = minNightsFor(rooms);
+  const wholeHouse = rooms >= MAX_ROOMS;
+  const longStay = !wholeHouse && nights >= LONG_STAY_THRESHOLD;
+  const total = nightlyTotal(rooms, nights);
 
   const arrivalDate = arrival ? new Date(`${arrival}T00:00:00`) : null;
   const departureDate = arrival ? addDays(arrival, nights) : null;
@@ -216,11 +239,32 @@ export function PrisberegnerHotelSection() {
         <div className="flex items-center justify-between gap-4 pb-5 mb-6" style={{ borderBottom: `1px solid ${LINE}` }}>
           <div>
             <p style={{ fontFamily: "var(--font-body)", fontWeight: 600, color: INK, fontSize: "1.05rem" }}>{t("Overnatning", "Accommodation")}</p>
-            <p style={{ fontFamily: "var(--font-body)", color: INK_DIM, fontSize: "0.8125rem" }}>{kr(ROOM_PRICE_PER_NIGHT)} {t("pr. værelse pr. nat", "per room per night")} · {t("maks.", "max.")} {MAX_ROOMS} {t("værelser", "rooms")} · {t("min.", "min.")} {MIN_NIGHTS} {t("nætter", "nights")}</p>
+            <p style={{ fontFamily: "var(--font-body)", color: INK_DIM, fontSize: "0.8125rem" }}>{kr(ROOM_PRICE_PER_NIGHT)} {t("pr. værelse/nat", "per room/night")} · {t("hele gården", "whole farm")} {kr(WHOLE_HOUSE_PRICE_PER_NIGHT)}{t("/nat", "/night")} · {t("maks.", "max.")} {MAX_ROOMS} {t("værelser", "rooms")}</p>
           </div>
         </div>
 
-        <AccommodationFields idPrefix="hotel" rooms={rooms} setRooms={setRooms} nights={nights} setNights={setNights} arrival={arrival} setArrival={setArrival} todayIso={todayIso} invalidDate={dateMissing} minNights={MIN_NIGHTS} />
+        <AccommodationFields idPrefix="hotel" rooms={rooms} setRooms={setRooms} nights={nights} setNights={setNights} arrival={arrival} setArrival={setArrival} todayIso={todayIso} invalidDate={dateMissing} minNights={minNights} />
+
+        {/* Check-in/ud + prisregler + testeksempler */}
+        <div className="mt-5 flex items-center gap-2" style={{ fontFamily: "var(--font-body)", fontSize: "0.8125rem", color: INK_DIM }}>
+          <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke={LEAF} strokeWidth="1.6" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          {t("Check-ind fra kl. 15 · check-ud senest kl. 12", "Check-in from 3 pm · check-out by 12 noon")}
+        </div>
+        <div className="mt-4 pt-4" style={{ borderTop: `1px solid ${LINE}` }}>
+          <p style={{ fontFamily: "var(--font-body)", fontSize: "0.72rem", letterSpacing: "0.14em", textTransform: "uppercase", color: LEAF, marginBottom: "0.6rem" }}>{t("Eksempler", "Examples")}</p>
+          <ul className="space-y-1.5">
+            {[
+              { lbl: t("4 værelser × 7 nætter", "4 rooms × 7 nights"), val: nightlyTotal(4, 7) },
+              { lbl: t("Hele gården × 2 nætter", "Whole farm × 2 nights"), val: nightlyTotal(MAX_ROOMS, 2) },
+              { lbl: t("1 værelse × 31 nætter (langtid)", "1 room × 31 nights (long stay)"), val: nightlyTotal(1, 31) },
+            ].map((ex) => (
+              <li key={ex.lbl} className="flex items-center justify-between" style={{ fontFamily: "var(--font-body)", fontSize: "0.8125rem", color: INK_DIM }}>
+                <span>{ex.lbl}</span>
+                <span style={{ color: INK }}>{kr(ex.val)}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
 
       {/* Overslag */}
@@ -228,7 +272,14 @@ export function PrisberegnerHotelSection() {
         <p className="eyebrow mb-5">{t("Dit overslag", "Your estimate")}</p>
 
         <div className="space-y-3 flex-1">
-          <SummaryRow label={<>{t("Overnatning", "Accommodation")}<span style={{ color: INK_MUTE }}> · {rooms} × {nights} {nights === 1 ? t("nat", "night") : t("nætter", "nights")}</span></>} value={total} active />
+          <SummaryRow label={<>{wholeHouse ? t("Hele gården", "Whole farm") : t("Overnatning", "Accommodation")}<span style={{ color: INK_MUTE }}> · {wholeHouse ? "" : `${rooms} × `}{nights} {nights === 1 ? t("nat", "night") : t("nætter", "nights")}</span></>} value={total} active />
+          <p style={{ fontFamily: "var(--font-body)", fontSize: "0.8125rem", color: INK_MUTE }}>
+            {wholeHouse
+              ? t("Fast pris 5.200 kr/nat · min. 2 nætter", "Flat 5,200 kr/night · min. 2 nights")
+              : longStay
+                ? t("Langtidspris 600 kr/værelse/nat (31+ nætter)", "Long-stay 600 kr/room/night (31+ nights)")
+                : t("650 kr/værelse/nat · min. 4 nætter", "650 kr/room/night · min. 4 nights")}
+          </p>
           {arrivalDate && (
             <p style={{ fontFamily: "var(--font-body)", fontSize: "0.8125rem", color: INK_MUTE }}>{t("Ankomst", "Arrival")} {fmtDate(arrivalDate)}</p>
           )}
