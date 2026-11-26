@@ -25,6 +25,11 @@ export function meta() {
 type Shot = { src: string; da: string; en: string };
 
 const GALLERY: Shot[] = [
+  // Værelser og fællesarealer (gæster efterspørger disse)
+  { src: "/images/vaerelse-dobbeltseng.jpg", da: "Værelse med dobbeltseng og skrivebord på Svaleholm Gaard i Roskilde", en: "Room with a double bed and a desk at Svaleholm Gaard in Roskilde" },
+  { src: "/images/faellesstue.jpg", da: "Fælles opholdsstue med sofa og hyggekrog på Svaleholm Gaard", en: "Shared lounge with sofa and seating area at Svaleholm Gaard" },
+  { src: "/images/faelleskoekken.jpg", da: "Fuldt udstyret fælleskøkken med opvaskemaskine og kaffemaskiner på Svaleholm Gaard", en: "Fully equipped shared kitchen with dishwasher and coffee makers at Svaleholm Gaard" },
+
   // Gården og ankomst
   { src: "/images/gaard-familie.png", da: "Gæster ved langborde under egetræet på gårdspladsen", en: "Guests at long tables under the oak tree in the courtyard" },
   { src: "/images/ankomst-velkommen.png", da: "Ankomst til Svaleholm ved skumring", en: "Arriving at Svaleholm at dusk" },
