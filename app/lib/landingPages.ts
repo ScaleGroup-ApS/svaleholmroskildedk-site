@@ -227,15 +227,15 @@ export const LANDING_PAGES: LandingPage[] = [
     slug: "naer-koege",
     metaTitle: "Indkvartering til håndværkere nær Køge | Svaleholm Gæstegaard",
     metaDescription:
-      "Anlægs- eller boligprojekt i Køge-området? Svaleholm Gæstegaard tilbyder indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
+      "Anlægs- eller byggeprojekt i Køge-området? Svaleholm Gæstegaard tilbyder indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
     heroEyebrowDa: "Håndværkerindkvartering nær Køge",
     heroEyebrowEn: "Tradesperson lodging near Køge",
     h1Da: "Indkvartering til håndværkere nær Køge",
     h1En: "Accommodation for tradespeople near Køge",
     heroSubDa:
-      "Et roligt, praktisk sted for sjak på store anlægs- og boligprojekter i Køge-området – enkle værelser med fælles køkken, nem selvcheck-in og betaling via betalingslink.",
+      "Et roligt, praktisk sted for sjak på store anlægs- og byggeprojekter i Køge-området – enkle værelser med fælles køkken, nem selvcheck-in og betaling via betalingslink.",
     heroSubEn:
-      "A quiet, practical base for crews on large civil and housing projects in the Køge area – simple rooms with a shared kitchen, easy self check-in and company payment by link.",
+      "A quiet, practical base for crews on large civil and construction projects in the Køge area – simple rooms with a shared kitchen, easy self check-in and company payment by link.",
     image: "/images/have-sti.jpg",
     imageAlt: "Havesti og grønne omgivelser ved Svaleholm Gæstegaard nær Køge",
     jsonLdName: "Indkvartering til håndværkere nær Køge",
@@ -244,12 +244,12 @@ export const LANDING_PAGES: LandingPage[] = [
     breadcrumbLabel: "Håndværkere nær Køge",
     intro: [
       {
-        headingDa: "Sjak på anlægs- og boligprojekter i Køge-området",
-        headingEn: "Crews on civil and housing projects in the Køge area",
+        headingDa: "Sjak på anlægs- og byggeprojekter i Køge-området",
+        headingEn: "Crews on civil and construction projects in the Køge area",
         bodyDa:
-          "Køge-området har løbende store anlægs- og boligprojekter, der trækker håndværkere og entreprenører til i længere perioder. I stedet for en skurvogn på pladsen bor sjakket på Svaleholm Gæstegaard i enkle værelser med et fælles køkken, hvor I selv kan lave mad efter en lang dag, og et fælles opholdsrum til at slappe af i. Her er ro til at hvile ordentligt, inden næste arbejdsdag starter – en rigtig seng, et rigtigt bad og plads til at trække sig tilbage.",
+          "Køge-området har løbende store anlægs- og byggeprojekter, der trækker håndværkere og entreprenører til i længere perioder. I stedet for en skurvogn på pladsen bor sjakket på Svaleholm Gæstegaard i enkle værelser med et fælles køkken, hvor I selv kan lave mad efter en lang dag, og et fælles opholdsrum til at slappe af i. Her er ro til at hvile ordentligt, inden næste arbejdsdag starter – en rigtig seng, et rigtigt bad og plads til at trække sig tilbage.",
         bodyEn:
-          "The Køge area regularly sees large civil and housing projects that bring in tradespeople and contractors for extended periods. Instead of a site cabin, the crew stays at Svaleholm Gæstegaard in simple rooms with a shared kitchen where you can cook after a long day, and a shared lounge to unwind in. There's calm here to rest properly before the next working day starts – a real bed, a real bath, and space to retreat.",
+          "The Køge area regularly sees large civil and construction projects that bring in tradespeople and contractors for extended periods. Instead of a site cabin, the crew stays at Svaleholm Gæstegaard in simple rooms with a shared kitchen where you can cook after a long day, and a shared lounge to unwind in. There's calm here to rest properly before the next working day starts – a real bed, a real bath, and space to retreat.",
       },
       {
         headingDa: "Enkelt, fleksibelt og forudbetalt",

@@ -51,7 +51,7 @@ const ENQUIRY_FIELDS: { key: string; da: string; en: string }[] = [
   { key: "vaerelser", da: "Værelser",                      en: "Rooms" },
   { key: "naetter",   da: "Nætter",                        en: "Nights" },
   { key: "ankomst",   da: "Ankomst",                       en: "Arrival" },
-  { key: "fest",      da: "Fest / event",                  en: "Celebration / event" },
+  { key: "fest",      da: "Gruppe / hele gården",          en: "Group / whole house" },
   { key: "type",      da: "Type",                          en: "Type" },
   { key: "pakke",     da: "Pakke",                         en: "Package" },
   { key: "antal",     da: "Antal",                         en: "Quantity" },

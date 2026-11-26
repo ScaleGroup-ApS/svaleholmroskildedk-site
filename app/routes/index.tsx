@@ -120,7 +120,7 @@ function HeroSection() {
           transition={{ duration: 0.7, ease: "easeOut", delay: 0.32 }}
         >
           {t(
-            "Et praktisk hjem til sjakket tæt på pladsen – enkle værelser eller hele huset, fælles køkken og betaling via betalingslink. 650 kr pr. nat, min. 4 nætter.",
+            "En praktisk base for sjakket tæt på pladsen – enkle værelser eller hele huset, fælles køkken og betaling via betalingslink. 650 kr pr. nat, min. 4 nætter.",
             "A practical base for the crew close to the site – simple rooms or the whole house, a shared kitchen and company payment by link. DKK 650 per night, minimum 4 nights."
           )}
         </motion.p>
