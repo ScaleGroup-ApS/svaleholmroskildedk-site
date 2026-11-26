@@ -187,7 +187,7 @@ function HeroSection() {
     <section className="relative flex items-end overflow-hidden" style={{ height: "62vh", minHeight: "460px" }}>
       <div className="absolute inset-0" style={{ inset: "-8% 0" }}>
         <img
-          src="/images/gaardsplads.jpg"
+          src="/images/gaardsplads.webp"
           alt="Svaleholm Gæstegaards facade og gårdsplads"
           className="w-full h-full object-cover ken-burns"
         />
@@ -411,7 +411,7 @@ function CtaBanner() {
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0" style={{ inset: "-8% 0" }}>
-        <img src="/images/ankomst-velkommen.png" alt="" aria-hidden className="w-full h-full object-cover" />
+        <img src="/images/ankomst-velkommen.webp" alt="" aria-hidden className="w-full h-full object-cover" />
       </div>
       <div
         className="absolute inset-0 pointer-events-none"

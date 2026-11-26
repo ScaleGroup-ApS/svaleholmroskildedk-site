@@ -46,7 +46,7 @@ export function TopLevelLanding({ page }: { page: TopLanding }) {
         {/* Hero */}
         <section className="relative flex items-end overflow-hidden" style={{ height: "56vh", minHeight: "440px" }}>
           <div className="absolute inset-0" style={{ inset: "-8% 0" }}>
-            <img src={page.image} alt={page.imageAlt} className="w-full h-full object-cover ken-burns" fetchPriority="high" />
+            <img src={page.image.replace(/\.(jpg|png)$/i, ".webp")} alt={page.imageAlt} className="w-full h-full object-cover ken-burns" fetchPriority="high" width={1600} height={900} />
           </div>
           <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(15,23,20,0.58) 0%, rgba(15,23,20,0.38) 42%, #0F1714 100%)" }} />
           <SvaleFlock count={3} />

@@ -73,7 +73,7 @@ export default function Priser() {
         {/* Page Hero */}
         <section className="relative flex items-end overflow-hidden" style={{ height: "48vh", minHeight: "380px" }}>
           <div className="absolute inset-0" style={{ inset: "-8% 0" }}>
-            <img src="/images/bygning-have.jpg" alt="Svaleholms bygning og have ved Roskilde" className="w-full h-full object-cover ken-burns" />
+            <img src="/images/bygning-have.webp" alt="Svaleholm Gæstegaards bygning og have ved Roskilde" className="w-full h-full object-cover ken-burns" width={1600} height={900} />
           </div>
           <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(15,23,20,0.6) 0%, rgba(15,23,20,0.4) 40%, #0F1714 100%)" }} />
           <SvaleFlock count={2} />

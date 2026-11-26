@@ -91,7 +91,7 @@ export function LandingPageView({ page }: { page: LandingPage }) {
         {/* Page Hero */}
         <section className="relative flex items-end overflow-hidden" style={{ height: "56vh", minHeight: "420px" }}>
           <div className="absolute inset-0" style={{ inset: "-8% 0" }}>
-            <img src={page.image} alt={page.imageAlt} className="w-full h-full object-cover ken-burns" />
+            <img src={page.image.replace(/\.(jpg|png)$/i, ".webp")} alt={page.imageAlt} className="w-full h-full object-cover ken-burns" width={1600} height={900} />
           </div>
           <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(15,23,20,0.6) 0%, rgba(15,23,20,0.35) 40%, #0F1714 100%)" }} />
           <SvaleFlock count={2} />
@@ -141,7 +141,7 @@ export function LandingPageView({ page }: { page: LandingPage }) {
             >
               <div className="overflow-hidden group mb-8" style={{ borderRadius: "2px" }}>
                 <img
-                  src={page.image}
+                  src={page.image.replace(/\.(jpg|png)$/i, ".webp")}
                   alt={page.imageAlt}
                   className="w-full object-cover transition-transform duration-[1400ms] group-hover:scale-105"
                   style={{ height: "clamp(260px, 42vh, 440px)", filter: "saturate(0.92)" }}
@@ -208,7 +208,7 @@ export function LandingPageView({ page }: { page: LandingPage }) {
                     >
                       <div className="overflow-hidden" style={{ height: "180px" }}>
                         <img
-                          src={r.image}
+                          src={r.image.replace(/\.(jpg|png)$/i, ".webp")}
                           alt={r.imageAlt}
                           className="w-full h-full object-cover transition-transform duration-[1400ms] group-hover:scale-105"
                           style={{ filter: "saturate(0.92)" }}
@@ -240,7 +240,7 @@ export function LandingPageView({ page }: { page: LandingPage }) {
         {/* CTA */}
         <section className="relative overflow-hidden">
           <div className="absolute inset-0" style={{ inset: "-8% 0" }}>
-            <img src="/images/ankomst-velkommen.png" alt="" aria-hidden className="w-full h-full object-cover" />
+            <img src="/images/ankomst-velkommen.webp" alt="" aria-hidden className="w-full h-full object-cover" />
           </div>
           <div
             className="absolute inset-0 pointer-events-none"

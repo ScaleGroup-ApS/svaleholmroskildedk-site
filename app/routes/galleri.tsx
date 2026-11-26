@@ -91,7 +91,7 @@ export default function Galleri() {
         {/* Page Hero */}
         <section className="relative flex items-end overflow-hidden" style={{ height: "52vh", minHeight: "380px" }}>
           <div className="absolute inset-0" style={{ inset: "-8% 0" }}>
-            <img src="/images/gaard-familie.png" alt="Gården på Svaleholm nær Roskilde" className="w-full h-full object-cover ken-burns" />
+            <img src="/images/gaard-familie.webp" alt="Gården på Svaleholm Gæstegaard nær Roskilde" className="w-full h-full object-cover ken-burns" width={1600} height={900} />
           </div>
           <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(15,23,20,0.6) 0%, rgba(15,23,20,0.35) 40%, #0F1714 100%)" }} />
           <SvaleFlock count={2} />
@@ -133,7 +133,7 @@ export default function Galleri() {
                   aria-label={t("Åbn billede: ", "Open image: ") + altOf(shot)}
                 >
                   <img
-                    src={shot.src}
+                    src={shot.src.replace(/\.(jpg|png)$/i, ".webp")}
                     alt={altOf(shot)}
                     className="w-full object-cover transition-transform duration-[1400ms] group-hover:scale-105"
                     style={{ height: "clamp(180px, 26vh, 300px)", filter: "saturate(0.92)" }}
@@ -194,7 +194,7 @@ export default function Galleri() {
 
           <figure className="max-w-[92vw] max-h-[86vh] flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
             <img
-              src={GALLERY[active].src}
+              src={GALLERY[active].src.replace(/\.(jpg|png)$/i, ".webp")}
               alt={altOf(GALLERY[active])}
               className="object-contain"
               style={{ maxWidth: "92vw", maxHeight: "78vh", borderRadius: "2px", boxShadow: "0 30px 80px rgba(0,0,0,0.6)" }}

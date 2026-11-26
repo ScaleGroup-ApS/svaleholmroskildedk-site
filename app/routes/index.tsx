@@ -73,7 +73,7 @@ function HeroSection() {
       <div className="absolute inset-0" style={{ inset: "-6% 0" }}>
         <img
           className="w-full h-full object-cover"
-          src="/images/hero-mark.jpg"
+          src="/images/hero-mark.webp"
           alt=""
           aria-hidden
           fetchPriority="high"
@@ -222,7 +222,7 @@ function IntroSection() {
           >
             <div className="overflow-hidden group" style={{ borderRadius: "2px" }}>
               <img
-                src="/images/gaardsplads.jpg"
+                src="/images/gaardsplads.webp"
                 alt="Svaleholm Gæstegaards facade og gårdsplads"
                 className="w-full object-cover transition-transform duration-[1600ms] group-hover:scale-105"
                 style={{ height: "clamp(340px, 50vh, 560px)", filter: "saturate(0.92)" }}
@@ -293,7 +293,7 @@ function ServicesSection() {
             )}
             href="/vaerelser"
             cta={t("Se værelser", "See the rooms")}
-            imgSrc="/images/vaerelse-seng.jpg"
+            imgSrc="/images/vaerelse-seng.webp"
             delay={0}
           />
           <ServiceCard
@@ -305,7 +305,7 @@ function ServicesSection() {
             )}
             href="/indkvartering-haandvaerkere"
             cta={t("Se faciliteter", "See the facilities")}
-            imgSrc="/images/gaardsplads.jpg"
+            imgSrc="/images/gaardsplads.webp"
             delay={0.12}
           />
         </div>
@@ -473,7 +473,7 @@ function CtaBanner() {
     <section className="relative overflow-hidden">
       <div className="absolute inset-0" style={{ inset: "-8% 0" }}>
         <img
-          src="/images/ankomst-velkommen.png"
+          src="/images/ankomst-velkommen.webp"
           alt=""
           aria-hidden
           className="w-full h-full object-cover"
