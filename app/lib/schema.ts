@@ -97,6 +97,8 @@ export function localBusinessNode(): Node {
     email: NAP.email,
     priceRange: PRICE_RANGE,
     currenciesAccepted: "DKK",
+    checkinTime: "15:00",
+    checkoutTime: "12:00",
     address: postalAddress(),
     geo: {
       "@type": "GeoCoordinates",

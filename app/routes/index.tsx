@@ -7,7 +7,7 @@ import { SvaleFlock } from "~/components/Svale";
 import { JsonLd } from "~/components/JsonLd";
 import { useT, useLang } from "~/lib/i18n";
 import { pageMeta } from "~/lib/seo";
-import { graph, breadcrumb, reviewNodes, webPageNode } from "~/lib/schema";
+import { graph, breadcrumb, reviewNodes, webPageNode, organizationNode, websiteNode, localBusinessNode } from "~/lib/schema";
 
 // ── Meta ─────────────────────────────────────────────────────────────────────
 
@@ -27,6 +27,12 @@ export function meta() {
 export default function Index() {
   // Built here (not at module scope) because REVIEWS is declared below.
   const homeJsonLd = graph(
+    // Entity backbone — the LodgingBusiness these nodes reference by @id must be
+    // defined on the page, or the review/webpage @id links dangle. This is what
+    // makes the LodgingBusiness (NAP, price, check-in/out) show for the home URL.
+    organizationNode(),
+    websiteNode(),
+    localBusinessNode(),
     webPageNode({
       path: "",
       name: "Svaleholm Gæstegaard Roskilde – Indkvartering til håndværkere",
