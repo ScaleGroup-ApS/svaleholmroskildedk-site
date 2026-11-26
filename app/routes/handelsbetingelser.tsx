@@ -4,7 +4,7 @@ import { useT } from "~/lib/i18n";
 export function meta() {
   return [
     { title: "Handelsbetingelser – Svaleholm Gæstegaard Roskilde" },
-    { name: "description", content: "Vilkår og betingelser for leje af overnatning hos Svaleholm Gæstegaard Roskilde – priser, betaling, afbestilling og ansvar." },
+    { name: "description", content: "Vilkår og betingelser for ophold hos Svaleholm Gæstegaard Roskilde – priser, betaling, afbestilling og ansvar." },
     { name: "robots", content: "noindex" },
   ];
 }
@@ -19,8 +19,8 @@ export default function Handelsbetingelser() {
     >
       <LSection heading={t("1. Generelt", "1. General")}>
         <LP>{t(
-          "Disse handelsbetingelser gælder for leje af overnatning hos Svaleholm Gæstegaard Roskilde. Betingelserne udgør sammen med den konkrete aftale grundlaget for din leje.",
-          "These terms apply to the rental of accommodation at Svaleholm Gæstegaard Roskilde. Together with the specific agreement, they form the basis of your rental."
+          "Disse handelsbetingelser gælder for dit ophold hos Svaleholm Gæstegaard Roskilde. Betingelserne udgør sammen med den konkrete aftale grundlaget for din booking.",
+          "These terms apply to your stay at Svaleholm Gæstegaard Roskilde. Together with the specific agreement, they form the basis of your booking."
         )}</LP>
         <LUL items={[
           "Svaleholm Gæstegaard Roskilde",
@@ -40,22 +40,22 @@ export default function Handelsbetingelser() {
 
       <LSection heading={t("3. Booking og betaling", "3. Booking and payment")}>
         <LP>{t(
-          "En booking er bindende, når betalingen er modtaget. Betaling sker forud via et sikkert betalingslink, som skal betales senest 2 dage før ankomst. Der opkræves intet depositum. Når betalingen er modtaget, sender vi automatisk en kvittering med moms og CVR samt dørkoden til jeres ophold.",
-          "A booking is binding once payment has been received. Payment is made in advance via a secure payment link, due no later than 2 days before arrival. No deposit is charged. Once payment is received, we automatically send a receipt with VAT and CVR along with the door code for your stay."
+          "En booking er bindende, når betalingen er modtaget. Betaling sker forud via et sikkert betalingslink, som skal betales senest 2 dage før ankomst. Når betalingen er modtaget, sender vi automatisk en kvittering med moms og CVR samt dørkoden til jeres ophold.",
+          "A booking is binding once payment has been received. Payment is made in advance via a secure payment link, due no later than 2 days before arrival. Once payment is received, we automatically send a receipt with VAT and CVR along with the door code for your stay."
         )}</LP>
       </LSection>
 
       <LSection heading={t("4. Afbestilling og ændringer", "4. Cancellation and changes")}>
         <LP>{t(
-          "Ønsker du at afbestille eller ændre en booking, skal du kontakte os hurtigst muligt. Da vi ikke opkræver depositum, betaler du kun for de nætter, du bruger. Vilkårene for afbestilling fremgår af din bekræftelse.",
-          "If you wish to cancel or change a booking, please contact us as soon as possible. As we charge no deposit, you only pay for the nights you use. The cancellation terms are stated in your confirmation."
+          "Ønsker du at afbestille eller ændre en booking, skal du kontakte os hurtigst muligt. Du betaler kun for de nætter, du bruger. Vilkårene for afbestilling fremgår af din bekræftelse.",
+          "If you wish to cancel or change a booking, please contact us as soon as possible. You only pay for the nights you use. The cancellation terms are stated in your confirmation."
         )}</LP>
       </LSection>
 
       <LSection heading={t("5. Gæstens ansvar", "5. Guest responsibilities")}>
         <LP>{t(
-          "Lejer er ansvarlig for, at lokaler og inventar behandles med omhu, og for eventuelle skader forårsaget af lejer eller lejers gæster i lejeperioden. Lokalerne afleveres ryddede efter aftale.",
-          "The renter is responsible for treating the premises and furnishings with care, and for any damage caused by the renter or their guests during the rental period. The premises are to be left tidy as agreed."
+          "Gæsten er ansvarlig for, at lokaler og inventar behandles med omhu, og for eventuelle skader forårsaget af gæsten eller gæstens ledsagere under opholdet. Lokalerne afleveres ryddede efter aftale.",
+          "The guest is responsible for treating the premises and furnishings with care, and for any damage caused by the guest or their companions during the stay. The premises are to be left tidy as agreed."
         )}</LP>
       </LSection>
 
