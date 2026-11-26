@@ -226,7 +226,7 @@ export function Header({ siteName = "Svaleholm", menuItems = [] }: HeaderProps) 
                 className="inline-block h-px w-4 group-hover:w-9 transition-all duration-500"
                 style={{ background: "linear-gradient(90deg, transparent, #C9A96A)" }}
               />
-              Roskilde · Est. 1868
+              Gæstegaard · Roskilde
             </span>
           </motion.div>
         </Link>
