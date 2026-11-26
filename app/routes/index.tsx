@@ -14,7 +14,7 @@ import { graph, breadcrumb, reviewNodes, webPageNode } from "~/lib/schema";
 export function meta() {
   return pageMeta({
     path: "",
-    title: "Indkvartering til håndværkere nær Roskilde | Svaleholm Gæstegaard",
+    title: "Svaleholm Gæstegaard | Overnatning ved Roskilde for firmaer & grupper",
     description:
       "Få dit sjak til at bo tæt på pladsen. Svaleholm Gæstegaard tilbyder enkle værelser eller hele huset til håndværkere nær Roskilde – fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
     image: "/images/gaardsplads.jpg",
@@ -47,6 +47,7 @@ export default function Index() {
       <Header siteName="Svaleholm" />
       <main className="flex-1">
         <HeroSection />
+        <UspBar />
         <IntroSection />
         <ServicesSection />
         <ReviewsSection />
@@ -90,7 +91,7 @@ function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          {t("Svaleholm Gæstegaard · Roskilde", "Svaleholm Gæstegaard · Roskilde")}
+          {t("Gæstegaard ved Roskilde · Est. 1868", "Guesthouse near Roskilde · Est. 1868")}
         </motion.p>
 
         <h1 className="heading-hero" style={{ color: "#F2EFE7", fontSize: "clamp(2.6rem, 6.5vw, 5rem)" }}>
@@ -100,7 +101,7 @@ function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.08 }}
           >
-            {t("Indkvartering til ", "Lodging for ")}
+            {t("Svaleholm ", "Svaleholm ")}
           </motion.span>
           <motion.span
             className="block accent-italic"
@@ -108,9 +109,19 @@ function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
           >
-            {t("håndværkere", "tradespeople")}
+            {t("Gæstegaard", "Gæstegaard")}
           </motion.span>
         </h1>
+
+        <motion.p
+          className="mx-auto"
+          style={{ fontFamily: "var(--font-heading)", color: "rgba(242,239,231,0.92)", fontSize: "clamp(1.25rem, 2.6vw, 1.7rem)", fontStyle: "italic", lineHeight: 1.4, maxWidth: "30ch", marginTop: "1.4rem" }}
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.28 }}
+        >
+          {t("Overnatning på landet – tæt på Roskilde og DTU Risø", "Countryside stays – close to Roskilde and DTU Risø")}
+        </motion.p>
 
         <motion.p
           className="mx-auto"
@@ -131,11 +142,11 @@ function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, ease: "easeOut", delay: 0.44 }}
         >
-          <Link to="/kontakt" className="btn-primary">
-            {t("Få tilbud til dit sjak", "Get a quote for your crew")}
+          <Link to="/vaerelser" className="btn-primary">
+            {t("Værelser til firmaer & håndværkere", "Rooms for companies & tradespeople")}
           </Link>
           <Link to="/indkvartering-haandvaerkere" className="btn-ghost">
-            {t("Se faciliteter", "See the facilities")}
+            {t("Book hele gården", "Book the whole farm")}
           </Link>
         </motion.div>
       </div>
@@ -144,6 +155,45 @@ function HeroSection() {
         className="absolute z-10 animate-cue"
         style={{ bottom: "1.4rem", left: "50%", transform: "translateX(-50%)", width: "1px", height: "46px", background: "linear-gradient(#C9A96A, transparent)" }}
       />
+    </section>
+  );
+}
+
+// ── USP-bånd (tillid, lige under hero) ────────────────────────────────────────
+
+function UspBar() {
+  const t = useT();
+  const items = [
+    t("Fra 650 kr/nat", "From DKK 650/night"),
+    t("Ingen binding eller depositum", "No lock-in or deposit"),
+    t("Selv-check-in med dørkode", "Self check-in with door code"),
+    t("Rengøring og linned inkluderet", "Cleaning and linen included"),
+  ];
+  return (
+    <section style={{ background: "#14201B", borderTop: "1px solid rgba(242,239,231,0.08)", borderBottom: "1px solid rgba(242,239,231,0.08)" }}>
+      <div className="max-w-7xl mx-auto px-6">
+        <ul className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center justify-center" style={{ gap: 0 }}>
+          {items.map((label, i) => (
+            <li
+              key={label}
+              className="flex items-center gap-2.5 justify-center"
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "0.8rem",
+                letterSpacing: "0.04em",
+                color: "rgba(242,239,231,0.82)",
+                padding: "0.95rem 1.4rem",
+                borderTop: i > 0 ? "1px solid rgba(242,239,231,0.07)" : "none",
+              }}
+            >
+              <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="#C9A96A" strokeWidth="1.8" viewBox="0 0 24 24" aria-hidden>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.5l5 5 10-11" />
+              </svg>
+              {label}
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }
