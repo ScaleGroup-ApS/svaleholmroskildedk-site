@@ -27,7 +27,7 @@ export default function Handelsbetingelser() {
           "Frederiksborgvej 390, 4000 Roskilde",
           t("Telefon: +45 71 53 13 79", "Phone: +45 71 53 13 79"),
           "E-mail: kontakt@svaleholmroskilde.dk",
-          t("CVR-nr.: (udfyldes)", "Company reg. no.: (to be added)"),
+          t("CVR-nr.: 38891197", "Company reg. no.: 38891197"),
         ]} />
       </LSection>
 
