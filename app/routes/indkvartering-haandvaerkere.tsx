@@ -48,8 +48,8 @@ const FAQS: FaqItem[] = [
   {
     qDa: "Hvor ligger Svaleholm Gaard?",
     qEn: "Where is Svaleholm Gaard located?",
-    aDa: "Svaleholm Gaard ligger på Frederiksborgvej 388, 4000 Roskilde – i landlige, naturskønne omgivelser tæt på pladsen, uanset hvor i området projektet ligger.",
-    aEn: "Svaleholm Gaard is at Frederiksborgvej 388, 4000 Roskilde – in rural, scenic surroundings close to the site, wherever in the area the project is.",
+    aDa: "Svaleholm Gaard ligger på Frederiksborgvej 390, 4000 Roskilde – i landlige, naturskønne omgivelser tæt på pladsen, uanset hvor i området projektet ligger.",
+    aEn: "Svaleholm Gaard is at Frederiksborgvej 390, 4000 Roskilde – in rural, scenic surroundings close to the site, wherever in the area the project is.",
   },
   {
     qDa: "Hvor mange håndværkere kan bo her, og hvad koster det?",

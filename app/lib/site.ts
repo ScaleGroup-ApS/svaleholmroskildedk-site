@@ -24,7 +24,7 @@ export const LOCALE = "da_DK";
 
 /** Name / Address / Phone — must match the Footer, contact page and Google Business Profile verbatim. */
 export const NAP = {
-  streetAddress: "Frederiksborgvej 388",
+  streetAddress: "Frederiksborgvej 390",
   postalCode: "4000",
   addressLocality: "Roskilde",
   addressRegion: "Region Sjælland",
@@ -45,7 +45,7 @@ export const GEO = {
 } as const;
 
 /** Google Maps link (place). */
-export const MAP_URL = "https://www.google.com/maps?q=Svaleholm+Gaard,+Frederiksborgvej+388,+4000+Roskilde";
+export const MAP_URL = "https://www.google.com/maps?q=Svaleholm+Gaard,+Frederiksborgvej+390,+4000+Roskilde";
 
 /**
  * Public profiles for schema.org `sameAs` (strengthens entity/knowledge-graph

@@ -20,7 +20,7 @@ import { graph, breadcrumb, webPageNode } from "~/lib/schema";
 export function meta() {
   return pageMeta({
     path: "/kontakt",
-    title: "Kontakt Svaleholm Gaard Roskilde | Frederiksborgvej 388",
+    title: "Kontakt Svaleholm Gaard Roskilde | Frederiksborgvej 390",
     description:
       "Få tilbud til dit sjak. Kontakt Svaleholm Gaard ved Roskilde om overnatning til håndværkere. Ring +45 71 53 13 79, skriv til kontakt@svaleholmroskilde.dk eller udfyld formularen.",
     image: "/images/have-sti.jpg",
@@ -223,7 +223,7 @@ export default function Kontakt() {
         </svg>
       ),
       label: t("Adresse", "Address"),
-      value: t("Frederiksborgvej 388\n4000 Roskilde, Danmark", "Frederiksborgvej 388\n4000 Roskilde, Denmark"),
+      value: t("Frederiksborgvej 390\n4000 Roskilde, Danmark", "Frederiksborgvej 390\n4000 Roskilde, Denmark"),
     },
     {
       icon: (

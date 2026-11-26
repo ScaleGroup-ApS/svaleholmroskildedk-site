@@ -83,7 +83,7 @@ export function Footer({ siteName = "Svaleholm Roskilde", siteDescription }: Foo
               <svg className="w-3.5 h-3.5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
               </svg>
-              Frederiksborgvej 388, 4000 Roskilde
+              Frederiksborgvej 390, 4000 Roskilde
             </div>
             <a href={PHONE_HREF} className="mt-2 flex items-center gap-2" style={{ color: "rgba(242,239,231,0.5)", fontSize: "0.8125rem", letterSpacing: "0.06em", textDecoration: "none" }}
               onMouseEnter={e => (e.currentTarget.style.color = "#C9A96A")}

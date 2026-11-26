@@ -69,8 +69,8 @@ export type LandingPage = {
 const FAQ_LOCATION: FaqItem = {
   qDa: "Hvor ligger Svaleholm Gaard?",
   qEn: "Where is Svaleholm Gaard located?",
-  aDa: "Svaleholm Gaard ligger på Frederiksborgvej 388, 4000 Roskilde – i landlige, naturskønne omgivelser lige uden for Roskilde på Sjælland, med nem parkering ved indkørslen.",
-  aEn: "Svaleholm Gaard is at Frederiksborgvej 388, 4000 Roskilde – in rural, scenic surroundings just outside Roskilde on Zealand, with easy parking by the drive.",
+  aDa: "Svaleholm Gaard ligger på Frederiksborgvej 390, 4000 Roskilde – i landlige, naturskønne omgivelser lige uden for Roskilde på Sjælland, med nem parkering ved indkørslen.",
+  aEn: "Svaleholm Gaard is at Frederiksborgvej 390, 4000 Roskilde – in rural, scenic surroundings just outside Roskilde on Zealand, with easy parking by the drive.",
 };
 const FAQ_CHECKIN: FaqItem = {
   qDa: "Hvordan foregår check-in ved overnatning?",
@@ -423,9 +423,9 @@ export const LANDING_PAGES: LandingPage[] = [
         headingDa: "Til entreprenøren og byggelederen",
         headingEn: "For the contractor and site manager",
         bodyDa:
-          "Har I et sjak på 2-8 mand, der skal bo tæt på et projekt i Roskilde-området, er Svaleholm Gaard et praktisk valg for byggelederen. Gården ligger på Frederiksborgvej 388, 4000 Roskilde, med op til 8 enkle værelser, fælles køkken, fire fælles bad og toiletter samt et fælles opholdsrum. Det gør det enkelt at samle hele sjakket på én adresse, uanset om projektet varer få uger eller flere måneder.",
+          "Har I et sjak på 2-8 mand, der skal bo tæt på et projekt i Roskilde-området, er Svaleholm Gaard et praktisk valg for byggelederen. Gården ligger på Frederiksborgvej 390, 4000 Roskilde, med op til 8 enkle værelser, fælles køkken, fire fælles bad og toiletter samt et fælles opholdsrum. Det gør det enkelt at samle hele sjakket på én adresse, uanset om projektet varer få uger eller flere måneder.",
         bodyEn:
-          "If you have a crew of 2-8 people who need to stay close to a project in the Roskilde area, Svaleholm Gaard is a practical choice for the site manager. The farm is at Frederiksborgvej 388, 4000 Roskilde, with up to 8 simple rooms, a shared kitchen, four shared baths and toilets, and a shared lounge. That makes it simple to keep the whole crew at one address, whether the project runs for a few weeks or several months.",
+          "If you have a crew of 2-8 people who need to stay close to a project in the Roskilde area, Svaleholm Gaard is a practical choice for the site manager. The farm is at Frederiksborgvej 390, 4000 Roskilde, with up to 8 simple rooms, a shared kitchen, four shared baths and toilets, and a shared lounge. That makes it simple to keep the whole crew at one address, whether the project runs for a few weeks or several months.",
       },
       {
         headingDa: "Enkeltværelser eller hele huset",
