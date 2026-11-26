@@ -45,7 +45,7 @@ export const GEO = {
 } as const;
 
 /** Google Maps link (place). */
-export const MAP_URL = "https://www.google.com/maps?q=Svaleholm+Gaard,+Frederiksborgvej+390,+4000+Roskilde";
+export const MAP_URL = "https://www.google.com/maps?q=Svaleholm+Gæstegaard,+Frederiksborgvej+390,+4000+Roskilde";
 
 /**
  * Public profiles for schema.org `sameAs` (strengthens entity/knowledge-graph
@@ -76,7 +76,7 @@ export const NUMBER_OF_ROOMS = 8;
 export const DEFAULT_OG_IMAGE = "/images/gaardsplads.jpg";
 
 /** Logo (absolute URL built via `abs()`). */
-export const LOGO = "/images/logo.png";
+export const LOGO = "/images/logo.svg";
 
 /**
  * Real Google review numbers for AggregateRating.

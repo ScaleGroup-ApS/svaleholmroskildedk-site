@@ -1,32 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 340" fill="none" role="img" aria-label="Svaleholm 1868">
-  <title>Svaleholm 1868</title>
-
-  <!-- ── Svale i flugt (set nedefra) ────────────────────────────── -->
-  <!-- samlet silhuet: to svungne vinger + kløftet hale -->
-  <path d="M240 92
-           C 300 100 372 120 432 156
-           C 372 150 304 160 262 178
-           L 274 258
-           L 240 214
-           L 206 258
-           L 218 178
-           C 176 160 108 150 48 156
-           C 108 120 180 100 240 92 Z"
-        fill="#141414"/>
-  <!-- rød hale-accent (højre kløft) -->
-  <path d="M262 178 L 274 258 L 240 214 Z" fill="#B7172E"/>
-
-  <!-- ── Wordmark ───────────────────────────────────────────────── -->
-  <text x="240" y="278" text-anchor="middle"
-        font-family="Fraunces, Georgia, 'Times New Roman', serif"
-        font-size="50" font-weight="600" letter-spacing="9" fill="#141414">SVALEHOLM</text>
-
-  <!-- ── Årstal ─────────────────────────────────────────────────── -->
-  <g fill="#B7172E">
-    <rect x="188" y="306" width="16" height="2.4" rx="1.2"/>
-    <text x="240" y="314" text-anchor="middle"
-          font-family="Fraunces, Georgia, serif"
-          font-size="19" font-weight="600" letter-spacing="6">1868</text>
-    <rect x="276" y="306" width="16" height="2.4" rx="1.2"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 180" role="img" aria-labelledby="svh-logo-title">
+  <title id="svh-logo-title">Svaleholm Gæstegaard – Roskilde</title>
+  <!-- Emblem: svale over gavl (jf. brandkoncept) -->
+  <g>
+    <circle cx="92" cy="90" r="78" fill="#F3F1EB"/>
+    <circle cx="92" cy="90" r="78" fill="none" stroke="#1E3B36" stroke-width="2.5"/>
+    <!-- Gavl / hus-ende -->
+    <g fill="none" stroke="#1E3B36" stroke-width="7" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M60 130 L60 94 L124 94 L124 130"/>
+      <path d="M50 98 L92 62 L134 98"/>
+    </g>
+    <rect x="83" y="110" width="18" height="20" fill="#1E3B36"/>
+    <!-- Svale (sitets egen figur) over gavlen, i halm-guld -->
+    <path transform="translate(46,22) scale(0.92)" fill="#C29B4F"
+      d="M50 20 C 40 10, 20 3, 2 6 C 22 10, 37 16, 48 22 L 43 34 L 50 26 L 57 34 L 52 22 C 63 16, 78 10, 98 6 C 80 3, 60 10, 50 20 Z"/>
   </g>
+  <!-- Ordmærke -->
+  <text x="198" y="88" font-family="Fraunces, 'Playfair Display', Georgia, 'Times New Roman', serif" font-size="56" font-weight="600" fill="#1E3B36">Svaleholm</text>
+  <text x="200" y="120" font-family="'Work Sans', Arial, Helvetica, sans-serif" font-size="19" font-weight="600" fill="#9C4A32" letter-spacing="7">GÆSTEGAARD · ROSKILDE</text>
 </svg>

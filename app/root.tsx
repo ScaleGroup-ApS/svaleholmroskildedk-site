@@ -25,11 +25,10 @@ export const links: Route.LinksFunction = () => [
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Karla:wght@300;400;500;600;700&display=swap",
   },
-  // Favicons — reuse the existing logo assets. A dedicated favicon.ico and a
-  // 180×180 apple-touch-icon PNG would be ideal to add to /public later.
-  { rel: "icon", href: "/images/logo.svg", type: "image/svg+xml" },
-  { rel: "icon", href: "/images/logo.png", type: "image/png" },
-  { rel: "apple-touch-icon", href: "/images/logo.png" },
+  // Favicon — det kvadratiske emblem (svale over gavl). SVG skalerer knivskarpt
+  // i alle fanestørrelser; en PNG apple-touch-icon kan tilføjes senere.
+  { rel: "icon", href: "/images/logo-mark.svg", type: "image/svg+xml" },
+  { rel: "apple-touch-icon", href: "/images/logo-mark.svg" },
 ];
 
 export function Layout({ children }: { children: ReactNode }) {

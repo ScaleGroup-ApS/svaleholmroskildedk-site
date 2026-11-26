@@ -73,7 +73,7 @@ export function Footer({ siteName = "Svaleholm Roskilde", siteDescription }: Foo
                 Svaleholm
               </span>
               <span style={{ fontFamily: "var(--font-heading)", fontStyle: "italic", fontSize: "clamp(1.6rem, 3vw, 2.4rem)", color: "#C9A96A", lineHeight: 1 }}>
-                Gaard
+                Gæstegaard
               </span>
             </Link>
             <p className="mt-5 leading-relaxed" style={{ color: "rgba(242,239,231,0.55)", maxWidth: "34ch", fontSize: "0.94rem" }}>
