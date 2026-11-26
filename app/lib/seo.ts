@@ -41,6 +41,15 @@ export function buildMeta(opts: SeoOptions): MetaDescriptor[] {
   // Canonical URL (rendered as <link rel="canonical">)
   if (opts.canonical) {
     meta.push({ tagName: "link", rel: "canonical", href: opts.canonical });
+    // hreflang — arkitektur-valg (Theo): sproget er en KLIENT-SIDE toggle på
+    // SAMME URL (serveren renderer altid dansk, <html lang="da">), så dansk er
+    // den eneste separat-indekserbare version. Vi annoterer derfor self (da-DK)
+    // + x-default mod den kanoniske danske URL og emitterer BEVIDST ikke
+    // hreflang="en": der findes ingen distinkt, crawlbar EN-URL at pege på, og
+    // en falsk en-annotation ville være forkert over for Google. (Fuld EN-
+    // indeksering kræver distinkte EN-URL'er — separat fremtidigt arkitektur-spor.)
+    meta.push({ tagName: "link", rel: "alternate", hrefLang: "da-DK", href: opts.canonical });
+    meta.push({ tagName: "link", rel: "alternate", hrefLang: "x-default", href: opts.canonical });
   }
 
   // Open Graph
