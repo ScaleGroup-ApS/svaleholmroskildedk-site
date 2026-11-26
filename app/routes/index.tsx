@@ -165,7 +165,7 @@ function UspBar() {
   const t = useT();
   const items = [
     t("Fra 650 kr/nat", "From DKK 650/night"),
-    t("Ingen binding eller depositum", "No lock-in or deposit"),
+    t("Ingen binding – betal kun for opholdet", "No lock-in – pay only for your stay"),
     t("Selv-check-in med dørkode", "Self check-in with door code"),
     t("Rengøring og linned inkluderet", "Cleaning and linen included"),
   ];
