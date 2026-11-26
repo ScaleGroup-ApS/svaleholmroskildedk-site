@@ -89,7 +89,7 @@ export const RATING: { value: number; count: number } | null = null;
  * CVR (Danish company reg. no.) for Organization.vatID and the privacy policy.
  * Fill in when supplied.
  */
-export const VAT_ID: string | null = null;
+export const VAT_ID: string | null = "38891197";
 
 /** Build an absolute URL from a site-relative path (leaves absolute URLs untouched). */
 export function abs(path: string): string {

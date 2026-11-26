@@ -44,7 +44,7 @@ const VAERELSER_FAQ: FaqItem[] = [
 ];
 
 const VAERELSER_DESC =
-  "Overnatning til håndværkere og sjak nær Roskilde på Sjælland. Op til 8 enkle værelser uden eget bad – med 4 fælles bad og toiletter, fælles køkken og fælles opholdsrum. Fra 650 kr pr. nat inkl. moms, min. 4 nætter, med nem selvcheck-in og fakturabetaling mod CVR.";
+  "Overnatning til håndværkere og sjak nær Roskilde på Sjælland. Op til 8 enkle værelser uden eget bad – med 4 fælles bad og toiletter, fælles køkken og fælles opholdsrum. Fra 650 kr pr. nat inkl. moms, min. 4 nætter, med nem selvcheck-in og betaling via betalingslink mod CVR.";
 
 export function meta() {
   return [
@@ -58,7 +58,7 @@ export function meta() {
     {
       name: "keywords",
       content:
-        "overnatning håndværkere Roskilde, indkvartering håndværkere Sjælland, værelser til sjak Roskilde, fælles køkken, selvcheck-in, fakturabetaling CVR, Svaleholm",
+        "overnatning håndværkere Roskilde, indkvartering håndværkere Sjælland, værelser til sjak Roskilde, fælles køkken, selvcheck-in, betaling via betalingslink CVR, Svaleholm",
     },
   ];
 }
@@ -217,7 +217,7 @@ export default function Vaerelser() {
                   t("Wifi og fælles vaskemaskine", "Wifi and a shared washing machine"),
                   t("Parkering til varevogne på pladsen", "Parking for vans at the farm"),
                   t("Hele huset kan lejes eksklusivt ved længere projekter", "The whole house can be rented exclusively for longer projects"),
-                  t("Fra DKK 650 pr. nat inkl. moms – min. 4 nætter – fakturabetaling mod CVR", "From DKK 650 per night incl. VAT – min. 4 nights – invoiced against a CVR number"),
+                  t("Fra DKK 650 pr. nat inkl. moms – min. 4 nætter – betaling via betalingslink mod CVR", "From DKK 650 per night incl. VAT – min. 4 nights – invoiced against a CVR number"),
                 ].map((item) => (
                   <li key={item} className="flex items-baseline gap-3" style={{ fontFamily: "var(--font-body)", color: "rgba(242,239,231,0.78)", fontSize: "0.95rem" }}>
                     <span style={{ color: "#7EA57C", fontSize: "0.7rem" }}>✦</span>

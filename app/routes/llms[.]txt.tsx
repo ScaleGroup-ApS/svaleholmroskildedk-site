@@ -18,7 +18,7 @@ export function loader(_args: Route.LoaderArgs) {
 
 > Indkvartering til håndværkere på bygge- og renoveringsprojekter nær Roskilde på
 > Sjælland. Op til ${NUMBER_OF_ROOMS} enkle værelser eller hele huset til ét sjak. Fælles køkken,
-> fakturabetaling mod CVR, nem selvcheck-in. ${NIGHTLY_PRICE} kr pr. nat inkl. moms, min. ${MIN_NIGHTS} nætter.
+> betaling via betalingslink mod CVR, nem selvcheck-in. ${NIGHTLY_PRICE} kr pr. nat inkl. moms, min. ${MIN_NIGHTS} nætter.
 
 ## Kontakt (NAP)
 

@@ -113,20 +113,20 @@ export const LANDING_PAGES: LandingPage[] = [
     slug: "naer-lejre",
     metaTitle: "Indkvartering til håndværkere nær Lejre | Svaleholm Gaard",
     metaDescription:
-      "Bygge- eller renoveringsprojekt i Lejre-området? Svaleholm Gaard udlejer indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, fakturabetaling. 650 kr/nat, min. 4 nætter.",
+      "Bygge- eller renoveringsprojekt i Lejre-området? Svaleholm Gaard udlejer indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
     heroEyebrowDa: "Håndværkerindkvartering nær Lejre",
     heroEyebrowEn: "Tradesperson lodging near Lejre",
     h1Da: "Indkvartering til håndværkere nær Lejre",
     h1En: "Accommodation for tradespeople near Lejre",
     heroSubDa:
-      "Et roligt, praktisk sted for sjak på projekt i Lejre-området – enkle værelser med fælles køkken, nem selvcheck-in og fakturabetaling til firmaet.",
+      "Et roligt, praktisk sted for sjak på projekt i Lejre-området – enkle værelser med fælles køkken, nem selvcheck-in og betaling via betalingslink.",
     heroSubEn:
       "A quiet, practical base for crews on a project in the Lejre area – simple rooms with a shared kitchen, easy self check-in and company invoicing.",
     image: "/images/natur-eng.jpg",
     imageAlt: "Grønne enge og natur nær Svaleholm Gaard ved Lejre",
     jsonLdName: "Indkvartering til håndværkere nær Lejre",
     jsonLdDescription:
-      "Svaleholm Gaard udlejer enkle værelser til håndværkere på projekt nær Lejre og Roskilde. Fælles køkken, fakturabetaling, 650 kr pr. nat, min. 4 nætter.",
+      "Svaleholm Gaard udlejer enkle værelser til håndværkere på projekt nær Lejre og Roskilde. Fælles køkken, betaling via betalingslink, 650 kr pr. nat, min. 4 nætter.",
     breadcrumbLabel: "Håndværkere nær Lejre",
     intro: [
       {
@@ -152,7 +152,7 @@ export const LANDING_PAGES: LandingPage[] = [
       "Fælles køkken, bad og opholdsrum",
       "Wifi, vaskemaskine og parkering til varevogne",
       "Nem digital selvcheck-in via dørkode",
-      "Fakturabetaling til firmaet mod CVR",
+      "Betaling forud via betalingslink",
     ],
     highlightsEn: [
       "Rural, practical base for projects near Lejre",
@@ -170,20 +170,20 @@ export const LANDING_PAGES: LandingPage[] = [
     slug: "naer-holbaek",
     metaTitle: "Indkvartering til håndværkere nær Holbæk | Svaleholm Gaard",
     metaDescription:
-      "Bygge- eller renoveringsprojekt i Holbæk-området? Svaleholm Gaard udlejer indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, fakturabetaling. 650 kr/nat, min. 4 nætter.",
+      "Bygge- eller renoveringsprojekt i Holbæk-området? Svaleholm Gaard udlejer indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
     heroEyebrowDa: "Håndværkerindkvartering nær Holbæk",
     heroEyebrowEn: "Tradesperson lodging near Holbæk",
     h1Da: "Indkvartering til håndværkere nær Holbæk",
     h1En: "Accommodation for tradespeople near Holbæk",
     heroSubDa:
-      "Et roligt, praktisk sted for sjak på projekter langs Holbæk/Roskilde-korridoren – enkle værelser med fælles køkken, nem selvcheck-in og fakturabetaling til firmaet.",
+      "Et roligt, praktisk sted for sjak på projekter langs Holbæk/Roskilde-korridoren – enkle værelser med fælles køkken, nem selvcheck-in og betaling via betalingslink.",
     heroSubEn:
       "A quiet, practical base for crews on projects along the Holbæk–Roskilde corridor – simple rooms with a shared kitchen, easy self check-in and company invoicing.",
     image: "/images/natur-mark.jpg",
     imageAlt: "Åbne marker og landskab nær Svaleholm Gaard mod Holbæk",
     jsonLdName: "Indkvartering til håndværkere nær Holbæk",
     jsonLdDescription:
-      "Svaleholm Gaard udlejer enkle værelser til håndværkere på projekt nær Holbæk og Roskilde. Fælles køkken, fakturabetaling, 650 kr pr. nat, min. 4 nætter.",
+      "Svaleholm Gaard udlejer enkle værelser til håndværkere på projekt nær Holbæk og Roskilde. Fælles køkken, betaling via betalingslink, 650 kr pr. nat, min. 4 nætter.",
     breadcrumbLabel: "Håndværkere nær Holbæk",
     intro: [
       {
@@ -209,7 +209,7 @@ export const LANDING_PAGES: LandingPage[] = [
       "Fælles køkken, bad og opholdsrum",
       "Wifi, vaskemaskine og parkering til varevogne",
       "Nem digital selvcheck-in via dørkode",
-      "Fakturabetaling til firmaet mod CVR",
+      "Betaling forud via betalingslink",
     ],
     highlightsEn: [
       "Rural, practical base for projects near Holbæk",
@@ -227,20 +227,20 @@ export const LANDING_PAGES: LandingPage[] = [
     slug: "naer-koege",
     metaTitle: "Indkvartering til håndværkere nær Køge | Svaleholm Gaard",
     metaDescription:
-      "Anlægs- eller boligprojekt i Køge-området? Svaleholm Gaard udlejer indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, fakturabetaling. 650 kr/nat, min. 4 nætter.",
+      "Anlægs- eller boligprojekt i Køge-området? Svaleholm Gaard udlejer indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
     heroEyebrowDa: "Håndværkerindkvartering nær Køge",
     heroEyebrowEn: "Tradesperson lodging near Køge",
     h1Da: "Indkvartering til håndværkere nær Køge",
     h1En: "Accommodation for tradespeople near Køge",
     heroSubDa:
-      "Et roligt, praktisk sted for sjak på store anlægs- og boligprojekter i Køge-området – enkle værelser med fælles køkken, nem selvcheck-in og fakturabetaling til firmaet.",
+      "Et roligt, praktisk sted for sjak på store anlægs- og boligprojekter i Køge-området – enkle værelser med fælles køkken, nem selvcheck-in og betaling via betalingslink.",
     heroSubEn:
       "A quiet, practical base for crews on large civil and housing projects in the Køge area – simple rooms with a shared kitchen, easy self check-in and company invoicing.",
     image: "/images/have-sti.jpg",
     imageAlt: "Havesti og grønne omgivelser ved Svaleholm Gaard nær Køge",
     jsonLdName: "Indkvartering til håndværkere nær Køge",
     jsonLdDescription:
-      "Svaleholm Gaard udlejer enkle værelser til håndværkere på projekt nær Køge og Roskilde. Fælles køkken, fakturabetaling, 650 kr pr. nat, min. 4 nætter.",
+      "Svaleholm Gaard udlejer enkle værelser til håndværkere på projekt nær Køge og Roskilde. Fælles køkken, betaling via betalingslink, 650 kr pr. nat, min. 4 nætter.",
     breadcrumbLabel: "Håndværkere nær Køge",
     intro: [
       {
@@ -266,7 +266,7 @@ export const LANDING_PAGES: LandingPage[] = [
       "Fælles køkken, bad og opholdsrum",
       "Wifi, vaskemaskine og parkering til varevogne",
       "Nem digital selvcheck-in via dørkode",
-      "Fakturabetaling til firmaet mod CVR",
+      "Betaling forud via betalingslink",
     ],
     highlightsEn: [
       "Rural, practical base for projects near Køge",
@@ -284,20 +284,20 @@ export const LANDING_PAGES: LandingPage[] = [
     slug: "naer-hvalsoe",
     metaTitle: "Indkvartering til håndværkere nær Hvalsø | Svaleholm Gaard",
     metaDescription:
-      "Bygge- eller renoveringsprojekt i Hvalsø/Lejre kommune? Svaleholm Gaard udlejer indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, fakturabetaling. 650 kr/nat, min. 4 nætter.",
+      "Bygge- eller renoveringsprojekt i Hvalsø/Lejre kommune? Svaleholm Gaard udlejer indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
     heroEyebrowDa: "Håndværkerindkvartering nær Hvalsø",
     heroEyebrowEn: "Tradesperson lodging near Hvalsø",
     h1Da: "Indkvartering til håndværkere nær Hvalsø",
     h1En: "Accommodation for tradespeople near Hvalsø",
     heroSubDa:
-      "Et roligt, praktisk sted for sjak på projekter i Hvalsø og Lejre kommune – enkle værelser med fælles køkken, nem selvcheck-in og fakturabetaling til firmaet.",
+      "Et roligt, praktisk sted for sjak på projekter i Hvalsø og Lejre kommune – enkle værelser med fælles køkken, nem selvcheck-in og betaling via betalingslink.",
     heroSubEn:
       "A quiet, practical base for crews on projects in Hvalsø and Lejre municipality – simple rooms with a shared kitchen, easy self check-in and company invoicing.",
     image: "/images/natur-1.jpg",
     imageAlt: "Skov og natur nær Svaleholm Gaard ved Hvalsø",
     jsonLdName: "Indkvartering til håndværkere nær Hvalsø",
     jsonLdDescription:
-      "Svaleholm Gaard udlejer enkle værelser til håndværkere på projekt nær Hvalsø, Lejre kommune og Roskilde. Fælles køkken, fakturabetaling, 650 kr pr. nat, min. 4 nætter.",
+      "Svaleholm Gaard udlejer enkle værelser til håndværkere på projekt nær Hvalsø, Lejre kommune og Roskilde. Fælles køkken, betaling via betalingslink, 650 kr pr. nat, min. 4 nætter.",
     breadcrumbLabel: "Håndværkere nær Hvalsø",
     intro: [
       {
@@ -323,7 +323,7 @@ export const LANDING_PAGES: LandingPage[] = [
       "Fælles køkken, bad og opholdsrum",
       "Wifi, vaskemaskine og parkering til varevogne",
       "Nem digital selvcheck-in via dørkode",
-      "Fakturabetaling til firmaet mod CVR",
+      "Betaling forud via betalingslink",
     ],
     highlightsEn: [
       "Rural, practical base for projects near Hvalsø",
@@ -341,20 +341,20 @@ export const LANDING_PAGES: LandingPage[] = [
     slug: "naer-frederikssund",
     metaTitle: "Indkvartering til håndværkere nær Frederikssund | Svaleholm Gaard",
     metaDescription:
-      "Byggeprojekt omkring Frederikssund? Svaleholm Gaard udlejer indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, fakturabetaling. 650 kr/nat, min. 4 nætter.",
+      "Byggeprojekt omkring Frederikssund? Svaleholm Gaard udlejer indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
     heroEyebrowDa: "Håndværkerindkvartering nær Frederikssund",
     heroEyebrowEn: "Tradesperson lodging near Frederikssund",
     h1Da: "Indkvartering til håndværkere nær Frederikssund",
     h1En: "Accommodation for tradespeople near Frederikssund",
     heroSubDa:
-      "Et roligt, praktisk sted for sjak på byggeprojekter og byudvikling omkring Frederikssund – enkle værelser med fælles køkken, nem selvcheck-in og fakturabetaling til firmaet.",
+      "Et roligt, praktisk sted for sjak på byggeprojekter og byudvikling omkring Frederikssund – enkle værelser med fælles køkken, nem selvcheck-in og betaling via betalingslink.",
     heroSubEn:
       "A quiet, practical base for crews on construction and development projects around Frederikssund – simple rooms with a shared kitchen, easy self check-in and company invoicing.",
     image: "/images/natur-4.jpg",
     imageAlt: "Landskab og natur nær Svaleholm Gaard mod Frederikssund",
     jsonLdName: "Indkvartering til håndværkere nær Frederikssund",
     jsonLdDescription:
-      "Svaleholm Gaard udlejer enkle værelser til håndværkere på projekt nær Frederikssund og Roskilde. Fælles køkken, fakturabetaling, 650 kr pr. nat, min. 4 nætter.",
+      "Svaleholm Gaard udlejer enkle værelser til håndværkere på projekt nær Frederikssund og Roskilde. Fælles køkken, betaling via betalingslink, 650 kr pr. nat, min. 4 nætter.",
     breadcrumbLabel: "Håndværkere nær Frederikssund",
     intro: [
       {
@@ -380,7 +380,7 @@ export const LANDING_PAGES: LandingPage[] = [
       "Fælles køkken, bad og opholdsrum",
       "Wifi, vaskemaskine og parkering til varevogne",
       "Nem digital selvcheck-in via dørkode",
-      "Fakturabetaling til firmaet mod CVR",
+      "Betaling forud via betalingslink",
     ],
     highlightsEn: [
       "Rural, practical base for projects near Frederikssund",
@@ -400,24 +400,24 @@ export const LANDING_PAGES: LandingPage[] = [
     slug: "mandskabsindkvartering-roskilde",
     metaTitle: "Mandskabsindkvartering i Roskilde | Svaleholm Gaard",
     metaDescription:
-      "Indkvartering af mandskab og håndværkere i Roskilde-området. Op til 8 værelser eller hele huset til sjakket, fælles køkken, fakturabetaling. 650 kr/nat, min. 4 nætter.",
+      "Indkvartering af mandskab og håndværkere i Roskilde-området. Op til 8 værelser eller hele huset til sjakket, fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
     heroEyebrowDa: "Mandskabsindkvartering",
     heroEyebrowEn: "Crew accommodation",
     h1Da: "Mandskabsindkvartering i Roskilde-området",
     h1En: "Crew accommodation in the Roskilde area",
     heroSubDa:
-      "Indkvartering til håndværkere og mandskab på projekt i Roskilde-området – enkeltværelser eller hele huset, fakturabetaling og nem selvcheck-in.",
+      "Indkvartering til håndværkere og mandskab på projekt i Roskilde-området – enkeltværelser eller hele huset, betaling via betalingslink og nem selvcheck-in.",
     heroSubEn:
       "Accommodation for tradespeople and crews on a project in the Roskilde area – single rooms or the whole house, company invoicing and easy self check-in.",
     image: "/images/vaerelse-seng.jpg",
     imageAlt: "Enkelt værelse til mandskabsindkvartering på Svaleholm Gaard nær Roskilde",
     jsonLdName: "Mandskabsindkvartering i Roskilde-området",
     jsonLdDescription:
-      "Svaleholm Gaard udlejer enkeltværelser eller hele gården til mandskab og håndværkere på projekt i Roskilde-området. Fælles køkken, fakturabetaling, 650 kr pr. nat, min. 4 nætter.",
+      "Svaleholm Gaard udlejer enkeltværelser eller hele gården til mandskab og håndværkere på projekt i Roskilde-området. Fælles køkken, betaling via betalingslink, 650 kr pr. nat, min. 4 nætter.",
     breadcrumbLabel: "Mandskabsindkvartering Roskilde",
     serviceName: "Mandskabsindkvartering",
     serviceDescription:
-      "Indkvartering af håndværkere og mandskab på projekt i Roskilde-området – enkeltværelser eller hele huset, fakturabetaling.",
+      "Indkvartering af håndværkere og mandskab på projekt i Roskilde-området – enkeltværelser eller hele huset, betaling via betalingslink.",
     intro: [
       {
         headingDa: "Til entreprenøren og byggelederen",
@@ -442,7 +442,7 @@ export const LANDING_PAGES: LandingPage[] = [
       "Fælles køkken, bad og opholdsrum",
       "Wifi, vaskemaskine og parkering til varevogne",
       "Nem digital selvcheck-in via dørkode",
-      "Fakturabetaling til firmaet mod CVR",
+      "Betaling forud via betalingslink",
     ],
     highlightsEn: [
       "Single rooms or the whole house for the crew",
@@ -460,7 +460,7 @@ export const LANDING_PAGES: LandingPage[] = [
     slug: "skurby-alternativ",
     metaTitle: "Alternativ til skurvogn og skurby | Svaleholm Gaard Roskilde",
     metaDescription:
-      "Et bedre alternativ til skurvogn: rigtige værelser med køkken, bad og opholdsrum til håndværkere nær Roskilde. 650 kr/nat, min. 4 nætter, fakturabetaling.",
+      "Et bedre alternativ til skurvogn: rigtige værelser med køkken, bad og opholdsrum til håndværkere nær Roskilde. 650 kr/nat, min. 4 nætter, betaling via betalingslink.",
     heroEyebrowDa: "Alternativ til skurvogn",
     heroEyebrowEn: "Alternative to site cabins",
     h1Da: "Et alternativ til skurvogn og skurby",
@@ -473,7 +473,7 @@ export const LANDING_PAGES: LandingPage[] = [
     imageAlt: "Svaleholm Gaards bygning som alternativ til skurvogn for håndværkere",
     jsonLdName: "Alternativ til skurvogn og skurby nær Roskilde",
     jsonLdDescription:
-      "Svaleholm Gaard udlejer rigtige værelser med køkken, bad og opholdsrum som alternativ til skurvogn/skurby for håndværkere nær Roskilde. 650 kr pr. nat, min. 4 nætter, fakturabetaling.",
+      "Svaleholm Gaard udlejer rigtige værelser med køkken, bad og opholdsrum som alternativ til skurvogn/skurby for håndværkere nær Roskilde. 650 kr pr. nat, min. 4 nætter, betaling via betalingslink.",
     breadcrumbLabel: "Alternativ til skurvogn",
     serviceName: "Alternativ til skurvogn",
     serviceDescription:
@@ -501,7 +501,7 @@ export const LANDING_PAGES: LandingPage[] = [
       "Fire fælles bad og toilet samt opholdsrum",
       "Op til 8 værelser fra 650 kr/nat inkl. moms, min. 4 nætter",
       "Nem digital selvcheck-in via dørkode",
-      "Fakturabetaling til firmaet mod CVR",
+      "Betaling forud via betalingslink",
     ],
     highlightsEn: [
       "A real kitchen instead of a hot plate in the cabin",
@@ -518,7 +518,7 @@ export const LANDING_PAGES: LandingPage[] = [
     slug: "hele-huset-til-sjak",
     metaTitle: "Lej hele huset til sjakket | Svaleholm Gaard Roskilde",
     metaDescription:
-      "Lej hele gården eksklusivt til dit sjak nær Roskilde – op til 8 værelser, fælles køkken og opholdsrum. Skræddersyet aftale, fakturabetaling, min. 4 nætter.",
+      "Lej hele gården eksklusivt til dit sjak nær Roskilde – op til 8 værelser, fælles køkken og opholdsrum. Skræddersyet aftale, betaling via betalingslink, min. 4 nætter.",
     heroEyebrowDa: "Hele huset til ét sjak",
     heroEyebrowEn: "The whole house for one crew",
     h1Da: "Lej hele huset til sjakket",
@@ -559,7 +559,7 @@ export const LANDING_PAGES: LandingPage[] = [
       "Op til 8 værelser, fælles køkken og opholdsrum",
       "Skræddersyet aftale efter antal mand og periode",
       "Fra 650 kr/nat pr. værelse inkl. moms, min. 4 nætter",
-      "Fakturabetaling til firmaet mod CVR",
+      "Betaling forud via betalingslink",
     ],
     highlightsEn: [
       "The whole house rented exclusively for one crew",
@@ -576,24 +576,24 @@ export const LANDING_PAGES: LandingPage[] = [
     slug: "langtidsleje-haandvaerkere",
     metaTitle: "Langtidsleje til håndværkere nær Roskilde | Svaleholm Gaard",
     metaDescription:
-      "Langvarigt bygge- eller renoveringsprojekt? Langtidsindkvartering til håndværkere nær Roskilde med fælles køkken og fakturabetaling. Fra 650 kr/nat, skræddersyet aftale.",
+      "Langvarigt bygge- eller renoveringsprojekt? Langtidsindkvartering til håndværkere nær Roskilde med fælles køkken og betaling via betalingslink. Fra 650 kr/nat, skræddersyet aftale.",
     heroEyebrowDa: "Langtidsleje til håndværkere",
     heroEyebrowEn: "Long-stay lodging for tradespeople",
     h1Da: "Langtidsleje til håndværkere på projekt",
     h1En: "Long-stay lodging for tradespeople",
     heroSubDa:
-      "En stabil base nær projektet, når arbejdet varer uger eller måneder – skræddersyet langtidsaftale med fakturabetaling og nem selvcheck-in.",
+      "En stabil base nær projektet, når arbejdet varer uger eller måneder – skræddersyet langtidsaftale med betaling via betalingslink og nem selvcheck-in.",
     heroSubEn:
       "A stable base near the project when the work runs for weeks or months – a tailored long-stay agreement with company invoicing and easy self check-in.",
     image: "/images/have-sti.jpg",
     imageAlt: "Have og sti ved Svaleholm Gaard til langtidsleje for håndværkere",
     jsonLdName: "Langtidsleje til håndværkere nær Roskilde",
     jsonLdDescription:
-      "Svaleholm Gaard udlejer langtidsindkvartering til håndværkere på længerevarende projekter nær Roskilde – skræddersyet aftale og fakturabetaling.",
+      "Svaleholm Gaard udlejer langtidsindkvartering til håndværkere på længerevarende projekter nær Roskilde – skræddersyet aftale og betaling via betalingslink.",
     breadcrumbLabel: "Langtidsleje til håndværkere",
     serviceName: "Langtidsleje til håndværkere",
     serviceDescription:
-      "Langtidsindkvartering til håndværkere på længerevarende projekter nær Roskilde, skræddersyet aftale og fakturabetaling.",
+      "Langtidsindkvartering til håndværkere på længerevarende projekter nær Roskilde, skræddersyet aftale og betaling via betalingslink.",
     intro: [
       {
         headingDa: "Til projekter, der varer uger eller måneder",
@@ -618,7 +618,7 @@ export const LANDING_PAGES: LandingPage[] = [
       "Fra 650 kr/nat inkl. moms, min. 4 nætter",
       "Fælles køkken, bad og opholdsrum",
       "Wifi, vaskemaskine og parkering til varevogne",
-      "Fakturabetaling til firmaet mod CVR",
+      "Betaling forud via betalingslink",
     ],
     highlightsEn: [
       "A stable base for projects running weeks or months",

@@ -16,7 +16,7 @@ export function meta() {
     path: "",
     title: "Indkvartering til håndværkere nær Roskilde | Svaleholm Gaard",
     description:
-      "Få dit sjak til at bo tæt på pladsen. Svaleholm Gaard udlejer enkle værelser eller hele huset til håndværkere nær Roskilde – fælles køkken, fakturabetaling. 650 kr/nat, min. 4 nætter.",
+      "Få dit sjak til at bo tæt på pladsen. Svaleholm Gaard udlejer enkle værelser eller hele huset til håndværkere nær Roskilde – fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
     image: "/images/gaardsplads.jpg",
     imageAlt: "Svaleholm Gaards gårdsplads",
   });
@@ -31,7 +31,7 @@ export default function Index() {
       path: "",
       name: "Svaleholm Gaard Roskilde – Indkvartering til håndværkere",
       description:
-        "Svaleholm Gaard udlejer enkle værelser eller hele huset til håndværkere nær Roskilde – fælles køkken, fakturabetaling. 650 kr/nat, min. 4 nætter.",
+        "Svaleholm Gaard udlejer enkle værelser eller hele huset til håndværkere nær Roskilde – fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
       primaryImage: "/images/gaardsplads.jpg",
     }),
     breadcrumb([{ name: "Forside", path: "" }]),
@@ -100,7 +100,7 @@ function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.08 }}
           >
-            {t("Indkvartering til", "Lodging for")}
+            {t("Indkvartering til ", "Lodging for ")}
           </motion.span>
           <motion.span
             className="block accent-italic"
@@ -120,7 +120,7 @@ function HeroSection() {
           transition={{ duration: 0.7, ease: "easeOut", delay: 0.32 }}
         >
           {t(
-            "Et praktisk hjem til sjakket tæt på pladsen – enkle værelser eller hele huset, fælles køkken og fakturabetaling. 650 kr pr. nat, min. 4 nætter.",
+            "Et praktisk hjem til sjakket tæt på pladsen – enkle værelser eller hele huset, fælles køkken og betaling via betalingslink. 650 kr pr. nat, min. 4 nætter.",
             "A practical base for the crew close to the site – simple rooms or the whole house, a shared kitchen and company invoicing. DKK 650 per night, minimum 4 nights."
           )}
         </motion.p>
@@ -441,7 +441,7 @@ function CtaBanner() {
         </h2>
         <p style={{ fontFamily: "var(--font-body)", color: "rgba(242,239,231,0.72)", lineHeight: 1.85, maxWidth: "46ch", margin: "0 auto 2.6rem", fontSize: "1rem" }}>
           {t(
-            "Fortæl os, hvor mange mand og hvor længe, og vi sender et tilbud – fakturaen går til firmaet mod CVR. Vi ser frem til at byde jer velkommen til Svaleholm Gaard.",
+            "Fortæl os, hvor mange mand og hvor længe, og vi sender et tilbud – betaling sker forud via betalingslink, og kvittering med CVR sendes automatisk. Vi ser frem til at byde jer velkommen til Svaleholm Gaard.",
             "Tell us how many people and for how long, and we'll send a quote – the invoice goes to the company against a CVR number. We look forward to welcoming you to Svaleholm Gaard."
           )}
         </p>

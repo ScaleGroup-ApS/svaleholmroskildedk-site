@@ -30,7 +30,7 @@ export function meta() {
     path: "/indkvartering-haandvaerkere",
     title: "Håndværkerindkvartering nær Roskilde | Svaleholm Gaard",
     description:
-      "Indkvartering af håndværkere på projekt nær Roskilde – enkeltværelser eller hele huset til sjakket, fælles køkken, fakturabetaling mod CVR. 650 kr/nat, min. 4 nætter, skræddersyet aftale.",
+      "Indkvartering af håndværkere på projekt nær Roskilde – enkeltværelser eller hele huset til sjakket, fælles køkken, betaling via betalingslink mod CVR. 650 kr/nat, min. 4 nætter, skræddersyet aftale.",
     image: "/images/gaardsplads.jpg",
     imageAlt: "Svaleholm Gaards facade og gårdsplads",
   });
@@ -42,7 +42,7 @@ const USECASE_PAGES = landingPagesByCategory("usecase");
 const OVERNATNING_PAGES = landingPagesByCategory("overnatning");
 
 const PILLAR_DESCRIPTION =
-  "Svaleholm Gaard udlejer indkvartering til håndværkere på projekt nær Roskilde – enkeltværelser eller hele huset til sjakket, fælles køkken, fakturabetaling mod CVR. 650 kr pr. nat, min. 4 nætter, skræddersyet aftale ved leje af hele huset.";
+  "Svaleholm Gaard udlejer indkvartering til håndværkere på projekt nær Roskilde – enkeltværelser eller hele huset til sjakket, fælles køkken, betaling via betalingslink mod CVR. 650 kr pr. nat, min. 4 nætter, skræddersyet aftale ved leje af hele huset.";
 
 const FAQS: FaqItem[] = [
   {
@@ -211,7 +211,7 @@ function HeroSection() {
         </h1>
         <p style={{ fontFamily: "var(--font-body)", color: "rgba(242,239,231,0.75)", fontSize: "1.05rem", lineHeight: 1.8, maxWidth: "54ch", marginTop: "1.5rem" }}>
           {t(
-            "Et roligt, praktisk sted for sjak på projekt – enkeltværelser eller hele huset, fælles køkken og fakturabetaling til firmaet mod CVR.",
+            "Et roligt, praktisk sted for sjak på projekt – enkeltværelser eller hele huset, fælles køkken og betaling forud via betalingslink.",
             "A quiet, practical base for crews on a project – single rooms or the whole house, a shared kitchen and company invoicing against CVR."
           )}
         </p>
@@ -243,7 +243,7 @@ function AnswerBlockSection() {
           viewport={{ once: true, margin: "-80px" }}
         >
           {t(
-            "Svaleholm Gaard tilbyder indkvartering til håndværkere på projekt nær Roskilde: op til 8 værelser med fælles køkken, fire fælles bad og toiletter samt opholdsrum, eller hele huset eksklusivt til sjakket. Der er wifi, fælles vaskemaskine og parkering til varevogne. Prisen er 650 kr pr. nat inkl. moms, minimum 4 nætter, med fakturabetaling til firmaet mod CVR og skræddersyet aftale ved leje af hele huset.",
+            "Svaleholm Gaard tilbyder indkvartering til håndværkere på projekt nær Roskilde: op til 8 værelser med fælles køkken, fire fælles bad og toiletter samt opholdsrum, eller hele huset eksklusivt til sjakket. Der er wifi, fælles vaskemaskine og parkering til varevogne. Prisen er 650 kr pr. nat inkl. moms, minimum 4 nætter, med betaling forud via betalingslink og skræddersyet aftale ved leje af hele huset.",
             "Svaleholm Gaard offers accommodation for tradespeople on a project near Roskilde: up to 8 rooms with a shared kitchen, four shared baths and toilets, and a lounge, or the whole house rented exclusively for the crew. There is wifi, a shared washing machine and parking for vans. The price is DKK 650 per night incl. VAT, minimum 4 nights, with company invoicing against CVR and a tailored agreement when renting the whole house."
           )}
         </motion.p>
@@ -431,7 +431,7 @@ function CtaBanner() {
         </h2>
         <p style={{ fontFamily: "var(--font-body)", color: "rgba(242,239,231,0.72)", lineHeight: 1.85, maxWidth: "46ch", margin: "0 auto 2.6rem", fontSize: "1rem" }}>
           {t(
-            "Fortæl os om antal mand og periode, og vi laver et tilbud og en skræddersyet aftale – med fakturabetaling til firmaet mod CVR.",
+            "Fortæl os om antal mand og periode, og vi laver et tilbud og en skræddersyet aftale – med betaling forud via betalingslink.",
             "Tell us the crew size and period, and we'll put together a quote and a tailored agreement – with invoicing to the company against CVR."
           )}
         </p>
