@@ -40,15 +40,15 @@ export default function Handelsbetingelser() {
 
       <LSection heading={t("3. Booking og betaling", "3. Booking and payment")}>
         <LP>{t(
-          "En booking er bindende, når vi har bekræftet den skriftligt. Betalingsvilkår, herunder eventuelt depositum og betalingsfrist, fremgår af din bekræftelse eller faktura.",
-          "A booking is binding once we have confirmed it in writing. Payment terms, including any deposit and payment deadline, are stated in your confirmation or invoice."
+          "En booking er bindende, når betalingen er modtaget. Betaling sker forud via et sikkert betalingslink, som skal betales senest 2 dage før ankomst. Der opkræves intet depositum. Når betalingen er modtaget, sender vi automatisk en kvittering med moms og CVR samt dørkoden til jeres ophold.",
+          "A booking is binding once payment has been received. Payment is made in advance via a secure payment link, due no later than 2 days before arrival. No deposit is charged. Once payment is received, we automatically send a receipt with VAT and CVR along with the door code for your stay."
         )}</LP>
       </LSection>
 
       <LSection heading={t("4. Afbestilling og ændringer", "4. Cancellation and changes")}>
         <LP>{t(
-          "Ønsker du at afbestille eller ændre en booking, skal du kontakte os hurtigst muligt. Vilkårene for afbestilling, herunder eventuel tilbagebetaling af depositum, aftales i forbindelse med bookingen og fremgår af din bekræftelse.",
-          "If you wish to cancel or change a booking, please contact us as soon as possible. Cancellation terms, including any refund of a deposit, are agreed at the time of booking and stated in your confirmation."
+          "Ønsker du at afbestille eller ændre en booking, skal du kontakte os hurtigst muligt. Da vi ikke opkræver depositum, betaler du kun for de nætter, du bruger. Vilkårene for afbestilling fremgår af din bekræftelse.",
+          "If you wish to cancel or change a booking, please contact us as soon as possible. As we charge no deposit, you only pay for the nights you use. The cancellation terms are stated in your confirmation."
         )}</LP>
       </LSection>
 
