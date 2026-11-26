@@ -48,8 +48,8 @@ export function buildMeta(opts: SeoOptions): MetaDescriptor[] {
     // hreflang="en": der findes ingen distinkt, crawlbar EN-URL at pege på, og
     // en falsk en-annotation ville være forkert over for Google. (Fuld EN-
     // indeksering kræver distinkte EN-URL'er — separat fremtidigt arkitektur-spor.)
-    meta.push({ tagName: "link", rel: "alternate", hrefLang: "da-DK", href: opts.canonical });
-    meta.push({ tagName: "link", rel: "alternate", hrefLang: "x-default", href: opts.canonical });
+    meta.push({ tagName: "link", rel: "alternate", hreflang: "da-DK", href: opts.canonical });
+    meta.push({ tagName: "link", rel: "alternate", hreflang: "x-default", href: opts.canonical });
   }
 
   // Open Graph
