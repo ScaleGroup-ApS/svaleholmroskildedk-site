@@ -24,16 +24,16 @@ const VAERELSER_FAQ: FaqItem[] = [
     aEn: "From DKK 650 per room per night incl. VAT, minimum 4 nights per booking. There are up to 8 rooms, so the whole crew can stay together.",
   },
   {
-    qDa: "Kan vi leje hele huset til vores sjak?",
-    qEn: "Can we rent the whole house for our crew?",
-    aDa: "Ja. Hele huset kan lejes eksklusivt – oplagt ved et længere projekt eller når flere håndværkere skal bo samlet. Vi laver en skræddersyet aftale ved hele huset eller langtidsleje.",
-    aEn: "Yes. The whole house can be rented exclusively – ideal for a longer project or when several tradespeople need to stay together. We put together a tailored agreement for the whole house or a long-term stay.",
+    qDa: "Kan vi booke hele huset til vores sjak?",
+    qEn: "Can we book the whole house for our crew?",
+    aDa: "Ja. Hele huset kan bookes eksklusivt – oplagt ved et længere projekt eller når flere håndværkere skal bo samlet. Vi laver en skræddersyet aftale ved hele huset eller langtidsophold.",
+    aEn: "Yes. The whole house can be booked exclusively – ideal for a longer project or when several tradespeople need to stay together. We put together a tailored agreement for the whole house or a long-term stay.",
   },
   {
-    qDa: "Hvordan foregår check-in, og kan firmaet faktureres?",
-    qEn: "How does check-in work, and can the company be invoiced?",
-    aDa: "Der er nem selvcheck-in via dørkode, så sjakket kan ankomme fleksibelt uden at skulle mødes med en vært. Vi fakturerer mod CVR-nummer.",
-    aEn: "There is easy self check-in via a door code, so the crew can arrive flexibly without having to meet a host. We invoice against a CVR (business registration) number.",
+    qDa: "Hvordan foregår check-in, og kan firmaet betale?",
+    qEn: "How does check-in work, and can the company pay?",
+    aDa: "Der er nem selvcheck-in via dørkode, så sjakket kan ankomme fleksibelt uden at skulle mødes med en vært. Virksomheden kan betale mod CVR-nummer.",
+    aEn: "There is easy self check-in via a door code, so the crew can arrive flexibly without having to meet a host. The company can pay against a CVR (business registration) number.",
   },
   {
     qDa: "Er der wifi, vaskemaskine og parkering til varevogne?",
@@ -76,7 +76,7 @@ const VAERELSER_JSONLD = graph(
   ]),
   lodgingNode({
     description:
-      "Overnatning til håndværkere og sjak på Svaleholm tæt på Roskilde på Sjælland. Op til 8 enkle værelser uden eget bad, med fælles badefaciliteter, fælles køkken og fælles opholdsrum. Hele huset kan lejes eksklusivt ved længere projekter.",
+      "Overnatning til håndværkere og sjak på Svaleholm tæt på Roskilde på Sjælland. Op til 8 enkle værelser uden eget bad, med fælles badefaciliteter, fælles køkken og fælles opholdsrum. Hele huset kan bookes eksklusivt ved længere projekter.",
   }),
   faqNode(VAERELSER_FAQ.map((f) => ({ q: f.qDa, a: f.aDa }))),
 );
@@ -216,8 +216,8 @@ export default function Vaerelser() {
                   t("Fælles opholdsrum til afslapning efter arbejdsdagen", "Shared lounge for relaxing after the workday"),
                   t("Wifi og fælles vaskemaskine", "Wifi and a shared washing machine"),
                   t("Parkering til varevogne på pladsen", "Parking for vans at the farm"),
-                  t("Hele huset kan lejes eksklusivt ved længere projekter", "The whole house can be rented exclusively for longer projects"),
-                  t("Fra DKK 650 pr. nat inkl. moms – min. 4 nætter – betaling via betalingslink mod CVR", "From DKK 650 per night incl. VAT – min. 4 nights – invoiced against a CVR number"),
+                  t("Hele huset kan bookes eksklusivt ved længere projekter", "The whole house can be booked exclusively for longer projects"),
+                  t("Fra DKK 650 pr. nat inkl. moms – min. 4 nætter – betaling via betalingslink mod CVR", "From DKK 650 per night incl. VAT – min. 4 nights – payment via payment link against a CVR number"),
                 ].map((item) => (
                   <li key={item} className="flex items-baseline gap-3" style={{ fontFamily: "var(--font-body)", color: "rgba(242,239,231,0.78)", fontSize: "0.95rem" }}>
                     <span style={{ color: "#7EA57C", fontSize: "0.7rem" }}>✦</span>

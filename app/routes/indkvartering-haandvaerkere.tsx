@@ -42,7 +42,7 @@ const USECASE_PAGES = landingPagesByCategory("usecase");
 const OVERNATNING_PAGES = landingPagesByCategory("overnatning");
 
 const PILLAR_DESCRIPTION =
-  "Svaleholm Gæstegaard udlejer indkvartering til håndværkere på projekt nær Roskilde – enkeltværelser eller hele huset til sjakket, fælles køkken, betaling via betalingslink mod CVR. 650 kr pr. nat, min. 4 nætter, skræddersyet aftale ved leje af hele huset.";
+  "Svaleholm Gæstegaard tilbyder indkvartering til håndværkere på projekt nær Roskilde – enkeltværelser eller hele huset til sjakket, fælles køkken, betaling via betalingslink mod CVR. 650 kr pr. nat, min. 4 nætter, skræddersyet aftale ved booking af hele huset.";
 
 const FAQS: FaqItem[] = [
   {
@@ -58,16 +58,16 @@ const FAQS: FaqItem[] = [
     aEn: "There are up to 8 simple rooms with a shared kitchen, four shared baths and toilets, and a shared lounge – room for a whole crew. A stay costs DKK 650 per night incl. VAT, minimum 4 nights.",
   },
   {
-    qDa: "Kan vi leje hele huset til sjakket?",
-    qEn: "Can we rent the whole house for the crew?",
-    aDa: "Ja. Hele huset kan lejes eksklusivt, så sjakket bor samlet uden at dele med andre gæster. Vi laver en skræddersyet aftale ud fra antal mand og periode.",
-    aEn: "Yes. The whole house can be rented exclusively so the crew stays together without sharing with other guests. We tailor the agreement to crew size and period.",
+    qDa: "Kan vi booke hele huset til sjakket?",
+    qEn: "Can we book the whole house for the crew?",
+    aDa: "Ja. Hele huset kan bookes eksklusivt, så sjakket bor samlet uden at dele med andre gæster. Vi laver en skræddersyet aftale ud fra antal mand og periode.",
+    aEn: "Yes. The whole house can be booked exclusively so the crew stays together without sharing with other guests. We tailor the agreement to crew size and period.",
   },
   {
-    qDa: "Kan I fakturere firmaet mod CVR?",
-    qEn: "Can you invoice the company against its CVR number?",
-    aDa: "Ja. Vi laver en fast aftale og fakturerer virksomheden direkte mod CVR, så administrationen er enkel for byggelederen – uanset om det er enkeltværelser eller hele huset.",
-    aEn: "Yes. We set up a fixed agreement and invoice the company directly against its CVR number, so administration is simple for the site manager – whether it's single rooms or the whole house.",
+    qDa: "Kan firmaet betale mod CVR?",
+    qEn: "Can the company pay against its CVR number?",
+    aDa: "Ja. Vi laver en fast aftale, og virksomheden betaler via betalingslink direkte mod CVR, så administrationen er enkel for byggelederen – uanset om det er enkeltværelser eller hele huset.",
+    aEn: "Yes. We set up a fixed agreement and the company pays by payment link against its CVR number, so administration is simple for the site manager – whether it's single rooms or the whole house.",
   },
   {
     qDa: "Hvordan foregår check-in?",
@@ -97,10 +97,10 @@ const VALUE_POINTS: Array<{ titleDa: string; titleEn: string; bodyDa: string; bo
     bodyEn: "You can cook your own food after the working day, instead of a hot plate in a site cabin.",
   },
   {
-    titleDa: "Fakturabetaling mod CVR",
-    titleEn: "Company invoicing against CVR",
-    bodyDa: "Vi fakturerer virksomheden direkte mod CVR, så administrationen er enkel for byggelederen.",
-    bodyEn: "We invoice the company directly against its CVR number, keeping administration simple for the site manager.",
+    titleDa: "Betaling via betalingslink mod CVR",
+    titleEn: "Company payment by link against CVR",
+    bodyDa: "Vi sender et betalingslink til virksomheden mod CVR, så administrationen er enkel for byggelederen.",
+    bodyEn: "We send the company a payment link against its CVR number, keeping administration simple for the site manager.",
   },
   {
     titleDa: "Fast pris året rundt",
@@ -111,8 +111,8 @@ const VALUE_POINTS: Array<{ titleDa: string; titleEn: string; bodyDa: string; bo
   {
     titleDa: "Hele huset til sjakket",
     titleEn: "The whole house for the crew",
-    bodyDa: "Hele gården kan lejes eksklusivt, så hele sjakket bor samlet under ét tag.",
-    bodyEn: "The whole farm can be rented exclusively, so the whole crew stays together under one roof.",
+    bodyDa: "Hele gården kan bookes eksklusivt, så hele sjakket bor samlet under ét tag.",
+    bodyEn: "The whole farm can be booked exclusively, so the whole crew stays together under one roof.",
   },
   {
     titleDa: "Fleksibel, skræddersyet aftale",
@@ -212,7 +212,7 @@ function HeroSection() {
         <p style={{ fontFamily: "var(--font-body)", color: "rgba(242,239,231,0.75)", fontSize: "1.05rem", lineHeight: 1.8, maxWidth: "54ch", marginTop: "1.5rem" }}>
           {t(
             "Et roligt, praktisk sted for sjak på projekt – enkeltværelser eller hele huset, fælles køkken og betaling forud via betalingslink.",
-            "A quiet, practical base for crews on a project – single rooms or the whole house, a shared kitchen and company invoicing against CVR."
+            "A quiet, practical base for crews on a project – single rooms or the whole house, a shared kitchen and company payment by link against CVR."
           )}
         </p>
         <div className="flex flex-col sm:flex-row gap-4 mt-9">
@@ -243,8 +243,8 @@ function AnswerBlockSection() {
           viewport={{ once: true, margin: "-80px" }}
         >
           {t(
-            "Svaleholm Gæstegaard tilbyder indkvartering til håndværkere på projekt nær Roskilde: op til 8 værelser med fælles køkken, fire fælles bad og toiletter samt opholdsrum, eller hele huset eksklusivt til sjakket. Der er wifi, fælles vaskemaskine og parkering til varevogne. Prisen er 650 kr pr. nat inkl. moms, minimum 4 nætter, med betaling forud via betalingslink og skræddersyet aftale ved leje af hele huset.",
-            "Svaleholm Gæstegaard offers accommodation for tradespeople on a project near Roskilde: up to 8 rooms with a shared kitchen, four shared baths and toilets, and a lounge, or the whole house rented exclusively for the crew. There is wifi, a shared washing machine and parking for vans. The price is DKK 650 per night incl. VAT, minimum 4 nights, with company invoicing against CVR and a tailored agreement when renting the whole house."
+            "Svaleholm Gæstegaard tilbyder indkvartering til håndværkere på projekt nær Roskilde: op til 8 værelser med fælles køkken, fire fælles bad og toiletter samt opholdsrum, eller hele huset eksklusivt til sjakket. Der er wifi, fælles vaskemaskine og parkering til varevogne. Prisen er 650 kr pr. nat inkl. moms, minimum 4 nætter, med betaling forud via betalingslink og skræddersyet aftale ved booking af hele huset.",
+            "Svaleholm Gæstegaard offers accommodation for tradespeople on a project near Roskilde: up to 8 rooms with a shared kitchen, four shared baths and toilets, and a lounge, or the whole house booked exclusively for the crew. There is wifi, a shared washing machine and parking for vans. The price is DKK 650 per night incl. VAT, minimum 4 nights, with company payment by link against CVR and a tailored agreement when booking the whole house."
           )}
         </motion.p>
       </div>
@@ -321,8 +321,8 @@ function PricingSection() {
           </p>
           <p className="mt-4" style={{ color: "rgba(242,239,231,0.68)", lineHeight: 1.85, maxWidth: "48ch", margin: "1rem auto 0" }}>
             {t(
-              "Skal hele sjakket bo samlet, kan hele huset lejes eksklusivt efter en skræddersyet aftale ud fra antal mand og periode.",
-              "If the whole crew needs to stay together, the whole house can be rented exclusively under a tailored agreement based on crew size and period."
+              "Skal hele sjakket bo samlet, kan hele huset bookes eksklusivt efter en skræddersyet aftale ud fra antal mand og periode.",
+              "If the whole crew needs to stay together, the whole house can be booked exclusively under a tailored agreement based on crew size and period."
             )}
           </p>
         </motion.div>
@@ -432,7 +432,7 @@ function CtaBanner() {
         <p style={{ fontFamily: "var(--font-body)", color: "rgba(242,239,231,0.72)", lineHeight: 1.85, maxWidth: "46ch", margin: "0 auto 2.6rem", fontSize: "1rem" }}>
           {t(
             "Fortæl os om antal mand og periode, og vi laver et tilbud og en skræddersyet aftale – med betaling forud via betalingslink.",
-            "Tell us the crew size and period, and we'll put together a quote and a tailored agreement – with invoicing to the company against CVR."
+            "Tell us the crew size and period, and we'll put together a quote and a tailored agreement – with payment in advance via a payment link."
           )}
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">

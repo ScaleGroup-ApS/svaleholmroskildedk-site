@@ -445,7 +445,7 @@ export default function Kontakt() {
                         <label htmlFor="cf-cvr" className="block mb-2" style={{ fontFamily: "var(--font-body)", fontSize: "0.66rem", fontWeight: 500, color: "#7EA57C", letterSpacing: "0.2em", textTransform: "uppercase" }}>
                           {t("CVR", "CVR")}
                         </label>
-                        <input id="cf-cvr" name="cvr" type="text" defaultValue={prev?.cvr} className="input-field" placeholder={t("Til fakturering", "For invoicing")} inputMode="numeric" />
+                        <input id="cf-cvr" name="cvr" type="text" defaultValue={prev?.cvr} className="input-field" placeholder={t("Til betaling mod CVR", "For payment")} inputMode="numeric" />
                       </div>
                     </div>
 

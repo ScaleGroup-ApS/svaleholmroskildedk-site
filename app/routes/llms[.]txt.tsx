@@ -34,18 +34,18 @@ ${SAME_AS.map((u) => `- Profil: ${u}`).join("\n")}
 - Indkvartering til håndværkere og mandskab på projekt nær Roskilde: op til
   ${NUMBER_OF_ROOMS} enkle værelser med fælles køkken, 4 fælles bad og toiletter samt
   fælles opholdsrum.
-- Hele huset kan lejes eksklusivt til ét firmas sjak – vi laver en skræddersyet
+- Hele huset kan bookes eksklusivt til ét firmas sjak – vi laver en skræddersyet
   aftale ud fra antal mand og periode.
 - Nem digital selvcheck-in via dørkode, så sjakket kan ankomme og rejse
   fleksibelt.
 - Wifi, fælles vaskemaskine og parkering til varevogne på pladsen.
-- Fakturabetaling: vi fakturerer virksomheden direkte mod CVR, så
+- Betaling: vi sender et betalingslink til virksomheden mod CVR, så
   administrationen er enkel for byggelederen.
 
 ## Priser
 
 - ${NIGHTLY_PRICE} kr pr. nat inkl. moms, minimum ${MIN_NIGHTS} nætter.
-- Ved leje af hele huset eller længere ophold laver vi en skræddersyet aftale
+- Ved booking af hele huset eller længere ophold laver vi en skræddersyet aftale
   ud fra antal mand og periode.
 
 ## Vigtige sider
@@ -66,9 +66,9 @@ ${usecases.map(lpLine).join("\n")}
 
 ## Ofte stillede spørgsmål
 
-- Kan I fakturere firmaet mod CVR? Ja. Vi laver en fast aftale og fakturerer
+- Kan firmaet betale mod CVR? Ja. Vi laver en fast aftale og sender et betalingslink til
   virksomheden mod CVR, så administrationen er enkel for byggelederen.
-- Kan vi leje hele huset til sjakket? Ja. Hele huset kan lejes eksklusivt, så
+- Kan vi booke hele huset til sjakket? Ja. Hele huset kan bookes eksklusivt, så
   sjakket bor samlet. Vi laver en skræddersyet aftale ud fra antal mand og
   periode.
 - Er der et fælles køkken? Ja, der er fælles køkken, hvor sjakket selv kan

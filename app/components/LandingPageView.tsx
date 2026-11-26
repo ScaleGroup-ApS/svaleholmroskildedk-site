@@ -261,7 +261,7 @@ export function LandingPageView({ page }: { page: LandingPage }) {
             <p style={{ fontFamily: "var(--font-body)", color: "rgba(242,239,231,0.72)", lineHeight: 1.85, maxWidth: "46ch", margin: "0 auto 2.6rem", fontSize: "1rem" }}>
               {t(
                 "Fortæl os om antal mand og periode, og vi laver et tilbud og en skræddersyet aftale – med betaling forud via betalingslink.",
-                "Tell us the crew size and period, and we'll put together a quote and a tailored agreement – with invoicing to the company against CVR."
+                "Tell us the crew size and period, and we'll put together a quote and a tailored agreement – with payment in advance via a payment link."
               )}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -64,7 +64,7 @@ export type LandingPage = {
 };
 
 // Shared FAQ building blocks reused (and tailored) across entries. The practical
-// facts (shared bath, self check-in, capacity, invoicing) are identical across
+// facts (shared bath, self check-in, capacity, payment) are identical across
 // the site, so the answers stay consistent with /vaerelser and /tjenester.
 const FAQ_LOCATION: FaqItem = {
   qDa: "Hvor ligger Svaleholm Gæstegaard?",
@@ -81,20 +81,20 @@ const FAQ_CHECKIN: FaqItem = {
 const FAQ_ROOMS: FaqItem = {
   qDa: "Hvor mange håndværkere kan bo her?",
   qEn: "How many tradespeople can stay here?",
-  aDa: "Der er op til 8 enkle værelser med fælles køkken, bad og opholdsrum – plads til et helt sjak. Hele huset kan lejes eksklusivt til ét firma. Overnatning koster 650 kr pr. nat inkl. moms, min. 4 nætter.",
-  aEn: "There are up to 8 simple rooms with a shared kitchen, bath and lounge – room for a whole crew. The whole house can be rented exclusively to one company. A stay is DKK 650 per night incl. VAT, minimum 4 nights.",
+  aDa: "Der er op til 8 enkle værelser med fælles køkken, bad og opholdsrum – plads til et helt sjak. Hele huset kan bookes eksklusivt til ét firma. Overnatning koster 650 kr pr. nat inkl. moms, min. 4 nætter.",
+  aEn: "There are up to 8 simple rooms with a shared kitchen, bath and lounge – room for a whole crew. The whole house can be booked exclusively for one company. A stay is DKK 650 per night incl. VAT, minimum 4 nights.",
 };
 const FAQ_INVOICE: FaqItem = {
-  qDa: "Kan I fakturere firmaet mod CVR?",
-  qEn: "Can you invoice the company?",
-  aDa: "Ja. Vi laver en fast aftale og fakturerer virksomheden mod CVR, så administrationen er enkel for byggelederen.",
-  aEn: "Yes. We set up a fixed agreement and invoice the company, so administration is simple for the site manager.",
+  qDa: "Kan firmaet betale mod CVR?",
+  qEn: "Can the company pay?",
+  aDa: "Ja. Vi laver en fast aftale, og virksomheden betaler via betalingslink mod CVR, så administrationen er enkel for byggelederen.",
+  aEn: "Yes. We set up a fixed agreement and the company pays by payment link, so administration is simple for the site manager.",
 };
 const FAQ_WHOLE_HOUSE: FaqItem = {
-  qDa: "Kan vi leje hele gården til sjakket?",
-  qEn: "Can we rent the whole place for the crew?",
-  aDa: "Ja. Hele huset kan lejes eksklusivt, så sjakket bor samlet. Vi laver en skræddersyet aftale ud fra antal mand og periode.",
-  aEn: "Yes. The whole house can be rented exclusively so the crew stays together. We tailor the agreement to crew size and period.",
+  qDa: "Kan vi booke hele gården til sjakket?",
+  qEn: "Can we book the whole place for the crew?",
+  aDa: "Ja. Hele huset kan bookes eksklusivt, så sjakket bor samlet. Vi laver en skræddersyet aftale ud fra antal mand og periode.",
+  aEn: "Yes. The whole house can be booked exclusively so the crew stays together. We tailor the agreement to crew size and period.",
 };
 const FAQ_FACILITIES: FaqItem = {
   qDa: "Er der wifi, vaskemaskine og parkering til varevogne?",
@@ -113,7 +113,7 @@ export const LANDING_PAGES: LandingPage[] = [
     slug: "naer-lejre",
     metaTitle: "Indkvartering til håndværkere nær Lejre | Svaleholm Gæstegaard",
     metaDescription:
-      "Bygge- eller renoveringsprojekt i Lejre-området? Svaleholm Gæstegaard udlejer indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
+      "Bygge- eller renoveringsprojekt i Lejre-området? Svaleholm Gæstegaard tilbyder indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
     heroEyebrowDa: "Håndværkerindkvartering nær Lejre",
     heroEyebrowEn: "Tradesperson lodging near Lejre",
     h1Da: "Indkvartering til håndværkere nær Lejre",
@@ -121,12 +121,12 @@ export const LANDING_PAGES: LandingPage[] = [
     heroSubDa:
       "Et roligt, praktisk sted for sjak på projekt i Lejre-området – enkle værelser med fælles køkken, nem selvcheck-in og betaling via betalingslink.",
     heroSubEn:
-      "A quiet, practical base for crews on a project in the Lejre area – simple rooms with a shared kitchen, easy self check-in and company invoicing.",
+      "A quiet, practical base for crews on a project in the Lejre area – simple rooms with a shared kitchen, easy self check-in and company payment by link.",
     image: "/images/natur-eng.jpg",
     imageAlt: "Grønne enge og natur nær Svaleholm Gæstegaard ved Lejre",
     jsonLdName: "Indkvartering til håndværkere nær Lejre",
     jsonLdDescription:
-      "Svaleholm Gæstegaard udlejer enkle værelser til håndværkere på projekt nær Lejre og Roskilde. Fælles køkken, betaling via betalingslink, 650 kr pr. nat, min. 4 nætter.",
+      "Svaleholm Gæstegaard tilbyder enkle værelser til håndværkere på projekt nær Lejre og Roskilde. Fælles køkken, betaling via betalingslink, 650 kr pr. nat, min. 4 nætter.",
     breadcrumbLabel: "Håndværkere nær Lejre",
     intro: [
       {
@@ -138,12 +138,12 @@ export const LANDING_PAGES: LandingPage[] = [
           "Crews working on a project in the Lejre area need somewhere to stay that leaves them with energy for the workday. Instead of a site cabin, you stay at Svaleholm Gæstegaard in simple rooms with a shared kitchen where you can cook after a long day, and a shared lounge to unwind in. There's calm here to rest properly before the next working day starts – a real bed, a real bath, and space to retreat, so the crew wakes up fresher every morning.",
       },
       {
-        headingDa: "Enkelt, fleksibelt og fakturérbart",
-        headingEn: "Simple, flexible and invoiced",
+        headingDa: "Enkelt, fleksibelt og forudbetalt",
+        headingEn: "Simple, flexible and prepaid",
         bodyDa:
-          "Opholdet er enkelt og fleksibelt: op til 8 værelser med fælles bad og toilet, og digital selvcheck-in via dørkode, så sjakket kan ankomme og rejse, når arbejdet kræver det. Prisen er 650 kr pr. nat inkl. moms, med minimum 4 nætter. Vi fakturerer firmaet direkte mod CVR, så administrationen er enkel for byggelederen. Skal sjakket bo samlet, kan hele huset lejes eksklusivt – vi laver en skræddersyet aftale ud fra antal mand og periode.",
+          "Opholdet er enkelt og fleksibelt: op til 8 værelser med fælles bad og toilet, og digital selvcheck-in via dørkode, så sjakket kan ankomme og rejse, når arbejdet kræver det. Prisen er 650 kr pr. nat inkl. moms, med minimum 4 nætter. Vi sender et betalingslink til firmaet mod CVR, så administrationen er enkel for byggelederen. Skal sjakket bo samlet, kan hele huset bookes eksklusivt – vi laver en skræddersyet aftale ud fra antal mand og periode.",
         bodyEn:
-          "The stay is simple and flexible: up to 8 rooms with shared bath and toilet, and digital self check-in via a door code, so the crew can arrive and leave whenever the work demands. The price is DKK 650 per night incl. VAT, minimum 4 nights. We invoice the company directly against its CVR number, so administration is simple for the site manager. If the crew needs to stay together, the whole house can be rented exclusively – we tailor the agreement to crew size and period.",
+          "The stay is simple and flexible: up to 8 rooms with shared bath and toilet, and digital self check-in via a door code, so the crew can arrive and leave whenever the work demands. The price is DKK 650 per night incl. VAT, minimum 4 nights. We send the company a payment link against its CVR number, so administration is simple for the site manager. If the crew needs to stay together, the whole house can be booked exclusively – we tailor the agreement to crew size and period.",
       },
     ],
     highlightsDa: [
@@ -160,7 +160,7 @@ export const LANDING_PAGES: LandingPage[] = [
       "Shared kitchen, bath and lounge",
       "Wifi, washing machine and parking for vans",
       "Easy digital self check-in via door code",
-      "Invoicing to the company against CVR",
+      "Payment by link to the company against CVR",
     ],
     faqs: AREA_FAQS,
     relatedSlugs: ["naer-holbaek", "mandskabsindkvartering-roskilde", "hele-huset-til-sjak"],
@@ -170,7 +170,7 @@ export const LANDING_PAGES: LandingPage[] = [
     slug: "naer-holbaek",
     metaTitle: "Indkvartering til håndværkere nær Holbæk | Svaleholm Gæstegaard",
     metaDescription:
-      "Bygge- eller renoveringsprojekt i Holbæk-området? Svaleholm Gæstegaard udlejer indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
+      "Bygge- eller renoveringsprojekt i Holbæk-området? Svaleholm Gæstegaard tilbyder indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
     heroEyebrowDa: "Håndværkerindkvartering nær Holbæk",
     heroEyebrowEn: "Tradesperson lodging near Holbæk",
     h1Da: "Indkvartering til håndværkere nær Holbæk",
@@ -178,12 +178,12 @@ export const LANDING_PAGES: LandingPage[] = [
     heroSubDa:
       "Et roligt, praktisk sted for sjak på projekter langs Holbæk/Roskilde-korridoren – enkle værelser med fælles køkken, nem selvcheck-in og betaling via betalingslink.",
     heroSubEn:
-      "A quiet, practical base for crews on projects along the Holbæk–Roskilde corridor – simple rooms with a shared kitchen, easy self check-in and company invoicing.",
+      "A quiet, practical base for crews on projects along the Holbæk–Roskilde corridor – simple rooms with a shared kitchen, easy self check-in and company payment by link.",
     image: "/images/natur-mark.jpg",
     imageAlt: "Åbne marker og landskab nær Svaleholm Gæstegaard mod Holbæk",
     jsonLdName: "Indkvartering til håndværkere nær Holbæk",
     jsonLdDescription:
-      "Svaleholm Gæstegaard udlejer enkle værelser til håndværkere på projekt nær Holbæk og Roskilde. Fælles køkken, betaling via betalingslink, 650 kr pr. nat, min. 4 nætter.",
+      "Svaleholm Gæstegaard tilbyder enkle værelser til håndværkere på projekt nær Holbæk og Roskilde. Fælles køkken, betaling via betalingslink, 650 kr pr. nat, min. 4 nætter.",
     breadcrumbLabel: "Håndværkere nær Holbæk",
     intro: [
       {
@@ -195,12 +195,12 @@ export const LANDING_PAGES: LandingPage[] = [
           "Projects along the corridor between Roskilde and Holbæk need somewhere to stay that leaves the crew with energy for the workday. Instead of a site cabin, you stay at Svaleholm Gæstegaard in simple rooms with a shared kitchen where you can cook after a long day, and a shared lounge to unwind in. There's calm here to rest properly before the next working day starts – a real bed, a real bath, and space to retreat, so the crew wakes up fresher every morning.",
       },
       {
-        headingDa: "Enkelt, fleksibelt og fakturérbart",
-        headingEn: "Simple, flexible and invoiced",
+        headingDa: "Enkelt, fleksibelt og forudbetalt",
+        headingEn: "Simple, flexible and prepaid",
         bodyDa:
-          "Opholdet er enkelt: op til 8 værelser med fælles bad og toilet, og digital selvcheck-in via dørkode, så sjakket kan komme og gå, som arbejdet kræver. Prisen er 650 kr pr. nat inkl. moms, minimum 4 nætter, og firmaet faktureres direkte mod CVR, så administrationen er enkel for byggelederen. Skal sjakket bo samlet, kan hele huset lejes eksklusivt efter en skræddersyet aftale ud fra antal mand og periode.",
+          "Opholdet er enkelt: op til 8 værelser med fælles bad og toilet, og digital selvcheck-in via dørkode, så sjakket kan komme og gå, som arbejdet kræver. Prisen er 650 kr pr. nat inkl. moms, minimum 4 nætter, og firmaet betaler via betalingslink mod CVR, så administrationen er enkel for byggelederen. Skal sjakket bo samlet, kan hele huset bookes eksklusivt efter en skræddersyet aftale ud fra antal mand og periode.",
         bodyEn:
-          "The stay is simple: up to 8 rooms with shared bath and toilet, and digital self check-in via a door code, so the crew can come and go as the work demands. The price is DKK 650 per night incl. VAT, minimum 4 nights, and the company is invoiced directly against its CVR number, keeping administration simple for the site manager. If the crew needs to stay together, the whole house can be rented exclusively under a tailored agreement based on crew size and period.",
+          "The stay is simple: up to 8 rooms with shared bath and toilet, and digital self check-in via a door code, so the crew can come and go as the work demands. The price is DKK 650 per night incl. VAT, minimum 4 nights, and the company pays via payment link against its CVR number, keeping administration simple for the site manager. If the crew needs to stay together, the whole house can be booked exclusively under a tailored agreement based on crew size and period.",
       },
     ],
     highlightsDa: [
@@ -217,7 +217,7 @@ export const LANDING_PAGES: LandingPage[] = [
       "Shared kitchen, bath and lounge",
       "Wifi, washing machine and parking for vans",
       "Easy digital self check-in via door code",
-      "Invoicing to the company against CVR",
+      "Payment by link to the company against CVR",
     ],
     faqs: AREA_FAQS,
     relatedSlugs: ["naer-lejre", "naer-koege", "langtidsleje-haandvaerkere"],
@@ -227,7 +227,7 @@ export const LANDING_PAGES: LandingPage[] = [
     slug: "naer-koege",
     metaTitle: "Indkvartering til håndværkere nær Køge | Svaleholm Gæstegaard",
     metaDescription:
-      "Anlægs- eller boligprojekt i Køge-området? Svaleholm Gæstegaard udlejer indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
+      "Anlægs- eller boligprojekt i Køge-området? Svaleholm Gæstegaard tilbyder indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
     heroEyebrowDa: "Håndværkerindkvartering nær Køge",
     heroEyebrowEn: "Tradesperson lodging near Køge",
     h1Da: "Indkvartering til håndværkere nær Køge",
@@ -235,12 +235,12 @@ export const LANDING_PAGES: LandingPage[] = [
     heroSubDa:
       "Et roligt, praktisk sted for sjak på store anlægs- og boligprojekter i Køge-området – enkle værelser med fælles køkken, nem selvcheck-in og betaling via betalingslink.",
     heroSubEn:
-      "A quiet, practical base for crews on large civil and housing projects in the Køge area – simple rooms with a shared kitchen, easy self check-in and company invoicing.",
+      "A quiet, practical base for crews on large civil and housing projects in the Køge area – simple rooms with a shared kitchen, easy self check-in and company payment by link.",
     image: "/images/have-sti.jpg",
     imageAlt: "Havesti og grønne omgivelser ved Svaleholm Gæstegaard nær Køge",
     jsonLdName: "Indkvartering til håndværkere nær Køge",
     jsonLdDescription:
-      "Svaleholm Gæstegaard udlejer enkle værelser til håndværkere på projekt nær Køge og Roskilde. Fælles køkken, betaling via betalingslink, 650 kr pr. nat, min. 4 nætter.",
+      "Svaleholm Gæstegaard tilbyder enkle værelser til håndværkere på projekt nær Køge og Roskilde. Fælles køkken, betaling via betalingslink, 650 kr pr. nat, min. 4 nætter.",
     breadcrumbLabel: "Håndværkere nær Køge",
     intro: [
       {
@@ -252,12 +252,12 @@ export const LANDING_PAGES: LandingPage[] = [
           "The Køge area regularly sees large civil and housing projects that bring in tradespeople and contractors for extended periods. Instead of a site cabin, the crew stays at Svaleholm Gæstegaard in simple rooms with a shared kitchen where you can cook after a long day, and a shared lounge to unwind in. There's calm here to rest properly before the next working day starts – a real bed, a real bath, and space to retreat.",
       },
       {
-        headingDa: "Enkelt, fleksibelt og fakturérbart",
-        headingEn: "Simple, flexible and invoiced",
+        headingDa: "Enkelt, fleksibelt og forudbetalt",
+        headingEn: "Simple, flexible and prepaid",
         bodyDa:
-          "Der er op til 8 enkle værelser med fælles bad og toilet, og digital selvcheck-in via dørkode betyder, at sjakket kan ankomme og rejse, når projektet kræver det. Prisen er 650 kr pr. nat inkl. moms, minimum 4 nætter, og vi fakturerer firmaet direkte mod CVR. Skal hele sjakket bo samlet gennem et længere projekt, kan hele huset lejes eksklusivt efter en skræddersyet aftale.",
+          "Der er op til 8 enkle værelser med fælles bad og toilet, og digital selvcheck-in via dørkode betyder, at sjakket kan ankomme og rejse, når projektet kræver det. Prisen er 650 kr pr. nat inkl. moms, minimum 4 nætter, og vi sender et betalingslink til firmaet mod CVR. Skal hele sjakket bo samlet gennem et længere projekt, kan hele huset bookes eksklusivt efter en skræddersyet aftale.",
         bodyEn:
-          "There are up to 8 simple rooms with shared bath and toilet, and digital self check-in via a door code means the crew can arrive and leave whenever the project demands. The price is DKK 650 per night incl. VAT, minimum 4 nights, and we invoice the company directly against its CVR number. If the whole crew needs to stay together for a longer project, the whole house can be rented exclusively under a tailored agreement.",
+          "There are up to 8 simple rooms with shared bath and toilet, and digital self check-in via a door code means the crew can arrive and leave whenever the project demands. The price is DKK 650 per night incl. VAT, minimum 4 nights, and we send the company a payment link against its CVR number. If the whole crew needs to stay together for a longer project, the whole house can be booked exclusively under a tailored agreement.",
       },
     ],
     highlightsDa: [
@@ -274,7 +274,7 @@ export const LANDING_PAGES: LandingPage[] = [
       "Shared kitchen, bath and lounge",
       "Wifi, washing machine and parking for vans",
       "Easy digital self check-in via door code",
-      "Invoicing to the company against CVR",
+      "Payment by link to the company against CVR",
     ],
     faqs: AREA_FAQS,
     relatedSlugs: ["mandskabsindkvartering-roskilde", "naer-hvalsoe", "hele-huset-til-sjak"],
@@ -284,7 +284,7 @@ export const LANDING_PAGES: LandingPage[] = [
     slug: "naer-hvalsoe",
     metaTitle: "Indkvartering til håndværkere nær Hvalsø | Svaleholm Gæstegaard",
     metaDescription:
-      "Bygge- eller renoveringsprojekt i Hvalsø/Lejre kommune? Svaleholm Gæstegaard udlejer indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
+      "Bygge- eller renoveringsprojekt i Hvalsø/Lejre kommune? Svaleholm Gæstegaard tilbyder indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
     heroEyebrowDa: "Håndværkerindkvartering nær Hvalsø",
     heroEyebrowEn: "Tradesperson lodging near Hvalsø",
     h1Da: "Indkvartering til håndværkere nær Hvalsø",
@@ -292,12 +292,12 @@ export const LANDING_PAGES: LandingPage[] = [
     heroSubDa:
       "Et roligt, praktisk sted for sjak på projekter i Hvalsø og Lejre kommune – enkle værelser med fælles køkken, nem selvcheck-in og betaling via betalingslink.",
     heroSubEn:
-      "A quiet, practical base for crews on projects in Hvalsø and Lejre municipality – simple rooms with a shared kitchen, easy self check-in and company invoicing.",
+      "A quiet, practical base for crews on projects in Hvalsø and Lejre municipality – simple rooms with a shared kitchen, easy self check-in and company payment by link.",
     image: "/images/natur-1.jpg",
     imageAlt: "Skov og natur nær Svaleholm Gæstegaard ved Hvalsø",
     jsonLdName: "Indkvartering til håndværkere nær Hvalsø",
     jsonLdDescription:
-      "Svaleholm Gæstegaard udlejer enkle værelser til håndværkere på projekt nær Hvalsø, Lejre kommune og Roskilde. Fælles køkken, betaling via betalingslink, 650 kr pr. nat, min. 4 nætter.",
+      "Svaleholm Gæstegaard tilbyder enkle værelser til håndværkere på projekt nær Hvalsø, Lejre kommune og Roskilde. Fælles køkken, betaling via betalingslink, 650 kr pr. nat, min. 4 nætter.",
     breadcrumbLabel: "Håndværkere nær Hvalsø",
     intro: [
       {
@@ -309,12 +309,12 @@ export const LANDING_PAGES: LandingPage[] = [
           "Projects in Hvalsø and the rest of Lejre municipality need somewhere to stay that leaves the crew with energy for the workday. Instead of a site cabin, you stay at Svaleholm Gæstegaard in simple rooms with a shared kitchen where you can cook after a long day, and a shared lounge to unwind in. There's calm here to rest properly before the next working day starts – a real bed, a real bath, and space to retreat, so the crew wakes up fresher every morning.",
       },
       {
-        headingDa: "Enkelt, fleksibelt og fakturérbart",
-        headingEn: "Simple, flexible and invoiced",
+        headingDa: "Enkelt, fleksibelt og forudbetalt",
+        headingEn: "Simple, flexible and prepaid",
         bodyDa:
-          "Opholdet er enkelt: op til 8 værelser med fælles bad og toilet, og digital selvcheck-in via dørkode, så sjakket kan komme og gå, som arbejdet kræver. Prisen er 650 kr pr. nat inkl. moms, minimum 4 nætter, og firmaet faktureres direkte mod CVR. Skal sjakket bo samlet, kan hele huset lejes eksklusivt efter en skræddersyet aftale ud fra antal mand og periode.",
+          "Opholdet er enkelt: op til 8 værelser med fælles bad og toilet, og digital selvcheck-in via dørkode, så sjakket kan komme og gå, som arbejdet kræver. Prisen er 650 kr pr. nat inkl. moms, minimum 4 nætter, og firmaet betaler via betalingslink mod CVR. Skal sjakket bo samlet, kan hele huset bookes eksklusivt efter en skræddersyet aftale ud fra antal mand og periode.",
         bodyEn:
-          "The stay is simple: up to 8 rooms with shared bath and toilet, and digital self check-in via a door code, so the crew can come and go as the work demands. The price is DKK 650 per night incl. VAT, minimum 4 nights, and the company is invoiced directly against its CVR number. If the crew needs to stay together, the whole house can be rented exclusively under a tailored agreement based on crew size and period.",
+          "The stay is simple: up to 8 rooms with shared bath and toilet, and digital self check-in via a door code, so the crew can come and go as the work demands. The price is DKK 650 per night incl. VAT, minimum 4 nights, and the company pays via payment link against its CVR number. If the crew needs to stay together, the whole house can be booked exclusively under a tailored agreement based on crew size and period.",
       },
     ],
     highlightsDa: [
@@ -331,7 +331,7 @@ export const LANDING_PAGES: LandingPage[] = [
       "Shared kitchen, bath and lounge",
       "Wifi, washing machine and parking for vans",
       "Easy digital self check-in via door code",
-      "Invoicing to the company against CVR",
+      "Payment by link to the company against CVR",
     ],
     faqs: AREA_FAQS,
     relatedSlugs: ["naer-lejre", "naer-koege", "skurby-alternativ"],
@@ -341,7 +341,7 @@ export const LANDING_PAGES: LandingPage[] = [
     slug: "naer-frederikssund",
     metaTitle: "Indkvartering til håndværkere nær Frederikssund | Svaleholm Gæstegaard",
     metaDescription:
-      "Byggeprojekt omkring Frederikssund? Svaleholm Gæstegaard udlejer indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
+      "Byggeprojekt omkring Frederikssund? Svaleholm Gæstegaard tilbyder indkvartering til håndværkere ved Roskilde – op til 8 værelser, fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
     heroEyebrowDa: "Håndværkerindkvartering nær Frederikssund",
     heroEyebrowEn: "Tradesperson lodging near Frederikssund",
     h1Da: "Indkvartering til håndværkere nær Frederikssund",
@@ -349,12 +349,12 @@ export const LANDING_PAGES: LandingPage[] = [
     heroSubDa:
       "Et roligt, praktisk sted for sjak på byggeprojekter og byudvikling omkring Frederikssund – enkle værelser med fælles køkken, nem selvcheck-in og betaling via betalingslink.",
     heroSubEn:
-      "A quiet, practical base for crews on construction and development projects around Frederikssund – simple rooms with a shared kitchen, easy self check-in and company invoicing.",
+      "A quiet, practical base for crews on construction and development projects around Frederikssund – simple rooms with a shared kitchen, easy self check-in and company payment by link.",
     image: "/images/natur-4.jpg",
     imageAlt: "Landskab og natur nær Svaleholm Gæstegaard mod Frederikssund",
     jsonLdName: "Indkvartering til håndværkere nær Frederikssund",
     jsonLdDescription:
-      "Svaleholm Gæstegaard udlejer enkle værelser til håndværkere på projekt nær Frederikssund og Roskilde. Fælles køkken, betaling via betalingslink, 650 kr pr. nat, min. 4 nætter.",
+      "Svaleholm Gæstegaard tilbyder enkle værelser til håndværkere på projekt nær Frederikssund og Roskilde. Fælles køkken, betaling via betalingslink, 650 kr pr. nat, min. 4 nætter.",
     breadcrumbLabel: "Håndværkere nær Frederikssund",
     intro: [
       {
@@ -366,12 +366,12 @@ export const LANDING_PAGES: LandingPage[] = [
           "Development and construction around Frederikssund bring in tradespeople for periods where it's practical to stay together near the project. Instead of a site cabin, the crew stays at Svaleholm Gæstegaard in simple rooms with a shared kitchen where you can cook after a long day, and a shared lounge to unwind in. There's calm here to rest properly before the next working day starts – a real bed, a real bath, and space to retreat.",
       },
       {
-        headingDa: "Enkelt, fleksibelt og fakturérbart",
-        headingEn: "Simple, flexible and invoiced",
+        headingDa: "Enkelt, fleksibelt og forudbetalt",
+        headingEn: "Simple, flexible and prepaid",
         bodyDa:
-          "Der er op til 8 enkle værelser med fælles bad og toilet, og digital selvcheck-in via dørkode betyder fleksibel ankomst og afgang. Prisen er 650 kr pr. nat inkl. moms, minimum 4 nætter, og firmaet faktureres direkte mod CVR, så administrationen er enkel. Skal sjakket bo samlet gennem projektet, kan hele huset lejes eksklusivt efter en skræddersyet aftale.",
+          "Der er op til 8 enkle værelser med fælles bad og toilet, og digital selvcheck-in via dørkode betyder fleksibel ankomst og afgang. Prisen er 650 kr pr. nat inkl. moms, minimum 4 nætter, og firmaet betaler via betalingslink mod CVR, så administrationen er enkel. Skal sjakket bo samlet gennem projektet, kan hele huset bookes eksklusivt efter en skræddersyet aftale.",
         bodyEn:
-          "There are up to 8 simple rooms with shared bath and toilet, and digital self check-in via a door code means flexible arrival and departure. The price is DKK 650 per night incl. VAT, minimum 4 nights, and the company is invoiced directly against its CVR number, keeping administration simple. If the crew needs to stay together for the project, the whole house can be rented exclusively under a tailored agreement.",
+          "There are up to 8 simple rooms with shared bath and toilet, and digital self check-in via a door code means flexible arrival and departure. The price is DKK 650 per night incl. VAT, minimum 4 nights, and the company pays via payment link against its CVR number, keeping administration simple. If the crew needs to stay together for the project, the whole house can be booked exclusively under a tailored agreement.",
       },
     ],
     highlightsDa: [
@@ -388,7 +388,7 @@ export const LANDING_PAGES: LandingPage[] = [
       "Shared kitchen, bath and lounge",
       "Wifi, washing machine and parking for vans",
       "Easy digital self check-in via door code",
-      "Invoicing to the company against CVR",
+      "Payment by link to the company against CVR",
     ],
     faqs: AREA_FAQS,
     relatedSlugs: ["naer-holbaek", "mandskabsindkvartering-roskilde", "langtidsleje-haandvaerkere"],
@@ -408,12 +408,12 @@ export const LANDING_PAGES: LandingPage[] = [
     heroSubDa:
       "Indkvartering til håndværkere og mandskab på projekt i Roskilde-området – enkeltværelser eller hele huset, betaling via betalingslink og nem selvcheck-in.",
     heroSubEn:
-      "Accommodation for tradespeople and crews on a project in the Roskilde area – single rooms or the whole house, company invoicing and easy self check-in.",
+      "Accommodation for tradespeople and crews on a project in the Roskilde area – single rooms or the whole house, company payment and easy self check-in.",
     image: "/images/vaerelse-seng.jpg",
     imageAlt: "Enkelt værelse til mandskabsindkvartering på Svaleholm Gæstegaard nær Roskilde",
     jsonLdName: "Mandskabsindkvartering i Roskilde-området",
     jsonLdDescription:
-      "Svaleholm Gæstegaard udlejer enkeltværelser eller hele gården til mandskab og håndværkere på projekt i Roskilde-området. Fælles køkken, betaling via betalingslink, 650 kr pr. nat, min. 4 nætter.",
+      "Svaleholm Gæstegaard tilbyder enkeltværelser eller hele gården til mandskab og håndværkere på projekt i Roskilde-området. Fælles køkken, betaling via betalingslink, 650 kr pr. nat, min. 4 nætter.",
     breadcrumbLabel: "Mandskabsindkvartering Roskilde",
     serviceName: "Mandskabsindkvartering",
     serviceDescription:
@@ -431,9 +431,9 @@ export const LANDING_PAGES: LandingPage[] = [
         headingDa: "Enkeltværelser eller hele huset",
         headingEn: "Single rooms or the whole house",
         bodyDa:
-          "I kan booke enkeltværelser pr. mand eller leje hele huset eksklusivt til sjakket. Prisen er 650 kr pr. nat inkl. moms, minimum 4 nætter, og vi fakturerer virksomheden direkte mod CVR, så administrationen er enkel. Digital selvcheck-in via dørkode betyder, at sjakket kan ankomme og rejse fleksibelt, uden at skulle koordinere med en vært.",
+          "I kan booke enkeltværelser pr. mand eller booke hele huset eksklusivt til sjakket. Prisen er 650 kr pr. nat inkl. moms, minimum 4 nætter, og vi sender et betalingslink til virksomheden mod CVR, så administrationen er enkel. Digital selvcheck-in via dørkode betyder, at sjakket kan ankomme og rejse fleksibelt, uden at skulle koordinere med en vært.",
         bodyEn:
-          "You can book single rooms per person or rent the whole house exclusively for the crew. The price is DKK 650 per night incl. VAT, minimum 4 nights, and we invoice the company directly against its CVR number, keeping administration simple. Digital self check-in via a door code means the crew can arrive and leave flexibly, without coordinating with a host.",
+          "You can book single rooms per person or book the whole house exclusively for the crew. The price is DKK 650 per night incl. VAT, minimum 4 nights, and we send the company a payment link against its CVR number, keeping administration simple. Digital self check-in via a door code means the crew can arrive and leave flexibly, without coordinating with a host.",
       },
     ],
     highlightsDa: [
@@ -450,7 +450,7 @@ export const LANDING_PAGES: LandingPage[] = [
       "Shared kitchen, bath and lounge",
       "Wifi, washing machine and parking for vans",
       "Easy digital self check-in via door code",
-      "Invoicing to the company against CVR",
+      "Payment by link to the company against CVR",
     ],
     faqs: USECASE_FAQS,
     relatedSlugs: ["hele-huset-til-sjak", "langtidsleje-haandvaerkere", "naer-koege"],
@@ -473,7 +473,7 @@ export const LANDING_PAGES: LandingPage[] = [
     imageAlt: "Svaleholm Gæstegaards bygning som alternativ til skurvogn for håndværkere",
     jsonLdName: "Alternativ til skurvogn og skurby nær Roskilde",
     jsonLdDescription:
-      "Svaleholm Gæstegaard udlejer rigtige værelser med køkken, bad og opholdsrum som alternativ til skurvogn/skurby for håndværkere nær Roskilde. 650 kr pr. nat, min. 4 nætter, betaling via betalingslink.",
+      "Svaleholm Gæstegaard tilbyder rigtige værelser med køkken, bad og opholdsrum som alternativ til skurvogn/skurby for håndværkere nær Roskilde. 650 kr pr. nat, min. 4 nætter, betaling via betalingslink.",
     breadcrumbLabel: "Alternativ til skurvogn",
     serviceName: "Alternativ til skurvogn",
     serviceDescription:
@@ -491,9 +491,9 @@ export const LANDING_PAGES: LandingPage[] = [
         headingDa: "Samme pris-logik, bedre forhold",
         headingEn: "Same price logic, better conditions",
         bodyDa:
-          "Overnatning koster 650 kr pr. nat inkl. moms, minimum 4 nætter, og vi fakturerer firmaet direkte mod CVR – lige så enkelt som en skurvognsaftale. Digital selvcheck-in via dørkode betyder, at sjakket selv styrer ankomst og afgang. Er der brug for plads til et helt sjak, kan hele huset lejes eksklusivt efter en skræddersyet aftale.",
+          "Overnatning koster 650 kr pr. nat inkl. moms, minimum 4 nætter, og vi sender et betalingslink til firmaet mod CVR – lige så enkelt som en skurvognsaftale. Digital selvcheck-in via dørkode betyder, at sjakket selv styrer ankomst og afgang. Er der brug for plads til et helt sjak, kan hele huset bookes eksklusivt efter en skræddersyet aftale.",
         bodyEn:
-          "A stay costs DKK 650 per night incl. VAT, minimum 4 nights, and we invoice the company directly against its CVR number – just as simple as a site-cabin agreement. Digital self check-in via a door code means the crew controls its own arrival and departure. If there's room needed for a whole crew, the whole house can be rented exclusively under a tailored agreement.",
+          "A stay costs DKK 650 per night incl. VAT, minimum 4 nights, and we send the company a payment link against its CVR number – just as simple as a site-cabin agreement. Digital self check-in via a door code means the crew controls its own arrival and departure. If there's room needed for a whole crew, the whole house can be booked exclusively under a tailored agreement.",
       },
     ],
     highlightsDa: [
@@ -508,7 +508,7 @@ export const LANDING_PAGES: LandingPage[] = [
       "Four shared baths and toilets plus a lounge",
       "Up to 8 rooms from DKK 650/night incl. VAT, min. 4 nights",
       "Easy digital self check-in via door code",
-      "Invoicing to the company against CVR",
+      "Payment by link to the company against CVR",
     ],
     faqs: USECASE_FAQS,
     relatedSlugs: ["mandskabsindkvartering-roskilde", "hele-huset-til-sjak", "naer-hvalsoe"],
@@ -516,57 +516,57 @@ export const LANDING_PAGES: LandingPage[] = [
   {
     category: "usecase",
     slug: "hele-huset-til-sjak",
-    metaTitle: "Lej hele huset til sjakket | Svaleholm Gæstegaard Roskilde",
+    metaTitle: "Book hele huset til sjakket | Svaleholm Gæstegaard Roskilde",
     metaDescription:
-      "Lej hele gården eksklusivt til dit sjak nær Roskilde – op til 8 værelser, fælles køkken og opholdsrum. Skræddersyet aftale, betaling via betalingslink, min. 4 nætter.",
+      "Book hele gården eksklusivt til dit sjak nær Roskilde – op til 8 værelser, fælles køkken og opholdsrum. Skræddersyet aftale, betaling via betalingslink, min. 4 nætter.",
     heroEyebrowDa: "Hele huset til ét sjak",
     heroEyebrowEn: "The whole house for one crew",
-    h1Da: "Lej hele huset til sjakket",
-    h1En: "Rent the whole house for your crew",
+    h1Da: "Book hele huset til sjakket",
+    h1En: "Book the whole house for your crew",
     heroSubDa:
-      "Lej hele Svaleholm Gæstegaard eksklusivt til sjakket – op til 8 værelser, fælles køkken og opholdsrum, skræddersyet aftale efter antal mand og periode.",
+      "Book hele Svaleholm Gæstegaard eksklusivt til sjakket – op til 8 værelser, fælles køkken og opholdsrum, skræddersyet aftale efter antal mand og periode.",
     heroSubEn:
-      "Rent the whole of Svaleholm Gæstegaard exclusively for your crew – up to 8 rooms, a shared kitchen and lounge, tailored to crew size and period.",
+      "Book the whole of Svaleholm Gæstegaard exclusively for your crew – up to 8 rooms, a shared kitchen and lounge, tailored to crew size and period.",
     image: "/images/gaardsplads.jpg",
-    imageAlt: "Svaleholm Gæstegaards gårdsplads ved eksklusiv udlejning til ét sjak",
+    imageAlt: "Svaleholm Gæstegaards gårdsplads ved eksklusiv booking for ét sjak",
     jsonLdName: "Hele huset til ét sjak nær Roskilde",
     jsonLdDescription:
-      "Eksklusiv leje af hele Svaleholm Gæstegaard til ét firmas sjak nær Roskilde – op til 8 værelser, fælles køkken og opholdsrum, skræddersyet aftale.",
+      "Eksklusiv booking af hele Svaleholm Gæstegaard til ét firmas sjak nær Roskilde – op til 8 værelser, fælles køkken og opholdsrum, skræddersyet aftale.",
     breadcrumbLabel: "Hele huset til sjakket",
     serviceName: "Hele huset til ét sjak",
     serviceDescription:
-      "Eksklusiv leje af hele gården til ét firmas sjak nær Roskilde, skræddersyet aftale efter antal mand og periode.",
+      "Eksklusiv booking af hele gården til ét firmas sjak nær Roskilde, skræddersyet aftale efter antal mand og periode.",
     intro: [
       {
         headingDa: "Hele sjakket under ét tag",
         headingEn: "The whole crew under one roof",
         bodyDa:
-          "Når et sjak skal bo sammen i en periode, er det en fordel at have hele huset for sig selv. Svaleholm Gæstegaard kan lejes eksklusivt til ét firma, så I har op til 8 værelser, et fælles køkken og et fælles opholdsrum for jer selv – uden at dele med andre gæster. Det gør det nemt at holde sammen på sjakket, både i arbejdstiden og om aftenen.",
+          "Når et sjak skal bo sammen i en periode, er det en fordel at have hele huset for sig selv. Svaleholm Gæstegaard kan bookes eksklusivt til ét firma, så I har op til 8 værelser, et fælles køkken og et fælles opholdsrum for jer selv – uden at dele med andre gæster. Det gør det nemt at holde sammen på sjakket, både i arbejdstiden og om aftenen.",
         bodyEn:
-          "When a crew needs to stay together for a period, it's an advantage to have the whole house to yourselves. Svaleholm Gæstegaard can be rented exclusively to one company, so you have up to 8 rooms, a shared kitchen and a shared lounge entirely to yourselves – without sharing with other guests. That makes it easy to keep the crew together, both during work hours and in the evening.",
+          "When a crew needs to stay together for a period, it's an advantage to have the whole house to yourselves. Svaleholm Gæstegaard can be booked exclusively for one company, so you have up to 8 rooms, a shared kitchen and a shared lounge entirely to yourselves – without sharing with other guests. That makes it easy to keep the crew together, both during work hours and in the evening.",
       },
       {
         headingDa: "En aftale, der passer til jeres projekt",
         headingEn: "An agreement that fits your project",
         bodyDa:
-          "Vi laver en skræddersyet aftale ud fra antal mand og periode, og fakturerer firmaet direkte mod CVR. Udgangspunktet er 650 kr pr. nat pr. værelse inkl. moms, minimum 4 nætter. Digital selvcheck-in via dørkode betyder, at sjakket selv styrer ankomst og afgang, uden at skulle koordinere med en vært.",
+          "Vi laver en skræddersyet aftale ud fra antal mand og periode, og sender et betalingslink til firmaet mod CVR. Udgangspunktet er 650 kr pr. nat pr. værelse inkl. moms, minimum 4 nætter. Digital selvcheck-in via dørkode betyder, at sjakket selv styrer ankomst og afgang, uden at skulle koordinere med en vært.",
         bodyEn:
-          "We tailor the agreement to crew size and period, and invoice the company directly against its CVR number. The baseline is DKK 650 per night per room incl. VAT, minimum 4 nights. Digital self check-in via a door code means the crew controls its own arrival and departure, without coordinating with a host.",
+          "We tailor the agreement to crew size and period, and send the company a payment link against its CVR number. The baseline is DKK 650 per night per room incl. VAT, minimum 4 nights. Digital self check-in via a door code means the crew controls its own arrival and departure, without coordinating with a host.",
       },
     ],
     highlightsDa: [
-      "Hele gården lejes eksklusivt til ét sjak",
+      "Hele gården bookes eksklusivt til ét sjak",
       "Op til 8 værelser, fælles køkken og opholdsrum",
       "Skræddersyet aftale efter antal mand og periode",
       "Fra 650 kr/nat pr. værelse inkl. moms, min. 4 nætter",
       "Betaling forud via betalingslink",
     ],
     highlightsEn: [
-      "The whole house rented exclusively for one crew",
+      "The whole house booked exclusively for one crew",
       "Up to 8 rooms, shared kitchen and lounge",
       "Tailored agreement based on crew size and period",
       "From DKK 650/night per room incl. VAT, min. 4 nights",
-      "Invoicing to the company against CVR",
+      "Payment by link to the company against CVR",
     ],
     faqs: USECASE_FAQS,
     relatedSlugs: ["mandskabsindkvartering-roskilde", "langtidsleje-haandvaerkere", "naer-lejre"],
@@ -574,24 +574,24 @@ export const LANDING_PAGES: LandingPage[] = [
   {
     category: "usecase",
     slug: "langtidsleje-haandvaerkere",
-    metaTitle: "Langtidsleje til håndværkere nær Roskilde | Svaleholm Gæstegaard",
+    metaTitle: "Langtidsophold til håndværkere nær Roskilde | Svaleholm Gæstegaard",
     metaDescription:
       "Langvarigt bygge- eller renoveringsprojekt? Langtidsindkvartering til håndværkere nær Roskilde med fælles køkken og betaling via betalingslink. Fra 650 kr/nat, skræddersyet aftale.",
-    heroEyebrowDa: "Langtidsleje til håndværkere",
+    heroEyebrowDa: "Langtidsophold til håndværkere",
     heroEyebrowEn: "Long-stay lodging for tradespeople",
-    h1Da: "Langtidsleje til håndværkere på projekt",
+    h1Da: "Langtidsophold til håndværkere på projekt",
     h1En: "Long-stay lodging for tradespeople",
     heroSubDa:
       "En stabil base nær projektet, når arbejdet varer uger eller måneder – skræddersyet langtidsaftale med betaling via betalingslink og nem selvcheck-in.",
     heroSubEn:
-      "A stable base near the project when the work runs for weeks or months – a tailored long-stay agreement with company invoicing and easy self check-in.",
+      "A stable base near the project when the work runs for weeks or months – a tailored long-stay agreement with company payment and easy self check-in.",
     image: "/images/have-sti.jpg",
-    imageAlt: "Have og sti ved Svaleholm Gæstegaard til langtidsleje for håndværkere",
-    jsonLdName: "Langtidsleje til håndværkere nær Roskilde",
+    imageAlt: "Have og sti ved Svaleholm Gæstegaard til langtidsophold for håndværkere",
+    jsonLdName: "Langtidsophold til håndværkere nær Roskilde",
     jsonLdDescription:
-      "Svaleholm Gæstegaard udlejer langtidsindkvartering til håndværkere på længerevarende projekter nær Roskilde – skræddersyet aftale og betaling via betalingslink.",
-    breadcrumbLabel: "Langtidsleje til håndværkere",
-    serviceName: "Langtidsleje til håndværkere",
+      "Svaleholm Gæstegaard tilbyder langtidsindkvartering til håndværkere på længerevarende projekter nær Roskilde – skræddersyet aftale og betaling via betalingslink.",
+    breadcrumbLabel: "Langtidsophold til håndværkere",
+    serviceName: "Langtidsophold til håndværkere",
     serviceDescription:
       "Langtidsindkvartering til håndværkere på længerevarende projekter nær Roskilde, skræddersyet aftale og betaling via betalingslink.",
     intro: [
@@ -607,9 +607,9 @@ export const LANDING_PAGES: LandingPage[] = [
         headingDa: "Skræddersyet aftale, enkel administration",
         headingEn: "A tailored agreement, simple administration",
         bodyDa:
-          "Vi laver en skræddersyet langtidsaftale ud fra projektets varighed og antal mand, med en udgangspris på 650 kr pr. nat inkl. moms og minimum 4 nætter. Firmaet faktureres direkte mod CVR, og digital selvcheck-in via dørkode gør det nemt for sjakket at komme og gå, som arbejdet kræver.",
+          "Vi laver en skræddersyet langtidsaftale ud fra projektets varighed og antal mand, med en udgangspris på 650 kr pr. nat inkl. moms og minimum 4 nætter. Firmaet betaler via betalingslink mod CVR, og digital selvcheck-in via dørkode gør det nemt for sjakket at komme og gå, som arbejdet kræver.",
         bodyEn:
-          "We tailor a long-stay agreement to the project's duration and crew size, with a baseline price of DKK 650 per night incl. VAT and a minimum of 4 nights. The company is invoiced directly against its CVR number, and digital self check-in via a door code makes it easy for the crew to come and go as the work requires.",
+          "We tailor a long-stay agreement to the project's duration and crew size, with a baseline price of DKK 650 per night incl. VAT and a minimum of 4 nights. The company pays via payment link against its CVR number, and digital self check-in via a door code makes it easy for the crew to come and go as the work requires.",
       },
     ],
     highlightsDa: [
@@ -626,7 +626,7 @@ export const LANDING_PAGES: LandingPage[] = [
       "From DKK 650/night incl. VAT, min. 4 nights",
       "Shared kitchen, bath and lounge",
       "Wifi, washing machine and parking for vans",
-      "Invoicing to the company against CVR",
+      "Payment by link to the company against CVR",
     ],
     faqs: USECASE_FAQS,
     relatedSlugs: ["mandskabsindkvartering-roskilde", "hele-huset-til-sjak", "naer-frederikssund"],

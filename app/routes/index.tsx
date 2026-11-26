@@ -16,7 +16,7 @@ export function meta() {
     path: "",
     title: "Indkvartering til håndværkere nær Roskilde | Svaleholm Gæstegaard",
     description:
-      "Få dit sjak til at bo tæt på pladsen. Svaleholm Gæstegaard udlejer enkle værelser eller hele huset til håndværkere nær Roskilde – fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
+      "Få dit sjak til at bo tæt på pladsen. Svaleholm Gæstegaard tilbyder enkle værelser eller hele huset til håndværkere nær Roskilde – fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
     image: "/images/gaardsplads.jpg",
     imageAlt: "Svaleholm Gæstegaards gårdsplads",
   });
@@ -31,7 +31,7 @@ export default function Index() {
       path: "",
       name: "Svaleholm Gæstegaard Roskilde – Indkvartering til håndværkere",
       description:
-        "Svaleholm Gæstegaard udlejer enkle værelser eller hele huset til håndværkere nær Roskilde – fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
+        "Svaleholm Gæstegaard tilbyder enkle værelser eller hele huset til håndværkere nær Roskilde – fælles køkken, betaling via betalingslink. 650 kr/nat, min. 4 nætter.",
       primaryImage: "/images/gaardsplads.jpg",
     }),
     breadcrumb([{ name: "Forside", path: "" }]),
@@ -121,7 +121,7 @@ function HeroSection() {
         >
           {t(
             "Et praktisk hjem til sjakket tæt på pladsen – enkle værelser eller hele huset, fælles køkken og betaling via betalingslink. 650 kr pr. nat, min. 4 nætter.",
-            "A practical base for the crew close to the site – simple rooms or the whole house, a shared kitchen and company invoicing. DKK 650 per night, minimum 4 nights."
+            "A practical base for the crew close to the site – simple rooms or the whole house, a shared kitchen and company payment by link. DKK 650 per night, minimum 4 nights."
           )}
         </motion.p>
 
@@ -189,15 +189,15 @@ function IntroSection() {
             <div style={{ borderLeft: "1px solid #C9A96A", paddingLeft: "1.5rem", marginBottom: "2rem" }}>
               <p style={{ fontFamily: "var(--font-heading)", fontSize: "1.5rem", color: "#F2EFE7", lineHeight: 1.5, fontStyle: "italic" }}>
                 {t(
-                  "\"Hele sjakket bor samlet – og vi sender regningen til firmaet.\"",
-                  "\"The whole crew stays together – and we invoice the company.\""
+                  "\"Hele sjakket bor samlet – og firmaet betaler via betalingslink.\"",
+                  "\"The whole crew stays together – and the company pays by link.\""
                 )}
               </p>
             </div>
             <p style={{ color: "rgba(242,239,231,0.7)", lineHeight: 1.9, marginBottom: "2.5rem", maxWidth: "48ch" }}>
               {t(
-                "Svaleholm Gæstegaard ligger i rolige, landlige omgivelser tæt på Roskilde. Sjakket bor samlet under samme tag med fælles køkken, bad og opholdsrum, wifi og vaskemaskine, og selv kan I checke ind med egen kode, når arbejdsdagen er slut. Der er også parkering til varevogne på pladsen. Vi fakturerer firmaet mod CVR, så I slipper for bilag.",
-                "Svaleholm Gæstegaard lies in calm, rural surroundings close to Roskilde. The crew stays together under one roof with a shared kitchen, bathrooms, lounge, wifi and a washing machine, and you check in yourselves with your own door code once the workday is done. There is also parking for vans at the farm. We invoice the company against a CVR number, so there's no paperwork for individuals."
+                "Svaleholm Gæstegaard ligger i rolige, landlige omgivelser tæt på Roskilde. Sjakket bor samlet under samme tag med fælles køkken, bad og opholdsrum, wifi og vaskemaskine, og selv kan I checke ind med egen kode, når arbejdsdagen er slut. Der er også parkering til varevogne på pladsen. Firmaet betaler via betalingslink mod CVR, så I slipper for bilag.",
+                "Svaleholm Gæstegaard lies in calm, rural surroundings close to Roskilde. The crew stays together under one roof with a shared kitchen, bathrooms, lounge, wifi and a washing machine, and you check in yourselves with your own door code once the workday is done. There is also parking for vans at the farm. The company pays via a payment link against a CVR number, so there's no paperwork for individuals."
               )}
             </p>
           </motion.div>
@@ -232,8 +232,8 @@ function ServicesSection() {
             tag={t("Til sjakket", "For the crew")}
             title={t("Enkeltværelser til sjakket", "Single rooms for the crew")}
             description={t(
-              "Op til otte enkle værelser med fælles køkken, bad og opholdsrum – tæt på pladsen og klar til sjakket, mand for mand. 650 kr/nat, min. 4 nætter, faktureres til firmaet.",
-              "Up to eight simple rooms with a shared kitchen, bathrooms and lounge – close to the site and ready for the crew, one man at a time. DKK 650/night, minimum 4 nights, invoiced to the company."
+              "Op til otte enkle værelser med fælles køkken, bad og opholdsrum – tæt på pladsen og klar til sjakket, mand for mand. 650 kr/nat, min. 4 nætter, betales af firmaet.",
+              "Up to eight simple rooms with a shared kitchen, bathrooms and lounge – close to the site and ready for the crew, one man at a time. DKK 650/night, minimum 4 nights, paid by the company."
             )}
             href="/vaerelser"
             cta={t("Se værelser", "See the rooms")}
@@ -442,7 +442,7 @@ function CtaBanner() {
         <p style={{ fontFamily: "var(--font-body)", color: "rgba(242,239,231,0.72)", lineHeight: 1.85, maxWidth: "46ch", margin: "0 auto 2.6rem", fontSize: "1rem" }}>
           {t(
             "Fortæl os, hvor mange mand og hvor længe, og vi sender et tilbud – betaling sker forud via betalingslink, og kvittering med CVR sendes automatisk. Vi ser frem til at byde jer velkommen til Svaleholm Gæstegaard.",
-            "Tell us how many people and for how long, and we'll send a quote – the invoice goes to the company against a CVR number. We look forward to welcoming you to Svaleholm Gæstegaard."
+            "Tell us how many people and for how long, and we'll send a quote – payment is made in advance via a payment link, and a receipt with CVR is sent automatically. We look forward to welcoming you to Svaleholm Gæstegaard."
           )}
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">

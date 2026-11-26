@@ -25,14 +25,14 @@ const PRISER_FAQ: FaqItem[] = [
   {
     qDa: "Kan vi booke hele huset til sjakket?",
     qEn: "Can we book the whole house for the crew?",
-    aDa: "Ja. Hele huset kan lejes eksklusivt til jeres sjak – fx ved et længere projekt, hvor flere håndværkere skal bo samlet. Kontakt os for en skræddersyet aftale.",
-    aEn: "Yes. The whole house can be rented exclusively for your crew – for example on a longer project where several tradespeople need to stay together. Contact us for a tailored agreement.",
+    aDa: "Ja. Hele huset kan bookes eksklusivt til jeres sjak – fx ved et længere projekt, hvor flere håndværkere skal bo samlet. Kontakt os for en skræddersyet aftale.",
+    aEn: "Yes. The whole house can be booked exclusively for your crew – for example on a longer project where several tradespeople need to stay together. Contact us for a tailored agreement.",
   },
   {
-    qDa: "Kan I fakturere firmaet?",
-    qEn: "Can you invoice the company?",
-    aDa: "Ja. Vi fakturerer mod CVR-nummer, så I kan afregne opholdet gennem virksomheden.",
-    aEn: "Yes. We invoice against a CVR (business registration) number, so you can settle the stay through the company.",
+    qDa: "Kan firmaet betale?",
+    qEn: "Can the company pay?",
+    aDa: "Ja. Virksomheden kan betale mod CVR-nummer, så I kan afregne opholdet gennem virksomheden.",
+    aEn: "Yes. The company can pay against a CVR (business registration) number, so you can settle the stay through the company.",
   },
 ];
 
@@ -41,7 +41,7 @@ export function meta() {
     path: "/priser",
     title: "Priser & booking – overnatning til håndværkere | Svaleholm Roskilde",
     description:
-      "Se priser på overnatning til håndværkere og sjak nær Roskilde. Fra 650 kr pr. nat inkl. moms, min. 4 nætter. Fakturabetaling mod CVR. Beregn jeres ophold og få et tilbud.",
+      "Se priser på overnatning til håndværkere og sjak nær Roskilde. Fra 650 kr pr. nat inkl. moms, min. 4 nætter. Betaling via betalingslink mod CVR. Beregn jeres ophold og få et tilbud.",
     image: "/images/bygning-have.jpg",
     imageAlt: "Svaleholms bygning og have ved Roskilde",
   });
