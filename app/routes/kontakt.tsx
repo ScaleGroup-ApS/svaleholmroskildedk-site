@@ -337,7 +337,8 @@ export default function Kontakt() {
               >
                 <div className="glass card-shadow p-8 md:p-10" style={{ borderRadius: "2px" }}>
                   <Form method="post">
-                    <h3 className="heading-card mb-7" style={{ color: "#F2EFE7" }}>{t("Få tilbud til dit sjak", "Get a quote for your crew")}</h3>
+                    <h3 className="heading-card mb-2" style={{ color: "#F2EFE7" }}>{t("Skriv til Team Svaleholm", "Write to Team Svaleholm")}</h3>
+                    <p className="mb-7" style={{ fontFamily: "var(--font-body)", color: "rgba(242,239,231,0.7)", fontSize: "0.95rem" }}>{t("Vi svarer inden for 24 timer.", "We reply within 24 hours.")}</p>
 
                     {/* Signeret udstedelsestidspunkt — afslører submits, der er
                         for hurtige til at være udfyldt af et menneske. */}
