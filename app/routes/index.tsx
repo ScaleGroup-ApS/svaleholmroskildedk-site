@@ -146,7 +146,7 @@ function HeroSection() {
             {t("Værelser til firmaer & håndværkere", "Rooms for companies & tradespeople")}
           </Link>
           <Link to="/indkvartering-haandvaerkere" className="btn-ghost">
-            {t("Book hele gården", "Book the whole farm")}
+            {t("Lej hele gården", "Rent the whole farm")}
           </Link>
         </motion.div>
       </div>
