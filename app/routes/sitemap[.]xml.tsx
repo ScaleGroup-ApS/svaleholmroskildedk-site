@@ -43,6 +43,11 @@ export async function loader(_args: Route.LoaderArgs) {
     { path: "/priser", priority: "0.8", changefreq: "weekly" },
     { path: "/galleri", priority: "0.7", changefreq: "monthly" },
     { path: "/kontakt", priority: "0.7", changefreq: "monthly" },
+    // Top-level søgehensigt-landingssider (#231 G12)
+    { path: "/haandvaerkere", priority: "0.8", changefreq: "weekly" },
+    { path: "/hele-gaarden", priority: "0.8", changefreq: "weekly" },
+    { path: "/risoe", priority: "0.7", changefreq: "weekly" },
+    { path: "/roskilde-festival", priority: "0.7", changefreq: "weekly" },
   ];
   for (const s of STATIC_PATHS) {
     urls.push({ loc: `${siteUrl}${s.path}`, lastmod: today, priority: s.priority, changefreq: s.changefreq });

@@ -33,5 +33,11 @@ export default [
   route("robots.txt", "routes/robots[.]txt.tsx"),
   route("sitemap.xml", "routes/sitemap[.]xml.tsx"),
   route("llms.txt", "routes/llms[.]txt.tsx"),
+  // Top-level søgehensigt-landingssider (#231 G12). Skal stå over "*"-catch-all,
+  // ellers falder de gennem til WordPress-slug-opslaget og 404'er.
+  route("haandvaerkere", "routes/haandvaerkere.tsx"),
+  route("hele-gaarden", "routes/hele-gaarden.tsx"),
+  route("risoe", "routes/risoe.tsx"),
+  route("roskilde-festival", "routes/roskilde-festival.tsx"),
   route("*", "routes/$.tsx"),
 ] satisfies RouteConfig;
