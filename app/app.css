@@ -22,8 +22,8 @@
   --color-border:        #223029;
 
   /* Fonts */
-  --font-heading: "Cormorant Garamond", Georgia, "Times New Roman", serif;
-  --font-body:    "Karla", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-heading: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body:    "Work Sans", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 }
 
 /* Rå CSS-variabler til inline-styles rundt om i appen */
